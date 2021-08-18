@@ -448,19 +448,19 @@
 
 
   
-    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Spark/Spark历史" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
+      <a class="article-title" href="/2021/07/10/Spark/Spark历史/">Spark历史</a>
     </h1>
   
 
         
-        <a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
+        <a href="/2021/07/10/Spark/Spark历史/" class="archive-article-date">
   	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
 </a>
         
@@ -468,17 +468,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
-<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
+        <h2 id="历史"><a href="#历史" class="headerlink" title="历史:"></a>历史:</h2><p> 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的<br>发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术<br>2010年3月份开源<br>2011年在AMP实验室在Spark上开发高级组件,像Spark Streaming<br>2013 年转移到Apache 下,不久便成了顶级项目</p>
+<ul>
+<li>Spark 组件</li>
+</ul>
+<ol>
+<li><p>Spark Core </p>
+<ul>
+<li>包含Spark 的基本功能,包含任务调度,内存管理,容错机制等,内部定义了RDDs(弹性分布式数据集).提供了很多APIs来创建和操作这些RDDs,应用场景,为了其他组件提供底层服务.</li>
+</ul>
 </li>
-<li><p>使用find-spark库</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
+<li><p>SPark SQL</p>
+<ul>
+<li>是Spark 处理结构换数据的库, 就像HiveSQL Mysql类似,应用场景,企业中用来做报表统计.</li>
+</ul>
 </li>
-<li><p>~/.bashrc 配置完整pyspark路径 </p>
+<li>Spark Streaming <ul>
+<li>实时数据流处理组件,类似Strom</li>
+<li>Spark Streaming 提供了API来操作实时流数据,应用场景,在企业中用来做从Kafka来接受数据做实时统计.</li>
+</ul>
+</li>
+<li>Mlib <ul>
+<li>一个包含通用机器学习功能的包,Machine learning lib </li>
+<li>包含分类,聚类 回归等,还包括模型评估和数据导入.</li>
+<li>MLLib 提供的方法,都支持集群上的横向扩展.<br>应用场景机器学习</li>
+</ul>
+</li>
+<li>Graphx <ul>
+<li>处理图的库 例如社交网络图 , 并进行图的并行计算. 像Spark Streaming ,Spark SQL一样,它继承了 RDD API </li>
+<li>提供了各种图的操作, 和常用的图算法,例如PangeRank算法.<br>应用场景图计算</li>
+</ul>
+</li>
+<li>Cluster Managers:<ul>
+<li>集群管理 Spark 自带的一个集群管理是单独调度器.常见集群管理包括 Hadoop YARN ,Apache Mesos </li>
+</ul>
+</li>
+<li>紧密集成的优点;<ul>
+<li>Spark 底层优化了,基于Spark 底层优化的组件,也得到了相应的优化</li>
+<li>紧密集成,节省了各个组件组合使用部署,测试等时间.</li>
+<li>向SPARK 增加新的组件时其他组件,可以立即享用新组件的功能</li>
+</ul>
 </li>
 </ol>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -495,7 +527,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
         		</li>
       		
 		</ul>
@@ -507,7 +539,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Pyspark/#" class="article-tag-list-link color3">Pyspark</a>
+        			<a href="/categories/Spark/#" class="article-tag-list-link color1">Spark</a>
         		</li>
       		
 		</ul>
@@ -516,7 +548,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/07/10/Spark/Spark历史/">展开全文 >></a>
         </p>
       
 
@@ -631,11 +663,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cdh</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cdh</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		
 		</ul>
@@ -686,19 +718,19 @@
 
 
   
-    <article id="post-Spark/Spark历史" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/10/Spark/Spark历史/">Spark历史</a>
+      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
     </h1>
   
 
         
-        <a href="/2021/07/10/Spark/Spark历史/" class="archive-article-date">
+        <a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
   	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
 </a>
         
@@ -706,49 +738,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="历史"><a href="#历史" class="headerlink" title="历史:"></a>历史:</h2><p> 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的<br>发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术<br>2010年3月份开源<br>2011年在AMP实验室在Spark上开发高级组件,像Spark Streaming<br>2013 年转移到Apache 下,不久便成了顶级项目</p>
-<ul>
-<li>Spark 组件</li>
-</ul>
-<ol>
-<li><p>Spark Core </p>
-<ul>
-<li>包含Spark 的基本功能,包含任务调度,内存管理,容错机制等,内部定义了RDDs(弹性分布式数据集).提供了很多APIs来创建和操作这些RDDs,应用场景,为了其他组件提供底层服务.</li>
-</ul>
+        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
+<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>SPark SQL</p>
-<ul>
-<li>是Spark 处理结构换数据的库, 就像HiveSQL Mysql类似,应用场景,企业中用来做报表统计.</li>
-</ul>
+<li><p>使用find-spark库</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
 </li>
-<li>Spark Streaming <ul>
-<li>实时数据流处理组件,类似Strom</li>
-<li>Spark Streaming 提供了API来操作实时流数据,应用场景,在企业中用来做从Kafka来接受数据做实时统计.</li>
-</ul>
-</li>
-<li>Mlib <ul>
-<li>一个包含通用机器学习功能的包,Machine learning lib </li>
-<li>包含分类,聚类 回归等,还包括模型评估和数据导入.</li>
-<li>MLLib 提供的方法,都支持集群上的横向扩展.<br>应用场景机器学习</li>
-</ul>
-</li>
-<li>Graphx <ul>
-<li>处理图的库 例如社交网络图 , 并进行图的并行计算. 像Spark Streaming ,Spark SQL一样,它继承了 RDD API </li>
-<li>提供了各种图的操作, 和常用的图算法,例如PangeRank算法.<br>应用场景图计算</li>
-</ul>
-</li>
-<li>Cluster Managers:<ul>
-<li>集群管理 Spark 自带的一个集群管理是单独调度器.常见集群管理包括 Hadoop YARN ,Apache Mesos </li>
-</ul>
-</li>
-<li>紧密集成的优点;<ul>
-<li>Spark 底层优化了,基于Spark 底层优化的组件,也得到了相应的优化</li>
-<li>紧密集成,节省了各个组件组合使用部署,测试等时间.</li>
-<li>向SPARK 增加新的组件时其他组件,可以立即享用新组件的功能</li>
-</ul>
+<li><p>~/.bashrc 配置完整pyspark路径 </p>
 </li>
 </ol>
-
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
       
 
       
@@ -765,7 +765,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
         		</li>
       		
 		</ul>
@@ -777,7 +777,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Spark/#" class="article-tag-list-link color1">Spark</a>
+        			<a href="/categories/Pyspark/#" class="article-tag-list-link color3">Pyspark</a>
         		</li>
       		
 		</ul>
@@ -786,7 +786,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/10/Spark/Spark历史/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
         </p>
       
 
@@ -1554,15 +1554,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1570,11 +1566,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1582,11 +1578,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1602,11 +1602,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1614,11 +1610,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1634,11 +1626,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1647,6 +1643,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
