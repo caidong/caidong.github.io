@@ -75,6 +75,8 @@
 		        
 					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/qing-cha-48-16/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
+					<a class="weixin" target="_blank" href="http://2.help.cm/d/share/Image/wechatContract.png" title="weixin"><i class="icon-weixin"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:zhucaidong@aliyun.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
@@ -113,6 +115,8 @@
 						<a class="github" target="_blank" href="https://github.com/zhucaidong" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/qing-cha-48-16/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="weixin" target="_blank" href="http://2.help.cm/d/share/Image/wechatContract.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:zhucaidong@aliyun.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -619,6 +623,105 @@
 
 
   
+    <article id="post-TensorFlow/gRPC服务使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/29/TensorFlow/gRPC服务使用/">tensorFlow grpc服务使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/29/TensorFlow/gRPC服务使用/" class="archive-article-date">
+  	<time datetime="2018-08-29T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-使用-TensorFlow-Serving-提供服务"><a href="#1-使用-TensorFlow-Serving-提供服务" class="headerlink" title="1.  使用 TensorFlow Serving 提供服务"></a>1.  使用 TensorFlow Serving 提供服务</h5><ol>
+<li>安装 tensorflow-model-server<br><a href="https://www.tensorflow.org/serving/setup#installing_using_apt_get" target="_blank" rel="noopener">官方地址</a></li>
+</ol>
+<ol start="2">
+<li>安装  tensorflow-serving-api-python3 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-serving-api-python3 -<span class="selector-tag">i</span> https:<span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用 TensorFlow Serving 提供服务<br>最后，我们来演示一下如何使用 TensorFlow 的姊妹项目 TensorFlow Serving 来基于 SavedModel 对外提供服务。</p>
+<p>安装并启动 TensorFlow ModelServer<br>TensorFlow 服务端代码是使用 C++ 开发的，因此最便捷的安装方式是通过软件源来获取编译好的二进制包。读者可以根据 官方文档 在 Ubuntu 中配置软件源和安装服务端：</p>
+<p>1<br>$ apt-get install tensorflow-model-server<br>然后就可以使用以下命令启动服务端了，该命令会加载导出目录中最新的一份模型来提供服务：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tensorflow_model_server <span class="attribute">--port</span>=9000 <span class="attribute">--model_base_path</span>=/root/export</span><br><span class="line">2018-05-14 01:05:12.561 Loading SavedModel with tags: &#123; serve &#125;; <span class="keyword">from</span>: /root/export/1524907728</span><br><span class="line">2018-05-14 01:05:12.639 Successfully loaded servable version &#123;name:<span class="built_in"> default </span>version: 1524907728&#125;</span><br><span class="line">2018-05-14 01:05:12.641 Running ModelServer at 0.0.0.0:9000 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+<p>使用 SDK 访问远程模型<br>TensorFlow Serving 是基于 gRPC 和 Protocol Buffers 开发的，因此我们需要安装相应的 SDK 包来发起调用。需要注意的是，官方的 TensorFlow Serving API 目前只提供了 Python 2.7 版本的 SDK，不过社区有人贡献了支持 Python 3.x 的软件包，我们可以用以下命令安装：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install tensorflow-seving-api-python3==<span class="number">1.7</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>调用过程很容易理解：我们首先创建远程连接，向服务端发送 Example 实例列表，并获取预测结果。完整代码可以在 iris_remote.py 中找到。</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 创建 gRPC 连接</span></span><br><span class="line">channel = implementations.insecure_channel(<span class="string">'127.0.0.1'</span>, <span class="number">9000</span>)</span><br><span class="line">stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取测试数据集，并转换成 Example 实例。</span></span><br><span class="line">inputs = pd.DateFrame()</span><br><span class="line">examples = [tf.tain.Example() <span class="keyword">for</span> index, row in inputs.iterrows()]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 准备 RPC 请求，指定模型名称。</span></span><br><span class="line">request = classification_pb2.ClassificationRequest()</span><br><span class="line">request.model_spec.name = <span class="string">'default'</span></span><br><span class="line">request.input.example_list.examples.extend(examples)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取结果</span></span><br><span class="line">response = stub.Classify(request, <span class="number">10.0</span>)</span><br><span class="line"><span class="meta"># result &#123;</span></span><br><span class="line"><span class="meta">#   classifications &#123;</span></span><br><span class="line"><span class="meta">#     classes &#123;</span></span><br><span class="line"><span class="meta">#       label: "0"</span></span><br><span class="line"><span class="meta">#       score: 0.998267650604248</span></span><br><span class="line"><span class="meta">#     &#125;</span></span><br><span class="line"><span class="meta">#     ...</span></span><br><span class="line"><span class="meta">#   &#125;</span></span><br><span class="line"><span class="meta">#   ...</span></span><br><span class="line"><span class="meta"># &#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow/#" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/29/TensorFlow/gRPC服务使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TensorFlow/tensorflow特征工程函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -743,105 +846,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/29/TensorFlow/tensorflow特征工程函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-TensorFlow/gRPC服务使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/TensorFlow/gRPC服务使用/">tensorFlow grpc服务使用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/29/TensorFlow/gRPC服务使用/" class="archive-article-date">
-  	<time datetime="2018-08-29T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-使用-TensorFlow-Serving-提供服务"><a href="#1-使用-TensorFlow-Serving-提供服务" class="headerlink" title="1.  使用 TensorFlow Serving 提供服务"></a>1.  使用 TensorFlow Serving 提供服务</h5><ol>
-<li>安装 tensorflow-model-server<br><a href="https://www.tensorflow.org/serving/setup#installing_using_apt_get" target="_blank" rel="noopener">官方地址</a></li>
-</ol>
-<ol start="2">
-<li>安装  tensorflow-serving-api-python3 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-serving-api-python3 -<span class="selector-tag">i</span> https:<span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>使用 TensorFlow Serving 提供服务<br>最后，我们来演示一下如何使用 TensorFlow 的姊妹项目 TensorFlow Serving 来基于 SavedModel 对外提供服务。</p>
-<p>安装并启动 TensorFlow ModelServer<br>TensorFlow 服务端代码是使用 C++ 开发的，因此最便捷的安装方式是通过软件源来获取编译好的二进制包。读者可以根据 官方文档 在 Ubuntu 中配置软件源和安装服务端：</p>
-<p>1<br>$ apt-get install tensorflow-model-server<br>然后就可以使用以下命令启动服务端了，该命令会加载导出目录中最新的一份模型来提供服务：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tensorflow_model_server <span class="attribute">--port</span>=9000 <span class="attribute">--model_base_path</span>=/root/export</span><br><span class="line">2018-05-14 01:05:12.561 Loading SavedModel with tags: &#123; serve &#125;; <span class="keyword">from</span>: /root/export/1524907728</span><br><span class="line">2018-05-14 01:05:12.639 Successfully loaded servable version &#123;name:<span class="built_in"> default </span>version: 1524907728&#125;</span><br><span class="line">2018-05-14 01:05:12.641 Running ModelServer at 0.0.0.0:9000 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
-<p>使用 SDK 访问远程模型<br>TensorFlow Serving 是基于 gRPC 和 Protocol Buffers 开发的，因此我们需要安装相应的 SDK 包来发起调用。需要注意的是，官方的 TensorFlow Serving API 目前只提供了 Python 2.7 版本的 SDK，不过社区有人贡献了支持 Python 3.x 的软件包，我们可以用以下命令安装：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install tensorflow-seving-api-python3==<span class="number">1.7</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<p>调用过程很容易理解：我们首先创建远程连接，向服务端发送 Example 实例列表，并获取预测结果。完整代码可以在 iris_remote.py 中找到。</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 创建 gRPC 连接</span></span><br><span class="line">channel = implementations.insecure_channel(<span class="string">'127.0.0.1'</span>, <span class="number">9000</span>)</span><br><span class="line">stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取测试数据集，并转换成 Example 实例。</span></span><br><span class="line">inputs = pd.DateFrame()</span><br><span class="line">examples = [tf.tain.Example() <span class="keyword">for</span> index, row in inputs.iterrows()]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 准备 RPC 请求，指定模型名称。</span></span><br><span class="line">request = classification_pb2.ClassificationRequest()</span><br><span class="line">request.model_spec.name = <span class="string">'default'</span></span><br><span class="line">request.input.example_list.examples.extend(examples)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取结果</span></span><br><span class="line">response = stub.Classify(request, <span class="number">10.0</span>)</span><br><span class="line"><span class="meta"># result &#123;</span></span><br><span class="line"><span class="meta">#   classifications &#123;</span></span><br><span class="line"><span class="meta">#     classes &#123;</span></span><br><span class="line"><span class="meta">#       label: "0"</span></span><br><span class="line"><span class="meta">#       score: 0.998267650604248</span></span><br><span class="line"><span class="meta">#     &#125;</span></span><br><span class="line"><span class="meta">#     ...</span></span><br><span class="line"><span class="meta">#   &#125;</span></span><br><span class="line"><span class="meta">#   ...</span></span><br><span class="line"><span class="meta"># &#125;</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow/#" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/TensorFlow/gRPC服务使用/">展开全文 >></a>
         </p>
       
 
@@ -1398,15 +1402,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1414,7 +1414,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1430,15 +1438,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
