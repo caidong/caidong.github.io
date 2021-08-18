@@ -140,20 +140,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-TensorFlow/常用api" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Docker/docker 操作" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/TensorFlow/常用api/">tensorFlow 常用api</a>
+      <a class="article-title" href="/2018/10/16/Docker/docker 操作/">Docker 操作</a>
     </h1>
   
 
         
-        <a href="/2018/08/29/TensorFlow/常用api/" class="archive-article-date">
-  	<time datetime="2018-08-29T12:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
+        <a href="/2018/10/16/Docker/docker 操作/" class="archive-article-date">
+  	<time datetime="2018-10-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
 </a>
         
       </header>
@@ -161,12 +161,63 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>tf.one_hot() 返回n维的独热张量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.one_hot(indices, depth, on_value, off_value, axis)</span><br><span class="line">输入值：</span><br><span class="line">    indices:  独热向量的位置索引</span><br><span class="line">    depth:  每个独热向量的维度</span><br><span class="line">    on_value: 独热的值</span><br><span class="line">    off_value: 非独热值</span><br><span class="line">    axis: axis指定第几阶为depth维独热向量，默认为<span class="number">-1</span>,即,指定张量的最后一维为独热向量</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    独热张量</span><br></pre></td></tr></table></figure>
+<li>宿主机复制到容器<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker cp <span class="regexp">/home/</span>sensetime<span class="regexp">/PycharmProjects/</span>predict_iris <span class="number">85510</span><span class="string">c880ca1:</span><span class="regexp">/root/</span>ml</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>tf.argmax() 返回某个 tensor 对象在某一维上的其数据最大值所在的索引值，相应的有tf.argmin()</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.argmax(input,axis=<span class="type">None</span>,name=<span class="type">None</span>,dimension=<span class="type">None</span>,output_type=tf.<span class="built_in">int64</span>)</span><br><span class="line">    </span><br><span class="line">输入值：</span><br><span class="line">    input: 以下数据类型的张量: <span class="built_in">float32</span>, <span class="built_in">float64</span>, <span class="built_in">int32</span>, <span class="built_in">uint8</span>, <span class="built_in">int16</span>, <span class="built_in">int8</span>, complex64, <span class="built_in">int64</span>, qint8, quint8, qint32, bfloat16, <span class="built_in">uint16</span>, complex128, half, <span class="built_in">uint32</span>, <span class="built_in">uint64</span>.</span><br><span class="line">    axis: A <span class="type">Tensor</span>. <span class="type">Must</span> be one <span class="keyword">of</span> the following types: <span class="built_in">int32</span>, <span class="built_in">int64</span>. <span class="built_in">int32</span> <span class="keyword">or</span> <span class="built_in">int64</span>, must be <span class="keyword">in</span> the <span class="built_in">range</span> [-rank(input), rank(input)). <span class="type">Describes</span> which axis <span class="keyword">of</span> the input <span class="type">Tensor</span> to reduce across. <span class="type">For</span> vectors, use axis = <span class="number">0</span>.</span><br><span class="line">    output_type: <span class="type">An</span> optional tf.<span class="type">DType</span> <span class="keyword">from</span>: tf.<span class="built_in">int32</span>, tf.<span class="built_in">int64</span>. <span class="type">Defaults</span> to tf.<span class="built_in">int64</span>.</span><br><span class="line">    name: 操作名 (optional).</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    类型为output_type的张量</span><br></pre></td></tr></table></figure>
+</ul>
+<p>docker  cp 宿主机路径 容器ID:容器地址</p>
+<ul>
+<li>docker 端口映射 run -p 5000:5000 </li>
+</ul>
+<ul>
+<li><p>提交新镜像
+　</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker  commit -m -<span class="selector-tag">a</span> tagname</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>容器操作</p>
+<ul>
+<li>启动：</li>
+</ul>
+<ol>
+<li>基于镜像新建并启动</li>
+<li>重新启动已终止的容器</li>
+</ol>
+<ul>
+<li>启动已终止的容器</li>
+</ul>
+<ol>
+<li>docker container start </li>
+</ol>
+<ul>
+<li>进入容器</li>
+</ul>
+<ol>
+<li>docker attach 或者docker exec </li>
+</ol>
+<ul>
+<li>导入和导出容器</li>
+</ul>
+<ol>
+<li>docker export container_id &gt; container.tar</li>
+<li><p>导入容器快照</p>
+<ul>
+<li>cat Ubuntu.tar | docker import  test/ubuntuLv1.0</li>
+<li>指定导入url或者某个目录来导入<br>dockrer import  url path </li>
+</ul>
+<ul>
+<li>删除容器(终止态容器)<ul>
+<li>docker container rm </li>
+<li>清理所有处于终止状态的容器<br>docker container pure </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>访问仓库(集中存放镜像的地方)</li>
+<li></li>
+</ul>
+<ul>
+<li>查看docker 状态</li>
 </ul>
 
       
@@ -181,7 +232,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
@@ -193,7 +248,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow/#" class="article-tag-list-link color1">tensorflow</a>
+        			<a href="/categories/Docker/#" class="article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
@@ -202,7 +257,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/TensorFlow/常用api/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/16/Docker/docker 操作/">展开全文 >></a>
         </p>
       
 
@@ -361,6 +416,98 @@
 
 
   
+    <article id="post-TensorFlow/常用api" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/29/TensorFlow/常用api/">tensorFlow 常用api</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/29/TensorFlow/常用api/" class="archive-article-date">
+  	<time datetime="2018-08-29T12:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>tf.one_hot() 返回n维的独热张量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.one_hot(indices, depth, on_value, off_value, axis)</span><br><span class="line">输入值：</span><br><span class="line">    indices:  独热向量的位置索引</span><br><span class="line">    depth:  每个独热向量的维度</span><br><span class="line">    on_value: 独热的值</span><br><span class="line">    off_value: 非独热值</span><br><span class="line">    axis: axis指定第几阶为depth维独热向量，默认为<span class="number">-1</span>,即,指定张量的最后一维为独热向量</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    独热张量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tf.argmax() 返回某个 tensor 对象在某一维上的其数据最大值所在的索引值，相应的有tf.argmin()</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.argmax(input,axis=<span class="type">None</span>,name=<span class="type">None</span>,dimension=<span class="type">None</span>,output_type=tf.<span class="built_in">int64</span>)</span><br><span class="line">    </span><br><span class="line">输入值：</span><br><span class="line">    input: 以下数据类型的张量: <span class="built_in">float32</span>, <span class="built_in">float64</span>, <span class="built_in">int32</span>, <span class="built_in">uint8</span>, <span class="built_in">int16</span>, <span class="built_in">int8</span>, complex64, <span class="built_in">int64</span>, qint8, quint8, qint32, bfloat16, <span class="built_in">uint16</span>, complex128, half, <span class="built_in">uint32</span>, <span class="built_in">uint64</span>.</span><br><span class="line">    axis: A <span class="type">Tensor</span>. <span class="type">Must</span> be one <span class="keyword">of</span> the following types: <span class="built_in">int32</span>, <span class="built_in">int64</span>. <span class="built_in">int32</span> <span class="keyword">or</span> <span class="built_in">int64</span>, must be <span class="keyword">in</span> the <span class="built_in">range</span> [-rank(input), rank(input)). <span class="type">Describes</span> which axis <span class="keyword">of</span> the input <span class="type">Tensor</span> to reduce across. <span class="type">For</span> vectors, use axis = <span class="number">0</span>.</span><br><span class="line">    output_type: <span class="type">An</span> optional tf.<span class="type">DType</span> <span class="keyword">from</span>: tf.<span class="built_in">int32</span>, tf.<span class="built_in">int64</span>. <span class="type">Defaults</span> to tf.<span class="built_in">int64</span>.</span><br><span class="line">    name: 操作名 (optional).</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    类型为output_type的张量</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow/#" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/29/TensorFlow/常用api/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TensorFlow/特征分类" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -443,105 +590,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/29/TensorFlow/特征分类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-TensorFlow/gRPC服务使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/TensorFlow/gRPC服务使用/">tensorFlow grpc服务使用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/29/TensorFlow/gRPC服务使用/" class="archive-article-date">
-  	<time datetime="2018-08-29T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-使用-TensorFlow-Serving-提供服务"><a href="#1-使用-TensorFlow-Serving-提供服务" class="headerlink" title="1.  使用 TensorFlow Serving 提供服务"></a>1.  使用 TensorFlow Serving 提供服务</h5><ol>
-<li>安装 tensorflow-model-server<br><a href="https://www.tensorflow.org/serving/setup#installing_using_apt_get" target="_blank" rel="noopener">官方地址</a></li>
-</ol>
-<ol start="2">
-<li>安装  tensorflow-serving-api-python3 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-serving-api-python3 -<span class="selector-tag">i</span> https:<span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>使用 TensorFlow Serving 提供服务<br>最后，我们来演示一下如何使用 TensorFlow 的姊妹项目 TensorFlow Serving 来基于 SavedModel 对外提供服务。</p>
-<p>安装并启动 TensorFlow ModelServer<br>TensorFlow 服务端代码是使用 C++ 开发的，因此最便捷的安装方式是通过软件源来获取编译好的二进制包。读者可以根据 官方文档 在 Ubuntu 中配置软件源和安装服务端：</p>
-<p>1<br>$ apt-get install tensorflow-model-server<br>然后就可以使用以下命令启动服务端了，该命令会加载导出目录中最新的一份模型来提供服务：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tensorflow_model_server <span class="attribute">--port</span>=9000 <span class="attribute">--model_base_path</span>=/root/export</span><br><span class="line">2018-05-14 01:05:12.561 Loading SavedModel with tags: &#123; serve &#125;; <span class="keyword">from</span>: /root/export/1524907728</span><br><span class="line">2018-05-14 01:05:12.639 Successfully loaded servable version &#123;name:<span class="built_in"> default </span>version: 1524907728&#125;</span><br><span class="line">2018-05-14 01:05:12.641 Running ModelServer at 0.0.0.0:9000 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
-<p>使用 SDK 访问远程模型<br>TensorFlow Serving 是基于 gRPC 和 Protocol Buffers 开发的，因此我们需要安装相应的 SDK 包来发起调用。需要注意的是，官方的 TensorFlow Serving API 目前只提供了 Python 2.7 版本的 SDK，不过社区有人贡献了支持 Python 3.x 的软件包，我们可以用以下命令安装：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install tensorflow-seving-api-python3==<span class="number">1.7</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<p>调用过程很容易理解：我们首先创建远程连接，向服务端发送 Example 实例列表，并获取预测结果。完整代码可以在 iris_remote.py 中找到。</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 创建 gRPC 连接</span></span><br><span class="line">channel = implementations.insecure_channel(<span class="string">'127.0.0.1'</span>, <span class="number">9000</span>)</span><br><span class="line">stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取测试数据集，并转换成 Example 实例。</span></span><br><span class="line">inputs = pd.DateFrame()</span><br><span class="line">examples = [tf.tain.Example() <span class="keyword">for</span> index, row in inputs.iterrows()]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 准备 RPC 请求，指定模型名称。</span></span><br><span class="line">request = classification_pb2.ClassificationRequest()</span><br><span class="line">request.model_spec.name = <span class="string">'default'</span></span><br><span class="line">request.input.example_list.examples.extend(examples)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取结果</span></span><br><span class="line">response = stub.Classify(request, <span class="number">10.0</span>)</span><br><span class="line"><span class="meta"># result &#123;</span></span><br><span class="line"><span class="meta">#   classifications &#123;</span></span><br><span class="line"><span class="meta">#     classes &#123;</span></span><br><span class="line"><span class="meta">#       label: "0"</span></span><br><span class="line"><span class="meta">#       score: 0.998267650604248</span></span><br><span class="line"><span class="meta">#     &#125;</span></span><br><span class="line"><span class="meta">#     ...</span></span><br><span class="line"><span class="meta">#   &#125;</span></span><br><span class="line"><span class="meta">#   ...</span></span><br><span class="line"><span class="meta"># &#125;</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow/#" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/TensorFlow/gRPC服务使用/">展开全文 >></a>
         </p>
       
 
@@ -695,6 +743,105 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/29/TensorFlow/tensorflow特征工程函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-TensorFlow/gRPC服务使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/29/TensorFlow/gRPC服务使用/">tensorFlow grpc服务使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/29/TensorFlow/gRPC服务使用/" class="archive-article-date">
+  	<time datetime="2018-08-29T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-使用-TensorFlow-Serving-提供服务"><a href="#1-使用-TensorFlow-Serving-提供服务" class="headerlink" title="1.  使用 TensorFlow Serving 提供服务"></a>1.  使用 TensorFlow Serving 提供服务</h5><ol>
+<li>安装 tensorflow-model-server<br><a href="https://www.tensorflow.org/serving/setup#installing_using_apt_get" target="_blank" rel="noopener">官方地址</a></li>
+</ol>
+<ol start="2">
+<li>安装  tensorflow-serving-api-python3 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-serving-api-python3 -<span class="selector-tag">i</span> https:<span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用 TensorFlow Serving 提供服务<br>最后，我们来演示一下如何使用 TensorFlow 的姊妹项目 TensorFlow Serving 来基于 SavedModel 对外提供服务。</p>
+<p>安装并启动 TensorFlow ModelServer<br>TensorFlow 服务端代码是使用 C++ 开发的，因此最便捷的安装方式是通过软件源来获取编译好的二进制包。读者可以根据 官方文档 在 Ubuntu 中配置软件源和安装服务端：</p>
+<p>1<br>$ apt-get install tensorflow-model-server<br>然后就可以使用以下命令启动服务端了，该命令会加载导出目录中最新的一份模型来提供服务：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tensorflow_model_server <span class="attribute">--port</span>=9000 <span class="attribute">--model_base_path</span>=/root/export</span><br><span class="line">2018-05-14 01:05:12.561 Loading SavedModel with tags: &#123; serve &#125;; <span class="keyword">from</span>: /root/export/1524907728</span><br><span class="line">2018-05-14 01:05:12.639 Successfully loaded servable version &#123;name:<span class="built_in"> default </span>version: 1524907728&#125;</span><br><span class="line">2018-05-14 01:05:12.641 Running ModelServer at 0.0.0.0:9000 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+<p>使用 SDK 访问远程模型<br>TensorFlow Serving 是基于 gRPC 和 Protocol Buffers 开发的，因此我们需要安装相应的 SDK 包来发起调用。需要注意的是，官方的 TensorFlow Serving API 目前只提供了 Python 2.7 版本的 SDK，不过社区有人贡献了支持 Python 3.x 的软件包，我们可以用以下命令安装：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install tensorflow-seving-api-python3==<span class="number">1.7</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>调用过程很容易理解：我们首先创建远程连接，向服务端发送 Example 实例列表，并获取预测结果。完整代码可以在 iris_remote.py 中找到。</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 创建 gRPC 连接</span></span><br><span class="line">channel = implementations.insecure_channel(<span class="string">'127.0.0.1'</span>, <span class="number">9000</span>)</span><br><span class="line">stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取测试数据集，并转换成 Example 实例。</span></span><br><span class="line">inputs = pd.DateFrame()</span><br><span class="line">examples = [tf.tain.Example() <span class="keyword">for</span> index, row in inputs.iterrows()]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 准备 RPC 请求，指定模型名称。</span></span><br><span class="line">request = classification_pb2.ClassificationRequest()</span><br><span class="line">request.model_spec.name = <span class="string">'default'</span></span><br><span class="line">request.input.example_list.examples.extend(examples)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取结果</span></span><br><span class="line">response = stub.Classify(request, <span class="number">10.0</span>)</span><br><span class="line"><span class="meta"># result &#123;</span></span><br><span class="line"><span class="meta">#   classifications &#123;</span></span><br><span class="line"><span class="meta">#     classes &#123;</span></span><br><span class="line"><span class="meta">#       label: "0"</span></span><br><span class="line"><span class="meta">#       score: 0.998267650604248</span></span><br><span class="line"><span class="meta">#     &#125;</span></span><br><span class="line"><span class="meta">#     ...</span></span><br><span class="line"><span class="meta">#   &#125;</span></span><br><span class="line"><span class="meta">#   ...</span></span><br><span class="line"><span class="meta"># &#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow/#" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/29/TensorFlow/gRPC服务使用/">展开全文 >></a>
         </p>
       
 
@@ -1146,260 +1293,9 @@
 
 
   
-    <article id="post-Redis/redis 基础知识" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/Redis/redis 基础知识/">redis基础数据类型及操作</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/10/Redis/redis 基础知识/" class="archive-article-date">
-  	<time datetime="2018-08-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Redis-的数据类型"><a href="#Redis-的数据类型" class="headerlink" title="Redis 的数据类型"></a>Redis 的数据类型</h4><table>
-<thead>
-<tr>
-<th>结构类型</th>
-<th>结构存储的值</th>
-<th>结构的读写能力</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>STRING</td>
-<td>可以是字符串 整数或浮点数</td>
-<td>对整个字符串或者字符串的其中一部分执行操作: 对整数和浮点数执行自增 或自减操作</td>
-</tr>
-<tr>
-<td>LIST</td>
-<td>一个链表,链表上的每个节点都包含字符串</td>
-<td>从链表的两端推入或弹出元素:根据偏移量对链表进行修剪 读取单个或者多个元素,根据值查找或者移除元素</td>
-</tr>
-<tr>
-<td>SET</td>
-<td>包含字符串的无序收集器,并且被包含的每个字符串都独一无二的, 各不相同</td>
-<td>添加 获取 移除单个键值对 获取所有键值对</td>
-</tr>
-<tr>
-<td>HASH</td>
-<td>包含键值对的无序散列表</td>
-<td>添加获取移除单个键值对,获取所有键值对</td>
-</tr>
-<tr>
-<td>ZSET(有序集合)</td>
-<td>字符串成员与浮点数分值之间的有序映射.元素的排列顺序由分值大小决定</td>
-<td>添加获取删除的那个元素.根据分值的范围或者成员来获取元素</td>
-</tr>
-</tbody>
-</table>
-<h4 id="1-字符串命令"><a href="#1-字符串命令" class="headerlink" title="1. 字符串命令"></a>1. 字符串命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>行为</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td>获取存储在给定键中的值</td>
-</tr>
-<tr>
-<td>SET</td>
-<td>设置存储在给定键中的值</td>
-</tr>
-<tr>
-<td>DEL</td>
-<td>删除存储在给定键中的值 (这个命令可以用于所有类型)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="2-列表"><a href="#2-列表" class="headerlink" title="2. 列表"></a>2. 列表</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>行为</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RPUSH/LPUSH</td>
-<td>将给定值推入列表的右端</td>
-</tr>
-<tr>
-<td>LRANGE</td>
-<td>获取列表在给定范围上的所有值</td>
-</tr>
-<tr>
-<td>LINDEX</td>
-<td>获取列表在给定位置上的单个元素</td>
-</tr>
-<tr>
-<td>LPOP/RPOP</td>
-<td>从列表的左端弹出一个值,并返回被弹出的值</td>
-</tr>
-</tbody>
-</table>
-<h4 id="3-集合"><a href="#3-集合" class="headerlink" title="3. 集合"></a>3. 集合</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>行为</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SADD</td>
-<td></td>
-<td>将给定元素添加到集合</td>
-</tr>
-<tr>
-<td>SMEMBERS</td>
-<td>返回集合包含的所有元素</td>
-</tr>
-<tr>
-<td>SISMEMBER</td>
-<td>检查给定元素是否存在于集合中</td>
-</tr>
-<tr>
-<td>SREM</td>
-<td>如果给定元素存在于集合中,那么移除这个元素</td>
-</tr>
-</tbody>
-</table>
-<h4 id="4-散列"><a href="#4-散列" class="headerlink" title="4. 散列"></a>4. 散列</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>行为</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HSET</td>
-<td>在散列里面关联起给定的键值对</td>
-</tr>
-<tr>
-<td>HGET</td>
-<td>获取指定散列键的值</td>
-</tr>
-<tr>
-<td>HGETALL</td>
-<td>获取散列办好的所有键值对</td>
-</tr>
-<tr>
-<td>HDEL</td>
-<td>如果给定键存在于散列里面,那么移除这个键</td>
-</tr>
-</tbody>
-</table>
-<h4 id="5-有序集合"><a href="#5-有序集合" class="headerlink" title="5. 有序集合"></a>5. 有序集合</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>行为</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ZADD</td>
-<td>将一个带有给定分值的成员添加到有序集合里面</td>
-</tr>
-<tr>
-<td>ZRANGE</td>
-<td>根据元素在有序排列中所处的位置,从有序集合里面获取多个元素</td>
-</tr>
-<tr>
-<td>ZRANGEBYSCORE</td>
-<td>获取有序集合在给定分值范围内的所有元素</td>
-</tr>
-<tr>
-<td>ZREM</td>
-<td>如果给定成员存在于有序集合,那么移除这个成员</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Redis/#" class="article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/10/Redis/redis 基础知识/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1486,15 +1382,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1502,7 +1390,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1514,15 +1406,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1531,6 +1439,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1550,15 +1466,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">

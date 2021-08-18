@@ -140,119 +140,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Spark/StruectedStreaming" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Leetcode/解题套路/动态规划" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="问题与解释"><a href="#问题与解释" class="headerlink" title="问题与解释"></a>问题与解释</h2><h3 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h3><ol>
-<li>kafka 主机，消费端无法连接</li>
-</ol>
-<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415113635770.png" alt="image-20210415113635770"></p>
-<ol start="2">
-<li><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415115032799.png" alt="image-20210415115032799"></li>
-</ol>
-<p>3.生产端 time_out </p>
-<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415123458138.png" alt="image-20210415123458138"></p>
-<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415134146242.png" alt="image-20210415134146242"></p>
-<h2 id="StructedStreaming-数据字段"><a href="#StructedStreaming-数据字段" class="headerlink" title="StructedStreaming 数据字段"></a>StructedStreaming 数据字段</h2><p>root<br> |– key: binary (nullable = true)<br> |– value: binary (nullable = true)<br> |– topic: string (nullable = true)<br> |– partition: integer (nullable = true)<br> |– offset: long (nullable = true)<br> |– timestamp: timestamp (nullable = true)<br> |– timestampType: integer (nullable = true)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/17/Spark/StruectedStreaming/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+      <header class="article-header">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-Spark/Spark历史" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/18/Leetcode/解题套路/动态规划/">动态规划</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/18/Leetcode/解题套路/动态规划/" class="archive-article-date">
+  	<time datetime="2021-08-18T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-18</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: Spark历史<br>date: 2021-07-10 23:12:43<br>tags:</p>
-<ul>
-<li>Spark</li>
-<li>笔记<br>categories: </li>
-<li>Spark</li>
-</ul>
-<hr>
-<h2 id="历史"><a href="#历史" class="headerlink" title="历史:"></a>历史:</h2><p> 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的<br>发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术<br>2010年3月份开源<br>2011年在AMP实验室在Spark上开发高级组件,像Spark Streaming<br>2013 年转移到Apache 下,不久便成了顶级项目</p>
-<ul>
-<li>Spark 组件</li>
-</ul>
+        <h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a><strong>动态规划</strong></h4><p>特点：</p>
 <ol>
-<li><p>Spark Core </p>
-<ul>
-<li>包含Spark 的基本功能,包含任务调度,内存管理,容错机制等,内部定义了RDDs(弹性分布式数据集).提供了很多APIs来创建和操作这些RDDs,应用场景,为了其他组件提供底层服务.</li>
-</ul>
+<li><p>重叠子问题</p>
 </li>
-<li><p>SPark SQL</p>
-<ul>
-<li>是Spark 处理结构换数据的库, 就像HiveSQL Mysql类似,应用场景,企业中用来做报表统计.</li>
-</ul>
+<li><p>状态转移方程</p>
 </li>
-<li>Spark Streaming <ul>
-<li>实时数据流处理组件,类似Strom</li>
-<li>Spark Streaming 提供了API来操作实时流数据,应用场景,在企业中用来做从Kafka来接受数据做实时统计.</li>
-</ul>
+<li><p>最优子结构</p>
 </li>
-<li>Mlib <ul>
-<li>一个包含通用机器学习功能的包,Machine learning lib </li>
-<li>包含分类,聚类 回归等,还包括模型评估和数据导入.</li>
-<li>MLLib 提供的方法,都支持集群上的横向扩展.<br>应用场景机器学习</li>
-</ul>
-</li>
-<li>Graphx <ul>
-<li>处理图的库 例如社交网络图 , 并进行图的并行计算. 像Spark Streaming ,Spark SQL一样,它继承了 RDD API </li>
-<li>提供了各种图的操作, 和常用的图算法,例如PangeRank算法.<br>应用场景图计算</li>
-</ul>
-</li>
-<li>Cluster Managers:<ul>
-<li>集群管理 Spark 自带的一个集群管理是单独调度器.常见集群管理包括 Hadoop YARN ,Apache Mesos </li>
-</ul>
-</li>
-<li>紧密集成的优点;<ul>
-<li>Spark 底层优化了,基于Spark 底层优化的组件,也得到了相应的优化</li>
-<li>紧密集成,节省了各个组件组合使用部署,测试等时间.</li>
-<li>向SPARK 增加新的组件时其他组件,可以立即享用新组件的功能</li>
-</ul>
+<li><p>题型:最值问题、核心：穷举</p>
 </li>
 </ol>
+<p>解题思路：</p>
+<ol>
+<li>明确状态</li>
+<li>明确选择</li>
+<li>明确dp函数、数组的定义</li>
+<li><p>明确base case</p>
+<p><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230319801.png" alt="image-20210818230319801"></p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230822477.png" alt="image-20210818230822477"></p>
 
       
 
@@ -261,11 +189,37 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/LeetCode/#" class="article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/17/Spark/Spark历史/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/08/18/Leetcode/解题套路/动态规划/">展开全文 >></a>
         </p>
       
 
@@ -298,6 +252,21 @@
     <article id="post-Spark/Spark函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/Spark/Spark函数/">Spark函数</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/10/Spark/Spark函数/" class="archive-article-date">
+  	<time datetime="2021-08-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-10</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
@@ -320,11 +289,136 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spark/#" class="article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/17/Spark/Spark函数/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/08/10/Spark/Spark函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/StruectedStreaming" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/Spark/StruectedStreaming/">Spark StruectedStreaming</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/10/Spark/StruectedStreaming/" class="archive-article-date">
+  	<time datetime="2021-08-10T12:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题与解释"><a href="#问题与解释" class="headerlink" title="问题与解释"></a>问题与解释</h2><h3 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h3><ol>
+<li>kafka 主机，消费端无法连接</li>
+</ol>
+<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415113635770.png" alt="image-20210415113635770"></p>
+<ol start="2">
+<li><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415115032799.png" alt="image-20210415115032799"></li>
+</ol>
+<p>3.生产端 time_out </p>
+<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415123458138.png" alt="image-20210415123458138"></p>
+<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415134146242.png" alt="image-20210415134146242"></p>
+<h2 id="StructedStreaming-数据字段"><a href="#StructedStreaming-数据字段" class="headerlink" title="StructedStreaming 数据字段"></a>StructedStreaming 数据字段</h2><p>root<br> |– key: binary (nullable = true)<br> |– value: binary (nullable = true)<br> |– topic: string (nullable = true)<br> |– partition: integer (nullable = true)<br> |– offset: long (nullable = true)<br> |– timestamp: timestamp (nullable = true)<br> |– timestampType: integer (nullable = true)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">StruectedStreaming</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spark/#" class="article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/10/Spark/StruectedStreaming/">展开全文 >></a>
         </p>
       
 
@@ -537,11 +631,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cdh</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cdh</a>
         		</li>
       		
 		</ul>
@@ -563,6 +657,136 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/07/10/CDH/CDH安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/Spark历史" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/10/Spark/Spark历史/">Spark历史</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/10/Spark/Spark历史/" class="archive-article-date">
+  	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="历史"><a href="#历史" class="headerlink" title="历史:"></a>历史:</h2><p> 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的<br>发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术<br>2010年3月份开源<br>2011年在AMP实验室在Spark上开发高级组件,像Spark Streaming<br>2013 年转移到Apache 下,不久便成了顶级项目</p>
+<ul>
+<li>Spark 组件</li>
+</ul>
+<ol>
+<li><p>Spark Core </p>
+<ul>
+<li>包含Spark 的基本功能,包含任务调度,内存管理,容错机制等,内部定义了RDDs(弹性分布式数据集).提供了很多APIs来创建和操作这些RDDs,应用场景,为了其他组件提供底层服务.</li>
+</ul>
+</li>
+<li><p>SPark SQL</p>
+<ul>
+<li>是Spark 处理结构换数据的库, 就像HiveSQL Mysql类似,应用场景,企业中用来做报表统计.</li>
+</ul>
+</li>
+<li>Spark Streaming <ul>
+<li>实时数据流处理组件,类似Strom</li>
+<li>Spark Streaming 提供了API来操作实时流数据,应用场景,在企业中用来做从Kafka来接受数据做实时统计.</li>
+</ul>
+</li>
+<li>Mlib <ul>
+<li>一个包含通用机器学习功能的包,Machine learning lib </li>
+<li>包含分类,聚类 回归等,还包括模型评估和数据导入.</li>
+<li>MLLib 提供的方法,都支持集群上的横向扩展.<br>应用场景机器学习</li>
+</ul>
+</li>
+<li>Graphx <ul>
+<li>处理图的库 例如社交网络图 , 并进行图的并行计算. 像Spark Streaming ,Spark SQL一样,它继承了 RDD API </li>
+<li>提供了各种图的操作, 和常用的图算法,例如PangeRank算法.<br>应用场景图计算</li>
+</ul>
+</li>
+<li>Cluster Managers:<ul>
+<li>集群管理 Spark 自带的一个集群管理是单独调度器.常见集群管理包括 Hadoop YARN ,Apache Mesos </li>
+</ul>
+</li>
+<li>紧密集成的优点;<ul>
+<li>Spark 底层优化了,基于Spark 底层优化的组件,也得到了相应的优化</li>
+<li>紧密集成,节省了各个组件组合使用部署,测试等时间.</li>
+<li>向SPARK 增加新的组件时其他组件,可以立即享用新组件的功能</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spark/#" class="article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/10/Spark/Spark历史/">展开全文 >></a>
         </p>
       
 
@@ -1241,156 +1465,9 @@ docker  cp 宿主机路径 容器ID:容器地址<p></p>
 
 
   
-    <article id="post-Docker/docker 操作" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/16/Docker/docker 操作/">Docker 操作</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/16/Docker/docker 操作/" class="archive-article-date">
-  	<time datetime="2018-10-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>宿主机复制到容器<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker cp <span class="regexp">/home/</span>sensetime<span class="regexp">/PycharmProjects/</span>predict_iris <span class="number">85510</span><span class="string">c880ca1:</span><span class="regexp">/root/</span>ml</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>docker  cp 宿主机路径 容器ID:容器地址</p>
-<ul>
-<li>docker 端口映射 run -p 5000:5000 </li>
-</ul>
-<ul>
-<li><p>提交新镜像
-　</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker  commit -m -<span class="selector-tag">a</span> tagname</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>容器操作</p>
-<ul>
-<li>启动：</li>
-</ul>
-<ol>
-<li>基于镜像新建并启动</li>
-<li>重新启动已终止的容器</li>
-</ol>
-<ul>
-<li>启动已终止的容器</li>
-</ul>
-<ol>
-<li>docker container start </li>
-</ol>
-<ul>
-<li>进入容器</li>
-</ul>
-<ol>
-<li>docker attach 或者docker exec </li>
-</ol>
-<ul>
-<li>导入和导出容器</li>
-</ul>
-<ol>
-<li>docker export container_id &gt; container.tar</li>
-<li><p>导入容器快照</p>
-<ul>
-<li>cat Ubuntu.tar | docker import  test/ubuntuLv1.0</li>
-<li>指定导入url或者某个目录来导入<br>dockrer import  url path </li>
-</ul>
-<ul>
-<li>删除容器(终止态容器)<ul>
-<li>docker container rm </li>
-<li>清理所有处于终止状态的容器<br>docker container pure </li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>访问仓库(集中存放镜像的地方)</li>
-<li></li>
-</ul>
-<ul>
-<li>查看docker 状态</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Docker/#" class="article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/16/Docker/docker 操作/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1477,15 +1554,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1493,7 +1562,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1505,15 +1578,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1522,6 +1611,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1541,15 +1638,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">

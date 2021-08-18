@@ -140,6 +140,257 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Redis/redis 基础知识" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/10/Redis/redis 基础知识/">redis基础数据类型及操作</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/10/Redis/redis 基础知识/" class="archive-article-date">
+  	<time datetime="2018-08-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Redis-的数据类型"><a href="#Redis-的数据类型" class="headerlink" title="Redis 的数据类型"></a>Redis 的数据类型</h4><table>
+<thead>
+<tr>
+<th>结构类型</th>
+<th>结构存储的值</th>
+<th>结构的读写能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STRING</td>
+<td>可以是字符串 整数或浮点数</td>
+<td>对整个字符串或者字符串的其中一部分执行操作: 对整数和浮点数执行自增 或自减操作</td>
+</tr>
+<tr>
+<td>LIST</td>
+<td>一个链表,链表上的每个节点都包含字符串</td>
+<td>从链表的两端推入或弹出元素:根据偏移量对链表进行修剪 读取单个或者多个元素,根据值查找或者移除元素</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>包含字符串的无序收集器,并且被包含的每个字符串都独一无二的, 各不相同</td>
+<td>添加 获取 移除单个键值对 获取所有键值对</td>
+</tr>
+<tr>
+<td>HASH</td>
+<td>包含键值对的无序散列表</td>
+<td>添加获取移除单个键值对,获取所有键值对</td>
+</tr>
+<tr>
+<td>ZSET(有序集合)</td>
+<td>字符串成员与浮点数分值之间的有序映射.元素的排列顺序由分值大小决定</td>
+<td>添加获取删除的那个元素.根据分值的范围或者成员来获取元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-字符串命令"><a href="#1-字符串命令" class="headerlink" title="1. 字符串命令"></a>1. 字符串命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>获取存储在给定键中的值</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>设置存储在给定键中的值</td>
+</tr>
+<tr>
+<td>DEL</td>
+<td>删除存储在给定键中的值 (这个命令可以用于所有类型)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-列表"><a href="#2-列表" class="headerlink" title="2. 列表"></a>2. 列表</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RPUSH/LPUSH</td>
+<td>将给定值推入列表的右端</td>
+</tr>
+<tr>
+<td>LRANGE</td>
+<td>获取列表在给定范围上的所有值</td>
+</tr>
+<tr>
+<td>LINDEX</td>
+<td>获取列表在给定位置上的单个元素</td>
+</tr>
+<tr>
+<td>LPOP/RPOP</td>
+<td>从列表的左端弹出一个值,并返回被弹出的值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-集合"><a href="#3-集合" class="headerlink" title="3. 集合"></a>3. 集合</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SADD</td>
+<td></td>
+<td>将给定元素添加到集合</td>
+</tr>
+<tr>
+<td>SMEMBERS</td>
+<td>返回集合包含的所有元素</td>
+</tr>
+<tr>
+<td>SISMEMBER</td>
+<td>检查给定元素是否存在于集合中</td>
+</tr>
+<tr>
+<td>SREM</td>
+<td>如果给定元素存在于集合中,那么移除这个元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-散列"><a href="#4-散列" class="headerlink" title="4. 散列"></a>4. 散列</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HSET</td>
+<td>在散列里面关联起给定的键值对</td>
+</tr>
+<tr>
+<td>HGET</td>
+<td>获取指定散列键的值</td>
+</tr>
+<tr>
+<td>HGETALL</td>
+<td>获取散列办好的所有键值对</td>
+</tr>
+<tr>
+<td>HDEL</td>
+<td>如果给定键存在于散列里面,那么移除这个键</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-有序集合"><a href="#5-有序集合" class="headerlink" title="5. 有序集合"></a>5. 有序集合</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZADD</td>
+<td>将一个带有给定分值的成员添加到有序集合里面</td>
+</tr>
+<tr>
+<td>ZRANGE</td>
+<td>根据元素在有序排列中所处的位置,从有序集合里面获取多个元素</td>
+</tr>
+<tr>
+<td>ZRANGEBYSCORE</td>
+<td>获取有序集合在给定分值范围内的所有元素</td>
+</tr>
+<tr>
+<td>ZREM</td>
+<td>如果给定成员存在于有序集合,那么移除这个成员</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Redis/#" class="article-tag-list-link color1">Redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/10/Redis/redis 基础知识/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TensorFlow/基础概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -525,103 +776,6 @@
 
 
   
-    <article id="post-BigData/ElasticSearch/查询点是否在指定区域" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/">查询点是否在指定区域</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/" class="archive-article-date">
-  	<time datetime="2018-05-12T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>curl -XGET ‘<a href="http://172.17.0.6:9200//attractions/_search&#39;" target="_blank" rel="noopener">http://172.17.0.6:9200//attractions/_search&#39;</a></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>: &#123;</span><br><span class="line">    <span class="attr">"geo_shape"</span>: &#123;</span><br><span class="line">      <span class="attr">"geometry"</span>: &#123;</span><br><span class="line">        <span class="attr">"relation"</span>: <span class="string">"intersects"</span>,</span><br><span class="line">        <span class="attr">"shape"</span>: &#123;</span><br><span class="line">          <span class="attr">"coordinates"</span>: [</span><br><span class="line">            <span class="number">4.893321</span>,</span><br><span class="line">            <span class="number">52.373462</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"point"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>参考文档<br><a href="https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point" target="_blank" rel="noopener">https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point</a></p>
-</li>
-<li><p>设置mapping 映射,将geometry字段设置成geo_shape 格式。</p>
-</li>
-</ol>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PUT /china</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"mappings"</span>: &#123;</span><br><span class="line">    <span class="string">"town"</span>: &#123;</span><br><span class="line">      <span class="string">"properties"</span>: &#123;</span><br><span class="line">        <span class="string">"geometry"</span>: &#123;</span><br><span class="line">          <span class="string">"type"</span>: <span class="string">"geo_shape"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ElasticSearch/#" class="article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-ElasticSearch/查询点是否在指定区域" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -690,6 +844,103 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/05/12/ElasticSearch/查询点是否在指定区域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-BigData/ElasticSearch/查询点是否在指定区域" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/">查询点是否在指定区域</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/" class="archive-article-date">
+  	<time datetime="2018-05-12T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>curl -XGET ‘<a href="http://172.17.0.6:9200//attractions/_search&#39;" target="_blank" rel="noopener">http://172.17.0.6:9200//attractions/_search&#39;</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>: &#123;</span><br><span class="line">    <span class="attr">"geo_shape"</span>: &#123;</span><br><span class="line">      <span class="attr">"geometry"</span>: &#123;</span><br><span class="line">        <span class="attr">"relation"</span>: <span class="string">"intersects"</span>,</span><br><span class="line">        <span class="attr">"shape"</span>: &#123;</span><br><span class="line">          <span class="attr">"coordinates"</span>: [</span><br><span class="line">            <span class="number">4.893321</span>,</span><br><span class="line">            <span class="number">52.373462</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"point"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>参考文档<br><a href="https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point" target="_blank" rel="noopener">https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point</a></p>
+</li>
+<li><p>设置mapping 映射,将geometry字段设置成geo_shape 格式。</p>
+</li>
+</ol>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PUT /china</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"mappings"</span>: &#123;</span><br><span class="line">    <span class="string">"town"</span>: &#123;</span><br><span class="line">      <span class="string">"properties"</span>: &#123;</span><br><span class="line">        <span class="string">"geometry"</span>: &#123;</span><br><span class="line">          <span class="string">"type"</span>: <span class="string">"geo_shape"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ElasticSearch/#" class="article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/">展开全文 >></a>
         </p>
       
 
@@ -1098,105 +1349,9 @@
 
 
   
-    <article id="post-Python/基础知识/@classmethod  @staticmethod commonmethod异同" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/Python/基础知识/@classmethod  @staticmethod commonmethod异同/">python 方法比较</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/Python/基础知识/@classmethod  @staticmethod commonmethod异同/" class="archive-article-date">
-  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="方法比较及说明"><a href="#方法比较及说明" class="headerlink" title="方法比较及说明"></a>方法比较及说明</h4><ul>
-<li>示例<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        普通方法</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"executing foo(%s,%s)"</span> % (self, x)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">class_foo</span><span class="params">(cls, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        类方法</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"executing class_foo(%s,%s)"</span> % (cls, x)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">static_foo</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        静态方法</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"executing static_foo(%s)"</span> % x</span><br><span class="line"></span><br><span class="line">a = A()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用普通方法调用，第一个参数隐式传递给方法</span></span><br><span class="line"></span><br><span class="line">a.foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing foo(&lt;__main__.A object at 0xb7dbef0c&gt;,1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类调用普通方法</span></span><br><span class="line">A.foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 报错 unbound method foo() must be called with A instance as first argument (got int instance instead)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例调用类方法使用</span></span><br><span class="line"><span class="comment"># 将隐式传递类本身给方法</span></span><br><span class="line">a.class_foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing class_foo(&lt;class '__main__.A'&gt;,1)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类调用类方法</span></span><br><span class="line"><span class="comment"># 将方法定义为类方法，一般都是使用类直接调用</span></span><br><span class="line">A.class_foo(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#静态方法 既不传递实例self也不传递类cls</span></span><br><span class="line"><span class="comment">#类调用静态方法</span></span><br><span class="line">A.static_foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing static_foo(1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例调用静态方法</span></span><br><span class="line">a.static_foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing static_foo(1)</span></span><br><span class="line">静态方法将类的连接函数进行分组</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="2">
-<li>@classmethod<br> 将方法转换成类方法，一个类方法接收 class 作为第一个参数，就像和实例方法接受实例一样。声明类方法，使用idiom:<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">    @classmethod</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(cls, arg1, arg2, ...)</span></span>: ...</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>@classmethod 是函数装饰器,他可以使用类调用和实例调用，如C.f() 和C().f(),除了类之外，该实例被忽略，如果派生类调用类方法，则派生类对象讲作为隐含的第一个参数传递</p>
-<ol start="3">
-<li>@staticmethod<br> 将方法转换成静态方法，<br>一个静态方法</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python/#" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/Python/基础知识/@classmethod  @staticmethod commonmethod异同/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1283,15 +1438,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1299,7 +1446,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1311,15 +1462,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1328,6 +1495,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1347,15 +1522,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">

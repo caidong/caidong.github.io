@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>coderDong</title>
+  <title>动态规划 | coderDong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: Spark历史date: 2021-07-10 23:12:43tags:  Spark 笔记categories:  Spark   历史: 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术2010年3月份开源2011年在AMP实验室在Spark">
+  <meta name="description" content="动态规划特点：  重叠子问题  状态转移方程  最优子结构  题型:最值问题、核心：穷举   解题思路：  明确状态 明确选择 明确dp函数、数组的定义 明确base case">
+<meta name="keywords" content="LeetCode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="coderDong">
-<meta property="og:url" content="http://yoursite.com/2021/08/17/Spark/Spark历史/index.html">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="http://yoursite.com/2021/08/18/Leetcode/解题套路/动态规划/index.html">
 <meta property="og:site_name" content="coderDong">
-<meta property="og:description" content="title: Spark历史date: 2021-07-10 23:12:43tags:  Spark 笔记categories:  Spark   历史: 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术2010年3月份开源2011年在AMP实验室在Spark">
+<meta property="og:description" content="动态规划特点：  重叠子问题  状态转移方程  最优子结构  题型:最值问题、核心：穷举   解题思路：  明确状态 明确选择 明确dp函数、数组的定义 明确base case">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-08-17T14:13:12.629Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230319801.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230822477.png">
+<meta property="og:updated_time" content="2021-08-18T15:11:01.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="coderDong">
-<meta name="twitter:description" content="title: Spark历史date: 2021-07-10 23:12:43tags:  Spark 笔记categories:  Spark   历史: 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术2010年3月份开源2011年在AMP实验室在Spark">
+<meta name="twitter:title" content="动态规划">
+<meta name="twitter:description" content="动态规划特点：  重叠子问题  状态转移方程  最优子结构  题型:最值问题、核心：穷举   解题思路：  明确状态 明确选择 明确dp函数、数组的定义 明确base case">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230319801.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -142,61 +146,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spark/Spark历史" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Leetcode/解题套路/动态规划" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      动态规划
+    </h1>
+  
+
+        
+        <a href="/2021/08/18/Leetcode/解题套路/动态规划/" class="archive-article-date">
+  	<time datetime="2021-08-18T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-18</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: Spark历史<br>date: 2021-07-10 23:12:43<br>tags:</p>
-<ul>
-<li>Spark</li>
-<li>笔记<br>categories: </li>
-<li>Spark</li>
-</ul>
-<hr>
-<h2 id="历史"><a href="#历史" class="headerlink" title="历史:"></a>历史:</h2><p> 诞生于2009年,加州大学伯克利分校RAD实验室的一个研究项目,最初是基于Hadoop Mapreduce的<br>发现Mapreduce 在迭代 式计算和交互式上的低效,引入了内存存储的技术<br>2010年3月份开源<br>2011年在AMP实验室在Spark上开发高级组件,像Spark Streaming<br>2013 年转移到Apache 下,不久便成了顶级项目</p>
-<ul>
-<li>Spark 组件</li>
-</ul>
+        <h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a><strong>动态规划</strong></h4><p>特点：</p>
 <ol>
-<li><p>Spark Core </p>
-<ul>
-<li>包含Spark 的基本功能,包含任务调度,内存管理,容错机制等,内部定义了RDDs(弹性分布式数据集).提供了很多APIs来创建和操作这些RDDs,应用场景,为了其他组件提供底层服务.</li>
-</ul>
+<li><p>重叠子问题</p>
 </li>
-<li><p>SPark SQL</p>
-<ul>
-<li>是Spark 处理结构换数据的库, 就像HiveSQL Mysql类似,应用场景,企业中用来做报表统计.</li>
-</ul>
+<li><p>状态转移方程</p>
 </li>
-<li>Spark Streaming <ul>
-<li>实时数据流处理组件,类似Strom</li>
-<li>Spark Streaming 提供了API来操作实时流数据,应用场景,在企业中用来做从Kafka来接受数据做实时统计.</li>
-</ul>
+<li><p>最优子结构</p>
 </li>
-<li>Mlib <ul>
-<li>一个包含通用机器学习功能的包,Machine learning lib </li>
-<li>包含分类,聚类 回归等,还包括模型评估和数据导入.</li>
-<li>MLLib 提供的方法,都支持集群上的横向扩展.<br>应用场景机器学习</li>
-</ul>
-</li>
-<li>Graphx <ul>
-<li>处理图的库 例如社交网络图 , 并进行图的并行计算. 像Spark Streaming ,Spark SQL一样,它继承了 RDD API </li>
-<li>提供了各种图的操作, 和常用的图算法,例如PangeRank算法.<br>应用场景图计算</li>
-</ul>
-</li>
-<li>Cluster Managers:<ul>
-<li>集群管理 Spark 自带的一个集群管理是单独调度器.常见集群管理包括 Hadoop YARN ,Apache Mesos </li>
-</ul>
-</li>
-<li>紧密集成的优点;<ul>
-<li>Spark 底层优化了,基于Spark 底层优化的组件,也得到了相应的优化</li>
-<li>紧密集成,节省了各个组件组合使用部署,测试等时间.</li>
-<li>向SPARK 增加新的组件时其他组件,可以立即享用新组件的功能</li>
-</ul>
+<li><p>题型:最值问题、核心：穷举</p>
 </li>
 </ol>
+<p>解题思路：</p>
+<ol>
+<li>明确状态</li>
+<li>明确选择</li>
+<li>明确dp函数、数组的定义</li>
+<li><p>明确base case</p>
+<p><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230319801.png" alt="image-20210818230319801"></p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230822477.png" alt="image-20210818230822477"></p>
 
       
 
@@ -226,7 +216,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/LeetCode/#" class="article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -276,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/08/17/Spark/Spark历史/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/08/18/Leetcode/解题套路/动态规划/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -290,18 +306,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/08/17/Spark/StruectedStreaming/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/08/17/Spark/Spark函数/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2021/08/10/Spark/Spark函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark函数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -435,15 +442,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -451,7 +450,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,15 +466,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,6 +499,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,15 +526,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
