@@ -76,6 +76,10 @@ var _hmt = _hmt || [];
     			
             
     			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
@@ -180,7 +184,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2021/08/18/Leetcode/解题套路/动态规划/" class="archive-article-date">
+        
+<a href="/2021/08/18/Leetcode/解题套路/动态规划/" class="archive-article-date">
   	<time datetime="2021-08-18T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-18</time>
 </a>
         
@@ -289,7 +294,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2021/08/10/Spark/Spark函数/" class="archive-article-date">
+        
+<a href="/2021/08/10/Spark/Spark函数/" class="archive-article-date">
   	<time datetime="2021-08-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-10</time>
 </a>
         
@@ -389,7 +395,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2021/08/10/Spark/StruectedStreaming/" class="archive-article-date">
+        
+<a href="/2021/08/10/Spark/StruectedStreaming/" class="archive-article-date">
   	<time datetime="2021-08-10T12:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-10</time>
 </a>
         
@@ -476,6 +483,105 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
+  	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
+<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用find-spark库</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>~/.bashrc 配置完整pyspark路径 </p>
+</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spark/Spark历史" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -488,7 +594,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2021/07/10/Spark/Spark历史/" class="archive-article-date">
+        
+<a href="/2021/07/10/Spark/Spark历史/" class="archive-article-date">
   	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
 </a>
         
@@ -606,104 +713,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
-    </h1>
-  
-
-        
-        <a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
-  	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
-<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用find-spark库</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>~/.bashrc 配置完整pyspark路径 </p>
-</li>
-</ol>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-CDH/CDH安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -716,7 +725,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2021/07/10/CDH/CDH安装/" class="archive-article-date">
+        
+<a href="/2021/07/10/CDH/CDH安装/" class="archive-article-date">
   	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
 </a>
         
@@ -856,7 +866,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2021/06/10/Sql/窗口函数/" class="archive-article-date">
+        
+<a href="/2021/06/10/Sql/窗口函数/" class="archive-article-date">
   	<time datetime="2021-06-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-10</time>
 </a>
         
@@ -991,7 +1002,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2021/05/10/Hive/查询语句/" class="archive-article-date">
+        
+<a href="/2021/05/10/Hive/查询语句/" class="archive-article-date">
   	<time datetime="2021-05-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-10</time>
 </a>
         
@@ -1265,7 +1277,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2020/07/25/BigData/Kylin/kylin hive hdfs 基于业务探索/" class="archive-article-date">
+        
+<a href="/2020/07/25/BigData/Kylin/kylin hive hdfs 基于业务探索/" class="archive-article-date">
   	<time datetime="2020-07-25T12:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-25</time>
 </a>
         
@@ -1514,6 +1527,17 @@ docker  cp 宿主机路径 容器ID:容器地址<p></p>
       	</div>
     </div>
   </div>
+
+	<!-- 不蒜子统计 -->
+	<span id="busuanzi_container_site_pv">
+			本站总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span class="post-meta-divider">|</span>
+	<span id="busuanzi_container_site_uv" style="display:none">
+			本站访客数<span id="busuanzi_value_site_uv"></span>人
+	</span>
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </footer>
     </div>
     <script>
@@ -1551,17 +1575,25 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
+      
+      
+      
+    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -1642,6 +1674,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">工作笔记</a>
               </li>
              
@@ -1655,14 +1695,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1686,11 +1718,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1744,6 +1776,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     	</section>
     
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
     
 
     
