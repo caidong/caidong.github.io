@@ -269,119 +269,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Python/基础知识/1. 启动停止线程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/Python/基础知识/1. 启动停止线程/">python 线程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/08/16/Python/基础知识/1. 启动停止线程/" class="archive-article-date">
-  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>创建销毁线程</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import threading, <span class="built_in">time</span></span><br><span class="line"></span><br><span class="line">def sample_thread(<span class="built_in">n</span>)<span class="symbol">:</span></span><br><span class="line">    while <span class="built_in">n</span> &gt; <span class="symbol">0:</span></span><br><span class="line">        print('<span class="built_in">T</span>-minus', <span class="built_in">n</span>)</span><br><span class="line">        <span class="built_in">n</span> -= <span class="number">1</span></span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">t</span> = threading.Thread(target=sample_thread, args=(<span class="number">10</span>,))</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询线程状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> t.is_alive():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Still running'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Complete'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>等待当前线程完成,继续向下执行.</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.<span class="keyword">join</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Python 解释器直到所有线程都终止前仍保持运行,对于需要长时间的运行线程或者一直运行在后台的任务,你应当考虑使用后台线程</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = Thread(<span class="attribute">target</span>=countdown, args=(10,) <span class="attribute">daemon</span>=<span class="literal">True</span>)</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>后台线程无法等待,不过,这些线程会在主线程终止时自动销毁.除了如上所示两个操作,并没有太多可以对线程做的事情.你无法结束一个线程,无法给它发送信号,无法调整调度,也无法执行其他高级操作.如果需要这些特性,你需要自己添加.比如说,如果你需要终止线程,那么这个线程必须通过编程在某个特定点轮询来退出.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountdownTask</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = True</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = False</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>,n)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>._running <span class="keyword">and</span> n&gt;<span class="number">0</span> <span class="symbol">:</span></span><br><span class="line">            print(<span class="string">'T-minus'</span>,n)</span><br><span class="line">            n -= <span class="number">1</span></span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">c = CountdownTask()</span><br><span class="line">t = Thread(target=c.run, args=(<span class="number">10</span>,))</span><br><span class="line">t.start()</span><br><span class="line">c.terminate()</span><br><span class="line">t.join()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果线程执行一些像IO这样的阻塞操作,那么通过轮训来终止线程讲使得线程之间的协调变得非常棘手.比如,如果一个线程一直柱塞在一个I/O操作上.它就永远无法返回,就无法检查自己是否已经被结束了.要正确处理这些问题,你们需要利用逛超时循环来小心操作线程.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOTask</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = False</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>, sock)</span></span></span><br><span class="line">        sock.settimeout(<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>.<span class="symbol">_running:</span></span><br><span class="line">            <span class="symbol">try:</span></span><br><span class="line">                data =sock.recv(<span class="number">8192</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            except socket.<span class="symbol">timeout:</span></span><br><span class="line">                continue</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>全局解释锁 Python的线程被限制到同一时刻只允许一个线程执行这样一个执行模型,所以,Python 的线程更适用于处理IO和其他需要并发执行的阻塞操作(i/o 数据库操作等),而不是需要多处理器并行计算密集型任务</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from thrading import Thread</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountdownThread</span>(<span class="title">Thread</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, n)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>().__init_<span class="number">_</span>()</span><br><span class="line">        <span class="keyword">self</span>.n = n</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>.n &gt; <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            print(<span class="string">'T-minus'</span>,<span class="keyword">self</span>.n)</span><br><span class="line">            <span class="keyword">self</span>.n -= <span class="number">1</span></span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">c = CountdownThread(<span class="number">5</span>)</span><br><span class="line">c.start()</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>尽管这样也可以工作,单这使得你的代码依赖于threading 库,所以你的这些代码只能在线程上下文中,可能与线程无关的,这样就使得这些代码可以被用在其他的上下文中,可能与线程有关,也可能与线程无关.比如 可以通过multiprocessing模块在一个单独的进程中执行你的代码</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import multiprocessing</span><br><span class="line"></span><br><span class="line">c = CountdownTask(5)</span><br><span class="line">p = multiprocessing.Process(target=c.run)</span><br><span class="line">p.start()</span><br><span class="line"></span><br><span class="line"><span class="comment">#这段代码仅适用于CountdownTask类是以独立于实际的并发手段实现的情况</span></span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>判断线程是否已经启动</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/Python/基础知识/1. 启动停止线程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Python/NumpyPandas/numpy" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -467,6 +354,129 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/16/Python/NumpyPandas/numpy/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python/NumpyPandas/pandas常见API" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/Python/NumpyPandas/pandas常见API/">Pandas 基础操作</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/08/16/Python/NumpyPandas/pandas常见API/" class="archive-article-date">
+  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>基本操作</li>
+</ol>
+<ul>
+<li>df.iloc[]<br>按整数位置访问行和列的组 </li>
+<li>df.loc[ ]<br>通过标签或布尔数组访问一组行和列。</li>
+<li>df.at[]<br>访问行/列标签对的单个值</li>
+</ul>
+<ul>
+<li>pd.concat(objs, axis=0, join=’outer’, join_axes=None, ignore_index=False, keys=None, levels=None, names=None, verify_integrity=False, sort=None, copy=True)</li>
+</ul>
+<ol start="2">
+<li><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpt as np</span><br><span class="line">s = <span class="selector-tag">p</span>.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,np。nan])</span><br><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.DataFrame(np<span class="selector-class">.random</span><span class="selector-class">.randn</span>(<span class="number">6</span>,<span class="number">4</span>),index=dates, <span class="attribute">columns</span>=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df.dtypes</span><br><span class="line">df.index</span><br><span class="line">df.<span class="attribute">columns</span></span><br><span class="line">df.values</span><br><span class="line">df.describe()</span><br><span class="line">df.T</span><br><span class="line">df.sort_index(axis=<span class="number">1</span>,ascending=False)</span><br><span class="line">df.sort_values(by=<span class="string">'column'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>选择数据</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.<span class="symbol">DataFrame</span>(np.random.randn(<span class="number">6</span>,<span class="number">4</span>),index=dates, columns=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df[<span class="string">'a'</span>]</span><br><span class="line">df.a</span><br><span class="line">df[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">df[<span class="string">'20130101'</span>:<span class="string">'20130104'</span>]</span><br><span class="line">#标签</span><br><span class="line">df.loc[<span class="string">'20130101'</span>]</span><br><span class="line">#列选取</span><br><span class="line">df.loc[:,[<span class="string">'a'</span>]]</span><br><span class="line">#</span><br><span class="line">df.loc[[<span class="string">'a'</span>],:]</span><br><span class="line">#position</span><br><span class="line">df.iloc[<span class="number">3</span>]</span><br><span class="line">df.iloc[<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">2</span>,<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line"></span><br><span class="line">df.ix[:<span class="number">3</span>,[<span class="string">'a'</span>]]</span><br><span class="line"></span><br><span class="line">df[df.a&gt;<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置值</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.DataFrame(np<span class="selector-class">.random</span><span class="selector-class">.randn</span>(<span class="number">6</span>,<span class="number">4</span>),index=dates, <span class="attribute">columns</span>=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df<span class="selector-class">.iloc</span>[<span class="number">2</span>,<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">df<span class="selector-class">.loc</span>[,<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line">df<span class="selector-class">.ix</span>[]</span><br><span class="line">df[df.a&gt;<span class="number">0</span>]=<span class="number">0</span></span><br><span class="line">df<span class="selector-class">.a</span>[df.a&gt;<span class="number">0</span>]=<span class="number">0</span></span><br><span class="line">df[<span class="string">'new column'</span>]= np.nan</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处理丢失数据</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.DataFrame(np<span class="selector-class">.random</span><span class="selector-class">.randn</span>(<span class="number">6</span>,<span class="number">4</span>),index=dates, <span class="attribute">columns</span>=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df<span class="selector-class">.iloc</span>[<span class="number">0</span>,<span class="number">1</span>]= np.nan</span><br><span class="line">df<span class="selector-class">.iloc</span>[<span class="number">1</span>,<span class="number">2</span>]= np.nan</span><br><span class="line">df.dropna(axis=<span class="number">0</span>, how=<span class="string">'any|all'</span>)</span><br><span class="line">df.fillna(value=<span class="number">0</span>)</span><br><span class="line">df.isnull()</span><br><span class="line">np.any(df.isnull())==True</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入到出数据<br>pd.read_()<br>pd.to_()</p>
+</li>
+<li><p>concat 合并</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#concatenating</span></span><br><span class="line">df = pd.concat([df1,df2],<span class="attribute">axis</span>=0,ignore_index=True)</span><br><span class="line">df.reindex</span><br><span class="line"></span><br><span class="line"><span class="comment">#join ['inner','outer']</span></span><br><span class="line"></span><br><span class="line">pd.concat([df1,df2],<span class="attribute">join</span>=<span class="string">'outer'</span>)</span><br><span class="line"><span class="attribute">join</span>=<span class="string">'inner'</span> #公共部分</span><br><span class="line">pd.concat([df1,df2],<span class="attribute">axis</span>=1,join_iaxes=[df1.index])</span><br><span class="line"></span><br><span class="line">df1.append(df2,<span class="attribute">ignore</span>=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>merge 合并</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(<span class="literal">left</span>,<span class="literal">right</span>,<span class="literal">on</span>=<span class="string">'key'</span>)</span><br><span class="line"></span><br><span class="line">pd.merge(<span class="literal">left</span>,<span class="literal">right</span>,<span class="literal">on</span>=[key1,key2],how=<span class="string">'inner'</span>)</span><br><span class="line">[<span class="string">'left'</span>,<span class="string">'right'</span>,<span class="string">'outer'</span>,<span class="string">'inner'</span>]</span><br><span class="line">indicator=True <span class="comment">#直观显示</span></span><br><span class="line">indicator = <span class="string">'cloname'</span></span><br><span class="line"><span class="comment"># index</span></span><br><span class="line"></span><br><span class="line">suffixes= <span class="comment">#前缀</span></span><br><span class="line"></span><br><span class="line">join</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图表</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="class"><span class="keyword">data</span>.plot()</span></span><br><span class="line"><span class="title">plt</span>.show()</span><br><span class="line"></span><br><span class="line"><span class="meta"># bar hist box kde area scatter </span></span><br><span class="line"><span class="title">hexbin</span> pie</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title">plt</span>.scatter()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DataFrame 单元格字符串操作</p>
+</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataframe[<span class="string">'col'</span>]<span class="selector-class">.str</span><span class="selector-class">.contains</span>(<span class="string">'lable'</span>)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pandas//" class="article-tag-list-link color2">Pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/Python/NumpyPandas/pandas常见API/">展开全文 >></a>
         </p>
       
 
@@ -1503,11 +1513,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1523,11 +1533,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1539,15 +1549,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1571,19 +1581,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Flask</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1603,11 +1613,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
               </li>
             
             <div class="clearfix"></div>
