@@ -172,6 +172,447 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python/基础知识/读写JSON数据" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/11/Python/基础知识/读写JSON数据/">读写JSON编码格式的数据</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/01/11/Python/基础知识/读写JSON数据/" class="archive-article-date">
+  	<time datetime="2017-01-11T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>读写JSON编码格式的数据</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>json 模块提供了一种很简单的方式来编码和解码Json数据，其中两个主要的函数json.dumps()和json.loads(),要比其他序列化函数库如pickle的接口少得多。示例：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Dict =&gt; JSON_Str</span></span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="class"><span class="keyword">data</span> = &#123;</span></span><br><span class="line"><span class="class">    '<span class="title">name'</span>:'<span class="type">ACME</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">shares'</span>:100,</span></span><br><span class="line"><span class="class">    '<span class="title">price'</span>:542.23</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="title">json_str</span> = json.dumps(<span class="class"><span class="keyword">data</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>json编码字符串转换回一个Python数据结构：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> = json.loads(<span class="title">json_str</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你要处理的是问价而不是字符串，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Writing JSON data</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'data.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(<span class="keyword">data</span>, f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reading data back</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'data.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">data</span> = json.load(f)</span><br></pre></td></tr></table></figure></p>
+<p>JSON 编码支持的基本数据结构类型为None bool int float 和 str 以及包含这些类型数据结构的lists tuples 和dictionaries. 对于dictionaries,keys 需要是字符串类型（字典中任何非字符串类型的key 在编码时会先转换成为字符串），为了遵循JSON规范 你应该只编码Python的list和dictionaries 而且，在web应用程序中，顶层对象被编码成一个字典是一个标准做法。</p>
+<ul>
+<li>JSON编码的格式对于Python的语法而已几乎是完全一样的，除了一些小的差异之外。比如。True会被映射为true， False被映射成false。而None 会被映射为null, 下面是一个例子，演示编码后的字符串效果; <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; json.dumps(False)</span><br><span class="line"><span class="string">'false'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; d = &#123;<span class="string">'a'</span>: True,</span><br><span class="line">...     <span class="string">'b'</span>: <span class="string">'Hello'</span>,</span><br><span class="line">...     <span class="string">'c'</span>: None&#125;</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; json.dumps(d)</span><br><span class="line"><span class="string">'&#123;"b": "Hello", "c": null, "a": true&#125;'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/11/Python/基础知识/读写JSON数据/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Git/Github  提交pullRequest流程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/Git/Github  提交pullRequest流程/">Pull Request流程</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/01/10/Git/Github  提交pullRequest流程/" class="archive-article-date">
+  	<time datetime="2017-01-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Pull-Request流程"><a href="#Pull-Request流程" class="headerlink" title="Pull Request流程"></a>Pull Request流程</h3><ol>
+<li>首先fork我的项目</li>
+<li>把fork过去的项目也就是你的项目clone到你的本地</li>
+<li>运行 git remote add looly <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:looly/elasticsearch-definitive-guide-cn.git 把我的库添加为远端库</li>
+<li>运行 git pull looly master 拉取并合并到本地</li>
+<li>编写代码</li>
+<li>commit后push到自己的库（git push origin master）</li>
+<li>登录Github在你首页可以看到一个 pull request 按钮，点击它，填写一些说明信息，然后提交即可。<br>1~3是初始化操作，执行一次即可。在翻译前必须执行第4步同步我的库（这样避免冲突），然后执行5~7既可。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Github//" class="article-tag-list-link color2">Github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/10/Git/Github  提交pullRequest流程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Openwrt/openwrt编译安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/Openwrt/openwrt编译安装/">openwrt 编译安装</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/01/10/Openwrt/openwrt编译安装/" class="archive-article-date">
+  	<time datetime="2017-01-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="openwrt-编译安装"><a href="#openwrt-编译安装" class="headerlink" title="openwrt 编译安装"></a><center>openwrt 编译安装</center></h1><hr>
+<h3 id="编译硬件环境要求（官方推荐）"><a href="#编译硬件环境要求（官方推荐）" class="headerlink" title="编译硬件环境要求（官方推荐）"></a>编译硬件环境要求（官方推荐）</h3><p>编译一个可以安装的OpenWrt固件镜像文件（大约8MB大小的），你需要：</p>
+<ol>
+<li>一个纯净的OpenWrt编译系统大约需要200MB的空间。</li>
+<li>一个包含feeds的OpenWrt编译系统大约需要300MB的空间。</li>
+<li>编译feeds中的软件包大约需要2.1GB的空间用于存放下载来的源代码</li>
+<li>构建OpenWrt并生成固件文件需要大约3-4 GB的空间。</li>
+<li>编译OpenWrt需要大约1-4 GB的内存。</li>
+</ol>
+<h6 id="编译工具安装"><a href="#编译工具安装" class="headerlink" title="编译工具安装"></a>编译工具安装</h6><p>教程系统环境 ubuntu 16.04,其他系统需做相应调整。</p>
+<ol>
+<li>安装git下载源代码</li>
+</ol>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install git-core build-essential libssl-<span class="built_in">dev</span> libncurses5-<span class="built_in">dev</span> unzip</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>部分feeds包，仅发布在SVN 上，so也需安装SVN</li>
+</ol>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">sudo</span> apt-<span class="meta">get</span> install <span class="keyword">subversion </span>mercurial</span><br></pre></td></tr></table></figure>
+<h6 id="notice："><a href="#notice：" class="headerlink" title="notice："></a>notice：</h6><ol>
+<li>请使用一个非root用户来完成这些工作！</li>
+<li>这里的所有命令都在OpenWrt编译系统的根目录下运行（例如~/openwrt/trunk/）</li>
+<li>编译系统的绝对路径中不能含有空格！</li>
+<li>如果你使用root用户下载了源码，请把你下载来的源码的所有者更改为一个非root用户。(sudo chown -R user:user /openwrt/)</li>
+<li>关于编译环境的详细信息请参见：<a href="http://man.cx/make" target="_blank" rel="noopener">make</a>和build-essential</li>
+<li>关于git的详细信息请参见：git(7)<br>关于subversion tool的详细信息请参见：svn和subversion documentation (multiple languages)</li>
+</ol>
+<h6 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h6><ol>
+<li>通过git来下载OpenWrt bleeding edge(trunk版本)：(参见<a href="https://wiki.openwrt.org/zh-cn/doc/howto/buildroot.exigence#downloading_sources" target="_blank" rel="noopener">Downloading Sources</a> 以获得更多选择):</li>
+</ol>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">git</span>://git.openwrt.org/openwrt.git</span><br></pre></td></tr></table></figure>
+<p>这将会创建’openwrt’这个目录。这个目录将会是OpenWrt的编译主目录。<br>OpenWrt的交叉编译工具链也已经被包含在内。</p>
+<ol start="2">
+<li>(可选)下载并安装所有可用的”feeds”(参见OpenWrt Feeds以获取更多选择):</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> openwrt</span><br><span class="line"><span class="string">./scripts/feeds</span> update -a</span><br><span class="line"><span class="string">./scripts/feeds</span> install -a</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>运行下面的命令(<strong>3选1</strong>!)让OpenWrt编译系统检查你的编译环境中缺失的软件包:</li>
+</ol>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> menuconfig  (推荐使用此命令)</span><br><span class="line">或者</span><br><span class="line"><span class="built_in">make</span> defconfig</span><br><span class="line">或者</span><br><span class="line"><span class="built_in">make</span> prereq</span><br></pre></td></tr></table></figure>
+<p>//如果以上3个命令都运行了,编译会出错! </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j1 <span class="attribute">V</span>=s</span><br></pre></td></tr></table></figure>
+<p> -j 编译核心数 ，V=s 输出详细信息</p>
+<p>//编译这个过程需要较长时间，且需下载文件有可能中途报错 </p>
+<p>编译完成后</p>
+<p>openwrt/bin/cpu平台/<br>有相应的包和ipk 文件</p>
+<ul>
+<li><h2 id="编译安装nodejs"><a href="#编译安装nodejs" class="headerlink" title="编译安装nodejs"></a>编译安装nodejs</h2></li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">make menuconfig</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>选择编程语言</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB635da5c7b120f029b2426e896806d3db?method=getImage&amp;version=3141&amp;cstk=0PLGrt4w" alt="image"></p>
+<ul>
+<li><p>选择nodejs</p>
+</li>
+<li><p><img src="https://note.youdao.com/yws/api/personal/file/WEB5fb737063b388ebb012807c03f6b6f11?method=getImage&amp;version=3151&amp;cstk=0PLGrt4w" alt="image"></p>
+</li>
+<li><p>选择nodejs需要安装模块</p>
+<p>路径： &gt; Languages &gt; Node.js</p>
+</li>
+<li><h2 id="多核，大内存版本编译"><a href="#多核，大内存版本编译" class="headerlink" title="多核，大内存版本编译"></a>多核，大内存版本编译</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> kernel_menuconfig</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB5b4db45502397d5d9e8d3b8b0b33f2dd?method=getImage&amp;version=3165&amp;cstk=0PLGrt4w" alt="image"></p>
+<p>参数说明<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Processor type and features  ---&gt;</span><br><span class="line">    [*] Symmetric multi-processing support</span><br><span class="line">    Processor family (Core 2/newer Xeon)  ---&gt;#自行选择处理器平台</span><br><span class="line">    [*] Supported processor vendors  ---&gt;#自行选择处理器平台</span><br><span class="line">    (2) Maximum number of CPUs #自行编辑</span><br><span class="line">    [*] SMT (Hyperthreading) scheduler support#超线程支持</span><br><span class="line">    [*] Multi-core scheduler support </span><br><span class="line">    High Memory Support (4GB)  ---&gt;</span><br><span class="line"></span><br><span class="line">#############################################</span><br><span class="line"></span><br><span class="line">           [*] Symmetric multi-processing support                                 </span><br><span class="line">          -*- Processor feature human-readable names                             </span><br><span class="line">          [ ] Support for big SMP systems with more than 8 CPUs                  </span><br><span class="line">          [ ] Support for extended (non-PC) x86 platforms                        </span><br><span class="line">          &lt; &gt; Intel SoC IOSF Sideband support for SoC platforms                  </span><br><span class="line">          &lt; &gt; Eurobraille/Iris poweroff module                                   </span><br><span class="line">          [*] Single-depth WCHAN output                                          </span><br><span class="line">          [ ] Linux guest support  ----                                          </span><br><span class="line">          [ ] Memtest                                                            </span><br><span class="line">              Processor family (Intel Atom)  ---&gt;     处理器平台                           </span><br><span class="line">          [*] Generic x86 support                                                </span><br><span class="line">          [*] Supported processor vendors  ---&gt;                                  </span><br><span class="line">          [*] HPET Timer Support                                                 </span><br><span class="line">          [ ] Enable DMI scanning                                                </span><br><span class="line">          (4) Maximum number of CPUs   ---&gt;最大cpu数                                          </span><br><span class="line">          [*] SMT (Hyperthreading) scheduler support                             </span><br><span class="line">          [*] Multi-core scheduler support                                       </span><br><span class="line">              Preemption Model (No Forced Preemption (Server))  ---&gt;             </span><br><span class="line">          [*] Reroute for broken boot IRQs                                       </span><br><span class="line">          [*] Machine Check / overheating reporting                              </span><br><span class="line">          [*]   Intel MCE features                                               </span><br><span class="line">          [*]   AMD MCE features                                                 </span><br><span class="line">          [ ]   Support for old Pentium 5 / WinChip machine checks               </span><br><span class="line">          &lt; &gt; Machine check injector support                                     </span><br><span class="line">          [*] Enable VM86 support                                                </span><br><span class="line">          [ ] Enable support for 16-bit segments                                 </span><br><span class="line">          &lt; &gt; Toshiba Laptop support                                             </span><br><span class="line">          &lt; &gt; Dell laptop support                                                </span><br><span class="line">          [ ] Enable X86 board specific fixups for reboot                        </span><br><span class="line">          &lt; &gt; CPU microcode loading support                                      </span><br><span class="line">          &lt;*&gt; /dev/cpu/*/msr - Model-specific register support                   </span><br><span class="line">          &lt;*&gt; /dev/cpu/*/cpuid - CPU information support                         </span><br><span class="line">              High Memory Support (4GB)  ---&gt;    配置最大内存（最大64G）                               </span><br><span class="line">              Memory split (3G/1G user/kernel split)  ---&gt;                       </span><br><span class="line">              Memory model (Flat Memory)  ---&gt;                                   </span><br><span class="line">          [ ] Allow for memory compaction                                        </span><br><span class="line">          [*] Enable bounce buffers                                              </span><br><span class="line">          [ ] Enable KSM for page merging                                        </span><br><span class="line">          (4096) Low address space to protect from user allocation               </span><br><span class="line">          [ ] Enable recovery from hardware memory errors                        </span><br><span class="line">          [ ] Transparent Hugepage Support                                       </span><br><span class="line">          [ ] Enable cleancache driver to cache clean pages if tmem is present   </span><br><span class="line">          [ ] Enable frontswap to cache swap pages if tmem is present            </span><br><span class="line">          [ ] Contiguous Memory Allocator                                        </span><br><span class="line">          &lt; &gt; Common API for compressed memory storage                           </span><br><span class="line">          &lt; &gt; Low density storage for compressed pages                           </span><br><span class="line">          &lt; &gt; Memory allocator for compressed pages                              </span><br><span class="line">          [ ] Allocate 3rd-level pagetables from highmem                         </span><br><span class="line">          [ ] Check for low memory corruption</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Openwrt</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/openwrt//" class="article-tag-list-link color3">openwrt</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/10/Openwrt/openwrt编译安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/Spark概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/29/Spark/Spark概念/">Spark概念</a>
+    </h1>
+  
+
+        
+        
+<a href="/2016/05/29/Spark/Spark概念/" class="archive-article-date">
+  	<time datetime="2016-05-28T17:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>Spark 是一个快速且通用的集群计算平台</li>
+</ol>
+<p>Spark 快速:</p>
+<ul>
+<li>Spark 扩充了流行的MapReduce计算模型</li>
+<li>Spark 是基于内存的计算</li>
+</ul>
+<p>Spark是通用的:</p>
+<ul>
+<li><p>Spark的设计容纳了其他分布式系统拥有的功能 批处理,迭代式运算 交互查询和流处理等</p>
+<p>降低了维护成本</p>
+</li>
+</ul>
+<p>Spark是高度开放的:</p>
+<p>Spark 提供了Pyhon Java Scala Sql的API和丰富的内置库<br>SPark和其他的大数据工具整合的很好,包括hadoop kafka等 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spark//" class="article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/29/Spark/Spark概念/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -383,6 +824,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
@@ -391,7 +836,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -399,15 +844,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SparkStreaming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -416,10 +865,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -447,19 +892,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,10 +917,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
               </li>
              
               <li class="article-tag-list-item">

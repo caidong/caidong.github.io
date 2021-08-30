@@ -172,6 +172,432 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-TensorFlow/模型持久化" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/26/TensorFlow/模型持久化/">tensorFlow 模型持久化</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/08/26/TensorFlow/模型持久化/" class="archive-article-date">
+  	<time datetime="2018-08-26T12:41:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h5><ol>
+<li>训练过程中保存中间状态</li>
+<li>提供离线的模型使用，只保存前向传导过程中的数据，这时只需用户给一个输入，模型就会给定一个输出。</li>
+</ol>
+<h3 id="保存ckpt格式"><a href="#保存ckpt格式" class="headerlink" title="保存ckpt格式"></a>保存ckpt格式</h3><p>ckpt 文件说明</p>
+<ul>
+<li>checkpoint ： 记录目录下所有模型文件列表</li>
+<li>ckpt.data ： 保存模型中每个变量的取值</li>
+<li>ckpt.meta ： 保存整个计算图的结构</li>
+</ul>
+<h3 id="保存pb格式"><a href="#保存pb格式" class="headerlink" title="保存pb格式"></a>保存pb格式</h3><ul>
+<li>pb 文件model.pb ： 里面保存了重输入层到输出层这个计算过程的计算图和相关变量的值，我们得到这个模型后传入一个输入，既可以得到一个预估的输出值</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/26/TensorFlow/模型持久化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-TensorFlow/高级API Estimator" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/26/TensorFlow/高级API Estimator/">tensorFlow 高级api Estimator</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/08/26/TensorFlow/高级API Estimator/" class="archive-article-date">
+  	<time datetime="2018-08-26T12:40:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>predict() 函数返回</p>
+<ul>
+<li><p>predictions 存储的是下列三个键值对：</p>
+<ul>
+<li>1 .class_ids 存储的是类别 ID（0、1 或            2），表示模型对此样本最有可能归属的品种做出的预测。</li>
+<li>2 .probabilities 存储的是三个概率</li>
+<li>3 .logit 存储的是原始对数值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>tf.data.DataSet:</p>
+<ol>
+<li>表示很大的数据集<br>一个数据集 能够使用能够像集合元素一样 作为输入管道（嵌套的张量结构） 和 作为数据的逻辑转变</li>
+<li><p>属性</p>
+<ul>
+<li><p>output_class:返回一个类每个组件对应元素的数据集 预期返回tf.Tensor 和tf.SparseTensor<br>Return:一个嵌套的Python结构对应每个组件的元素的数据集</p>
+</li>
+<li><p>output_shapes:<br>返回数据集的元素的每个组件形状<br>Return:一个嵌套的tf.DType 对象 ，每个组件元素的数据集</p>
+</li>
+</ul>
+</li>
+<li><p>方法：</p>
+</li>
+</ol>
+<ul>
+<li>__init__ :初始化方法</li>
+<li>__iter__ :迭代</li>
+<li>apply(transformation_func)<br>将数据集应用到转换函数上</li>
+<li>batch(batch_size):<br>将数据集中的连续元素组合成一束元素</li>
+<li>cache(filename=’’):<br>缓存数据元素到文件</li>
+<li>concatenate(dataset):<br>连接相同的数据集<br>-filter(predocate):<br>通过predict函数过滤数据集</li>
+<li>flat_map(map_func):<br>maps 通过 map_func 函数映射 同时使结果变平</li>
+<li>from_generator(generator,out_types,output_shapes)@staticmethod<br>由生成器生成的数据集</li>
+<li>from_saprese_tensor_slices(sparse_tensor)@staticmethod 已废弃。 用 from_tensor_slices()替代</li>
+<li>from_tensor_slices(tensors)@staticemethod :<br>通过张量的切片返回数据集</li>
+<li>from_tensor(tensors):<br>通过张量创建数据集</li>
+<li>interleave(map_func,cycle_length,block_length=1):<br>map_func处理函数，并交错结果集</li>
+<li>list_files(file_pattern,shuffle=None):<br>匹配的所有文件，创建数据集</li>
+<li>make_initialazable_iterator(shared_name=None):<br>通过枚举数据集元素创建一个迭代器</li>
+<li>Raises():<br>抛出异常</li>
+<li>make_ont_shot_iterator():<br>创建一个用于枚举此数据集的迭代器</li>
+<li>map(map_func,num_parallel_calls=None)<br>通过map_func处理数据集</li>
+<li>padded_batch(batch_size,padder_shapes,padding_values=None)</li>
+<li>prefetch(buffer_size)<br>创建一个从数据集中预取元素的数据集</li>
+<li>range(*args)@staticmethod<br>创建一个步进分割的数据集</li>
+<li>repeat(count=None) 重复数据集count次</li>
+<li>shard(num_shards,index) 创建一个仅仅包含1/num_shard 个分片的数据集</li>
+<li>shuffle(buffer_size,seed=None, reshuffle_each_iteration=None)</li>
+<li>skip(count)创建一个跳跃过count个元素的数据集 </li>
+<li>take(count) 创建一个 最多count个元素的数据集</li>
+<li>zip(datasets) @staticmethod </li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/26/TensorFlow/高级API Estimator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-TensorFlow/基础操作" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/20/TensorFlow/基础操作/">tensorFlow 基础操作</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/08/20/TensorFlow/基础操作/" class="archive-article-date">
+  	<time datetime="2018-08-20T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>指定计算图在 哪个设备上计算：<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">with tf.device(<span class="string">"/gpu:1"</span>):</span><br><span class="line">        pass</span><br><span class="line">设备字符串标示:</span><br><span class="line"><span class="number">1</span>. <span class="string">"/cpu:0"</span>: 机器的 CPU.</span><br><span class="line"><span class="number">2</span>. <span class="string">"/gpu:0"</span>: 机器的第一个 GPU, 如果有的话.</span><br><span class="line"><span class="number">3</span>. <span class="string">"/gpu:1"</span>: 机器的第二个 GPU, 以此类推.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/20/TensorFlow/基础操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python/Scrapy/浏览器Cookie 中间件" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/17/Python/Scrapy/浏览器Cookie 中间件/">Scrapy 获取浏览器Cookie中间件</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/08/17/Python/Scrapy/浏览器Cookie 中间件/" class="archive-article-date">
+  	<time datetime="2018-08-17T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-获取Cookie"><a href="#1-获取Cookie" class="headerlink" title="1. 获取Cookie"></a>1. 获取Cookie</h4><p>Python库 browsercookie 可获取浏览器中Cookie</p>
+<ul>
+<li>安装<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install </span> <span class="keyword">browsercookie</span></span><br><span class="line"><span class="keyword">pip3 </span><span class="keyword">install </span>pycryptodome</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>访问浏览器Cookie<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> browsercookie</span><br><span class="line"><span class="meta"># 获取chrome 的cookie</span></span><br><span class="line"><span class="title">chrome_cookiejar</span> = browsercookie.chrome()</span><br><span class="line"><span class="title">firefox_cookiejar</span> = browsercookie.firefox()</span><br><span class="line"><span class="class"><span class="keyword">type</span>(<span class="title">chrome_cookiejar</span>)</span></span><br><span class="line"><span class="title">http</span>.cookiehar.<span class="type">CookieJar</span></span><br><span class="line"><span class="title">for</span> cookie <span class="keyword">in</span> firefox_cookiejar:</span><br><span class="line">    print(cookie)</span><br></pre></td></tr></table></figure></p>
+<p>实现BrowserCookieMiddleware<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import browsercookie </span><br><span class="line">from scrapy.downloadermiddlerwares.cookies import CookiesMiddlerware</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserCookieMiddleware</span>(<span class="title">CookieMiddleware</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>,debug=False)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>().__init_<span class="number">_</span>(debug)</span><br><span class="line">        <span class="keyword">self</span>.load_browser_cookies()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">load_browser_cookies</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 加载Chrome 浏览器中的Cookie </span></span><br><span class="line">        jar =<span class="keyword">self</span>.jars[<span class="string">'chrome'</span>]</span><br><span class="line">        chrome_cookiejar = browsercookie.chrome()</span><br><span class="line">        <span class="keyword">for</span> cookie <span class="keyword">in</span> <span class="symbol">chrome_cookiejar:</span></span><br><span class="line">            jar.set_cookie(cookie)</span><br><span class="line">        <span class="comment"># 加载 Firefox 浏览器中的cookie</span></span><br><span class="line">        jar = <span class="keyword">self</span>.jars[<span class="string">'firefox'</span>] </span><br><span class="line">        firefox_cookiejar =browsercookie.firefox()</span><br><span class="line">        <span class="keyword">for</span> cookie <span class="keyword">in</span> <span class="symbol">firefox_cookiejar:</span></span><br><span class="line">            jar.set_cookie(cookie)</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">setting.py中启用中间件</span><br><span class="line"> DOWNLOADER_MIDDLEWARES =&#123;</span><br><span class="line"> <span class="comment">#开启自定义中间件,关闭系统自带中间件</span></span><br><span class="line">     <span class="string">'scrapy.downloadermiddlerwares.cookies.CookieMiddleware'</span><span class="symbol">:None</span></span><br><span class="line">     <span class="string">'browser_cookie.middlewares.BrowserCookiesMiddleware'</span><span class="symbol">:</span><span class="number">701</span>,</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> 构建 Request对象时</span><br><span class="line"> Request(url, meta=&#123;</span><br><span class="line">     <span class="string">'cookiejar'</span><span class="symbol">:<span class="string">'chrome'</span></span></span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Scrapy//" class="article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/17/Python/Scrapy/浏览器Cookie 中间件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Redis/redis 基础知识" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -813,104 +1239,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-BigData/ElasticSearch/查询点是否在指定区域" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/">查询点是否在指定区域</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/" class="archive-article-date">
-  	<time datetime="2018-05-12T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>curl -XGET ‘<a href="http://172.17.0.6:9200//attractions/_search&#39;" target="_blank" rel="noopener">http://172.17.0.6:9200//attractions/_search&#39;</a></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>: &#123;</span><br><span class="line">    <span class="attr">"geo_shape"</span>: &#123;</span><br><span class="line">      <span class="attr">"geometry"</span>: &#123;</span><br><span class="line">        <span class="attr">"relation"</span>: <span class="string">"intersects"</span>,</span><br><span class="line">        <span class="attr">"shape"</span>: &#123;</span><br><span class="line">          <span class="attr">"coordinates"</span>: [</span><br><span class="line">            <span class="number">4.893321</span>,</span><br><span class="line">            <span class="number">52.373462</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"point"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>参考文档<br><a href="https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point" target="_blank" rel="noopener">https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point</a></p>
-</li>
-<li><p>设置mapping 映射,将geometry字段设置成geo_shape 格式。</p>
-</li>
-</ol>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PUT /china</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"mappings"</span>: &#123;</span><br><span class="line">    <span class="string">"town"</span>: &#123;</span><br><span class="line">      <span class="string">"properties"</span>: &#123;</span><br><span class="line">        <span class="string">"geometry"</span>: &#123;</span><br><span class="line">          <span class="string">"type"</span>: <span class="string">"geo_shape"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ElasticSearch//" class="article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/12/BigData/ElasticSearch/查询点是否在指定区域/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-ElasticSearch/查询点是否在指定区域" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -980,388 +1308,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/05/12/ElasticSearch/查询点是否在指定区域/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/Selenium/定位元素" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/20/Python/Selenium/定位元素/">Selenium 元素定位方式</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/01/20/Python/Selenium/定位元素/" class="archive-article-date">
-  	<time datetime="2018-01-20T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>Id 定位</p>
-<ul>
-<li>页面中第一个该id元素被匹配并返回，如果找不到任何元素，会抛出NoSuchElementException 异常<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_id(<span class="string">'loginForm'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Name 定位</p>
-<ul>
-<li>通过标签的name属性<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_name(name)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Xpath 定位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_xpath(xpath)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>链接文本定位获取超链接</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find_elements_by_link_text(text)</span><br><span class="line">find_elements_by_partial_link_text(link_text)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>标签名查找</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_tag_name(name)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ClassName 定位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_class_name(name)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>CssSelector 定位 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_css_selector(css_selector)</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="一次查找多个元素"><a href="#一次查找多个元素" class="headerlink" title="一次查找多个元素"></a>一次查找多个元素</h5></li>
-</ol>
-<ul>
-<li>分别有<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_elements_by_</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/爬虫//" class="article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/20/Python/Selenium/定位元素/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/Flask/基础概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/11/Python/Flask/基础概念/">Flask 基本概念</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/09/11/Python/Flask/基础概念/" class="archive-article-date">
-  	<time datetime="2017-09-11T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Flask-全局上下文变量"><a href="#Flask-全局上下文变量" class="headerlink" title="Flask 全局上下文变量"></a>Flask 全局上下文变量</h4><table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>上下文</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>current_app</td>
-<td>程序上下文</td>
-<td>当前激活程序的程序实例</td>
-</tr>
-<tr>
-<td>g</td>
-<td>程序上下文</td>
-<td>处理请求时用作临时存储的对象。每次请求都会重设这个变量</td>
-</tr>
-<tr>
-<td>request</td>
-<td>请求上下文</td>
-<td>请求对象，封装了客户端发出的http请求中的内容</td>
-</tr>
-<tr>
-<td>session</td>
-<td>请求上下文</td>
-<td>用户会话，用于存储请求之间需要记住的值的字典</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h4 id="请求调度"><a href="#请求调度" class="headerlink" title="请求调度"></a>请求调度</h4><ol>
-<li>app.url_map<br>生成url映射和视图函数之间的对应关系<h4 id="请求钩子"><a href="#请求钩子" class="headerlink" title="请求钩子"></a>请求钩子</h4>请求钩子使用装饰器实现。</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>函数名</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>before_first_request</td>
-<td>注册一个函数，在处理第一个请求之前运行</td>
-</tr>
-<tr>
-<td>before_request</td>
-<td>注册一个函数，在每次请求之前运行</td>
-</tr>
-<tr>
-<td>after_request</td>
-<td>注册一个函数，如果没有未处理的异常抛出，在每次请求之后运行</td>
-</tr>
-<tr>
-<td>teardown_request</td>
-<td>注册一个函数，即使有未处理的异常抛出，也在每次请求之后运行</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Flask//" class="article-tag-list-link color1">Flask</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/11/Python/Flask/基础概念/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/基础知识/1. 启动停止线程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/Python/基础知识/1. 启动停止线程/">python 线程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/08/16/Python/基础知识/1. 启动停止线程/" class="archive-article-date">
-  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>创建销毁线程</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import threading, <span class="built_in">time</span></span><br><span class="line"></span><br><span class="line">def sample_thread(<span class="built_in">n</span>)<span class="symbol">:</span></span><br><span class="line">    while <span class="built_in">n</span> &gt; <span class="symbol">0:</span></span><br><span class="line">        print('<span class="built_in">T</span>-minus', <span class="built_in">n</span>)</span><br><span class="line">        <span class="built_in">n</span> -= <span class="number">1</span></span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">t</span> = threading.Thread(target=sample_thread, args=(<span class="number">10</span>,))</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询线程状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> t.is_alive():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Still running'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Complete'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>等待当前线程完成,继续向下执行.</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.<span class="keyword">join</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Python 解释器直到所有线程都终止前仍保持运行,对于需要长时间的运行线程或者一直运行在后台的任务,你应当考虑使用后台线程</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = Thread(<span class="attribute">target</span>=countdown, args=(10,) <span class="attribute">daemon</span>=<span class="literal">True</span>)</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>后台线程无法等待,不过,这些线程会在主线程终止时自动销毁.除了如上所示两个操作,并没有太多可以对线程做的事情.你无法结束一个线程,无法给它发送信号,无法调整调度,也无法执行其他高级操作.如果需要这些特性,你需要自己添加.比如说,如果你需要终止线程,那么这个线程必须通过编程在某个特定点轮询来退出.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountdownTask</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = True</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = False</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>,n)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>._running <span class="keyword">and</span> n&gt;<span class="number">0</span> <span class="symbol">:</span></span><br><span class="line">            print(<span class="string">'T-minus'</span>,n)</span><br><span class="line">            n -= <span class="number">1</span></span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">c = CountdownTask()</span><br><span class="line">t = Thread(target=c.run, args=(<span class="number">10</span>,))</span><br><span class="line">t.start()</span><br><span class="line">c.terminate()</span><br><span class="line">t.join()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果线程执行一些像IO这样的阻塞操作,那么通过轮训来终止线程讲使得线程之间的协调变得非常棘手.比如,如果一个线程一直柱塞在一个I/O操作上.它就永远无法返回,就无法检查自己是否已经被结束了.要正确处理这些问题,你们需要利用逛超时循环来小心操作线程.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOTask</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = False</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>, sock)</span></span></span><br><span class="line">        sock.settimeout(<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>.<span class="symbol">_running:</span></span><br><span class="line">            <span class="symbol">try:</span></span><br><span class="line">                data =sock.recv(<span class="number">8192</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            except socket.<span class="symbol">timeout:</span></span><br><span class="line">                continue</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>全局解释锁 Python的线程被限制到同一时刻只允许一个线程执行这样一个执行模型,所以,Python 的线程更适用于处理IO和其他需要并发执行的阻塞操作(i/o 数据库操作等),而不是需要多处理器并行计算密集型任务</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from thrading import Thread</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountdownThread</span>(<span class="title">Thread</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, n)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>().__init_<span class="number">_</span>()</span><br><span class="line">        <span class="keyword">self</span>.n = n</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>.n &gt; <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            print(<span class="string">'T-minus'</span>,<span class="keyword">self</span>.n)</span><br><span class="line">            <span class="keyword">self</span>.n -= <span class="number">1</span></span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">c = CountdownThread(<span class="number">5</span>)</span><br><span class="line">c.start()</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>尽管这样也可以工作,单这使得你的代码依赖于threading 库,所以你的这些代码只能在线程上下文中,可能与线程无关的,这样就使得这些代码可以被用在其他的上下文中,可能与线程有关,也可能与线程无关.比如 可以通过multiprocessing模块在一个单独的进程中执行你的代码</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import multiprocessing</span><br><span class="line"></span><br><span class="line">c = CountdownTask(5)</span><br><span class="line">p = multiprocessing.Process(target=c.run)</span><br><span class="line">p.start()</span><br><span class="line"></span><br><span class="line"><span class="comment">#这段代码仅适用于CountdownTask类是以独立于实际的并发手段实现的情况</span></span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>判断线程是否已经启动</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/Python/基础知识/1. 启动停止线程/">展开全文 >></a>
         </p>
       
 
@@ -1519,6 +1465,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
@@ -1527,7 +1477,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1535,15 +1485,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SparkStreaming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1552,10 +1506,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1583,19 +1533,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1608,10 +1558,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
               </li>
              
               <li class="article-tag-list-item">

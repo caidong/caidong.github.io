@@ -172,6 +172,322 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spark/Spark内存存储调研" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/Spark/Spark内存存储调研/">SparkStreaming 数据存储</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/08/30/Spark/Spark内存存储调研/" class="archive-article-date">
+  	<time datetime="2021-08-30T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spark-streaming-数据存储"><a href="#Spark-streaming-数据存储" class="headerlink" title="Spark streaming 数据存储"></a>Spark streaming 数据存储</h1><h3 id="1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问"><a href="#1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问" class="headerlink" title="1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问"></a>1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问</h3><p>   ​    <strong>优点</strong>：低延迟、近实时</p>
+<p>   ​    <strong>缺点</strong>：非持久化、易失</p>
+<p>   ​    <strong>限制</strong>：Spark Driver‘s内存最大200G,这200G内存中，能用来缓存表格数据，默认参数</p>
+<p>   ​    spark.memory.fraction 和 spark.memory.storageFraction,最大的内存使用量 200GB <em> 0.6 </em> 0.5= 60GB,</p>
+<p>   ​    <strong>突破限制</strong>，可以使用低延迟、大数据集、高性能(Druid、Apache Kudu、Apache Ignite)的分布式内存数据存储，代替单个JVM 内存，单个内存是不够存储的</p>
+<ul>
+<li><h4 id="开启步骤"><a href="#开启步骤" class="headerlink" title="开启步骤"></a>开启步骤</h4><h5 id="1-运行前，开启Spark-Thrift-Server"><a href="#1-运行前，开启Spark-Thrift-Server" class="headerlink" title="1.运行前，开启Spark Thrift Server"></a>1.运行前，开启Spark Thrift Server</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from py4j.java_gateway <span class="keyword">import</span> java_import</span><br><span class="line">java_import(spark.sparkContext._gateway.jvm, <span class="string">""</span>)</span><br><span class="line">spark.sparkContext._gateway.jvm.org.apache.spark.sql.hive.thriftserver \</span><br><span class="line">  .HiveThriftServer2.startWithContext(spark._jwrapped)</span><br></pre></td></tr></table></figure>
+<h5 id="2-结果写入内存中供后续查询使用"><a href="#2-结果写入内存中供后续查询使用" class="headerlink" title="2. 结果写入内存中供后续查询使用"></a>2. 结果写入内存中供后续查询使用</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tips.writeStream \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"memory"</span>) \</span><br><span class="line">  .queryName(<span class="string">"tips"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="type">False</span>) \</span><br><span class="line">  .start() \</span><br><span class="line">  .awaitTermination()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="3-使用JDBC客户端查询"><a href="#3-使用JDBC客户端查询" class="headerlink" title="3. 使用JDBC客户端查询"></a>3. 使用JDBC客户端查询</h5>   <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>spark2-thriftserver<span class="regexp">/bin/</span>beeline \</span><br><span class="line">  -u <span class="string">jdbc:</span><span class="string">hive2:</span><span class="comment">//master02.cluster:10016</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-持久化存储到HDFS文件系统"><a href="#2-持久化存储到HDFS文件系统" class="headerlink" title="2. 持久化存储到HDFS文件系统"></a>2. 持久化存储到HDFS文件系统</h3><p> 一旦数据被处理和Spark停止，内存存储是易失和不可靠的。原始数据必须被存储在存储区，一旦数据丢失我们可以从原始数据重建它，我们可以使用多种持久化存储方式，如：关系型数据库、NOSQL存储、对象云存储（S3、Google Cloud）、分布式文件系统（Ceph、GlsterFs、HDFS）</p>
+<h5 id="1-数据持久化HDFS"><a href="#1-数据持久化HDFS" class="headerlink" title="1.数据持久化HDFS"></a>1.数据持久化HDFS</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> year, month, dayofmonth</span><br><span class="line"></span><br><span class="line">sdfRides.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Rides"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/RidesRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/RidesRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br><span class="line"></span><br><span class="line">sdfFares.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Fares"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/FaresRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/FaresRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br></pre></td></tr></table></figure>
+<h5 id="2-查询使用结果数据"><a href="#2-查询使用结果数据" class="headerlink" title="2.查询使用结果数据"></a>2.查询使用结果数据</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tips = sdf \</span><br><span class="line">  .groupBy(</span><br><span class="line">    window(<span class="string">"endTime"</span>, <span class="string">"30 minutes"</span>, <span class="string">"10 minutes"</span>),</span><br><span class="line">    <span class="string">"stopNbhd"</span>) \</span><br><span class="line">  .agg(avg(<span class="string">"tip"</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h5><p><a href="https://www.adaltas.com/en/2019/05/28/spark-structured-streaming-in-hadoop/" target="_blank" rel="noopener">spark-structured-streaming-in-hadoop</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SparkStreaming</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/30/Spark/Spark内存存储调研/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LeetCode/解题方法/动态规划" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>1. </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/30/LeetCode/解题方法/动态规划/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/StruectedStreaming 消费Kafka数据" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题与解释"><a href="#问题与解释" class="headerlink" title="问题与解释"></a>问题与解释</h2><h3 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h3><ol>
+<li>kafka 主机，消费端无法连接</li>
+</ol>
+<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415113635770.png" alt="image-20210415113635770"></p>
+<ol start="2">
+<li><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415115032799.png" alt="image-20210415115032799"></li>
+</ol>
+<p>3.生产端 time_out </p>
+<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415123458138.png" alt="image-20210415123458138"></p>
+<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415134146242.png" alt="image-20210415134146242"></p>
+<h2 id="StructedStreaming-数据字段"><a href="#StructedStreaming-数据字段" class="headerlink" title="StructedStreaming 数据字段"></a>StructedStreaming 数据字段</h2><p>root<br> |– key: binary (nullable = true)<br> |– value: binary (nullable = true)<br> |– topic: string (nullable = true)<br> |– partition: integer (nullable = true)<br> |– offset: long (nullable = true)<br> |– timestamp: timestamp (nullable = true)<br> |– timestampType: integer (nullable = true)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/30/Spark/StruectedStreaming 消费Kafka数据/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/Spark函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>when() 等于SQL case  when then </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CASE</span><br><span class="line">    WHEN condition1 THEN result_value1</span><br><span class="line">    WHEN condition2 THEN result_value2</span><br><span class="line">    <span class="comment">-----</span></span><br><span class="line">    <span class="comment">-----</span></span><br><span class="line">    ELSE result</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> when</span><br><span class="line">df2 = df.withColumn(<span class="string">"new_gender"</span>, when(df.gender == <span class="string">"M"</span>,<span class="string">"Male"</span>)</span><br><span class="line">                                 .when(df.gender == <span class="string">"F"</span>,<span class="string">"Female"</span>)</span><br><span class="line">                                 .when(df.gender.isNull() ,<span class="string">""</span>)</span><br><span class="line">                                 .otherwise(df.gender))</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>expr() 执行sql</p>
+</li>
+<li><p>Pivot 和 Unpivot</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/30/Spark/Spark函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/SparkStreaming开启Supervisor守护" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/30/Spark/SparkStreaming开启Supervisor守护/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode/解题套路/动态规划" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -195,23 +511,17 @@ var _hmt = _hmt || [];
       
         <h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a><strong>动态规划</strong></h4><p>特点：</p>
 <ol>
-<li><p>重叠子问题</p>
-</li>
-<li><p>状态转移方程</p>
-</li>
-<li><p>最优子结构</p>
-</li>
-<li><p>题型:最值问题、核心：穷举</p>
-</li>
+<li>重叠子问题</li>
+<li>状态转移方程</li>
+<li>最优子结构</li>
+<li>题型:最值问题、核心：穷举</li>
 </ol>
 <p>解题思路：</p>
 <ol>
 <li>明确状态</li>
 <li>明确选择</li>
 <li>明确dp函数、数组的定义</li>
-<li><p>明确base case</p>
-<p><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230319801.png" alt="image-20210818230319801"></p>
-</li>
+<li>明确base case<br><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230319801.png" alt="image-20210818230319801"></li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20210818230822477.png" alt="image-20210818230822477"></p>
 
@@ -253,107 +563,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/18/Leetcode/解题套路/动态规划/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spark/Spark函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/Spark/Spark函数/">Spark函数</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/08/10/Spark/Spark函数/" class="archive-article-date">
-  	<time datetime="2021-08-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>when() 等于SQL case  when then </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CASE</span><br><span class="line">    WHEN condition1 THEN result_value1</span><br><span class="line">    WHEN condition2 THEN result_value2</span><br><span class="line">    <span class="comment">-----</span></span><br><span class="line">    <span class="comment">-----</span></span><br><span class="line">    ELSE result</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> when</span><br><span class="line">df2 = df.withColumn(<span class="string">"new_gender"</span>, when(df.gender == <span class="string">"M"</span>,<span class="string">"Male"</span>)</span><br><span class="line">                                 .when(df.gender == <span class="string">"F"</span>,<span class="string">"Female"</span>)</span><br><span class="line">                                 .when(df.gender.isNull() ,<span class="string">""</span>)</span><br><span class="line">                                 .otherwise(df.gender))</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li><p>expr() 执行sql</p>
-</li>
-<li><p>Pivot 和 Unpivot</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Spark//" class="article-tag-list-link color1">Spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/10/Spark/Spark函数/">展开全文 >></a>
         </p>
       
 
@@ -454,6 +663,105 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/10/Spark/StruectedStreaming/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
+  	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
+<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用find-spark库</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>~/.bashrc 配置完整pyspark路径 </p>
+</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
         </p>
       
 
@@ -755,757 +1063,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
-  	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
-<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用find-spark库</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>~/.bashrc 配置完整pyspark路径 </p>
-</li>
-</ol>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Sql/窗口函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/10/Sql/窗口函数/">开窗函数</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/06/10/Sql/窗口函数/" class="archive-article-date">
-  	<time datetime="2021-06-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="开窗函数"><a href="#开窗函数" class="headerlink" title="开窗函数"></a>开窗函数</h3><ol>
-<li>OVER()指定分析函数工作的数据窗口大小，这个数据窗口大小可能会随着行的变化而变化<ul>
-<li>CURRENT ROW 当前行</li>
-<li>n PRECEDING 往前n行数据</li>
-<li>n FOLLOWING 往后n行数据</li>
-<li>UNBOUNDED 起点<ul>
-<li>UNBOUNDED PRECEDING 从前面的起点</li>
-<li>UNBOUNDED FOLLOWING 到后面的终点</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>LAG(col,n,default_val) 往前n行</li>
-<li>LEAD(col,n,default_val) 往后n行</li>
-<li>FIRST_VALUE()</li>
-<li>LAST_VALUE()</li>
-<li>NTAIL() 把由徐窗口的行分发到指定的数组中，各个组由编号，编号从1开始，对于每一行，NTAIL 返回此行所属的组的编号。n必须为int类型</li>
-</ul>
-<ol start="2">
-<li><p>查询顾客的购买顾客及购买总数</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select name,</span><br><span class="line">count(*) over()</span><br><span class="line"><span class="keyword">from</span> tab </span><br><span class="line">group by name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询顾客的购买明细及月购买总额</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">     <span class="keyword">name</span>, </span><br><span class="line">     <span class="keyword">cost</span>, </span><br><span class="line">     orderdate,</span><br><span class="line">     <span class="keyword">sum</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> <span class="keyword">name</span>  <span class="keyword">month</span>(orderdate))</span><br><span class="line"> <span class="keyword">from</span> business</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上述的场景，将每个顾客的cost按照日期进行累加</p>
-</li>
-</ol>
-<p><strong>over (partition by partiton,[order by col],[window specification])</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">    <span class="attribute">name,</span></span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="attribute">cost,</span></span><br><span class="line">    sum(cost) over(partition by name order by orderdate)</span><br><span class="line">from business;</span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">    <span class="attribute">name,</span></span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="attribute">cost,</span></span><br><span class="line">    sum(cost) over(partition by name order by orderdate rows between UNBOUNDED PRECEDING and current row)</span><br><span class="line">from business;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">相同行，同一行</span><br><span class="line">order by id</span><br><span class="line">id sum() over(order by id)</span><br><span class="line">1  1</span><br><span class="line">2  3</span><br><span class="line">3  9</span><br><span class="line">3  9</span><br><span class="line">4 13</span><br><span class="line">5 18</span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li><p>查询顾客上次购买时间</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">name orderdate</span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span> NULL</span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-02</span> <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span></span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-03</span></span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-04</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-02</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-03</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-04</span></span><br><span class="line">SELECT </span><br><span class="line">name,</span><br><span class="line">orderdate,</span><br><span class="line">lag(orderdate,<span class="number">1</span>) over (partition by name order by orderdate)</span><br><span class="line">from buiness</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询前20%时间的订单信息</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">    <span class="keyword">name</span>,</span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="keyword">cost</span>,</span><br><span class="line">    ntail(<span class="number">5</span>) <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> orderdate) groupId</span><br><span class="line">    <span class="keyword">from</span> business;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Rank函数<br>RANK() 排序相同时会重复，总数不会变<br>DENSE_RANK() 排序相同时会重复，总数会减少<br>ROW_NUMBER() 会根据顺序计算</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    ROW_NUMBER()  RANK()  DENSE_RANK()</span><br><span class="line"><span class="number">1</span>      <span class="number">1</span>           <span class="number">1</span>         <span class="number">1</span></span><br><span class="line"><span class="number">1</span>      <span class="number">2</span>           <span class="number">1</span>         <span class="number">1</span></span><br><span class="line"><span class="number">2</span>      <span class="number">3</span>           <span class="number">3</span>         <span class="number">2</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h2><ol>
-<li>统计每个类别视频观看数 Top10<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">category</span>,</span><br><span class="line"><span class="keyword">RANK</span>() <span class="keyword">over</span>(partion <span class="keyword">by</span> <span class="keyword">category</span> <span class="keyword">order</span> <span class="keyword">by</span> views)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">category</span>,<span class="keyword">SUM</span>(views) <span class="keyword">AS</span> tview</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">category</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> tview <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> t2.videoId,</span><br><span class="line"> t2.views,</span><br><span class="line"> t2.category_name,</span><br><span class="line"> t2.rk</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> t1.videoId,</span><br><span class="line"> t1.views,</span><br><span class="line"> t1.category_name,</span><br><span class="line"> <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> t1.category_name <span class="keyword">ORDER</span> <span class="keyword">BY</span> t1.views <span class="keyword">DESC</span> ) rk</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> videoId,</span><br><span class="line"> views,</span><br><span class="line"> category_name</span><br><span class="line"><span class="keyword">FROM</span> gulivideo_orc</span><br><span class="line">lateral <span class="keyword">VIEW</span> explode(<span class="keyword">category</span>) gulivideo_orc_tmp <span class="keyword">AS</span> category_name</span><br><span class="line">)t1</span><br><span class="line">)t2</span><br><span class="line"><span class="keyword">WHERE</span> t2.rk &lt;=<span class="number">10</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>2.统计上传视频最多的用户 Top10以及他们上传的视频<br>观看次数在前 20 的视频<br>SELECT uploader,views,videoId,RANK() OVER (PARTITION BY videoId ORDER BY views)  as rk<br>FROM gulivideo_orc WHERE  uploader in (<br>SELECT uploader FROM user ORDER BY videos LIMIT 10<br>) WHERE rk&lt;=20</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line"> <span class="built_in">t2</span>.videoId,</span><br><span class="line"> <span class="built_in">t2</span>.views,</span><br><span class="line"> <span class="built_in">t2</span>.uploader</span><br><span class="line">FROM</span><br><span class="line">(</span><br><span class="line">SELECT</span><br><span class="line"> uploader,</span><br><span class="line"> videos</span><br><span class="line">FROM gulivideo_user_orc</span><br><span class="line"><span class="keyword">ORDER </span><span class="keyword">BY</span></span><br><span class="line"><span class="keyword"> </span>videos</span><br><span class="line">DESC</span><br><span class="line">LIMIT <span class="number">10</span></span><br><span class="line">) <span class="built_in">t1</span></span><br><span class="line"><span class="keyword">JOIN </span>gulivideo_orc <span class="built_in">t2</span></span><br><span class="line">ON <span class="built_in">t1</span>.uploader = <span class="built_in">t2</span>.uploader</span><br><span class="line"><span class="keyword">ORDER </span><span class="keyword">BY</span></span><br><span class="line"><span class="keyword"> </span><span class="built_in">t2</span>.views</span><br><span class="line">DESC</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/SQL//" class="article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/10/Sql/窗口函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hive/查询语句" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/10/Hive/查询语句/">Hive查询语句</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/05/10/Hive/查询语句/" class="archive-article-date">
-  	<time datetime="2021-05-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Hive查询语法"><a href="#Hive查询语法" class="headerlink" title="Hive查询语法"></a>Hive查询语法</h3><ol>
-<li>SELECT .. FROM <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emplyees(</span><br><span class="line"><span class="keyword">name</span> <span class="keyword">STRING</span>,</span><br><span class="line">addr STUCT&lt;street:<span class="keyword">STRING</span>&gt;,</span><br><span class="line">edu <span class="keyword">MAP</span>(<span class="keyword">STRING</span>,<span class="built_in">INT</span>),</span><br><span class="line">sub <span class="built_in">ARRAY</span>&lt;<span class="keyword">STRING</span>&gt;</span><br><span class="line">....</span><br><span class="line">)</span><br><span class="line"><span class="keyword">MAP</span> 字段使用</span><br><span class="line"><span class="keyword">field</span>[<span class="string">"key"</span>]</span><br><span class="line"><span class="keyword">STRUCT</span> 字段使用</span><br><span class="line">field.key</span><br><span class="line"><span class="built_in">ARRAY</span> 字段使用 数组索引</span><br><span class="line"><span class="keyword">field</span>[<span class="keyword">index</span>] </span><br><span class="line"><span class="keyword">index</span> =[<span class="number">0</span>,<span class="number">1.</span>..]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li>正则表达式列选择<br>  <code>price.*</code></li>
-</ul>
-<ol start="2">
-<li>计算函数</li>
-</ol>
-<ul>
-<li>算术运算符<ul>
-<li>+-*/ 数值</li>
-<li>A%B 取余 </li>
-<li>A&amp;B 与</li>
-<li>A|B 或</li>
-<li>A^B 亦或</li>
-<li>~A 非</li>
-</ul>
-</li>
-<li>数学函数<ul>
-<li>round() 取整</li>
-<li>round(d,n) 保留n位</li>
-<li>floor() 向上取整</li>
-<li>ceil() 向下取整</li>
-<li>rand() Double 型随机数</li>
-<li>exp() 幂次方</li>
-<li>hex()</li>
-<li>unhex()</li>
-<li>…..</li>
-</ul>
-</li>
-<li>聚合函数(对多行进行计算，得到一个结果值)<ul>
-<li>count() count(col) count(DISTINCT col1)</li>
-<li>sum()</li>
-<li>avg()</li>
-<li>min()</li>
-<li>max()</li>
-<li>variance() 方差</li>
-<li>var_samp() 样本方差</li>
-<li>stddev_pop() 标准偏差</li>
-<li>stddev_samp() 标准样本偏差</li>
-<li>covar_pop(col1,col2) 协方差</li>
-<li>covar_samp(col1,col2) 样本协方差</li>
-<li>corr(col1,col2) 相关系数</li>
-<li>percentile(int_expr,p)</li>
-<li>collect_set()</li>
-<li>collect_list()<br>备注设置hive.map.aggr=true 提高聚合性能</li>
-</ul>
-</li>
-<li>表生成函数(单列扩展成多列或多行)<ul>
-<li>explode(Array array) 返回多行结果</li>
-<li>explode(Map map) 返回0到多行结果，每行对应每个map键值对</li>
-<li>inline()结构体数组提取出来并插入表中</li>
-<li>json_tuple(STRING,p1)</li>
-<li>parse_url_tuple()  parse_url_tuple(url, ‘HOST’, ‘PATH’,’QUERY’, ‘QUERY:id’)<br>-stack(int r) M列转换成N行</li>
-</ul>
-</li>
-</ul>
-<p>lateral view Lateral View一般与用户自定义表生成函数（如explode()）结合使用。</p>
-<ul>
-<li>其他函数<ul>
-<li>ascii()</li>
-<li>base64()</li>
-<li>binary()</li>
-<li>cast( AS FLOAT)</li>
-<li>concat() 字符串拼接</li>
-<li>concat_ws(separator,s1,s2)</li>
-<li>decode(BINARY,charset)</li>
-<li>encode()</li>
-<li>find_in_set(s,comma)</li>
-<li>format_number()</li>
-<li>get_json_object(string json_string, string path) 示例get_json_object(data, ‘$.owner’)</li>
-<li>in </li>
-<li>in_file()</li>
-<li>instr() 字符串第一次出现的地方</li>
-<li>length()</li>
-<li>locate(substr,str)</li>
-<li>lower()</li>
-<li>lpad(s,len,pad)</li>
-<li>ltrim() 去空格</li>
-<li>ngrams() 估算文件前K个字尾</li>
-<li>parse_url()  parse_url(‘<a href="http://facebook.com/path/p1.php?query=1&#39;" target="_blank" rel="noopener">http://facebook.com/path/p1.php?query=1&#39;</a>, ‘HOST’) </li>
-<li>printf(format,args)</li>
-<li>regexp_extract(subject,regex_pattern,index)</li>
-<li>regexp_replace(s,regex,replacement)</li>
-<li>repeat(s,n)</li>
-<li>reverse()</li>
-<li>rpad()</li>
-<li>rtrim()</li>
-<li>sentence() 字符串转换成句子数组</li>
-<li>size(MAP&lt;k,v&gt;)</li>
-<li>size(ARRAY<t>)</t></li>
-<li>space(n) 返回n个空格</li>
-<li>split(s,pattern)</li>
-<li>str_to_map(s,delim1,delim2)</li>
-<li>substr(s,start_index)</li>
-<li>translate()</li>
-<li>trim()</li>
-<li>unbase64()</li>
-<li>upper()</li>
-<li>from_unixtime(timestamp,format) 时间戳转换成UTC时间</li>
-<li>unix_timestamp() 本地时区下的当前时间戳</li>
-<li>unix_timestamp(“2021-01-01 11:11:11”) 转换成时间戳</li>
-<li>to_date()返回时间字符串日期部分</li>
-<li>year()</li>
-<li>month()</li>
-<li>day()</li>
-<li>hour()</li>
-<li>minute()</li>
-<li>second()</li>
-<li>weekofyear()</li>
-<li>date_diff()</li>
-<li>date_add(startdate,days)</li>
-<li>date_sub(startdate,days)</li>
-<li>from_utc_timestamp()</li>
-<li>to_utc_timestamp()</li>
-<li>round(unix_timestamp()-unix_timestamp(),2) 时间差计算</li>
-<li>current_timestamp()</li>
-<li>current_date()</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>LIMIT 语句 限制返回行数</li>
-<li>列别名 as </li>
-<li>嵌套SELECT语句<figure class="highlight plain"><figcaption><span>e SELECT e.name  WHERE e.name </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6. CASE WHEN 语句</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>CASE<br> WHEN 条件 THEN 结果<br> ELSE default<br> END<br><code>`</code></p>
-<ol start="7">
-<li>WHERE 语句 用于条件过滤</li>
-</ol>
-<p>8.谓词操作符 可用于JOIN..ON 和HAVING</p>
-<ul>
-<li>A=B</li>
-<li>A&lt;=&gt;B 都为NULL 返回TRUE</li>
-<li>A&lt;&gt;B,A!=B</li>
-<li>A&lt;B</li>
-<li>A&lt;=B</li>
-<li>A&gt;B</li>
-<li>A&gt;=B</li>
-<li>A [NOT] BETWEEN B AND C</li>
-<li>A IS [NOT] NULL</li>
-<li>A [NOT] LIKE B</li>
-<li>A RLIKE B B是一个正则表达式<br>9 LIKE和RLIKE<ol start="10">
-<li>GROUP BY 语句 按照一个或多个列对结果进行分组</li>
-</ol>
-</li>
-</ul>
-<ol start="11">
-<li><p>HAVING 语句 允许用户通过一个简单的语法完成原本需要通过子查询才能 对GROUP BY 语句产生的分组进行条件过滤任务</p>
-</li>
-<li><p>JOIN 语句 只支持等值连接</p>
-<ul>
-<li>INNER JOIN 只有进行连接的两个表都存在与连接标准相匹配的数据才会被保存下来</li>
-<li>LEFT JOIN </li>
-<li>LEFT OUTER JOIN</li>
-<li>RIGHT JOIN </li>
-<li>RIGHT OUTER JOIN 返回右表所有符合WHERE语句的记录，左表中匹配不上的字段值用NULL代替</li>
-<li>FULL OUTER JOIN 返回所有表中符合WHERE语句条件的所有记录</li>
-<li>LEFT SEMI JOIN： 并不拼接两张表，两个表对 on 的条件字段做交集，返回前面表的记录，相较于其他的方法，这样子 hive 处理速度比较快</li>
-<li>CROSS JOIN： 返回两个表的笛卡尔积结果（数目为左表乘右表），不需要指定关联键</li>
-<li>map-side JOIN 大表Join小表，小表放左边<blockquote>
-<p>set hive.auto.convert.join=true;<br>属性配置文件$HOME/.hiverc</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>ORDER BY 和 SORT BY<br>ORDER BY 一个所有的数据都通过一个reducer进行处理的过程(全局有序)<br>SORT BY 只会在每个reducer中数据进行排序，局部排序</p>
-</li>
-<li><p>DISTRIBUTE BY 控制map的输出在reducer中如何划分，将相同的key记录分发到同一个reducer中进行处理。</p>
-</li>
-<li><p>CLUSTER BY  等于DISTRIBUTE BY 和SORT BY 简化版</p>
-</li>
-<li><p>类型转换 cast()函数 cast( value AS TYPE)</p>
-</li>
-<li><p>抽样查询</p>
-<ul>
-<li>TABLESAMPLE(BUCKET 3 OUT OF 10 ON rand())</li>
-<li>百分比抽样 TABLESAMPLE(0.1 PERCENT)</li>
-</ul>
-</li>
-<li><p>UNION ALL 与 UNION 区别<br>多个表进行合并  UNION 返回去重后结果，UNION ALL 返回所有结果</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Hive//" class="article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/10/Hive/查询语句/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-BigData/Kylin/kylin hive hdfs 基于业务探索" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/25/BigData/Kylin/kylin hive hdfs 基于业务探索/">Kylin Hive Hdfs 基于业务分析和探索</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/07/25/BigData/Kylin/kylin hive hdfs 基于业务探索/" class="archive-article-date">
-  	<time datetime="2020-07-25T12:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="场景描述"><a href="#场景描述" class="headerlink" title="场景描述"></a>场景描述</h3><pre><code>记录下最近工作
-
-1. 业务需求
-
-    分别按省份和**维度统计数据条数，由于事实表条数过大每天产生10G+数据,
-    进行多维度分析和查询,molap,存储hive或HBASE 有查询速度慢，服务不稳定，难维护等问题。
-
-2. 技术选型
-    2.1 物联网设备报文上传到前置机，由前置机发送到kafka,然后通过flume将kafka数据分发存储到Hdfs,Hbase...等地方
-
-    2.2 通过hive 建立外部表，映射到存储的hdfs路径。
-
-    2.3 通过kylin按所需维度构建 cube，将预计算结果存储Hbase。
-
-    2.4 通过kylin接口提供给前端进行展示（BI）
-
-3.其间遇到的问题记录
-    3.1 Hive 映射hdfs上json的文件，导致缺失jar包，json解析出错
-        尝试添加jar包到kylin，还是出现了相同的错误，
-        尝试添加jar包到hive,也没有解决
-        最后添加了jar包到yarn，才最终解决
-
-    3.2 部分json转换出错
-        由于flume 存储和kylin 构建的路径相同，导致flume写入的临时文件中含有不完整数据导致，
-        将两者路径分开，并定时将flume存储数据load Hive所映射的路径
-
-    3.3 kylin 构建 segment 出现 Dup key的错误
-        错误是由于事实表与维度表进行join过程中，维度表出现了重复值
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kylin</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hdfs</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Kylin//" class="article-tag-list-link color1">Kylin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/25/BigData/Kylin/kylin hive hdfs 基于业务探索/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Docker/index-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Docker 操作 </title></head><body>
-<p>tags: 
-- 笔记
-- Docker
-categories: 
-- Docker</p>
-<hr>
-<ul>
-<li>宿主机复制到容器
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> sudo docker cp <span class="meta-keyword">/home/</span>sensetime/PycharmProjects/predict_iris <span class="number">85510</span>c880ca1:<span class="meta-keyword">/root/</span>ml<span class="params">&lt;/li&gt;</span></span><br><span class="line"><span class="params">&lt;/ul&gt;</span></span><br><span class="line"><span class="params">&lt;p&gt;</span></span><br></pre></td></tr></table></figure>
-
-docker  cp 宿主机路径 容器ID:容器地址<p></p>
-<ul>
-<li>
-<p>docker 端口映射 run -p 5000:5000 </p>
-</li>
-<li>
-<p>提交新镜像
-　
-<code>docker  commit -m -a tagname</code></p>
-</li>
-<li>
-<p>容器操作</p>
-<ul>
-<li>启动：</li>
-<li>基于镜像新建并启动</li>
-<li>
-<p>重新启动已终止的容器</p>
-</li>
-<li>
-<p>启动已终止的容器</p>
-</li>
-<li>
-<p>docker container start </p>
-</li>
-<li>
-<p>进入容器</p>
-</li>
-<li>
-<p>docker attach 或者docker exec </p>
-</li>
-<li>
-<p>导入和导出容器</p>
-</li>
-<li>docker export container_id &gt; container.tar</li>
-<li>
-<p>导入容器快照</p>
-<ul>
-<li>cat Ubuntu.tar | docker import  test/ubuntuLv1.0</li>
-<li>指定导入url或者某个目录来导入 
-   dockrer import  url path </li>
-</ul>
-</li>
-<li>
-<p>删除容器(终止态容器)</p>
-<ul>
-<li>docker container rm </li>
-<li>清理所有处于终止状态的容器
- docker container pure </li>
-</ul>
-</li>
-<li>访问仓库(集中存放镜像的地方)</li>
-<li></li>
-</ul>
-</li>
-<li>
-<p>查看docker 状态</p>
-</li>
-</ul>
-</li></ul></body></html>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/05/Docker/index-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1634,6 +1191,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
@@ -1642,7 +1203,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1650,15 +1211,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SparkStreaming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1667,10 +1232,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1698,19 +1259,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1723,10 +1284,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
               </li>
              
               <li class="article-tag-list-item">
