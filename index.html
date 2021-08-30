@@ -5,12 +5,12 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="https://b.top1.pub">
   <title>coderDong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="coderDong">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="https://b.top1.pub/index.html">
 <meta property="og:site_name" content="coderDong">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -50,11 +50,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="/" class="profilepic">
+		<a href="https://b.top1.pub" class="profilepic">
 			<img src="https://github.com/caidong/caidong.github.io/blob/master/img/heiguo.jpg?raw=true" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">coderDong</a></h1>
+		  <h1 class="header-author"><a href="https://b.top1.pub">coderDong</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">i&#39;ll try anything once</p>
@@ -247,54 +247,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/30/Spark/Spark内存存储调研/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode/解题方法/动态规划" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>1. </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/30/LeetCode/解题方法/动态规划/">展开全文 >></a>
         </p>
       
 
@@ -1063,6 +1015,142 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-Sql/窗口函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/10/Sql/窗口函数/">开窗函数</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/06/10/Sql/窗口函数/" class="archive-article-date">
+  	<time datetime="2021-06-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开窗函数"><a href="#开窗函数" class="headerlink" title="开窗函数"></a>开窗函数</h3><ol>
+<li>OVER()指定分析函数工作的数据窗口大小，这个数据窗口大小可能会随着行的变化而变化<ul>
+<li>CURRENT ROW 当前行</li>
+<li>n PRECEDING 往前n行数据</li>
+<li>n FOLLOWING 往后n行数据</li>
+<li>UNBOUNDED 起点<ul>
+<li>UNBOUNDED PRECEDING 从前面的起点</li>
+<li>UNBOUNDED FOLLOWING 到后面的终点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>LAG(col,n,default_val) 往前n行</li>
+<li>LEAD(col,n,default_val) 往后n行</li>
+<li>FIRST_VALUE()</li>
+<li>LAST_VALUE()</li>
+<li>NTAIL() 把由徐窗口的行分发到指定的数组中，各个组由编号，编号从1开始，对于每一行，NTAIL 返回此行所属的组的编号。n必须为int类型</li>
+</ul>
+<ol start="2">
+<li><p>查询顾客的购买顾客及购买总数</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select name,</span><br><span class="line">count(*) over()</span><br><span class="line"><span class="keyword">from</span> tab </span><br><span class="line">group by name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询顾客的购买明细及月购买总额</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">     <span class="keyword">name</span>, </span><br><span class="line">     <span class="keyword">cost</span>, </span><br><span class="line">     orderdate,</span><br><span class="line">     <span class="keyword">sum</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> <span class="keyword">name</span>  <span class="keyword">month</span>(orderdate))</span><br><span class="line"> <span class="keyword">from</span> business</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上述的场景，将每个顾客的cost按照日期进行累加</p>
+</li>
+</ol>
+<p><strong>over (partition by partiton,[order by col],[window specification])</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">    <span class="attribute">name,</span></span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="attribute">cost,</span></span><br><span class="line">    sum(cost) over(partition by name order by orderdate)</span><br><span class="line">from business;</span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">    <span class="attribute">name,</span></span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="attribute">cost,</span></span><br><span class="line">    sum(cost) over(partition by name order by orderdate rows between UNBOUNDED PRECEDING and current row)</span><br><span class="line">from business;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">相同行，同一行</span><br><span class="line">order by id</span><br><span class="line">id sum() over(order by id)</span><br><span class="line">1  1</span><br><span class="line">2  3</span><br><span class="line">3  9</span><br><span class="line">3  9</span><br><span class="line">4 13</span><br><span class="line">5 18</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li><p>查询顾客上次购买时间</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">name orderdate</span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span> NULL</span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-02</span> <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span></span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-03</span></span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-04</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-02</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-03</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-04</span></span><br><span class="line">SELECT </span><br><span class="line">name,</span><br><span class="line">orderdate,</span><br><span class="line">lag(orderdate,<span class="number">1</span>) over (partition by name order by orderdate)</span><br><span class="line">from buiness</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询前20%时间的订单信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">    <span class="keyword">name</span>,</span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="keyword">cost</span>,</span><br><span class="line">    ntail(<span class="number">5</span>) <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> orderdate) groupId</span><br><span class="line">    <span class="keyword">from</span> business;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Rank函数<br>RANK() 排序相同时会重复，总数不会变<br>DENSE_RANK() 排序相同时会重复，总数会减少<br>ROW_NUMBER() 会根据顺序计算</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    ROW_NUMBER()  RANK()  DENSE_RANK()</span><br><span class="line"><span class="number">1</span>      <span class="number">1</span>           <span class="number">1</span>         <span class="number">1</span></span><br><span class="line"><span class="number">1</span>      <span class="number">2</span>           <span class="number">1</span>         <span class="number">1</span></span><br><span class="line"><span class="number">2</span>      <span class="number">3</span>           <span class="number">3</span>         <span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h2><ol>
+<li>统计每个类别视频观看数 Top10<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">category</span>,</span><br><span class="line"><span class="keyword">RANK</span>() <span class="keyword">over</span>(partion <span class="keyword">by</span> <span class="keyword">category</span> <span class="keyword">order</span> <span class="keyword">by</span> views)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">category</span>,<span class="keyword">SUM</span>(views) <span class="keyword">AS</span> tview</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">category</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> tview <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> t2.videoId,</span><br><span class="line"> t2.views,</span><br><span class="line"> t2.category_name,</span><br><span class="line"> t2.rk</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> t1.videoId,</span><br><span class="line"> t1.views,</span><br><span class="line"> t1.category_name,</span><br><span class="line"> <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> t1.category_name <span class="keyword">ORDER</span> <span class="keyword">BY</span> t1.views <span class="keyword">DESC</span> ) rk</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> videoId,</span><br><span class="line"> views,</span><br><span class="line"> category_name</span><br><span class="line"><span class="keyword">FROM</span> gulivideo_orc</span><br><span class="line">lateral <span class="keyword">VIEW</span> explode(<span class="keyword">category</span>) gulivideo_orc_tmp <span class="keyword">AS</span> category_name</span><br><span class="line">)t1</span><br><span class="line">)t2</span><br><span class="line"><span class="keyword">WHERE</span> t2.rk &lt;=<span class="number">10</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.统计上传视频最多的用户 Top10以及他们上传的视频<br>观看次数在前 20 的视频<br>SELECT uploader,views,videoId,RANK() OVER (PARTITION BY videoId ORDER BY views)  as rk<br>FROM gulivideo_orc WHERE  uploader in (<br>SELECT uploader FROM user ORDER BY videos LIMIT 10<br>) WHERE rk&lt;=20</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line"> <span class="built_in">t2</span>.videoId,</span><br><span class="line"> <span class="built_in">t2</span>.views,</span><br><span class="line"> <span class="built_in">t2</span>.uploader</span><br><span class="line">FROM</span><br><span class="line">(</span><br><span class="line">SELECT</span><br><span class="line"> uploader,</span><br><span class="line"> videos</span><br><span class="line">FROM gulivideo_user_orc</span><br><span class="line"><span class="keyword">ORDER </span><span class="keyword">BY</span></span><br><span class="line"><span class="keyword"> </span>videos</span><br><span class="line">DESC</span><br><span class="line">LIMIT <span class="number">10</span></span><br><span class="line">) <span class="built_in">t1</span></span><br><span class="line"><span class="keyword">JOIN </span>gulivideo_orc <span class="built_in">t2</span></span><br><span class="line">ON <span class="built_in">t1</span>.uploader = <span class="built_in">t2</span>.uploader</span><br><span class="line"><span class="keyword">ORDER </span><span class="keyword">BY</span></span><br><span class="line"><span class="keyword"> </span><span class="built_in">t2</span>.views</span><br><span class="line">DESC</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SQL//" class="article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/10/Sql/窗口函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1187,15 +1275,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1263,15 +1351,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">代理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">

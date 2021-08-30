@@ -5,12 +5,12 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="https://b.top1.pub">
   <title>coderDong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="coderDong">
-<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:url" content="https://b.top1.pub/page/6/index.html">
 <meta property="og:site_name" content="coderDong">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -50,11 +50,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="/" class="profilepic">
+		<a href="https://b.top1.pub" class="profilepic">
 			<img src="https://github.com/caidong/caidong.github.io/blob/master/img/heiguo.jpg?raw=true" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">coderDong</a></h1>
+		  <h1 class="header-author"><a href="https://b.top1.pub">coderDong</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">i&#39;ll try anything once</p>
@@ -171,202 +171,6 @@ var _hmt = _hmt || [];
           </div>
           <div id="js-content" class="content-ll">
             
-  
-    <article id="post-Python/基础知识/读写JSON数据" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/11/Python/基础知识/读写JSON数据/">读写JSON编码格式的数据</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/01/11/Python/基础知识/读写JSON数据/" class="archive-article-date">
-  	<time datetime="2017-01-11T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>读写JSON编码格式的数据</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>json 模块提供了一种很简单的方式来编码和解码Json数据，其中两个主要的函数json.dumps()和json.loads(),要比其他序列化函数库如pickle的接口少得多。示例：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Dict =&gt; JSON_Str</span></span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="class"><span class="keyword">data</span> = &#123;</span></span><br><span class="line"><span class="class">    '<span class="title">name'</span>:'<span class="type">ACME</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">shares'</span>:100,</span></span><br><span class="line"><span class="class">    '<span class="title">price'</span>:542.23</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="title">json_str</span> = json.dumps(<span class="class"><span class="keyword">data</span>)</span></span><br></pre></td></tr></table></figure></p>
-<p>json编码字符串转换回一个Python数据结构：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> = json.loads(<span class="title">json_str</span>)</span></span><br></pre></td></tr></table></figure></p>
-<p>如果你要处理的是问价而不是字符串，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Writing JSON data</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'data.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(<span class="keyword">data</span>, f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reading data back</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'data.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">data</span> = json.load(f)</span><br></pre></td></tr></table></figure></p>
-<p>JSON 编码支持的基本数据结构类型为None bool int float 和 str 以及包含这些类型数据结构的lists tuples 和dictionaries. 对于dictionaries,keys 需要是字符串类型（字典中任何非字符串类型的key 在编码时会先转换成为字符串），为了遵循JSON规范 你应该只编码Python的list和dictionaries 而且，在web应用程序中，顶层对象被编码成一个字典是一个标准做法。</p>
-<ul>
-<li>JSON编码的格式对于Python的语法而已几乎是完全一样的，除了一些小的差异之外。比如。True会被映射为true， False被映射成false。而None 会被映射为null, 下面是一个例子，演示编码后的字符串效果; <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; json.dumps(False)</span><br><span class="line"><span class="string">'false'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; d = &#123;<span class="string">'a'</span>: True,</span><br><span class="line">...     <span class="string">'b'</span>: <span class="string">'Hello'</span>,</span><br><span class="line">...     <span class="string">'c'</span>: None&#125;</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; json.dumps(d)</span><br><span class="line"><span class="string">'&#123;"b": "Hello", "c": null, "a": true&#125;'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/11/Python/基础知识/读写JSON数据/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Git/Github  提交pullRequest流程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/Git/Github  提交pullRequest流程/">Pull Request流程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/01/10/Git/Github  提交pullRequest流程/" class="archive-article-date">
-  	<time datetime="2017-01-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Pull-Request流程"><a href="#Pull-Request流程" class="headerlink" title="Pull Request流程"></a>Pull Request流程</h3><ol>
-<li>首先fork我的项目</li>
-<li>把fork过去的项目也就是你的项目clone到你的本地</li>
-<li>运行 git remote add looly <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:looly/elasticsearch-definitive-guide-cn.git 把我的库添加为远端库</li>
-<li>运行 git pull looly master 拉取并合并到本地</li>
-<li>编写代码</li>
-<li>commit后push到自己的库（git push origin master）</li>
-<li>登录Github在你首页可以看到一个 pull request 按钮，点击它，填写一些说明信息，然后提交即可。<br>1~3是初始化操作，执行一次即可。在翻译前必须执行第4步同步我的库（这样避免冲突），然后执行5~7既可。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Github//" class="article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/10/Git/Github  提交pullRequest流程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
     <article id="post-Openwrt/openwrt编译安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
@@ -494,6 +298,104 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/01/10/Openwrt/openwrt编译安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Git/Github  提交pullRequest流程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/Git/Github  提交pullRequest流程/">Pull Request流程</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/01/10/Git/Github  提交pullRequest流程/" class="archive-article-date">
+  	<time datetime="2017-01-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Pull-Request流程"><a href="#Pull-Request流程" class="headerlink" title="Pull Request流程"></a>Pull Request流程</h3><ol>
+<li>首先fork我的项目</li>
+<li>把fork过去的项目也就是你的项目clone到你的本地</li>
+<li>运行 git remote add looly <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:looly/elasticsearch-definitive-guide-cn.git 把我的库添加为远端库</li>
+<li>运行 git pull looly master 拉取并合并到本地</li>
+<li>编写代码</li>
+<li>commit后push到自己的库（git push origin master）</li>
+<li>登录Github在你首页可以看到一个 pull request 按钮，点击它，填写一些说明信息，然后提交即可。<br>1~3是初始化操作，执行一次即可。在翻译前必须执行第4步同步我的库（这样避免冲突），然后执行5~7既可。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Github//" class="article-tag-list-link color2">Github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/10/Git/Github  提交pullRequest流程/">展开全文 >></a>
         </p>
       
 
@@ -820,15 +722,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -896,15 +798,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">代理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">

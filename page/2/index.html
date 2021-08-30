@@ -5,12 +5,12 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="https://b.top1.pub">
   <title>coderDong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="coderDong">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="https://b.top1.pub/page/2/index.html">
 <meta property="og:site_name" content="coderDong">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -50,11 +50,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="/" class="profilepic">
+		<a href="https://b.top1.pub" class="profilepic">
 			<img src="https://github.com/caidong/caidong.github.io/blob/master/img/heiguo.jpg?raw=true" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">coderDong</a></h1>
+		  <h1 class="header-author"><a href="https://b.top1.pub">coderDong</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">i&#39;ll try anything once</p>
@@ -171,142 +171,6 @@ var _hmt = _hmt || [];
           </div>
           <div id="js-content" class="content-ll">
             
-  
-    <article id="post-Sql/窗口函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/10/Sql/窗口函数/">开窗函数</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/06/10/Sql/窗口函数/" class="archive-article-date">
-  	<time datetime="2021-06-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="开窗函数"><a href="#开窗函数" class="headerlink" title="开窗函数"></a>开窗函数</h3><ol>
-<li>OVER()指定分析函数工作的数据窗口大小，这个数据窗口大小可能会随着行的变化而变化<ul>
-<li>CURRENT ROW 当前行</li>
-<li>n PRECEDING 往前n行数据</li>
-<li>n FOLLOWING 往后n行数据</li>
-<li>UNBOUNDED 起点<ul>
-<li>UNBOUNDED PRECEDING 从前面的起点</li>
-<li>UNBOUNDED FOLLOWING 到后面的终点</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>LAG(col,n,default_val) 往前n行</li>
-<li>LEAD(col,n,default_val) 往后n行</li>
-<li>FIRST_VALUE()</li>
-<li>LAST_VALUE()</li>
-<li>NTAIL() 把由徐窗口的行分发到指定的数组中，各个组由编号，编号从1开始，对于每一行，NTAIL 返回此行所属的组的编号。n必须为int类型</li>
-</ul>
-<ol start="2">
-<li><p>查询顾客的购买顾客及购买总数</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select name,</span><br><span class="line">count(*) over()</span><br><span class="line"><span class="keyword">from</span> tab </span><br><span class="line">group by name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询顾客的购买明细及月购买总额</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">     <span class="keyword">name</span>, </span><br><span class="line">     <span class="keyword">cost</span>, </span><br><span class="line">     orderdate,</span><br><span class="line">     <span class="keyword">sum</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> <span class="keyword">name</span>  <span class="keyword">month</span>(orderdate))</span><br><span class="line"> <span class="keyword">from</span> business</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上述的场景，将每个顾客的cost按照日期进行累加</p>
-</li>
-</ol>
-<p><strong>over (partition by partiton,[order by col],[window specification])</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">    <span class="attribute">name,</span></span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="attribute">cost,</span></span><br><span class="line">    sum(cost) over(partition by name order by orderdate)</span><br><span class="line">from business;</span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">    <span class="attribute">name,</span></span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="attribute">cost,</span></span><br><span class="line">    sum(cost) over(partition by name order by orderdate rows between UNBOUNDED PRECEDING and current row)</span><br><span class="line">from business;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">相同行，同一行</span><br><span class="line">order by id</span><br><span class="line">id sum() over(order by id)</span><br><span class="line">1  1</span><br><span class="line">2  3</span><br><span class="line">3  9</span><br><span class="line">3  9</span><br><span class="line">4 13</span><br><span class="line">5 18</span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li><p>查询顾客上次购买时间</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">name orderdate</span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span> NULL</span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-02</span> <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span></span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-03</span></span><br><span class="line">jack <span class="number">2011</span><span class="number">-01</span><span class="number">-04</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-01</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-02</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-03</span></span><br><span class="line">mart <span class="number">2011</span><span class="number">-01</span><span class="number">-04</span></span><br><span class="line">SELECT </span><br><span class="line">name,</span><br><span class="line">orderdate,</span><br><span class="line">lag(orderdate,<span class="number">1</span>) over (partition by name order by orderdate)</span><br><span class="line">from buiness</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询前20%时间的订单信息</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">    <span class="keyword">name</span>,</span><br><span class="line">    orderdate,</span><br><span class="line">    <span class="keyword">cost</span>,</span><br><span class="line">    ntail(<span class="number">5</span>) <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> orderdate) groupId</span><br><span class="line">    <span class="keyword">from</span> business;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Rank函数<br>RANK() 排序相同时会重复，总数不会变<br>DENSE_RANK() 排序相同时会重复，总数会减少<br>ROW_NUMBER() 会根据顺序计算</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    ROW_NUMBER()  RANK()  DENSE_RANK()</span><br><span class="line"><span class="number">1</span>      <span class="number">1</span>           <span class="number">1</span>         <span class="number">1</span></span><br><span class="line"><span class="number">1</span>      <span class="number">2</span>           <span class="number">1</span>         <span class="number">1</span></span><br><span class="line"><span class="number">2</span>      <span class="number">3</span>           <span class="number">3</span>         <span class="number">2</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h2><ol>
-<li>统计每个类别视频观看数 Top10<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">category</span>,</span><br><span class="line"><span class="keyword">RANK</span>() <span class="keyword">over</span>(partion <span class="keyword">by</span> <span class="keyword">category</span> <span class="keyword">order</span> <span class="keyword">by</span> views)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">category</span>,<span class="keyword">SUM</span>(views) <span class="keyword">AS</span> tview</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">category</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> tview <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> t2.videoId,</span><br><span class="line"> t2.views,</span><br><span class="line"> t2.category_name,</span><br><span class="line"> t2.rk</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> t1.videoId,</span><br><span class="line"> t1.views,</span><br><span class="line"> t1.category_name,</span><br><span class="line"> <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> t1.category_name <span class="keyword">ORDER</span> <span class="keyword">BY</span> t1.views <span class="keyword">DESC</span> ) rk</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> videoId,</span><br><span class="line"> views,</span><br><span class="line"> category_name</span><br><span class="line"><span class="keyword">FROM</span> gulivideo_orc</span><br><span class="line">lateral <span class="keyword">VIEW</span> explode(<span class="keyword">category</span>) gulivideo_orc_tmp <span class="keyword">AS</span> category_name</span><br><span class="line">)t1</span><br><span class="line">)t2</span><br><span class="line"><span class="keyword">WHERE</span> t2.rk &lt;=<span class="number">10</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>2.统计上传视频最多的用户 Top10以及他们上传的视频<br>观看次数在前 20 的视频<br>SELECT uploader,views,videoId,RANK() OVER (PARTITION BY videoId ORDER BY views)  as rk<br>FROM gulivideo_orc WHERE  uploader in (<br>SELECT uploader FROM user ORDER BY videos LIMIT 10<br>) WHERE rk&lt;=20</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line"> <span class="built_in">t2</span>.videoId,</span><br><span class="line"> <span class="built_in">t2</span>.views,</span><br><span class="line"> <span class="built_in">t2</span>.uploader</span><br><span class="line">FROM</span><br><span class="line">(</span><br><span class="line">SELECT</span><br><span class="line"> uploader,</span><br><span class="line"> videos</span><br><span class="line">FROM gulivideo_user_orc</span><br><span class="line"><span class="keyword">ORDER </span><span class="keyword">BY</span></span><br><span class="line"><span class="keyword"> </span>videos</span><br><span class="line">DESC</span><br><span class="line">LIMIT <span class="number">10</span></span><br><span class="line">) <span class="built_in">t1</span></span><br><span class="line"><span class="keyword">JOIN </span>gulivideo_orc <span class="built_in">t2</span></span><br><span class="line">ON <span class="built_in">t1</span>.uploader = <span class="built_in">t2</span>.uploader</span><br><span class="line"><span class="keyword">ORDER </span><span class="keyword">BY</span></span><br><span class="line"><span class="keyword"> </span><span class="built_in">t2</span>.views</span><br><span class="line">DESC</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/SQL//" class="article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/10/Sql/窗口函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
     <article id="post-Hive/查询语句" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
@@ -1307,6 +1171,106 @@ docker  cp 宿主机路径 容器ID:容器地址<p></p>
 
 
   
+    <article id="post-TensorFlow/gRPC服务使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/29/TensorFlow/gRPC服务使用/">tensorFlow grpc服务使用</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/08/29/TensorFlow/gRPC服务使用/" class="archive-article-date">
+  	<time datetime="2018-08-29T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-使用-TensorFlow-Serving-提供服务"><a href="#1-使用-TensorFlow-Serving-提供服务" class="headerlink" title="1.  使用 TensorFlow Serving 提供服务"></a>1.  使用 TensorFlow Serving 提供服务</h5><ol>
+<li>安装 tensorflow-model-server<br><a href="https://www.tensorflow.org/serving/setup#installing_using_apt_get" target="_blank" rel="noopener">官方地址</a></li>
+</ol>
+<ol start="2">
+<li>安装  tensorflow-serving-api-python3 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-serving-api-python3 -<span class="selector-tag">i</span> https:<span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用 TensorFlow Serving 提供服务<br>最后，我们来演示一下如何使用 TensorFlow 的姊妹项目 TensorFlow Serving 来基于 SavedModel 对外提供服务。</p>
+<p>安装并启动 TensorFlow ModelServer<br>TensorFlow 服务端代码是使用 C++ 开发的，因此最便捷的安装方式是通过软件源来获取编译好的二进制包。读者可以根据 官方文档 在 Ubuntu 中配置软件源和安装服务端：</p>
+<p>1<br>$ apt-get install tensorflow-model-server<br>然后就可以使用以下命令启动服务端了，该命令会加载导出目录中最新的一份模型来提供服务：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tensorflow_model_server <span class="attribute">--port</span>=9000 <span class="attribute">--model_base_path</span>=/root/export</span><br><span class="line">2018-05-14 01:05:12.561 Loading SavedModel with tags: &#123; serve &#125;; <span class="keyword">from</span>: /root/export/1524907728</span><br><span class="line">2018-05-14 01:05:12.639 Successfully loaded servable version &#123;name:<span class="built_in"> default </span>version: 1524907728&#125;</span><br><span class="line">2018-05-14 01:05:12.641 Running ModelServer at 0.0.0.0:9000 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+<p>使用 SDK 访问远程模型<br>TensorFlow Serving 是基于 gRPC 和 Protocol Buffers 开发的，因此我们需要安装相应的 SDK 包来发起调用。需要注意的是，官方的 TensorFlow Serving API 目前只提供了 Python 2.7 版本的 SDK，不过社区有人贡献了支持 Python 3.x 的软件包，我们可以用以下命令安装：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install tensorflow-seving-api-python3==<span class="number">1.7</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>调用过程很容易理解：我们首先创建远程连接，向服务端发送 Example 实例列表，并获取预测结果。完整代码可以在 iris_remote.py 中找到。</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 创建 gRPC 连接</span></span><br><span class="line">channel = implementations.insecure_channel(<span class="string">'127.0.0.1'</span>, <span class="number">9000</span>)</span><br><span class="line">stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取测试数据集，并转换成 Example 实例。</span></span><br><span class="line">inputs = pd.DateFrame()</span><br><span class="line">examples = [tf.tain.Example() <span class="keyword">for</span> index, row in inputs.iterrows()]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 准备 RPC 请求，指定模型名称。</span></span><br><span class="line">request = classification_pb2.ClassificationRequest()</span><br><span class="line">request.model_spec.name = <span class="string">'default'</span></span><br><span class="line">request.input.example_list.examples.extend(examples)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取结果</span></span><br><span class="line">response = stub.Classify(request, <span class="number">10.0</span>)</span><br><span class="line"><span class="meta"># result &#123;</span></span><br><span class="line"><span class="meta">#   classifications &#123;</span></span><br><span class="line"><span class="meta">#     classes &#123;</span></span><br><span class="line"><span class="meta">#       label: "0"</span></span><br><span class="line"><span class="meta">#       score: 0.998267650604248</span></span><br><span class="line"><span class="meta">#     &#125;</span></span><br><span class="line"><span class="meta">#     ...</span></span><br><span class="line"><span class="meta">#   &#125;</span></span><br><span class="line"><span class="meta">#   ...</span></span><br><span class="line"><span class="meta"># &#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/29/TensorFlow/gRPC服务使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TensorFlow/tensorflow特征工程函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -1461,42 +1425,40 @@ docker  cp 宿主机路径 容器ID:容器地址<p></p>
 
 
   
-    <article id="post-TensorFlow/gRPC服务使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-TensorFlow/模型持久化" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/TensorFlow/gRPC服务使用/">tensorFlow grpc服务使用</a>
+      <a class="article-title" href="/2018/08/26/TensorFlow/模型持久化/">tensorFlow 模型持久化</a>
     </h1>
   
 
         
         
-<a href="/2018/08/29/TensorFlow/gRPC服务使用/" class="archive-article-date">
-  	<time datetime="2018-08-29T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
+<a href="/2018/08/26/TensorFlow/模型持久化/" class="archive-article-date">
+  	<time datetime="2018-08-26T12:41:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="1-使用-TensorFlow-Serving-提供服务"><a href="#1-使用-TensorFlow-Serving-提供服务" class="headerlink" title="1.  使用 TensorFlow Serving 提供服务"></a>1.  使用 TensorFlow Serving 提供服务</h5><ol>
-<li>安装 tensorflow-model-server<br><a href="https://www.tensorflow.org/serving/setup#installing_using_apt_get" target="_blank" rel="noopener">官方地址</a></li>
+        <h5 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h5><ol>
+<li>训练过程中保存中间状态</li>
+<li>提供离线的模型使用，只保存前向传导过程中的数据，这时只需用户给一个输入，模型就会给定一个输出。</li>
 </ol>
-<ol start="2">
-<li>安装  tensorflow-serving-api-python3 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-serving-api-python3 -<span class="selector-tag">i</span> https:<span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>使用 TensorFlow Serving 提供服务<br>最后，我们来演示一下如何使用 TensorFlow 的姊妹项目 TensorFlow Serving 来基于 SavedModel 对外提供服务。</p>
-<p>安装并启动 TensorFlow ModelServer<br>TensorFlow 服务端代码是使用 C++ 开发的，因此最便捷的安装方式是通过软件源来获取编译好的二进制包。读者可以根据 官方文档 在 Ubuntu 中配置软件源和安装服务端：</p>
-<p>1<br>$ apt-get install tensorflow-model-server<br>然后就可以使用以下命令启动服务端了，该命令会加载导出目录中最新的一份模型来提供服务：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tensorflow_model_server <span class="attribute">--port</span>=9000 <span class="attribute">--model_base_path</span>=/root/export</span><br><span class="line">2018-05-14 01:05:12.561 Loading SavedModel with tags: &#123; serve &#125;; <span class="keyword">from</span>: /root/export/1524907728</span><br><span class="line">2018-05-14 01:05:12.639 Successfully loaded servable version &#123;name:<span class="built_in"> default </span>version: 1524907728&#125;</span><br><span class="line">2018-05-14 01:05:12.641 Running ModelServer at 0.0.0.0:9000 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
-<p>使用 SDK 访问远程模型<br>TensorFlow Serving 是基于 gRPC 和 Protocol Buffers 开发的，因此我们需要安装相应的 SDK 包来发起调用。需要注意的是，官方的 TensorFlow Serving API 目前只提供了 Python 2.7 版本的 SDK，不过社区有人贡献了支持 Python 3.x 的软件包，我们可以用以下命令安装：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install tensorflow-seving-api-python3==<span class="number">1.7</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<p>调用过程很容易理解：我们首先创建远程连接，向服务端发送 Example 实例列表，并获取预测结果。完整代码可以在 iris_remote.py 中找到。</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 创建 gRPC 连接</span></span><br><span class="line">channel = implementations.insecure_channel(<span class="string">'127.0.0.1'</span>, <span class="number">9000</span>)</span><br><span class="line">stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取测试数据集，并转换成 Example 实例。</span></span><br><span class="line">inputs = pd.DateFrame()</span><br><span class="line">examples = [tf.tain.Example() <span class="keyword">for</span> index, row in inputs.iterrows()]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 准备 RPC 请求，指定模型名称。</span></span><br><span class="line">request = classification_pb2.ClassificationRequest()</span><br><span class="line">request.model_spec.name = <span class="string">'default'</span></span><br><span class="line">request.input.example_list.examples.extend(examples)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取结果</span></span><br><span class="line">response = stub.Classify(request, <span class="number">10.0</span>)</span><br><span class="line"><span class="meta"># result &#123;</span></span><br><span class="line"><span class="meta">#   classifications &#123;</span></span><br><span class="line"><span class="meta">#     classes &#123;</span></span><br><span class="line"><span class="meta">#       label: "0"</span></span><br><span class="line"><span class="meta">#       score: 0.998267650604248</span></span><br><span class="line"><span class="meta">#     &#125;</span></span><br><span class="line"><span class="meta">#     ...</span></span><br><span class="line"><span class="meta">#   &#125;</span></span><br><span class="line"><span class="meta">#   ...</span></span><br><span class="line"><span class="meta"># &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="保存ckpt格式"><a href="#保存ckpt格式" class="headerlink" title="保存ckpt格式"></a>保存ckpt格式</h3><p>ckpt 文件说明</p>
+<ul>
+<li>checkpoint ： 记录目录下所有模型文件列表</li>
+<li>ckpt.data ： 保存模型中每个变量的取值</li>
+<li>ckpt.meta ： 保存整个计算图的结构</li>
+</ul>
+<h3 id="保存pb格式"><a href="#保存pb格式" class="headerlink" title="保存pb格式"></a>保存pb格式</h3><ul>
+<li>pb 文件model.pb ： 里面保存了重输入层到输出层这个计算过程的计算图和相关变量的值，我们得到这个模型后传入一个输入，既可以得到一个预估的输出值</li>
+</ul>
 
       
 
@@ -1531,7 +1493,7 @@ docker  cp 宿主机路径 容器ID:容器地址<p></p>
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/TensorFlow/gRPC服务使用/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/26/TensorFlow/模型持久化/">展开全文 >></a>
         </p>
       
 
@@ -1685,15 +1647,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1761,15 +1723,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">代理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
