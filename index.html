@@ -483,105 +483,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
-  	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
-<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用find-spark库</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>~/.bashrc 配置完整pyspark路径 </p>
-</li>
-</ol>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Spark/Spark历史" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -799,11 +700,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cdh</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cdh</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		
 		</ul>
@@ -825,6 +726,105 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/07/10/CDH/CDH安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">配置pyspark 并在Python文件中导入</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/" class="archive-article-date">
+  	<time datetime="2021-07-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="配置pyspark-并在Python文件中导入"><a href="#配置pyspark-并在Python文件中导入" class="headerlink" title="配置pyspark 并在Python文件中导入"></a>配置pyspark 并在Python文件中导入</h3><ol>
+<li><p>配置~/.bashrc 文件，并使用 pyspark启动</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用find-spark库</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install findspark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.<span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>~/.bashrc 配置完整pyspark路径 </p>
+</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">SPARK_HOME</span>=/home/zhucaidong/spark-2.4.7-bin-hadoop2.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/home/zhucaidong/pythonEnv/bin/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON</span>=<span class="string">"jupyter"</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_DRIVER_PYTHON_OPTS</span>=<span class="string">'lab  --allow-root'</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYSPARK_PYTHON</span>=python</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/java-8-openjdk-amd64/</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$SPARK_HOME</span>:$PATH:~/.local/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/10/Spark/Pyspark/Pyspark 配置 Jupyter,不使用 findspark/">展开全文 >></a>
         </p>
       
 
@@ -1614,15 +1614,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cdh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1634,6 +1634,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
               </li>
              
@@ -1642,19 +1646,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1666,11 +1658,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1698,15 +1698,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1718,19 +1718,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pyspark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
