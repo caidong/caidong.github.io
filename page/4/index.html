@@ -172,21 +172,21 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Python/Selenium/定位元素" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Blog/markdown/TensorFlow/高级API Estimator" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/20/Python/Selenium/定位元素/">Selenium 元素定位方式</a>
+      <a class="article-title" href="/2018/08/26/Blog/markdown/TensorFlow/高级API Estimator/">tensorFlow 高级api Estimator</a>
     </h1>
   
 
         
         
-<a href="/2018/01/20/Python/Selenium/定位元素/" class="archive-article-date">
-  	<time datetime="2018-01-20T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
+<a href="/2018/08/26/Blog/markdown/TensorFlow/高级API Estimator/" class="archive-article-date">
+  	<time datetime="2018-08-26T12:40:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-26</time>
 </a>
         
       </header>
@@ -194,37 +194,61 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
-<li><p>Id 定位</p>
+<li><p>predict() 函数返回</p>
 <ul>
-<li>页面中第一个该id元素被匹配并返回，如果找不到任何元素，会抛出NoSuchElementException 异常<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_id(<span class="string">'loginForm'</span>)</span><br></pre></td></tr></table></figure>
+<li><p>predictions 存储的是下列三个键值对：</p>
+<ul>
+<li>1 .class_ids 存储的是类别 ID（0、1 或            2），表示模型对此样本最有可能归属的品种做出的预测。</li>
+<li>2 .probabilities 存储的是三个概率</li>
+<li>3 .logit 存储的是原始对数值</li>
+</ul>
 </li>
 </ul>
 </li>
-<li><p>Name 定位</p>
-<ul>
-<li>通过标签的name属性<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_name(name)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Xpath 定位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_xpath(xpath)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>链接文本定位获取超链接</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find_elements_by_link_text(text)</span><br><span class="line">find_elements_by_partial_link_text(link_text)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>标签名查找</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_tag_name(name)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ClassName 定位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_class_name(name)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>CssSelector 定位 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_css_selector(css_selector)</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="一次查找多个元素"><a href="#一次查找多个元素" class="headerlink" title="一次查找多个元素"></a>一次查找多个元素</h5></li>
 </ol>
 <ul>
-<li>分别有<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_elements_by_</span><br></pre></td></tr></table></figure>
+<li><p>tf.data.DataSet:</p>
+<ol>
+<li>表示很大的数据集<br>一个数据集 能够使用能够像集合元素一样 作为输入管道（嵌套的张量结构） 和 作为数据的逻辑转变</li>
+<li><p>属性</p>
+<ul>
+<li><p>output_class:返回一个类每个组件对应元素的数据集 预期返回tf.Tensor 和tf.SparseTensor<br>Return:一个嵌套的Python结构对应每个组件的元素的数据集</p>
+</li>
+<li><p>output_shapes:<br>返回数据集的元素的每个组件形状<br>Return:一个嵌套的tf.DType 对象 ，每个组件元素的数据集</p>
+</li>
+</ul>
+</li>
+<li><p>方法：</p>
+</li>
+</ol>
+<ul>
+<li>__init__ :初始化方法</li>
+<li>__iter__ :迭代</li>
+<li>apply(transformation_func)<br>将数据集应用到转换函数上</li>
+<li>batch(batch_size):<br>将数据集中的连续元素组合成一束元素</li>
+<li>cache(filename=’’):<br>缓存数据元素到文件</li>
+<li>concatenate(dataset):<br>连接相同的数据集<br>-filter(predocate):<br>通过predict函数过滤数据集</li>
+<li>flat_map(map_func):<br>maps 通过 map_func 函数映射 同时使结果变平</li>
+<li>from_generator(generator,out_types,output_shapes)@staticmethod<br>由生成器生成的数据集</li>
+<li>from_saprese_tensor_slices(sparse_tensor)@staticmethod 已废弃。 用 from_tensor_slices()替代</li>
+<li>from_tensor_slices(tensors)@staticemethod :<br>通过张量的切片返回数据集</li>
+<li>from_tensor(tensors):<br>通过张量创建数据集</li>
+<li>interleave(map_func,cycle_length,block_length=1):<br>map_func处理函数，并交错结果集</li>
+<li>list_files(file_pattern,shuffle=None):<br>匹配的所有文件，创建数据集</li>
+<li>make_initialazable_iterator(shared_name=None):<br>通过枚举数据集元素创建一个迭代器</li>
+<li>Raises():<br>抛出异常</li>
+<li>make_ont_shot_iterator():<br>创建一个用于枚举此数据集的迭代器</li>
+<li>map(map_func,num_parallel_calls=None)<br>通过map_func处理数据集</li>
+<li>padded_batch(batch_size,padder_shapes,padding_values=None)</li>
+<li>prefetch(buffer_size)<br>创建一个从数据集中预取元素的数据集</li>
+<li>range(*args)@staticmethod<br>创建一个步进分割的数据集</li>
+<li>repeat(count=None) 重复数据集count次</li>
+<li>shard(num_shards,index) 创建一个仅仅包含1/num_shard 个分片的数据集</li>
+<li>shuffle(buffer_size,seed=None, reshuffle_each_iteration=None)</li>
+<li>skip(count)创建一个跳跃过count个元素的数据集 </li>
+<li>take(count) 创建一个 最多count个元素的数据集</li>
+<li>zip(datasets) @staticmethod </li>
+</ul>
 </li>
 </ul>
 
@@ -240,7 +264,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
@@ -252,7 +276,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/爬虫//" class="article-tag-list-link color3">爬虫</a>
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
         		</li>
       		
 		</ul>
@@ -261,7 +285,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/20/Python/Selenium/定位元素/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/26/Blog/markdown/TensorFlow/高级API Estimator/">展开全文 >></a>
         </p>
       
 
@@ -291,88 +315,123 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Python/Flask/基础概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Blog/markdown/TensorFlow/基础操作" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/11/Python/Flask/基础概念/">Flask 基本概念</a>
+      <a class="article-title" href="/2018/08/20/Blog/markdown/TensorFlow/基础操作/">tensorFlow 基础操作</a>
     </h1>
   
 
         
         
-<a href="/2017/09/11/Python/Flask/基础概念/" class="archive-article-date">
-  	<time datetime="2017-09-11T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
+<a href="/2018/08/20/Blog/markdown/TensorFlow/基础操作/" class="archive-article-date">
+  	<time datetime="2018-08-20T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Flask-全局上下文变量"><a href="#Flask-全局上下文变量" class="headerlink" title="Flask 全局上下文变量"></a>Flask 全局上下文变量</h4><table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>上下文</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>current_app</td>
-<td>程序上下文</td>
-<td>当前激活程序的程序实例</td>
-</tr>
-<tr>
-<td>g</td>
-<td>程序上下文</td>
-<td>处理请求时用作临时存储的对象。每次请求都会重设这个变量</td>
-</tr>
-<tr>
-<td>request</td>
-<td>请求上下文</td>
-<td>请求对象，封装了客户端发出的http请求中的内容</td>
-</tr>
-<tr>
-<td>session</td>
-<td>请求上下文</td>
-<td>用户会话，用于存储请求之间需要记住的值的字典</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h4 id="请求调度"><a href="#请求调度" class="headerlink" title="请求调度"></a>请求调度</h4><ol>
-<li>app.url_map<br>生成url映射和视图函数之间的对应关系<h4 id="请求钩子"><a href="#请求钩子" class="headerlink" title="请求钩子"></a>请求钩子</h4>请求钩子使用装饰器实现。</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>函数名</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>before_first_request</td>
-<td>注册一个函数，在处理第一个请求之前运行</td>
-</tr>
-<tr>
-<td>before_request</td>
-<td>注册一个函数，在每次请求之前运行</td>
-</tr>
-<tr>
-<td>after_request</td>
-<td>注册一个函数，如果没有未处理的异常抛出，在每次请求之后运行</td>
-</tr>
-<tr>
-<td>teardown_request</td>
-<td>注册一个函数，即使有未处理的异常抛出，也在每次请求之后运行</td>
-</tr>
-</tbody>
-</table>
+        <ul>
+<li>指定计算图在 哪个设备上计算：<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">with tf.device(<span class="string">"/gpu:1"</span>):</span><br><span class="line">        pass</span><br><span class="line">设备字符串标示:</span><br><span class="line"><span class="number">1</span>. <span class="string">"/cpu:0"</span>: 机器的 CPU.</span><br><span class="line"><span class="number">2</span>. <span class="string">"/gpu:0"</span>: 机器的第一个 GPU, 如果有的话.</span><br><span class="line"><span class="number">3</span>. <span class="string">"/gpu:1"</span>: 机器的第二个 GPU, 以此类推.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/20/Blog/markdown/TensorFlow/基础操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/Scrapy/浏览器Cookie 中间件" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/17/Blog/markdown/Python/Scrapy/浏览器Cookie 中间件/">Scrapy 获取浏览器Cookie中间件</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/08/17/Blog/markdown/Python/Scrapy/浏览器Cookie 中间件/" class="archive-article-date">
+  	<time datetime="2018-08-17T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-获取Cookie"><a href="#1-获取Cookie" class="headerlink" title="1. 获取Cookie"></a>1. 获取Cookie</h4><p>Python库 browsercookie 可获取浏览器中Cookie</p>
+<ul>
+<li>安装<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install </span> <span class="keyword">browsercookie</span></span><br><span class="line"><span class="keyword">pip3 </span><span class="keyword">install </span>pycryptodome</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>访问浏览器Cookie<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> browsercookie</span><br><span class="line"><span class="meta"># 获取chrome 的cookie</span></span><br><span class="line"><span class="title">chrome_cookiejar</span> = browsercookie.chrome()</span><br><span class="line"><span class="title">firefox_cookiejar</span> = browsercookie.firefox()</span><br><span class="line"><span class="class"><span class="keyword">type</span>(<span class="title">chrome_cookiejar</span>)</span></span><br><span class="line"><span class="title">http</span>.cookiehar.<span class="type">CookieJar</span></span><br><span class="line"><span class="title">for</span> cookie <span class="keyword">in</span> firefox_cookiejar:</span><br><span class="line">    print(cookie)</span><br></pre></td></tr></table></figure></p>
+<p>实现BrowserCookieMiddleware<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import browsercookie </span><br><span class="line">from scrapy.downloadermiddlerwares.cookies import CookiesMiddlerware</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserCookieMiddleware</span>(<span class="title">CookieMiddleware</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>,debug=False)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>().__init_<span class="number">_</span>(debug)</span><br><span class="line">        <span class="keyword">self</span>.load_browser_cookies()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">load_browser_cookies</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 加载Chrome 浏览器中的Cookie </span></span><br><span class="line">        jar =<span class="keyword">self</span>.jars[<span class="string">'chrome'</span>]</span><br><span class="line">        chrome_cookiejar = browsercookie.chrome()</span><br><span class="line">        <span class="keyword">for</span> cookie <span class="keyword">in</span> <span class="symbol">chrome_cookiejar:</span></span><br><span class="line">            jar.set_cookie(cookie)</span><br><span class="line">        <span class="comment"># 加载 Firefox 浏览器中的cookie</span></span><br><span class="line">        jar = <span class="keyword">self</span>.jars[<span class="string">'firefox'</span>] </span><br><span class="line">        firefox_cookiejar =browsercookie.firefox()</span><br><span class="line">        <span class="keyword">for</span> cookie <span class="keyword">in</span> <span class="symbol">firefox_cookiejar:</span></span><br><span class="line">            jar.set_cookie(cookie)</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">setting.py中启用中间件</span><br><span class="line"> DOWNLOADER_MIDDLEWARES =&#123;</span><br><span class="line"> <span class="comment">#开启自定义中间件,关闭系统自带中间件</span></span><br><span class="line">     <span class="string">'scrapy.downloadermiddlerwares.cookies.CookieMiddleware'</span><span class="symbol">:None</span></span><br><span class="line">     <span class="string">'browser_cookie.middlewares.BrowserCookiesMiddleware'</span><span class="symbol">:</span><span class="number">701</span>,</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> 构建 Request对象时</span><br><span class="line"> Request(url, meta=&#123;</span><br><span class="line">     <span class="string">'cookiejar'</span><span class="symbol">:<span class="string">'chrome'</span></span></span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -390,7 +449,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
         		</li>
       		
 		</ul>
@@ -402,7 +461,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Flask//" class="article-tag-list-link color1">Flask</a>
+        			<a href="/categories/Scrapy//" class="article-tag-list-link color2">Scrapy</a>
         		</li>
       		
 		</ul>
@@ -411,7 +470,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/11/Python/Flask/基础概念/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/17/Blog/markdown/Python/Scrapy/浏览器Cookie 中间件/">展开全文 >></a>
         </p>
       
 
@@ -441,705 +500,190 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Python/NumpyPandas/pandas常见API" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Blog/markdown/Redis/redis 基础知识" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/Python/NumpyPandas/pandas常见API/">Pandas 基础操作</a>
+      <a class="article-title" href="/2018/08/10/Blog/markdown/Redis/redis 基础知识/">redis基础数据类型及操作</a>
     </h1>
   
 
         
         
-<a href="/2017/08/16/Python/NumpyPandas/pandas常见API/" class="archive-article-date">
-  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+<a href="/2018/08/10/Blog/markdown/Redis/redis 基础知识/" class="archive-article-date">
+  	<time datetime="2018-08-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>基本操作</li>
-</ol>
-<ul>
-<li>df.iloc[]<br>按整数位置访问行和列的组 </li>
-<li>df.loc[ ]<br>通过标签或布尔数组访问一组行和列。</li>
-<li>df.at[]<br>访问行/列标签对的单个值</li>
-</ul>
-<ul>
-<li>pd.concat(objs, axis=0, join=’outer’, join_axes=None, ignore_index=False, keys=None, levels=None, names=None, verify_integrity=False, sort=None, copy=True)</li>
-</ul>
-<ol start="2">
-<li><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpt as np</span><br><span class="line">s = <span class="selector-tag">p</span>.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,np。nan])</span><br><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.DataFrame(np<span class="selector-class">.random</span><span class="selector-class">.randn</span>(<span class="number">6</span>,<span class="number">4</span>),index=dates, <span class="attribute">columns</span>=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df.dtypes</span><br><span class="line">df.index</span><br><span class="line">df.<span class="attribute">columns</span></span><br><span class="line">df.values</span><br><span class="line">df.describe()</span><br><span class="line">df.T</span><br><span class="line">df.sort_index(axis=<span class="number">1</span>,ascending=False)</span><br><span class="line">df.sort_values(by=<span class="string">'column'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>选择数据</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.<span class="symbol">DataFrame</span>(np.random.randn(<span class="number">6</span>,<span class="number">4</span>),index=dates, columns=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df[<span class="string">'a'</span>]</span><br><span class="line">df.a</span><br><span class="line">df[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">df[<span class="string">'20130101'</span>:<span class="string">'20130104'</span>]</span><br><span class="line">#标签</span><br><span class="line">df.loc[<span class="string">'20130101'</span>]</span><br><span class="line">#列选取</span><br><span class="line">df.loc[:,[<span class="string">'a'</span>]]</span><br><span class="line">#</span><br><span class="line">df.loc[[<span class="string">'a'</span>],:]</span><br><span class="line">#position</span><br><span class="line">df.iloc[<span class="number">3</span>]</span><br><span class="line">df.iloc[<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">2</span>,<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line"></span><br><span class="line">df.ix[:<span class="number">3</span>,[<span class="string">'a'</span>]]</span><br><span class="line"></span><br><span class="line">df[df.a&gt;<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置值</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.DataFrame(np<span class="selector-class">.random</span><span class="selector-class">.randn</span>(<span class="number">6</span>,<span class="number">4</span>),index=dates, <span class="attribute">columns</span>=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df<span class="selector-class">.iloc</span>[<span class="number">2</span>,<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">df<span class="selector-class">.loc</span>[,<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line">df<span class="selector-class">.ix</span>[]</span><br><span class="line">df[df.a&gt;<span class="number">0</span>]=<span class="number">0</span></span><br><span class="line">df<span class="selector-class">.a</span>[df.a&gt;<span class="number">0</span>]=<span class="number">0</span></span><br><span class="line">df[<span class="string">'new column'</span>]= np.nan</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>处理丢失数据</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dates = pd.date_range(<span class="string">'20130101'</span>,prtiods=<span class="number">6</span>)</span><br><span class="line">df = pd.DataFrame(np<span class="selector-class">.random</span><span class="selector-class">.randn</span>(<span class="number">6</span>,<span class="number">4</span>),index=dates, <span class="attribute">columns</span>=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df<span class="selector-class">.iloc</span>[<span class="number">0</span>,<span class="number">1</span>]= np.nan</span><br><span class="line">df<span class="selector-class">.iloc</span>[<span class="number">1</span>,<span class="number">2</span>]= np.nan</span><br><span class="line">df.dropna(axis=<span class="number">0</span>, how=<span class="string">'any|all'</span>)</span><br><span class="line">df.fillna(value=<span class="number">0</span>)</span><br><span class="line">df.isnull()</span><br><span class="line">np.any(df.isnull())==True</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入到出数据<br>pd.read_()<br>pd.to_()</p>
-</li>
-<li><p>concat 合并</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#concatenating</span></span><br><span class="line">df = pd.concat([df1,df2],<span class="attribute">axis</span>=0,ignore_index=True)</span><br><span class="line">df.reindex</span><br><span class="line"></span><br><span class="line"><span class="comment">#join ['inner','outer']</span></span><br><span class="line"></span><br><span class="line">pd.concat([df1,df2],<span class="attribute">join</span>=<span class="string">'outer'</span>)</span><br><span class="line"><span class="attribute">join</span>=<span class="string">'inner'</span> #公共部分</span><br><span class="line">pd.concat([df1,df2],<span class="attribute">axis</span>=1,join_iaxes=[df1.index])</span><br><span class="line"></span><br><span class="line">df1.append(df2,<span class="attribute">ignore</span>=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>merge 合并</p>
-<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(<span class="literal">left</span>,<span class="literal">right</span>,<span class="literal">on</span>=<span class="string">'key'</span>)</span><br><span class="line"></span><br><span class="line">pd.merge(<span class="literal">left</span>,<span class="literal">right</span>,<span class="literal">on</span>=[key1,key2],how=<span class="string">'inner'</span>)</span><br><span class="line">[<span class="string">'left'</span>,<span class="string">'right'</span>,<span class="string">'outer'</span>,<span class="string">'inner'</span>]</span><br><span class="line">indicator=True <span class="comment">#直观显示</span></span><br><span class="line">indicator = <span class="string">'cloname'</span></span><br><span class="line"><span class="comment"># index</span></span><br><span class="line"></span><br><span class="line">suffixes= <span class="comment">#前缀</span></span><br><span class="line"></span><br><span class="line">join</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>图表</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="class"><span class="keyword">data</span>.plot()</span></span><br><span class="line"><span class="title">plt</span>.show()</span><br><span class="line"></span><br><span class="line"><span class="meta"># bar hist box kde area scatter </span></span><br><span class="line"><span class="title">hexbin</span> pie</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title">plt</span>.scatter()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DataFrame 单元格字符串操作</p>
-</li>
-</ol>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataframe[<span class="string">'col'</span>]<span class="selector-class">.str</span><span class="selector-class">.contains</span>(<span class="string">'lable'</span>)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Pandas//" class="article-tag-list-link color2">Pandas</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/Python/NumpyPandas/pandas常见API/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/基础知识/@classmethod  @staticmethod commonmethod异同" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/Python/基础知识/@classmethod  @staticmethod commonmethod异同/">python 方法比较</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/08/16/Python/基础知识/@classmethod  @staticmethod commonmethod异同/" class="archive-article-date">
-  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="方法比较及说明"><a href="#方法比较及说明" class="headerlink" title="方法比较及说明"></a>方法比较及说明</h4><ul>
-<li>示例<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        普通方法</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"executing foo(%s,%s)"</span> % (self, x)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">class_foo</span><span class="params">(cls, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        类方法</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"executing class_foo(%s,%s)"</span> % (cls, x)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">static_foo</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        静态方法</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"executing static_foo(%s)"</span> % x</span><br><span class="line"></span><br><span class="line">a = A()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用普通方法调用，第一个参数隐式传递给方法</span></span><br><span class="line"></span><br><span class="line">a.foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing foo(&lt;__main__.A object at 0xb7dbef0c&gt;,1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类调用普通方法</span></span><br><span class="line">A.foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 报错 unbound method foo() must be called with A instance as first argument (got int instance instead)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例调用类方法使用</span></span><br><span class="line"><span class="comment"># 将隐式传递类本身给方法</span></span><br><span class="line">a.class_foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing class_foo(&lt;class '__main__.A'&gt;,1)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类调用类方法</span></span><br><span class="line"><span class="comment"># 将方法定义为类方法，一般都是使用类直接调用</span></span><br><span class="line">A.class_foo(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#静态方法 既不传递实例self也不传递类cls</span></span><br><span class="line"><span class="comment">#类调用静态方法</span></span><br><span class="line">A.static_foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing static_foo(1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例调用静态方法</span></span><br><span class="line">a.static_foo(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># executing static_foo(1)</span></span><br><span class="line">静态方法将类的连接函数进行分组</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="2">
-<li>@classmethod<br> 将方法转换成类方法，一个类方法接收 class 作为第一个参数，就像和实例方法接受实例一样。声明类方法，使用idiom:<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">    @classmethod</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(cls, arg1, arg2, ...)</span></span>: ...</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>@classmethod 是函数装饰器,他可以使用类调用和实例调用，如C.f() 和C().f(),除了类之外，该实例被忽略，如果派生类调用类方法，则派生类对象讲作为隐含的第一个参数传递</p>
-<ol start="3">
-<li>@staticmethod<br> 将方法转换成静态方法，<br>一个静态方法</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/Python/基础知识/@classmethod  @staticmethod commonmethod异同/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/NumpyPandas/numpy" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/Python/NumpyPandas/numpy/">Numpy 基础操作</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/08/16/Python/NumpyPandas/numpy/" class="archive-article-date">
-  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>属性</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">array = np.arange(1,13)</span><br><span class="line"></span><br><span class="line">array = array.reshape((3,4))</span><br><span class="line"><span class="comment"># 维度</span></span><br><span class="line">array.ndim</span><br><span class="line"><span class="comment"># 形状</span></span><br><span class="line">array.shape</span><br><span class="line"><span class="comment"># 大小</span></span><br><span class="line">array.size</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],dtype=np.int)</span><br><span class="line"># 类型</span><br><span class="line">a.dtype</span><br><span class="line"># 定义矩阵</span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">1</span>,<span class="number">2</span>]])</span><br><span class="line"># 定义全<span class="number">0</span>矩阵</span><br><span class="line">a = np.zeros((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">np.one(())</span><br><span class="line">np.empty(())</span><br><span class="line">np.arange(())</span><br><span class="line"># 线段</span><br><span class="line">np.linspace(<span class="number">1</span>,<span class="number">10</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>基础运算</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">a</span> = np.array([<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">b = np.arange(<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#平方</span></span><br><span class="line"><span class="keyword">a</span>**<span class="number">2</span></span><br><span class="line"><span class="comment"># 函数</span></span><br><span class="line">np.<span class="built_in">sin</span>()</span><br><span class="line"><span class="built_in">cos</span>()</span><br><span class="line"><span class="built_in">tan</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">#比较 </span></span><br><span class="line">b&lt;<span class="number">3</span></span><br><span class="line">b==<span class="number">3</span></span><br><span class="line">v&gt;<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#矩阵运算</span></span><br><span class="line">c =<span class="keyword">a</span>*b</span><br><span class="line"><span class="comment">#点乘</span></span><br><span class="line">np.dot(<span class="keyword">a</span>,b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#随机生成</span></span><br><span class="line">np.<span class="built_in">random</span>.<span class="built_in">random</span>((<span class="number">2</span>,<span class="number">4</span>))</span><br><span class="line">np.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line">np.<span class="built_in">max</span>()</span><br><span class="line">np.<span class="built_in">min</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>基础运算</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">a</span> =  np.arange(<span class="number">2</span>,<span class="number">14</span>).reshape(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"><span class="comment">#索引</span></span><br><span class="line">np.argmin(<span class="keyword">a</span>)</span><br><span class="line">np.argmax(<span class="keyword">a</span>)</span><br><span class="line">np.<span class="built_in">average</span>(<span class="keyword">a</span>)</span><br><span class="line"><span class="comment">#中位数</span></span><br><span class="line">np.<span class="built_in">median</span>(<span class="keyword">a</span>)</span><br><span class="line"><span class="comment">#累加</span></span><br><span class="line">np.cunsun(<span class="keyword">a</span>)</span><br><span class="line"><span class="comment">#累差</span></span><br><span class="line">np.diff(<span class="keyword">a</span>)</span><br><span class="line"><span class="comment"># 非零数</span></span><br><span class="line">np.nonzero()</span><br><span class="line"><span class="comment"># 排序</span></span><br><span class="line">np.<span class="built_in">sort</span>(<span class="keyword">a</span>)</span><br><span class="line"><span class="comment">#转置 行列转换</span></span><br><span class="line">np.<span class="built_in">transpose</span>(<span class="keyword">a</span>)</span><br><span class="line"><span class="keyword">a</span>.T</span><br><span class="line"><span class="comment"># 截取</span></span><br><span class="line">np.clip(<span class="keyword">a</span>,<span class="built_in">start</span>,<span class="keyword">end</span>)</span><br><span class="line"><span class="keyword">a</span>.mean()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>索引</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> = np.arange(<span class="number">4</span>,<span class="number">16</span>).reshape(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"><span class="selector-tag">a</span>[<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">a</span>[<span class="number">2</span>,<span class="number">3</span>]或<span class="selector-tag">a</span>[<span class="number">2</span>][<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">a</span>[<span class="number">1</span>,:]</span><br><span class="line"><span class="selector-tag">a</span>[:,<span class="number">2</span>]</span><br><span class="line"><span class="selector-tag">a</span>[<span class="number">1</span>,<span class="number">1</span>:<span class="number">2</span>]</span><br><span class="line">#默认迭代行</span><br><span class="line">#迭代列</span><br><span class="line"><span class="keyword">for</span> column <span class="keyword">in</span> <span class="selector-tag">a</span><span class="selector-class">.T</span>:</span><br><span class="line">    print(column)</span><br><span class="line">#迭代项</span><br><span class="line"><span class="selector-tag">a</span>.flatten() </span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> A<span class="selector-class">.flat</span>: #迭代器</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>合并</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 按行合并</span></span><br><span class="line"><span class="keyword">a</span> = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">b = np.array([<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="comment">#垂直合并 vertical</span></span><br><span class="line">np.vstack((<span class="keyword">a</span>,b))</span><br><span class="line"><span class="comment">#水平合并 horizontal</span></span><br><span class="line">np.hstack((<span class="keyword">a</span>,b))</span><br><span class="line"><span class="comment">#单维度转换</span></span><br><span class="line"><span class="keyword">a</span>[np.newaxis,:]</span><br><span class="line"><span class="comment"># 多个合并</span></span><br><span class="line">np.concatenate((<span class="keyword">a</span>,b,b),axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分割</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">#横向分割</span><br><span class="line">np.split(a,<span class="number">2</span>,axis=<span class="number">0</span>)</span><br><span class="line">#不等分割</span><br><span class="line">np.array_split(a,<span class="number">3</span>,axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">np.vsplit()</span><br><span class="line">np.hsplit()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>复制</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(4)</span><br><span class="line">b = a</span><br><span class="line">a is b True <span class="comment">#引用传递</span></span><br><span class="line">c = a.copy() <span class="comment"># deep copy</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>条件</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.<span class="built_in">where</span>(<span class="built_in">cond</span>,x,y)</span><br><span class="line">判断<span class="built_in">cond</span>  满足条件 选x <span class="keyword">else</span> 选y</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Numpy//" class="article-tag-list-link color1">Numpy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/Python/NumpyPandas/numpy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/基础知识/1. 启动停止线程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/Python/基础知识/1. 启动停止线程/">python 线程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/08/16/Python/基础知识/1. 启动停止线程/" class="archive-article-date">
-  	<time datetime="2017-08-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>创建销毁线程</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import threading, <span class="built_in">time</span></span><br><span class="line"></span><br><span class="line">def sample_thread(<span class="built_in">n</span>)<span class="symbol">:</span></span><br><span class="line">    while <span class="built_in">n</span> &gt; <span class="symbol">0:</span></span><br><span class="line">        print('<span class="built_in">T</span>-minus', <span class="built_in">n</span>)</span><br><span class="line">        <span class="built_in">n</span> -= <span class="number">1</span></span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">t</span> = threading.Thread(target=sample_thread, args=(<span class="number">10</span>,))</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询线程状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> t.is_alive():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Still running'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Complete'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>等待当前线程完成,继续向下执行.</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.<span class="keyword">join</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Python 解释器直到所有线程都终止前仍保持运行,对于需要长时间的运行线程或者一直运行在后台的任务,你应当考虑使用后台线程</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = Thread(<span class="attribute">target</span>=countdown, args=(10,) <span class="attribute">daemon</span>=<span class="literal">True</span>)</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>后台线程无法等待,不过,这些线程会在主线程终止时自动销毁.除了如上所示两个操作,并没有太多可以对线程做的事情.你无法结束一个线程,无法给它发送信号,无法调整调度,也无法执行其他高级操作.如果需要这些特性,你需要自己添加.比如说,如果你需要终止线程,那么这个线程必须通过编程在某个特定点轮询来退出.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountdownTask</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = True</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = False</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>,n)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>._running <span class="keyword">and</span> n&gt;<span class="number">0</span> <span class="symbol">:</span></span><br><span class="line">            print(<span class="string">'T-minus'</span>,n)</span><br><span class="line">            n -= <span class="number">1</span></span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">c = CountdownTask()</span><br><span class="line">t = Thread(target=c.run, args=(<span class="number">10</span>,))</span><br><span class="line">t.start()</span><br><span class="line">c.terminate()</span><br><span class="line">t.join()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果线程执行一些像IO这样的阻塞操作,那么通过轮训来终止线程讲使得线程之间的协调变得非常棘手.比如,如果一个线程一直柱塞在一个I/O操作上.它就永远无法返回,就无法检查自己是否已经被结束了.要正确处理这些问题,你们需要利用逛超时循环来小心操作线程.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOTask</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._running = False</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>, sock)</span></span></span><br><span class="line">        sock.settimeout(<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>.<span class="symbol">_running:</span></span><br><span class="line">            <span class="symbol">try:</span></span><br><span class="line">                data =sock.recv(<span class="number">8192</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            except socket.<span class="symbol">timeout:</span></span><br><span class="line">                continue</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>全局解释锁 Python的线程被限制到同一时刻只允许一个线程执行这样一个执行模型,所以,Python 的线程更适用于处理IO和其他需要并发执行的阻塞操作(i/o 数据库操作等),而不是需要多处理器并行计算密集型任务</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from thrading import Thread</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountdownThread</span>(<span class="title">Thread</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, n)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>().__init_<span class="number">_</span>()</span><br><span class="line">        <span class="keyword">self</span>.n = n</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">self</span>.n &gt; <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            print(<span class="string">'T-minus'</span>,<span class="keyword">self</span>.n)</span><br><span class="line">            <span class="keyword">self</span>.n -= <span class="number">1</span></span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">c = CountdownThread(<span class="number">5</span>)</span><br><span class="line">c.start()</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>尽管这样也可以工作,单这使得你的代码依赖于threading 库,所以你的这些代码只能在线程上下文中,可能与线程无关的,这样就使得这些代码可以被用在其他的上下文中,可能与线程有关,也可能与线程无关.比如 可以通过multiprocessing模块在一个单独的进程中执行你的代码</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import multiprocessing</span><br><span class="line"></span><br><span class="line">c = CountdownTask(5)</span><br><span class="line">p = multiprocessing.Process(target=c.run)</span><br><span class="line">p.start()</span><br><span class="line"></span><br><span class="line"><span class="comment">#这段代码仅适用于CountdownTask类是以独立于实际的并发手段实现的情况</span></span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>判断线程是否已经启动</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/Python/基础知识/1. 启动停止线程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/基础知识/Gevent" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/Python/基础知识/Gevent/">python Gevent</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/08/15/Python/基础知识/Gevent/" class="archive-article-date">
-  	<time datetime="2017-08-15T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>gevent是一个基于协同程序的Python网络库，它使用greenlet在libev事件循环(EvenLoop 注解)之上提供高级同步API。</p>
-<p>Event Loop是一个程序结构，用于等待和发送消息和事件。<br><img src="http://www.ruanyifeng.com/blogimg/asset/201310/2013102004.png" alt="image"></p>
-<p>在gevent中用到的主要模式是Greenlet, 它是以C扩展模块形式接入Python的轻量级协程。 Greenlet全部运行在主程序操作系统进程的内部，但它们被协作式地调度。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/Python/基础知识/Gevent/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python/基础知识/library , module , package" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/16/Python/基础知识/library , module , package/">python library , module , package</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/07/16/Python/基础知识/library , module , package/" class="archive-article-date">
-  	<time datetime="2017-07-16T15:12:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>背景<br>Python中有一些基本的名词，很多人，尤其是一些初学者，可能听着就很晕。</p>
-<p>此处，简单总结一下，module，library，package之间的大概区别。</p>
-<p>Python中的module的简介<br>module，中文翻译为：模块</p>
-<p>Python中的module，说白了，就是Python文件，而python文件一般后缀为py，所以就是你的xxx.py而已。</p>
-<p>library简介<br>library，中文翻译为：库，也常称为：库文件</p>
-<p>之所以此处不说是Python中的library，那是因为，本身library这个词，一般都是针对其他的编译型语言，比如C，C#等语言来说的。</p>
-<p>常见的C/C#等语言中的library，一般指的就是：</p>
-<p>静态的库文件：xxx.a</p>
-<p>动态的库文件：xxx.dll</p>
-<p>Python中的Package的简介<br>package，中文翻译为：包</p>
-<p>Python中的package，可以简单的理解为，一组的module，一堆（相关的）module组合而成的；</p>
-<p>Python中module和library之间的区别<br>对于library和module，说白了，都是提供了一定的功能供别人调用。</p>
-<p>从这方面来说，也可以理解为：</p>
-<p>Python中library等价于module；</p>
-<p>只不过，Python中，很少说library，正常的话，都是说module；</p>
-<p>所以，简而言之：</p>
-<p>library多数都是指的是C，C#等语言中的库，库文件；<br>Python中，很少用library这个词；<br>Python中的“库”，“库文件”的叫法，叫做module，模块；<br>不论你是Python的初学者还是高手，个人建议，都还是继续沿用，官方的，通用的叫法，使用 module这个词，而不要使用用library这个词；</p>
-<p>Python中的module和package之间的区别<br>导入单个的module，一般是这样的：</p>
-<p>?<br>1<br>import my_module<br>导入package一般是这样的：</p>
-<p>?<br>1<br>from my_package.timing.danger.internets import function_of_love</p>
-<p>可以简单理解为：</p>
-<p>module：单个的模块，一般是单个（偶尔为多个）python文件；<br>package：多个相关的module的组合。肯定是多个，相关的，Python文件的组合；package是用来把相关的模块组织在一起，成为一个整体的；</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/16/Python/基础知识/library , module , package/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Redis/Redis安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/16/Redis/Redis安装/">Redis安装</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/06/16/Redis/Redis安装/" class="archive-article-date">
-  	<time datetime="2017-06-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Redis-部署安装"><a href="#Redis-部署安装" class="headerlink" title="Redis 部署安装"></a>Redis 部署安装</h2><p>Redis是基于REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。</p>
-<ol>
-<li>下载安装服务</li>
-</ol>
-<p>下载地址：<a href="http://redis.io/download，下载最新文档版本。" target="_blank" rel="noopener">http://redis.io/download，下载最新文档版本。</a></p>
-<p>本教程使用的最新文档版本为 2.8.17，下载并安装：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#下载地址 wget http:<span class="comment">//download.redis.io/releases/redis-2.8.17.tar.gz </span></span><br><span class="line">文件已下好位于 /Package/Redis/redis-<span class="number">2.8</span>.<span class="number">24</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line"></span><br><span class="line">$ tar xzf redis-<span class="number">2.8</span>.<span class="number">17</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span> </span><br><span class="line">$ cd redis-<span class="number">2.8</span>.<span class="number">17</span></span><br><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
-<p>make完后 redis-2.8.17目录下会出现编译后的redis服务程序redis-server,还有用 于测试的客户端程序redis-cli,两个程序位于安装目录 src 目录下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> src </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./redis-server</span></span><br></pre></td></tr></table></figure></p>
-<ol start="2">
-<li>启动服务</li>
-</ol>
-<p>注意这种方式启动redis 使用的是默认配置。也可以通过启动参数告诉redis使用指定配置</p>
-<p>文件使用下面命令启动。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> src </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./redis-server redis.conf</span></span><br></pre></td></tr></table></figure></p>
-<p>redis.conf是一个默认的配置文件。我们可以根据需要使用自己的配置文件。</p>
-<ol start="3">
-<li>测试服务</li>
-</ol>
-<p>启动redis服务进程后，就可以使用测试客户端程序redis-cli和redis服务交互了。 比如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> src </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./redis-cli </span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> <span class="built_in">set</span> foo bar OK </span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> get foo <span class="string">"bar"</span></span></span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>开机自启</li>
-</ol>
-<ul>
-<li><p>修改redis.conf，打开后台运行选项：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">By</span> default Redis does not <span class="keyword">run</span> <span class="keyword">as</span> a daemon. <span class="keyword">Use</span> 'yes' <span class="keyword">if</span> you need it.</span><br><span class="line"># <span class="keyword">Note</span> that Redis will write a pid <span class="keyword">file</span> <span class="keyword">in</span> /<span class="keyword">var</span>/<span class="keyword">run</span>/redis.pid when daemonized.</span><br><span class="line">daemonize yes</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写脚本，vim /etc/init.d/redis:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chkconfig: 2345 10 90</span></span><br><span class="line"><span class="comment"># description: Start and Stop redis</span></span><br><span class="line"></span><br><span class="line">PATH=/usr/<span class="built_in">local</span>/bin:/sbin:/usr/bin:/bin</span><br><span class="line"></span><br><span class="line">REDISPORT=6379 <span class="comment">#实际环境而定</span></span><br><span class="line">EXEC=/usr/<span class="built_in">local</span>/redis/src/redis-server <span class="comment">#实际环境而定</span></span><br><span class="line">REDIS_CLI=/usr/<span class="built_in">local</span>/redis/src/redis-cli <span class="comment">#实际环境而定</span></span><br><span class="line"></span><br><span class="line">PIDFILE=/var/run/redis.pid</span><br><span class="line">CONF=<span class="string">"/usr/local/redis/redis.conf"</span> <span class="comment">#实际环境而定</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">        start)</span><br><span class="line">                <span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> exists, process is already running or crashed."</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Starting Redis server..."</span></span><br><span class="line">                        <span class="variable">$EXEC</span> <span class="variable">$CONF</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">"$?"</span>=<span class="string">"0"</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Redis is running..."</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                ;;</span><br><span class="line">        stop)</span><br><span class="line">                <span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> exists, process is not running."</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        PID=$(cat <span class="variable">$PIDFILE</span>)</span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Stopping..."</span></span><br><span class="line">                        <span class="variable">$REDIS_CLI</span> -p <span class="variable">$REDISPORT</span> SHUTDOWN</span><br><span class="line">                        <span class="keyword">while</span> [ -x <span class="variable">$PIDFILE</span> ]</span><br><span class="line">                        <span class="keyword">do</span></span><br><span class="line">                                <span class="built_in">echo</span> <span class="string">"Waiting for Redis to shutdown..."</span></span><br><span class="line">                                sleep 1</span><br><span class="line">                        <span class="keyword">done</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Redis stopped"</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                ;;</span><br><span class="line">        restart|force-reload)</span><br><span class="line">                <span class="variable">$&#123;0&#125;</span> stop</span><br><span class="line">                <span class="variable">$&#123;0&#125;</span> start</span><br><span class="line">                ;;</span><br><span class="line">        *)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">"Usage: /etc/init.d/redis &#123;start|stop|restart|force-reload&#125;"</span> &gt;&amp;2</span><br><span class="line">                <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行权限：</p>
-</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x <span class="regexp">/etc/i</span>nit.d<span class="regexp">/redis</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>开机自启动：</li>
-</ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 尝试启动或停止redis</span></span><br><span class="line">service redis start</span><br><span class="line">service redis stop</span><br><span class="line"><span class="comment"># 开启服务自启动</span></span><br><span class="line">chkconfig redis on</span><br></pre></td></tr></table></figure>
+        <h4 id="Redis-的数据类型"><a href="#Redis-的数据类型" class="headerlink" title="Redis 的数据类型"></a>Redis 的数据类型</h4><table>
+<thead>
+<tr>
+<th>结构类型</th>
+<th>结构存储的值</th>
+<th>结构的读写能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STRING</td>
+<td>可以是字符串 整数或浮点数</td>
+<td>对整个字符串或者字符串的其中一部分执行操作: 对整数和浮点数执行自增 或自减操作</td>
+</tr>
+<tr>
+<td>LIST</td>
+<td>一个链表,链表上的每个节点都包含字符串</td>
+<td>从链表的两端推入或弹出元素:根据偏移量对链表进行修剪 读取单个或者多个元素,根据值查找或者移除元素</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>包含字符串的无序收集器,并且被包含的每个字符串都独一无二的, 各不相同</td>
+<td>添加 获取 移除单个键值对 获取所有键值对</td>
+</tr>
+<tr>
+<td>HASH</td>
+<td>包含键值对的无序散列表</td>
+<td>添加获取移除单个键值对,获取所有键值对</td>
+</tr>
+<tr>
+<td>ZSET(有序集合)</td>
+<td>字符串成员与浮点数分值之间的有序映射.元素的排列顺序由分值大小决定</td>
+<td>添加获取删除的那个元素.根据分值的范围或者成员来获取元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-字符串命令"><a href="#1-字符串命令" class="headerlink" title="1. 字符串命令"></a>1. 字符串命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>获取存储在给定键中的值</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>设置存储在给定键中的值</td>
+</tr>
+<tr>
+<td>DEL</td>
+<td>删除存储在给定键中的值 (这个命令可以用于所有类型)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-列表"><a href="#2-列表" class="headerlink" title="2. 列表"></a>2. 列表</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RPUSH/LPUSH</td>
+<td>将给定值推入列表的右端</td>
+</tr>
+<tr>
+<td>LRANGE</td>
+<td>获取列表在给定范围上的所有值</td>
+</tr>
+<tr>
+<td>LINDEX</td>
+<td>获取列表在给定位置上的单个元素</td>
+</tr>
+<tr>
+<td>LPOP/RPOP</td>
+<td>从列表的左端弹出一个值,并返回被弹出的值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-集合"><a href="#3-集合" class="headerlink" title="3. 集合"></a>3. 集合</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SADD</td>
+<td></td>
+<td>将给定元素添加到集合</td>
+</tr>
+<tr>
+<td>SMEMBERS</td>
+<td>返回集合包含的所有元素</td>
+</tr>
+<tr>
+<td>SISMEMBER</td>
+<td>检查给定元素是否存在于集合中</td>
+</tr>
+<tr>
+<td>SREM</td>
+<td>如果给定元素存在于集合中,那么移除这个元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-散列"><a href="#4-散列" class="headerlink" title="4. 散列"></a>4. 散列</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HSET</td>
+<td>在散列里面关联起给定的键值对</td>
+</tr>
+<tr>
+<td>HGET</td>
+<td>获取指定散列键的值</td>
+</tr>
+<tr>
+<td>HGETALL</td>
+<td>获取散列办好的所有键值对</td>
+</tr>
+<tr>
+<td>HDEL</td>
+<td>如果给定键存在于散列里面,那么移除这个键</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-有序集合"><a href="#5-有序集合" class="headerlink" title="5. 有序集合"></a>5. 有序集合</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZADD</td>
+<td>将一个带有给定分值的成员添加到有序集合里面</td>
+</tr>
+<tr>
+<td>ZRANGE</td>
+<td>根据元素在有序排列中所处的位置,从有序集合里面获取多个元素</td>
+</tr>
+<tr>
+<td>ZRANGEBYSCORE</td>
+<td>获取有序集合在给定分值范围内的所有元素</td>
+</tr>
+<tr>
+<td>ZREM</td>
+<td>如果给定成员存在于有序集合,那么移除这个成员</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -1178,7 +722,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/16/Redis/Redis安装/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/10/Blog/markdown/Redis/redis 基础知识/">展开全文 >></a>
         </p>
       
 
@@ -1208,21 +752,120 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Python/Flask/Jinja2模板引擎" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Blog/markdown/TensorFlow/基础概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/11/Python/Flask/Jinja2模板引擎/">Flask Jinjna2模板引擎</a>
+      <a class="article-title" href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/">基础概念</a>
     </h1>
   
 
         
         
-<a href="/2017/06/11/Python/Flask/Jinja2模板引擎/" class="archive-article-date">
-  	<time datetime="2017-06-11T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
+<a href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/" class="archive-article-date">
+  	<time datetime="2018-07-26T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>特征：某个样本的特点。</li>
+<li>标签：尝试预测的内容。</li>
+<li>样本：特征和标签组成</li>
+<li>模型：特征与标签之间的关系</li>
+<li>训练： 机器学习阶段，模型逐渐得到优化。</li>
+<li>训练集：用于训练模型的样本集合</li>
+<li>测试集：用于评估训练后模型效果的集合</li>
+<li>特征工程: 利用数据领域相关知识来创建能够使机器算法达到最佳性能的过程</li>
+<li>特征构建: 是原始数据中人工的构建新的特征</li>
+<li>特征提取: 自动构建新的特征，将原始特征转化为一组具有明显物理意义或统计意义或核的特征</li>
+<li>特征选择: 从特征集合中挑选一组最具统计意义的特征子集，从而达到降维的效果  </li>
+</ul>
+<p>如果特征构建做的不好，那么它会直接影响特征提取，进而影响了特征选择，最终影响模型的性能</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/Scrapy/User-Agent中间件编写" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/">User-Agent中间件</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/" class="archive-article-date">
+  	<time datetime="2018-06-25T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-25</time>
 </a>
         
       </header>
@@ -1230,59 +873,304 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
-<li><p>Jinja2能识别所有类型的变量，甚至是一些复杂类型，例入 列表 字典 和对象</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from a dictionary: </span><span class="template-variable">&#123;&#123; mydict['key'] &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from a list: </span><span class="template-variable">&#123;&#123; mylist[3] &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from a list, with a variable index: </span><span class="template-variable">&#123;&#123; mylist[myintvar] &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from an object's method: </span><span class="template-variable">&#123;&#123; myobj.somemethod() &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Jinja2变量的过滤器</p>
+<li>代码</li>
+</ol>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> my_useragent(<span class="title">object</span>):</span></span><br><span class="line"><span class="class">    def process_request(<span class="title">self</span>, <span class="title">request</span>, <span class="title">spider</span>):</span></span><br><span class="line"><span class="class">        <span class="type">USER_AGENT_LIST</span> = [</span></span><br><span class="line"><span class="class">        <span class="type">Mozilla</span>/5.0(<span class="type">Macintosh</span>;<span class="type">U</span>;<span class="type">IntelMacOSX10_6_8</span>;<span class="title">en</span>-<span class="title">us</span>)<span class="type">AppleWebKit</span>/534.50(<span class="type">KHTML</span>,<span class="title">likeGecko</span>)<span class="type">Version</span>/5.1Safari/534.50,</span></span><br><span class="line"><span class="class">        <span class="type">Mozilla</span>/5.0(<span class="type">Windows</span>;<span class="type">U</span>;<span class="type">WindowsNT6</span>.1;<span class="title">en</span>-<span class="title">us</span>)<span class="type">AppleWebKit</span>/534.50(<span class="type">KHTML</span>,<span class="title">likeGecko</span>)<span class="type">Version</span>/5.1Safari/534.50</span></span><br><span class="line"><span class="class">        ]</span></span><br><span class="line"><span class="class">        agent = random.choice(<span class="type">USER_AGENT_LIST</span>)</span></span><br><span class="line"><span class="class">        request.headers['user-agent'] = agent</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>在settings.py 启用</p>
+<p> DOWLOAD_MIDDLER = {</p>
+<pre><code>module_name:priority_level
+</code></pre><p>} </p>
 </li>
 </ol>
-<table>
-<thead>
-<tr>
-<th>过滤器名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>safe</td>
-<td>渲染时不转义</td>
-</tr>
-<tr>
-<td>capitalize</td>
-<td>把值的首字母转换成大写，其他字母转换成小写</td>
-</tr>
-<tr>
-<td>lower</td>
-<td>把值转换成小写字母</td>
-</tr>
-<tr>
-<td>upper</td>
-<td>把值转换成大写形式</td>
-</tr>
-<tr>
-<td>title</td>
-<td>把值中每个单词的首写字母转换成大写</td>
-</tr>
-<tr>
-<td>trim</td>
-<td>把值的首尾空格去掉</td>
-</tr>
-<tr>
-<td>striptags</td>
-<td>渲染之前把值中所有的HTML标签都删掉</td>
-</tr>
-</tbody>
-</table>
-<ol start="3">
-<li><p>控制结构</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--if else--&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> user %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    Hello, </span><span class="template-variable">&#123;&#123; user &#125;&#125;</span><span class="xml">!</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">else</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    Hello, Stranger!</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- for --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> comment <span class="keyword">in</span> comments %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123; comment &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--宏支持 类似于Python中函数 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">macro</span> render_comment(comment) %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123; comment &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">endmacro</span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> comment <span class="keyword">in</span> comments %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">        </span><span class="template-variable">&#123;&#123; render_comment(comment) &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--宏模板 保存在单独的文件中--&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">import</span> 'macros.html' <span class="keyword">as</span> macros %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> comment <span class="keyword">in</span> comments %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">        </span><span class="template-variable">&#123;&#123; macros.render_comment(comment) &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Scrapy//" class="article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/Scrapy/代理ip中间件" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/Blog/markdown/Python/Scrapy/代理ip中间件/">代理IP中间件</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/06/22/Blog/markdown/Python/Scrapy/代理ip中间件/" class="archive-article-date">
+  	<time datetime="2018-06-22T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>代码</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">my_proxy</span>(<span class="title">object</span>):</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(<span class="keyword">self</span>,request,spider)</span></span><span class="symbol">:</span></span><br><span class="line">       request.meta[<span class="string">'proxy'</span>] = <span class="string">'ip:port'</span></span><br><span class="line">       proxy_name_pass = [<span class="symbol">name:</span>pwd]</span><br><span class="line">       encode_pass_name = base64.b64encode(proxy_name_pass)</span><br><span class="line">       request.heades[<span class="string">'proxy-Authorization'</span>] = <span class="string">'Basic'</span> + encode_pass_name.decode()</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>settings.py 文件中开启</p>
+<p>DOWLOAD_MIDDLER = {</p>
+<pre><code>module_name:priority_level
+</code></pre><p>  }</p>
 </li>
-<li><p>模板继承</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> head %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> title %&#125;</span><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"> - My Application<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> body %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">extends</span></span> "base.html" %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> title %&#125;</span><span class="xml">Index</span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> head %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; super() &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> body %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
-</li>
-<li></li>
 </ol>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">代理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Scrapy//" class="article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/Blog/markdown/Python/Scrapy/代理ip中间件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/多线程编程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/20/Blog/markdown/Python/基础知识/多线程编程/">多线程编程</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/06/20/Blog/markdown/Python/基础知识/多线程编程/" class="archive-article-date">
+  	<time datetime="2018-06-20T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>限制最大线程数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"> </span><br><span class="line">sem=threading.Semaphore(<span class="number">4</span>)  <span class="comment">#限制线程的最大数量为4个</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gothread</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span>  sem:  <span class="comment">#锁定线程的最大数量</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>):</span><br><span class="line">            print(threading.current_thread().name,i)</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    threading.Thread(target=gothread).start()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>线程池</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from concurrent.futures import ThreadPoolExecutor</span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">def fetch_url(url):</span><br><span class="line">    u = urllib.request.urlopen(url)</span><br><span class="line">    data = u.read()</span><br><span class="line">    return data</span><br><span class="line"></span><br><span class="line">pool = ThreadPoolExecutor(10)</span><br><span class="line"><span class="comment"># Submit work to the pool</span></span><br><span class="line">a = pool.submit(fetch_url, 'http://www.python.org')</span><br><span class="line">b = pool.submit(fetch_url, 'http://www.pypy.org')</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the results back</span></span><br><span class="line">x = a.result()</span><br><span class="line">y = b.result()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/20/Blog/markdown/Python/基础知识/多线程编程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/ElasticSearch/查询点是否在指定区域" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/12/Blog/markdown/ElasticSearch/查询点是否在指定区域/">查询点是否在指定区域</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/05/12/Blog/markdown/ElasticSearch/查询点是否在指定区域/" class="archive-article-date">
+  	<time datetime="2018-05-12T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>curl -XGET ‘<a href="http://172.17.0.6:9200//attractions/_search&#39;" target="_blank" rel="noopener">http://172.17.0.6:9200//attractions/_search&#39;</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>: &#123;</span><br><span class="line">    <span class="attr">"geo_shape"</span>: &#123;</span><br><span class="line">      <span class="attr">"geometry"</span>: &#123;</span><br><span class="line">        <span class="attr">"relation"</span>: <span class="string">"intersects"</span>,</span><br><span class="line">        <span class="attr">"shape"</span>: &#123;</span><br><span class="line">          <span class="attr">"coordinates"</span>: [</span><br><span class="line">            <span class="number">4.893321</span>,</span><br><span class="line">            <span class="number">52.373462</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"point"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>参考文档<br><a href="https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point" target="_blank" rel="noopener">https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point</a></p>
+</li>
+<li><p>设置mapping 映射,将geometry字段设置成geo_shape 格式。</p>
+</li>
+</ol>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PUT /china</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"mappings"</span>: &#123;</span><br><span class="line">    <span class="string">"town"</span>: &#123;</span><br><span class="line">      <span class="string">"properties"</span>: &#123;</span><br><span class="line">        <span class="string">"geometry"</span>: &#123;</span><br><span class="line">          <span class="string">"type"</span>: <span class="string">"geo_shape"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -1300,7 +1188,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
         		</li>
       		
 		</ul>
@@ -1312,7 +1200,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Flask//" class="article-tag-list-link color1">Flask</a>
+        			<a href="/categories/ElasticSearch//" class="article-tag-list-link color4">ElasticSearch</a>
         		</li>
       		
 		</ul>
@@ -1321,7 +1209,105 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/11/Python/Flask/Jinja2模板引擎/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/05/12/Blog/markdown/ElasticSearch/查询点是否在指定区域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/BigData/ElasticSearch/查询点是否在指定区域" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/12/Blog/markdown/BigData/ElasticSearch/查询点是否在指定区域/">查询点是否在指定区域</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/05/12/Blog/markdown/BigData/ElasticSearch/查询点是否在指定区域/" class="archive-article-date">
+  	<time datetime="2018-05-12T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>curl -XGET ‘<a href="http://172.17.0.6:9200//attractions/_search&#39;" target="_blank" rel="noopener">http://172.17.0.6:9200//attractions/_search&#39;</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>: &#123;</span><br><span class="line">    <span class="attr">"geo_shape"</span>: &#123;</span><br><span class="line">      <span class="attr">"geometry"</span>: &#123;</span><br><span class="line">        <span class="attr">"relation"</span>: <span class="string">"intersects"</span>,</span><br><span class="line">        <span class="attr">"shape"</span>: &#123;</span><br><span class="line">          <span class="attr">"coordinates"</span>: [</span><br><span class="line">            <span class="number">4.893321</span>,</span><br><span class="line">            <span class="number">52.373462</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"point"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>参考文档<br><a href="https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point" target="_blank" rel="noopener">https://stackoverflow.com/questions/25328751/how-to-find-documents-containing-polygons-by-point</a></p>
+</li>
+<li><p>设置mapping 映射,将geometry字段设置成geo_shape 格式。</p>
+</li>
+</ol>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PUT /china</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"mappings"</span>: &#123;</span><br><span class="line">    <span class="string">"town"</span>: &#123;</span><br><span class="line">      <span class="string">"properties"</span>: &#123;</span><br><span class="line">        <span class="string">"geometry"</span>: &#123;</span><br><span class="line">          <span class="string">"type"</span>: <span class="string">"geo_shape"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ElasticSearch//" class="article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/12/Blog/markdown/BigData/ElasticSearch/查询点是否在指定区域/">展开全文 >></a>
         </p>
       
 
@@ -1353,7 +1339,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
