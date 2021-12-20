@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20150306200758594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemJjMTA5MDU0OTgzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D=%5Cfrac%7Bx-%5Cmu%20%7D%7B%5Csigma%20%7D%20%20">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/323808/201603/323808-20160307152838663-1519807797.png">
-<meta property="og:updated_time" content="2018-11-29T06:43:57.000Z">
+<meta property="og:updated_time" content="2021-11-07T11:35:15.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="特征工程">
 <meta name="twitter:description" content="数据归一化1.原因: 多个特征之间的差异较大，收敛速度会很慢。 2.方法:  连续数据归一化   Max-Min  公式 Xmin/Xmax分别对应数据集中最小、最大的数据，X是待归一化数据  0均值标准化(Z-Score)    其中x为某一具体分数，μ为平均数，σ为标准差。    Z值的量代表着原始分数和母体平均值之间的距离，是以标准差为单位计算。在原始分数低于平均值时Z则为负数，反之则为正数">
@@ -369,18 +369,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/10/16/Blog/markdown/Docker/docker 操作/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/29/Blog/markdown/TensorFlow/常用api/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Docker 操作
+          tensorFlow 常用api
         
       </div>
     </a>
   
   
-    <a href="/2018/08/29/Blog/markdown/TensorFlow/常用api/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">tensorFlow 常用api</div>
+    <a href="/2018/08/29/Blog/markdown/TensorFlow/特征分类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">特征分类</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -533,15 +533,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,7 +549,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,11 +557,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sparkCore</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,14 +585,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -597,35 +593,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工作笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Kylin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hdfs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">

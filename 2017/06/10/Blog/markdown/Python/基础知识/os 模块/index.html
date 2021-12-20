@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="coderDong">
 <meta property="og:description" content="os 模块os 模块 包含函数的信息 本地路径 文件进程 环境变量 1.1 获取当前目录路径   os.getcwd()    current working directory   123456&amp;gt;&amp;gt;&amp;gt; import os&amp;gt;&amp;gt;&amp;gt; os.getcwdb() # byte字符返回b&apos;C:\\Users\\zhucaidong_vendor&apos;&amp;gt;&amp;gt;&amp;gt;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-02T11:54:29.000Z">
+<meta property="og:updated_time" content="2021-11-07T11:35:15.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python os 模块">
 <meta name="twitter:description" content="os 模块os 模块 包含函数的信息 本地路径 文件进程 环境变量 1.1 获取当前目录路径   os.getcwd()    current working directory   123456&amp;gt;&amp;gt;&amp;gt; import os&amp;gt;&amp;gt;&amp;gt; os.getcwdb() # byte字符返回b&apos;C:\\Users\\zhucaidong_vendor&apos;&amp;gt;&amp;gt;&amp;gt;">
@@ -212,7 +212,7 @@ var _hmt = _hmt || [];
 <p>1.7 遍历文件树</p>
 <p>os.walk(top, topdown=True, onerror=None, followlinks=False)</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">os</span></span><br><span class="line">from <span class="built_in">os</span>.<span class="built_in">path</span> import join, getsize</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> <span class="built_in">os</span>.walk(<span class="string">'python/Lib/email'</span>):</span><br><span class="line">    <span class="built_in">print</span>(root, <span class="string">"consumes"</span>, <span class="keyword">end</span>=<span class="string">" "</span>)</span><br><span class="line">    <span class="built_in">print</span>(sum(getsize(join(root, name)) <span class="keyword">for</span> name <span class="keyword">in</span> files), <span class="keyword">end</span>=<span class="string">" "</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"bytes in"</span>, <span class="built_in">len</span>(files), <span class="string">"non-directory files"</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'CVS'</span> <span class="keyword">in</span> dirs:</span><br><span class="line">        dirs.<span class="built_in">remove</span>(<span class="string">'CVS'</span>)  # don<span class="string">'t visit CVS directories</span></span><br></pre></td></tr></table></figure>
-<p>1.9 系统信息<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  CPU 个数</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.cpu_count()</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>1.9 系统信息<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  CPU 个数</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.cpu_count()</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
 <p>1.10 检查文件是否存在<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os<span class="selector-class">.path</span><span class="selector-class">.exists</span>(<span class="string">'./pyt.py'</span>)</span><br><span class="line">False</span><br></pre></td></tr></table></figure></p>
 <p>1.11 返回绝对路径<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os<span class="selector-class">.path</span><span class="selector-class">.abspath</span>(<span class="string">'../'</span>)</span><br><span class="line"><span class="string">'C:\\'</span></span><br></pre></td></tr></table></figure></p>
 <p>1.12 返回路径的基础名<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os<span class="selector-class">.path</span><span class="selector-class">.basename</span>(<span class="string">'./pyt.py'</span>)</span><br><span class="line"><span class="string">'pyt.py'</span></span><br></pre></td></tr></table></figure></p>
@@ -508,15 +508,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cdh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,7 +524,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,11 +532,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sparkCore</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,14 +560,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">StruectedStreaming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -572,35 +568,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工作笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Kylin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hdfs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
