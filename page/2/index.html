@@ -166,6 +166,441 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Blog/markdown/个人网站/VueSingal" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <!-- import CSS --> 
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="content">
+            <!-- <el-button @click="visible = true">Button</el-button>
+                <h5 v-show="false">v-show="true"</h5>
+                <el-dialog :visible.sync="visible" title="Hello world">
+                    <p>Try Element</p>
+                </el-dialog> -->
+            <div class="server_tab">
+                <el-card class="box-card" v-for="server in serverList">
+                    <div slot="header" class="clearfix">
+                        <span><img :src="server.flag" width="20" alt="South Africa"></span>
+                        <span></span>
+                        <span style="float: right;">
+
+                        </span>
+                        <el-popover style="float:right" placement="top-start" title="详情数据" width="500" trigger="hover" content="">
+                            <div class="popover-content" v-html="serverDetailInfo"></div>
+                            <i class="el-icon-s-promotion" slot="reference" style="float: right; color: #243f59; vertical-align: center"></i>
+                        </el-popover>
+                        <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
+                    </div>
+                    <div v-for="o in 4" :key="o" class="text item">
+                        列表内容 undefined
+                    </div>
+                </el-card>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                visible: false,
+                serverList: [{ CName: "Korea (Republic of)", flag: "https://flagcdn.com/cn.svg","isp":"Oracle Public Cloud" }, { CName: "China", flag: "https://flagcdn.com/cn.svg" }],
+                serverDetailInfo: "111ss试试"
+            }
+        }
+    })
+</script>
+<style>
+    body {
+        content: " " !important;
+        background: fixed !important;
+        z-index: -1 !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        background-position: top !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-image: url(./bg2.jpg) !important;
+        /* background-image:url("https://gitee.com/darki/img/raw/master/1631081013043.webp");; */
+    }
+
+    .content {
+        width: 90vw;
+        margin: 0 auto;
+        background-color: #fbfbfb26 !important;
+        border-radius: 1rem !important;
+        padding: 1vw;
+        border: 10px;
+    }
+
+    .server_tab {
+        display: inline-block;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+
+    .item {
+        margin-bottom: 18px;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+
+    .clearfix:after {
+        clear: both
+    }
+
+    .box-card {
+        color:#FFFFFF;
+        display: inline-block;
+        width: 22vw;
+        min-width: 400px;
+        border-radius: 0.5rem;
+        margin: 3px;
+        background-color:transparent;
+    }
+</style>
+
+</html>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/22/Blog/markdown/个人网站/VueSingal/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/算法/排序算法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.冒泡排序 </p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+<th>稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冒泡</td>
+<td>O(N^2)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>插入</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>选择</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>快速</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>归并</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sort</span><span class="params">(unsort)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(unsort)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(unsort)):</span><br><span class="line">            <span class="keyword">if</span> unsort[i]&gt; unsort[j]:</span><br><span class="line">                unsort[i],unsort[j]=unsort[j],unsort[i]</span><br><span class="line">    <span class="keyword">return</span> unsort</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/22/Blog/markdown/算法/排序算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/pyspark使用上传本地的Python" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="无法使用虚拟环境，虚拟环境会缺系统包-报错ImportError-No-module-named-‘encodings’"><a href="#无法使用虚拟环境，虚拟环境会缺系统包-报错ImportError-No-module-named-‘encodings’" class="headerlink" title="无法使用虚拟环境，虚拟环境会缺系统包 报错ImportError: No module named ‘encodings’"></a>无法使用虚拟环境，虚拟环境会缺系统包 报错ImportError: No module named ‘encodings’</h5><ol>
+<li><p>打包整个原始安装包</p>
+</li>
+<li><p>打包环境<br>zip -r py_env.zip pyspark_env/</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 压缩文件名 py_env.zip</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 环境文件夹 python3</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cluster提交</span></span><br><span class="line">spark-submit --master yarn --deploy-mode cluster    --archives hdfs://iteach-cdh-01/user/py_env.zip#PY2  --queue root.spark     --name beike_used      --jars /xdfdata/LogSpark/thridLib/mysql-connector-java-8.0.19.jar     --files /xdfdata/PySpark/hive-site.xml   --conf spark.yarn.appMasterEnv.PYSPARK_PYTHON=./PY2/python3/bin/python3 --conf spark.yarn.appMasterEnv.PYSPARK_DRIVER_PYTHON=./PY2/python3/bin/python3  --conf "spark.executor.extraClassPath=/opt/cloudera/parcels/CDH-6.0.1-1.cdh6.0.1.p0.590678/lib/hive/lib/*"     --num-executors 10     --driver-memory 4G     --executor-cores 8     --executor-memory 6G     --py-files /xdfdata/iteach-bigdata-prism/dblib.zip /xdfdata/iteach-bigdata-prism/beike_used.py</span><br></pre></td></tr></table></figure>
+<h3 id="主要指定-driver和executor-Python版本"><a href="#主要指定-driver和executor-Python版本" class="headerlink" title="主要指定 driver和executor Python版本"></a>主要指定 driver和executor Python版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--archives hdfs:///user/root/py_env.zip#PY2 </span><br><span class="line">--conf spark.yarn.appMasterEnv.PYSPARK_PYTHON=./PY2/py_env/bin/python</span><br><span class="line">--conf spark.yarn.appMasterEnv.PYSPARK_DRIVER_PYTHON=./PY2/py_env/bin/python</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/pyspark使用上传本地的Python/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/名词概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><h3 id="RDD-弹性分布式数据集"><a href="#RDD-弹性分布式数据集" class="headerlink" title="RDD 弹性分布式数据集"></a>RDD 弹性分布式数据集</h3></li>
+<li><h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3></li>
+<li><h3 id="广播变量"><a href="#广播变量" class="headerlink" title="广播变量"></a>广播变量</h3></li>
+</ol>
+<ol start="4">
+<li></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/名词概念/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/Spark调优/1、性能调优" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="必要性"><a href="#必要性" class="headerlink" title="必要性"></a>必要性</h3><h5 id="开发案例1：数据抽取"><a href="#开发案例1：数据抽取" class="headerlink" title="开发案例1：数据抽取"></a>开发案例1：数据抽取</h5><p>分布式环境中，使用函数式编程范式代替过程式，可有效提高效率。</p>
+<h5 id="开发案例2：数据过滤和数据聚合"><a href="#开发案例2：数据过滤和数据聚合" class="headerlink" title="开发案例2：数据过滤和数据聚合"></a>开发案例2：数据过滤和数据聚合</h5><ul>
+<li>避免计算过程中使用collect 、first 、take 操作，将分布式数据集拉取到Driver端。</li>
+<li>避免多次扫描事实表。</li>
+<li>可以使用不等式关联，不等式实现方式是Nested Loop Join ,这种Join性能在Join中最差。</li>
+</ul>
+<h3 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h3><ul>
+<li>性能调优不是一锤子买卖，补齐一个短板，其他板子可能会成为新的短板。因此，它是一个动态、持续不断的过程。</li>
+<li>性能调优的手段和方法是否高效，取决于它针对的是木桶的长板还是瓶颈。针对瓶颈，事半功倍；针对长板，事倍功半。</li>
+<li>性能调优的方法和技巧，没有一定之规，也不是一成不变，随着木桶短板的此消彼长需要相应的动态切换。</li>
+<li>性能调优的过程收敛于一种所有木板齐平、没有瓶颈的状态。</li>
+</ul>
+<h5 id="定位性能瓶颈途径："><a href="#定位性能瓶颈途径：" class="headerlink" title="定位性能瓶颈途径："></a>定位性能瓶颈途径：</h5><p><strong>一是先验的专家经验，二是后验的运行时诊断。</strong></p>
+<p>   所谓专家经验是指在代码开发阶段、或是在代码Review阶段，凭借过往的实战经验就能够大致判断哪里可能是性能瓶颈。显然，这样的专家并不好找，一名开发者要经过大量的积累才能成为专家，如果你身边有这样的人，一定不要放过他！</p>
+<p>但你也可能会说：“我身边要是有这样的专家，就不用来订阅这个专栏了。”没关系，咱们还有第二种途径：运行时诊断。<br>运行时诊断的手段和方法应该说应有尽有、不一而足。比如：对于任务的执行情况，Spark UI提供了丰富的可视化面板，来展示DAG、Stages划分、执行计划、Executor负载均衡情况、GC时间、内存缓存消耗等等详尽的运行时状态数据；对于硬件资源消耗，开发者可以利用Ganglia或者系统级监控工具，如top、vmstat、iostat、iftop等等来实时监测硬件的资源利用率；特别地，针对GC开销，开发者可以将GC log导入到JVM可视化工具，从而一览任务执行过程中GC的频率和幅度。<br>对于这两种定位性能瓶颈的途径来说，专家就好比是老中医，经验丰富、火眼金睛，往往通过望、闻、问、切就能一眼定位到瓶颈所在；而运行时诊断更像是西医中的各种检测仪器和设备，如听诊器、X光、CT扫描仪，需要通过量化的指标才能迅速定位问题。二者并无优劣之分，反而是结合起来的效率更高。就像一名医术高超、经验丰富的大夫，手里拿着你的血液化验和B超结果，对于病灶的判定自然更有把握。</p>
+<p><strong>从硬件资源消耗的角度切入，往往是个不错的选择</strong></p>
+<p><strong>就性能瓶颈定位来说，除了从硬件资源的视角出发，我们还需要关注典型场景。</strong></p>
+<h5 id="方法手段"><a href="#方法手段" class="headerlink" title="方法手段"></a>方法手段</h5><p><strong>以从应用代码和Spark配置项</strong></p>
+<p>开发阶段都有哪些常规操作、常见误区，从而尽量避免在代码中留下性能隐患</p>
+<p>Spark官网上罗列了近百个配置项，看得人眼花缭乱，但并不是所有的配置项都和性能调优息息相关，因此我们需要对它们进行甄别、归类。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>性能调优的本质告诉我们：性能调优是一个动态、持续不断的过程，在这个过程中，调优的手段需要随着瓶颈的此消彼长而相应地切换。那么问题来了，性能调优到底什么时候是个头儿呢？就算是持续不断地，也总得有个收敛条件吧？总不能一直这么无限循环下去。<br><strong>性能调优的最终目的，是在所有参与计算的硬件资源之间寻求协同与平衡，让硬件资源达到一种平衡、无瓶颈的状态。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/1、性能调优/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Blog/markdown/Spark/Spark调优/OOM内存溢出" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -247,6 +682,257 @@ java.lang.OutOfMemoryError: Java heap space at java.lang.reflect.Array.newInstan
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/OOM内存溢出/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/Spark调优/2、调优原理" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h3 id="理解RDD-弹性分布式数据集"><a href="#理解RDD-弹性分布式数据集" class="headerlink" title="理解RDD 弹性分布式数据集"></a>理解RDD 弹性分布式数据集</h3><pre><code>首先，RDD作为Spark对于分布式数据模型的抽象，是构建Spark分布式内存计算引擎的基石。很多Spark核心概念与核心组件，如DAG和调度系统都衍生自RDD。因此，深入理解RDD有利于你更全面、系统地学习Spark的工作原理。
+
+其次，尽管RDD API使用频率越来越低，绝大多数人也都已经习惯于DataFrame和Dataset API，但是，无论采用哪种API或是哪种开发语言，你的应用在Spark内部最终都会转化为RDD之上的分布式计算。换句话说，如果你想要在运行时判断应用的性能瓶颈，前提是你要对RDD足够了解。
+</code></pre><p><strong>像这种数据分片划分规则，对应的就是RDD中的partitioner属性。</strong></p>
+<p>分别是partitions、partitioner、dependencies和compute属性。正因为有了这4大属性的存在，让RDD具有分布式和容错性这两大最突出的特性。要想深入理解RDD，我们不妨从它的核心特性和属性入手。<br>首先，我们来看partitions、partitioner属性。</p>
+<p><img src="https://static001.geekbang.org/resource/image/fb/91/fba28ce0c70b4c5553505911663aa491.jpg?wh=5496*1251" alt="img"></p>
+<p>RDD的4大属性又可以划分为两类，横向属性和纵向属性。其中，横向属性锚定数据分片实体，并规定了数据分片在分布式集群中如何分布；纵向属性用于在纵深方向构建DAG，通过提供重构RDD的容错能力保障内存计算的稳定性。</p>
+<p><img src="https://static001.geekbang.org/resource/image/ca/1e/ca6ef660c2b7f3777e244a535020191e.jpeg?wh=1920*875" alt="img"></p>
+<ul>
+<li>Spark 很多核心概念都衍生自 RDD，弄懂 RDD，有利于你全面地学习 Spark；</li>
+<li>牢记 RDD 的关键特性和核心属性，有利于你在运行时更好地定位性能瓶颈，而瓶颈定位，恰恰是性能调优的前提；</li>
+<li>深入理解 RDD 有利于你跳出单机思维模式，避免在应用代码中留下性能隐患。</li>
+</ul>
+<ol>
+<li>横向属性 partitions 和 partitioner 锚定数据分片实体，并且规定了数据分片在分布式集群中如何分布；</li>
+<li>纵向属性 dependencies 和 compute 用于在纵深方向构建 DAG，通过提供重构 RDD 的容错能力保障内存计算的稳定性。</li>
+</ol>
+<h3 id="内存计算"><a href="#内存计算" class="headerlink" title="内存计算"></a>内存计算</h3><h5 id="第一层含义：分布式数据缓存"><a href="#第一层含义：分布式数据缓存" class="headerlink" title="第一层含义：分布式数据缓存"></a><strong>第一层含义：分布式数据缓存</strong></h5><p>一提起 Spark 的“内存计算”的含义，你的第一反应很可能是：Spark 允许开发者将分布式数据集缓存到计算节点的内存中，从而对其进行高效的数据访问。没错，这就是内存计算的第一层含义：众所周知的分布式数据缓存。</p>
+<p><strong>在 Spark 中，内存计算有两层含义：第一层含义就是众所周知的分布式数据缓存，第二层含义是 Stage 内的流水线式计算模式</strong></p>
+<h5 id="第二层含义：Stage-内的流水线式计算模式"><a href="#第二层含义：Stage-内的流水线式计算模式" class="headerlink" title="第二层含义：Stage 内的流水线式计算模式"></a><strong>第二层含义：Stage 内的流水线式计算模式</strong></h5><h5 id="什么是-DAG？"><a href="#什么是-DAG？" class="headerlink" title="什么是 DAG？"></a>什么是 DAG？</h5><p>DAG 全称 Direct Acyclic Graph，中文叫有向无环图。顾名思义，DAG 是一种“图”。我们知道，任何一种图都包含两种基本元素：顶点（Vertex）和边（Edge），顶点通常用于表示实体，而边则代表实体间的关系。在 Spark 的 DAG 中，顶点是一个个 RDD，边则是 RDD 之间通过 dependencies 属性构成的父子关系</p>
+<p>那 DAG 是怎么生成的呢？</p>
+<p>在 Spark 的开发模型下，应用开发实际上就是灵活运用算子实现业务逻辑的过程。开发者在分布式数据集如 RDD、 DataFrame 或 Dataset 之上调用算子、封装计算逻辑，这个过程会衍生新的子 RDD。与此同时，子 RDD 会把 dependencies 属性赋值到父 RDD，把 compute 属性赋值到算子封装的计算逻辑。以此类推，在子 RDD 之上，开发者还会继续调用其他算子，衍生出新的 RDD，如此往复便有了 DAG</p>
+<p><strong>从开发者的视角出发，DAG 的构建是通过在分布式数据集上不停地调用算子来完成的。</strong></p>
+<h5 id="Stages-的划分"><a href="#Stages-的划分" class="headerlink" title="Stages 的划分"></a>Stages 的划分</h5><p>从开发者构建 DAG，到 DAG 转化的分布式任务在分布式环境中执行，其间会经历如下 4 个阶段：</p>
+<pre><code>- 回溯 DAG 并划分 Stages
+- 在 Stages 中创建分布式任务
+- 分布式任务的分发
+- 分布式任务的执行
+</code></pre><p><strong>以 Actions 算子为起点，从后向前回溯 DAG，以 Shuffle 操作为边界去划分 Stages。</strong></p>
+<h5 id="Stage-中的内存计算"><a href="#Stage-中的内存计算" class="headerlink" title="Stage 中的内存计算"></a>Stage 中的内存计算</h5><p>基于内存的计算模型并不是凭空产生的，而是根据前人的教训和后人的反思精心设计出来的。这个前人就是 Hadoop MapReduce，后人自然就是 Spark。</p>
+<p><img src="https://static001.geekbang.org/resource/image/fb/d7/fbb396536260f43c8764a8e6452a4fd7.jpg" alt="img"></p>
+<p>MapReduce 提供两类计算抽象，分别是 Map 和 Reduce：Map 抽象允许开发者通过实现 map 接口来定义数据处理逻辑；Reduce 抽象则用于封装数据聚合逻辑。MapReduce 计算模型最大的问题在于，所有操作之间的数据交换都以磁盘为媒介。例如，两个 Map 操作之间的计算，以及 Map 与 Reduce 操作之间的计算都是利用本地磁盘来交换数据的。不难想象，这种频繁的磁盘 I/O 必定会拖累用户应用端到端的执行性能。</p>
+<p><strong>流水线计算模式指的是：在同一 Stage 内部，所有算子融合为一个函数，Stage 的输出结果由这个函数一次性作用在输入数据集而产生。</strong></p>
+<p><strong>因此你看，所谓内存计算，不仅仅是指数据可以缓存在内存中，更重要的是让我们明白了，通过计算的融合来大幅提升数据在内存中的转换效率，进而从整体上提升应用的执行性能。</strong></p>
+<h4 id="数据不动代码动"><a href="#数据不动代码动" class="headerlink" title="数据不动代码动"></a>数据不动代码动</h4><p>模型特征按照是否连续可以分为两类：连续性数值特征和离散型特征，离散型特征往往以字符串的形式存在</p>
+<p>Spark 调度系统的工作流程包含如下 5 个步骤：</p>
+<ol>
+<li><p>将 DAG 拆分为不同的运行阶段 Stages；</p>
+</li>
+<li><p>创建分布式任务 Tasks 和任务组 TaskSet；</p>
+</li>
+<li>获取集群内可用的硬件资源情况；</li>
+<li>按照调度规则决定优先调度哪些任务 / 组；</li>
+<li>依序将分布式任务分发到执行器 Executor。</li>
+</ol>
+<h5 id="调度系统中的核心组件有哪些？"><a href="#调度系统中的核心组件有哪些？" class="headerlink" title="调度系统中的核心组件有哪些？"></a>调度系统中的核心组件有哪些？</h5><p>Spark 调度系统包含 3 个核心组件，分别是 DAGScheduler、TaskScheduler 和 SchedulerBackend。这 3 个组件都运行在 Driver 进程中，它们通力合作将用户构建的 DAG 转化为分布式任务，再把这些任务分发给集群中的 Executors 去执行。不过，它们的名字都包含 Scheduler，光看名字还真是丈二和尚摸不着头脑，所以我把它们和调度系统流程中 5 个步骤的对应关系总结在了下表中，你可以看一看。</p>
+<p><img src="https://static001.geekbang.org/resource/image/46/52/46bb66fed5d52b09407d66881cf0df52.jpeg" alt="img"></p>
+<h6 id="1-DAGScheduler"><a href="#1-DAGScheduler" class="headerlink" title="1. DAGScheduler"></a>1. DAGScheduler</h6><p>DAGScheduler 的主要职责有二：一是把用户 DAG 拆分为 Stages，如果你不记得这个过程可以回顾一下上一讲的内容；二是在 Stage 内创建计算任务 Tasks，这些任务囊括了用户通过组合不同算子实现的数据转换逻辑。然后，执行器 Executors 接收到 Tasks，会将其中封装的计算函数应用于分布式数据分片，去执行分布式的计算过程。</p>
+<p>不过，如果我们给集群中处于繁忙或者是饱和状态的 Executors 分发了任务，执行效果会大打折扣。因此，在分发任务之前，调度系统得先判断哪些节点的计算资源空闲，然后再把任务分发过去。那么，调度系统是怎么判断节点是否空闲的呢？</p>
+<h6 id="2-SchedulerBackend"><a href="#2-SchedulerBackend" class="headerlink" title="2. SchedulerBackend"></a>2. SchedulerBackend</h6><p>SchedulerBackend 就是用来干这个事的，它是对于资源调度器的封装与抽象，为了支持多样的资源调度模式如 Standalone、YARN 和 Mesos，SchedulerBackend 提供了对应的实现类。在运行时，Spark 根据用户提供的 MasterURL，来决定实例化哪种实现类的对象。MasterURL 就是你通过各种方式指定的资源管理器，如 –master spark://ip:host（Standalone 模式）、–master yarn（YARN 模式）。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/2、调优原理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/Spark调优/使用广播变量" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<p><strong>Spark SQL中使用广播变量</strong></p>
+<h3 id="强制广播项配置"><a href="#强制广播项配置" class="headerlink" title="强制广播项配置"></a>强制广播项配置</h3><p>spark.sql.autoBroadcastJoinThreshold 这个配置项。它的设置值是存储大小，默认是 10MB。它的含义是，对于参与 Join 的两张表来说，任意一张表的尺寸小于 10MB，Spark 就在运行时采用 Broadcast Joins 的实现方式去做数据关联。</p>
+<p><img src="https://static001.geekbang.org/resource/image/69/89/697cccb272fc8863f40bb7c465f53c89.jpeg" alt="img" style="zoom: 33%;"></p>
+<p>使用广播阈值配置项让 Spark 优先选择 Broadcast Joins 的关键，就是要确保至少有一张表的存储尺寸小于广播阈值。</p>
+<p>其实指的是数据表在磁盘上的存储大小，比如用ls或是du -sh等系统命令查看文件得到的结果。要知道，同一份数据在内存中的存储大小往往会比磁盘中的存储大小膨胀数倍，甚至十数倍。这主要有两方面原因。</p>
+<p>一方面，为了提升存储和访问效率，开发者一般采用 Parquet 或是 ORC 等压缩格式把数据落盘。这些高压缩比的磁盘数据展开到内存之后，数据量往往会翻上数倍。</p>
+<p>另一方面，受限于对象管理机制，在堆内内存中，JVM 往往需要比数据原始尺寸更大的内存空间来存储对象。</p>
+<p><strong>有什么办法能准确地预估一张表在内存中的存储大小呢？</strong></p>
+<p>首先，我们要避开一个坑。我发现，有很多资料推荐用 Spark 内置的 SizeEstimator 去预估分布式数据集的存储大小。结合多次实战和踩坑经验，咱们必须要指出，SizeEstimator 的估算结果不准确。因此，你可以直接跳过这种方法，这也能节省你调优的时间和精力。我认为比较靠谱的办法是：第一步，把要预估大小的数据表缓存到内存，比如直接在 DataFrame 或是 Dataset 上调用 cache 方法；</p>
+<p>第二步，读取 Spark SQL 执行计划的统计数据。这是因为，Spark SQL 在运行时，就是靠这些统计数据来制定和调整执行策略的。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> df: <span class="type">DataFrame</span> = _</span><br><span class="line">df.cache.count</span><br><span class="line"><span class="keyword">val</span> plan = df.queryExecution.logical</span><br><span class="line"><span class="keyword">val</span> estimated: <span class="type">BigInt</span> = spark</span><br><span class="line">.sessionState</span><br><span class="line">.executePlan(plan)</span><br><span class="line">.optimizedPlan</span><br><span class="line">.stats</span><br><span class="line">.sizeInBytes</span><br></pre></td></tr></table></figure>
+<h3 id="利用-API-强制广播"><a href="#利用-API-强制广播" class="headerlink" title="利用 API 强制广播"></a>利用 API 强制广播</h3><p>开发者可以通过 Join Hints 或是 SQL functions 中的 broadcast 函数，来强制 Spark SQL 在运行时采用 Broadcast Joins 的方式做数据关联。下面我就来分别讲一讲它们的含义和作用，以及该如何使用。必须要说明的是，这两种方式是等价的，并无优劣之分，只不过有了多样化的选择之后，你就可以根据自己的偏好和习惯来灵活地进行开发。</p>
+<h4 id="用-Join-Hints-强制广播"><a href="#用-Join-Hints-强制广播" class="headerlink" title="用 Join Hints 强制广播"></a>用 Join Hints 强制广播</h4><p>Join Hints 中的 Hints 表示“提示”，它指的是在开发过程中使用特殊的语法，明确告知 Spark SQL 在运行时采用哪种 Join 策略。一旦你启用了 Join Hints，不管你的数据表是不是满足广播阈值，Spark SQL 都会尽可能地尊重你的意愿和选择，使用 Broadcast Joins 去完成数据关联。我们来举个例子，假设有两张表，一张表的内存大小在 100GB 量级，另一张小一些，2GB 左右。在广播阈值被设置为 2GB 的情况下，并没有触发 Broadcast Joins，但我们又不想花费时间和精力去精确计算小表的内存占用到底是多大。在这种情况下，我们就可以用 Join Hints 来帮我们做优化，仅仅几句提示就可以帮我们达到目的。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> table1: <span class="type">DataFrame</span> = spark.read.parquet(path1)</span><br><span class="line"><span class="keyword">val</span> table2: <span class="type">DataFrame</span> = spark.read.parquet(path2)</span><br><span class="line">table1.createOrReplaceTempView(<span class="string">"t1"</span>)</span><br><span class="line">table2.createOrReplaceTempView(<span class="string">"t2"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> query: <span class="type">String</span> = “select <span class="comment">/*+ broadcast(t2) */</span> * from t1 inner join t2 on t1.key = t2.key”</span><br><span class="line"><span class="keyword">val</span> queryResutls: <span class="type">DataFrame</span> = spark.sql(query)</span><br></pre></td></tr></table></figure>
+<p>你看，在上面的代码示例中，只要在 SQL 结构化查询语句里面加上一句/<em>+ broadcast(t2) </em>/提示，我们就可以强制 Spark SQL 对小表 t2 进行广播，在运行时选择 Broadcast Joins 的实现方式。提示语句中的关键字，除了使用 broadcast 外，我们还可以用 broadcastjoin 或者 mapjoin，它们实现的效果都一样。</p>
+<p>如果你不喜欢用 SQL 结构化查询语句，尤其不想频繁地在 Spark SQL 上下文中注册数据表，你也可以在 DataFrame 的 DSL 语法中使用 Join Hints。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">table1.join(table2.hint(“broadcast”), <span class="type">Seq</span>(“key”), “inner”)</span><br></pre></td></tr></table></figure>
+<p>在上面的 DSL 语句中，我们只要在 table2 上调用 hint 方法，然后指定 broadcast 关键字，就可以同样达到强制广播表 2 的效果。总之，Join Hints 让开发者可以灵活地选择运行时的 Join 策略，对于熟悉业务、了解数据的同学来说，Join Hints 允许开发者把专家经验凌驾于 Spark SQL 的优化引擎之上，更好地服务业务。不过，Join Hints 也有个小缺陷。如果关键字拼写错误，Spark SQL 在运行时并不会显示地抛出异常，而是默默地忽略掉拼写错误的 hints，假装它压根不存在。因此，在使用 Join Hints 的时候，需要我们在编译时自行确认 Debug 和纠错。</p>
+<h4 id="用-broadcast-函数强制广播"><a href="#用-broadcast-函数强制广播" class="headerlink" title="用 broadcast 函数强制广播"></a>用 broadcast 函数强制广播</h4><p>如果你不想等到运行时才发现问题，想让编译器帮你检查类似的拼写错误，那么你可以使用强制广播的第二种方式：broadcast 函数。这个函数是类库 org.apache.spark.sql.functions 中的 broadcast 函数。调用方式非常简单，比 Join Hints 还要方便，只需要用 broadcast 函数封装需要广播的数据表即可，如下所示。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line">table1.join(broadcast(table2), <span class="type">Seq</span>(“key”), “inner”)</span><br></pre></td></tr></table></figure>
+<p>以广播阈值配置为主，以强制广播为辅，</p>
+<p>广播阈值的设置，更多的是把选择权交给 Spark SQL，尤其是在 AQE 的机制下，动态 Join 策略调整需要这样的设置在运行时做出选择。强制广播更多的是开发者以专家经验去指导 Spark SQL 该如何选择运行时策略。二者相辅相成，并不冲突，开发者灵活地运用就能平衡 Spark SQL 优化策略与专家经验在应用中的比例。</p>
+<h4 id="广播变量不是万能"><a href="#广播变量不是万能" class="headerlink" title="广播变量不是万能"></a>广播变量不是万能</h4><p>首先，从性能上来讲，Driver 在创建广播变量的过程中，需要拉取分布式数据集所有的数据分片。在这个过程中，网络开销和 Driver 内存会成为性能隐患。广播变量尺寸越大，额外引入的性能开销就会越多。更何况，如果广播变量大小超过 8GB，Spark 会直接抛异常中断任务执行。</p>
+<p>其次，从功能上来讲，并不是所有的 Joins 类型都可以转换为 Broadcast Joins。一来，Broadcast Joins 不支持全连接（Full Outer Joins）；二来，在所有的数据关联中，我们不能广播基表。或者说，即便开发者强制广播基表，也无济于事。比如说，在左连接（Left Outer Join）中，我们只能广播右表；在右连接（Right Outer Join）中，我们只能广播左表。在下面的代码中，即便我们强制用 broadcast 函数进行广播，Spark SQL 在运行时还是会选择 Shuffle Joins。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line">broadcast (table1).join(table2, <span class="type">Seq</span>(“key”), “left”)</span><br><span class="line">table1.join(broadcast(table2), <span class="type">Seq</span>(“key”), “right”)</span><br></pre></td></tr></table></figure>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这一讲，我们总结了 2 种方法，让 Spark SQL 在运行时能够选择 Broadcast Joins 策略，分别是设置配置项和用 API 强制广播。</p>
+<p>首先，设置配置项主要是设置 autoBroadcastJoinThreshold 配置项。开发者通过这个配置项指示 Spark SQL 优化器。只要参与 Join 的两张表中，有一张表的尺寸小于这个参数值，就在运行时采用 Broadcast Joins 的实现方式。为了让 Spark SQL 采用 Broadcast Joins，开发者要做的，就是让数据表在内存中的尺寸小于 autoBroadcastJoinThreshold 参数的设定值。除此之外，在设置广播阈值的时候，因为磁盘数据展开到内存的时候，存储大小会成倍增加，往往导致 Spark SQL 无法采用 Broadcast Joins 的策略。因此，我们在做数据关联的时候，还要先预估一张表在内存中的存储大小。一种精确的预估方法是先把 DataFrame 缓存，然后读取执行计划的统计数据。其次，用 API 强制广播有两种方法，分别是设置 Join Hints 和用 broadcast 函数。设置 Join Hints 的方法就是在 SQL 结构化查询语句里面加上一句“/<em>+ broadcast(某表) </em>/”的提示就可以了，这里的 broadcast 关键字也可以换成 broadcastjoin 或者 mapjoin。另外，你也可以在 DataFrame 的 DSL 语法中使用调用 hint 方法，指定 broadcast 关键字，来达到同样的效果。设置 broadcast 函数的方法非常简单，只要用 broadcast 函数封装需要广播的数据表就可以了。总的来说，不管是设置配置项还是用 API 强制广播都有各自的优缺点，所以，以广播阈值配置为主、强制广播为辅，往往是一个不错的选择。最后，不过，我们也要注意，广播变量不是银弹，它并不能解决所有的数据关联问题，所以在日常的开发工作中，你要注意避免滥用广播。</p>
+<h3 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h3><p>DataFrame 可以用 sparkContext.broadcast 函数来广播吗？它和 org.apache.spark.sql.functions.broadcast 函数之间的区别是什么？</p>
+<p>sql 的broadcast返回值是一个Dataset[T]，而sparkContext.broadcast的返回值是一个Broadcast[T] 类型值，需要调用value方法，才能返回被广播出去的变量,所以二者在使用的使用的体现形式上，sparkContext.broadcast 需要你调用一次value 方法才能和其他DF 进行join,下面提供一个demo 进行说明</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = sparksession.range(<span class="number">100</span>).toDF(<span class="string">"userID"</span>)</span><br><span class="line">  <span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = sparksession.range(<span class="number">10</span>, <span class="number">20</span>).toDF(<span class="string">"userID"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> bcUserDF = broadcast(userDF)</span><br><span class="line">  <span class="keyword">val</span> bcUserDF2 = sparkContext.broadcast(userDF)</span><br><span class="line">  <span class="keyword">val</span> dataFrame = transactionsDF.join(bcUserDF, <span class="type">Seq</span>(<span class="string">"userID"</span>), <span class="string">"inner"</span>)</span><br><span class="line">  dataFrame.show()</span><br><span class="line">  <span class="keyword">val</span> dataFrame2 = transactionsDF.join(bcUserDF2.value, <span class="type">Seq</span>(<span class="string">"userID"</span>), <span class="string">"inner"</span>)</span><br><span class="line">  dataFrame2.show()</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/使用广播变量/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/Spark调优/广播变量" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目录</p>
+<p>[TOC]</p>
+<h3 id="大表join小表的情景"><a href="#大表join小表的情景" class="headerlink" title="大表join小表的情景"></a>大表join小表的情景</h3><p>join操作需要Shuffle，属于宽依赖。面对shuffle操作要尽量避免和延后操作。<br>在数据关联场景中，可以使用广播变量代替shuffle操作。<br>使用scala、python变量进行数据结构的分发和存储受制于并行度，以Task为粒度分发，因此频率过高，消耗大量网络和内存资源。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; dict.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
+<p><img src="https://static001.geekbang.org/resource/image/ba/39/ba45d47a910ccb92861b1fd153b36839.jpg" alt="img" style="zoom: 25%;"></p>
+<p><strong>广播变量:</strong>是一种分发机制，它一次性封装目标数据结构，以Executors为粒度去做数据分发。集群中Executors数量远小于Task数</p>
+<p>在广播变量的运行机制下，封装成广播变量的数据，由Driver端以Executors为粒度分发，每一个Executors接收到广播变量后，将其交给BlockManager管理。</p>
+<p><img src="https://static001.geekbang.org/resource/image/2c/f7/2cfe084a106a01bf14a63466fa2146f7.jpg" alt="img" style="zoom:25%;"></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 广播变量封装的是Driver端创建的普通变量,由于数据源就在 Driver 端，因此，只需要 Driver 把数据分发到各个 Executors，再让 Executors 把数据缓存到 BlockManager 就好了。</span></span><br><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> bc = spark.sparkContext.broadcast(dict)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; bc.value.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
+<p><strong>广播分布式数据集</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分布式数据集的数据源不在 Driver 端，而是来自所有的 Executors。Executors 中的每个分布式任务负责生产全量数据集的一部分，也就是图中不同的数据分区。因此，步骤 1 就是 Driver 从所有的 Executors 拉取这些数据分区，然后在本地构建全量数据。步骤 2 与从普通变量创建广播变量的过程类似。 Driver 把汇总好的全量数据分发给各个 Executors，Executors 将接收到的全量数据缓存到存储系统的 BlockManager 中。</span></span><br><span class="line"><span class="keyword">val</span> userFile: <span class="type">String</span> = “hdfs:<span class="comment">//ip:port/rootDir/userData”</span></span><br><span class="line"><span class="keyword">val</span> df: <span class="type">DataFrame</span> = spark.read.parquet(userFile)</span><br><span class="line"><span class="keyword">val</span> bc_df: <span class="type">Broadcast</span>[<span class="type">DataFrame</span>] = spark.sparkContext.broadcast(df)</span><br></pre></td></tr></table></figure>
+<p><img src="https://static001.geekbang.org/resource/image/8a/6c/8ac91a174803b97966289ff51938106c.jpg" alt="img" style="zoom:25%;"></p>
+<h4 id="Shuffle-Join"><a href="#Shuffle-Join" class="headerlink" title="Shuffle Join"></a>Shuffle Join</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = _</span><br><span class="line">transactionsDF.join(userDF, <span class="type">Seq</span>(“userID”), “inner”)</span><br></pre></td></tr></table></figure>
+<p>第一步就是对参与关联的左右表分别进行 Shuffle，Shuffle 的分区规则是先对 Join keys 计算哈希值，再把哈希值对分区数取模。由于左右表的分区数是一致的，因此 Shuffle 过后，一定能够保证 userID 相同的交易记录和用户数据坐落在同一个 Executors 内。Shuffle Join中左右表的数据分发</p>
+<p><img src="https://static001.geekbang.org/resource/image/b1/28/b1b2a574eb7ef33e2315f547ecdc0328.jpg" alt="img"></p>
+<p>Shuffle 完成之后，第二步就是在同一个 Executors 内，Reduce task 就可以对 userID 一致的记录进行关联操作。但是，由于交易表是事实表，数据体量异常庞大，对 TB 级别的数据进行 Shuffle，想想都觉得可怕！因此，上面对两个 DataFrame 直接关联的代码，还有很大的调优空间。我们该怎么做呢？话句话说，对于分布式环境中的数据关联来说，要想确保交易记录和与之对应的用户信息在同一个 Executors 中，我们有没有其他办法呢？</p>
+<h4 id="克制-Shuffle-的方式"><a href="#克制-Shuffle-的方式" class="headerlink" title="克制 Shuffle 的方式"></a>克制 Shuffle 的方式</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line"><span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> bcUserDF = broadcast(userDF)</span><br><span class="line">transactionsDF.join(bcUserDF, <span class="type">Seq</span>(“userID”), “inner”)</span><br></pre></td></tr></table></figure>
+<p>Driver 从所有 Executors 收集 userDF 所属的所有数据分片，在本地汇总用户数据，然后给每一个 Executors 都发送一份全量数据的拷贝。既然每个 Executors 都有 userDF 的全量数据，这个时候，交易表的数据分区待在原地、保持不动，就可以轻松地关联到一致的用户数据。如此一来，我们不需要对数据体量巨大的交易表进行 Shuffle，同样可以在分布式环境中，完成两张表的数据关联。</p>
+<p><img src="https://static001.geekbang.org/resource/image/b3/2a/b3c5ab392c2303bf7923488623b4022a.jpg" alt="img"></p>
+<p>利用广播变量，我们成功地避免了海量数据在集群内的存储、分发，节省了原本由 Shuffle 引入的磁盘和网络开销，大幅提升运行时执行性能。当然，采用广播变量优化也是有成本的，毕竟广播变量的创建和分发，也是会带来网络开销的。但是，相比大表的全网分发，小表的网络开销几乎可以忽略不计。这种小投入、大产出，用极小的成本去博取高额的性能收益，真可以说是“四两拨千斤”！</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>在数据关联场景中，广播变量是克制 Shuffle 的杀手锏。掌握了它，我们就能以极小的成本，获得高额的性能收益。关键是我们要掌握两种创建广播变量的方式。</p>
+<p>第一种，从普通变量创建广播变量。在广播变量的运行机制下，普通变量存储的数据封装成广播变量，由 Driver 端以 Executors 为粒度进行分发，每一个 Executors 接收到广播变量之后，将其交由 BlockManager 管理。</p>
+<p>第二种，从分布式数据集创建广播变量，这就要比第一种方式复杂一些了。第一步，Driver 需要从所有的 Executors 拉取数据分片，然后在本地构建全量数据；第二步，Driver 把汇总好的全量数据分发给各个 Executors，Executors 再将接收到的全量数据缓存到存储系统的 BlockManager 中。</p>
+<p>结合这两种方式，我们在做数据关联的时候，把 Shuffle Joins 转换为 Broadcast Joins，就可以用小表广播来代替大表的全网分发，真正做到克制 Shuffle。</p>
+<h3 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h3><p>Spark 广播机制现有的实现方式是存在隐患的，在数据量较大的情况下，Driver 可能会成为瓶颈，你能想到更好的方式来重新实现 Spark 的广播机制吗？</p>
+<ol>
+<li>改成由driver获取到数据分布，然后通知各个executor之间进行拉取，这样可以利用多个executor网络，避免只有driver组装以后再一个一个发送效率过低</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/广播变量/">展开全文 >></a>
         </p>
       
 
@@ -382,550 +1068,9 @@ java.lang.OutOfMemoryError: Java heap space at java.lang.reflect.Array.newInstan
 
 
   
-    <article id="post-Blog/markdown/Spark/Spark调优/广播变量" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>目录</p>
-<p>[TOC]</p>
-<h3 id="大表join小表的情景"><a href="#大表join小表的情景" class="headerlink" title="大表join小表的情景"></a>大表join小表的情景</h3><p>join操作需要Shuffle，属于宽依赖。面对shuffle操作要尽量避免和延后操作。<br>在数据关联场景中，可以使用广播变量代替shuffle操作。<br>使用scala、python变量进行数据结构的分发和存储受制于并行度，以Task为粒度分发，因此频率过高，消耗大量网络和内存资源。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; dict.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
-<p><img src="https://static001.geekbang.org/resource/image/ba/39/ba45d47a910ccb92861b1fd153b36839.jpg" alt="img" style="zoom: 25%;"></p>
-<p><strong>广播变量:</strong>是一种分发机制，它一次性封装目标数据结构，以Executors为粒度去做数据分发。集群中Executors数量远小于Task数</p>
-<p>在广播变量的运行机制下，封装成广播变量的数据，由Driver端以Executors为粒度分发，每一个Executors接收到广播变量后，将其交给BlockManager管理。</p>
-<p><img src="https://static001.geekbang.org/resource/image/2c/f7/2cfe084a106a01bf14a63466fa2146f7.jpg" alt="img" style="zoom:25%;"></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 广播变量封装的是Driver端创建的普通变量,由于数据源就在 Driver 端，因此，只需要 Driver 把数据分发到各个 Executors，再让 Executors 把数据缓存到 BlockManager 就好了。</span></span><br><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> bc = spark.sparkContext.broadcast(dict)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; bc.value.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
-<p><strong>广播分布式数据集</strong></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分布式数据集的数据源不在 Driver 端，而是来自所有的 Executors。Executors 中的每个分布式任务负责生产全量数据集的一部分，也就是图中不同的数据分区。因此，步骤 1 就是 Driver 从所有的 Executors 拉取这些数据分区，然后在本地构建全量数据。步骤 2 与从普通变量创建广播变量的过程类似。 Driver 把汇总好的全量数据分发给各个 Executors，Executors 将接收到的全量数据缓存到存储系统的 BlockManager 中。</span></span><br><span class="line"><span class="keyword">val</span> userFile: <span class="type">String</span> = “hdfs:<span class="comment">//ip:port/rootDir/userData”</span></span><br><span class="line"><span class="keyword">val</span> df: <span class="type">DataFrame</span> = spark.read.parquet(userFile)</span><br><span class="line"><span class="keyword">val</span> bc_df: <span class="type">Broadcast</span>[<span class="type">DataFrame</span>] = spark.sparkContext.broadcast(df)</span><br></pre></td></tr></table></figure>
-<p><img src="https://static001.geekbang.org/resource/image/8a/6c/8ac91a174803b97966289ff51938106c.jpg" alt="img" style="zoom:25%;"></p>
-<h4 id="Shuffle-Join"><a href="#Shuffle-Join" class="headerlink" title="Shuffle Join"></a>Shuffle Join</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = _</span><br><span class="line">transactionsDF.join(userDF, <span class="type">Seq</span>(“userID”), “inner”)</span><br></pre></td></tr></table></figure>
-<p>第一步就是对参与关联的左右表分别进行 Shuffle，Shuffle 的分区规则是先对 Join keys 计算哈希值，再把哈希值对分区数取模。由于左右表的分区数是一致的，因此 Shuffle 过后，一定能够保证 userID 相同的交易记录和用户数据坐落在同一个 Executors 内。Shuffle Join中左右表的数据分发</p>
-<p><img src="https://static001.geekbang.org/resource/image/b1/28/b1b2a574eb7ef33e2315f547ecdc0328.jpg" alt="img"></p>
-<p>Shuffle 完成之后，第二步就是在同一个 Executors 内，Reduce task 就可以对 userID 一致的记录进行关联操作。但是，由于交易表是事实表，数据体量异常庞大，对 TB 级别的数据进行 Shuffle，想想都觉得可怕！因此，上面对两个 DataFrame 直接关联的代码，还有很大的调优空间。我们该怎么做呢？话句话说，对于分布式环境中的数据关联来说，要想确保交易记录和与之对应的用户信息在同一个 Executors 中，我们有没有其他办法呢？</p>
-<h4 id="克制-Shuffle-的方式"><a href="#克制-Shuffle-的方式" class="headerlink" title="克制 Shuffle 的方式"></a>克制 Shuffle 的方式</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line"><span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> bcUserDF = broadcast(userDF)</span><br><span class="line">transactionsDF.join(bcUserDF, <span class="type">Seq</span>(“userID”), “inner”)</span><br></pre></td></tr></table></figure>
-<p>Driver 从所有 Executors 收集 userDF 所属的所有数据分片，在本地汇总用户数据，然后给每一个 Executors 都发送一份全量数据的拷贝。既然每个 Executors 都有 userDF 的全量数据，这个时候，交易表的数据分区待在原地、保持不动，就可以轻松地关联到一致的用户数据。如此一来，我们不需要对数据体量巨大的交易表进行 Shuffle，同样可以在分布式环境中，完成两张表的数据关联。</p>
-<p><img src="https://static001.geekbang.org/resource/image/b3/2a/b3c5ab392c2303bf7923488623b4022a.jpg" alt="img"></p>
-<p>利用广播变量，我们成功地避免了海量数据在集群内的存储、分发，节省了原本由 Shuffle 引入的磁盘和网络开销，大幅提升运行时执行性能。当然，采用广播变量优化也是有成本的，毕竟广播变量的创建和分发，也是会带来网络开销的。但是，相比大表的全网分发，小表的网络开销几乎可以忽略不计。这种小投入、大产出，用极小的成本去博取高额的性能收益，真可以说是“四两拨千斤”！</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>在数据关联场景中，广播变量是克制 Shuffle 的杀手锏。掌握了它，我们就能以极小的成本，获得高额的性能收益。关键是我们要掌握两种创建广播变量的方式。</p>
-<p>第一种，从普通变量创建广播变量。在广播变量的运行机制下，普通变量存储的数据封装成广播变量，由 Driver 端以 Executors 为粒度进行分发，每一个 Executors 接收到广播变量之后，将其交由 BlockManager 管理。</p>
-<p>第二种，从分布式数据集创建广播变量，这就要比第一种方式复杂一些了。第一步，Driver 需要从所有的 Executors 拉取数据分片，然后在本地构建全量数据；第二步，Driver 把汇总好的全量数据分发给各个 Executors，Executors 再将接收到的全量数据缓存到存储系统的 BlockManager 中。</p>
-<p>结合这两种方式，我们在做数据关联的时候，把 Shuffle Joins 转换为 Broadcast Joins，就可以用小表广播来代替大表的全网分发，真正做到克制 Shuffle。</p>
-<h3 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h3><p>Spark 广播机制现有的实现方式是存在隐患的，在数据量较大的情况下，Driver 可能会成为瓶颈，你能想到更好的方式来重新实现 Spark 的广播机制吗？</p>
-<ol>
-<li>改成由driver获取到数据分布，然后通知各个executor之间进行拉取，这样可以利用多个executor网络，避免只有driver组装以后再一个一个发送效率过低</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/广播变量/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Pyspark/官方文档/入门" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Pyspark/官方文档/入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/ClickHouse/问题解决" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>查询分布式表时，遇到未认证错误</p>
-<p>Gitub issue遇到的相同问题 <a href="https://github.com/ClickHouse/ClickHouse/issues/5823" target="_blank" rel="noopener">https://github.com/ClickHouse/ClickHouse/issues/5823</a></p>
-<p><img src="https://raw.githubusercontent.com/caidong/Picture/main/Blog/Image/2021/image-20211209150838697.png" alt="image-20211209150838697"></p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/ClickHouse/问题解决/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/OOM内存溢出" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<p>当我们拿到 OOM 这个“烫手的山芋”的时候该怎么办呢？我们最先应该弄清楚的是“到底哪里出现了 OOM”。只有准确定位出现问题的具体区域，我们的调优才能有的放矢。具体来说，这个“哪里”，我们至少要分 3 个方面去看。</p>
-<ul>
-<li>发生 OOM 的 LOC（Line Of Code），也就是代码位置在哪？</li>
-<li>OOM 发生在 Driver 端，还是在 Executor 端？</li>
-<li>如果是发生在 Executor 端，OOM 到底发生在哪一片内存区域？</li>
-</ul>
-<p>定位出错代码的位置非常重要但也非常简单，我们只要利用 Stack Trace 就能很快找到抛出问题的 LOC。因此，更关键的是，我们要明确出问题的到底是 Driver 端还是 Executor 端，以及是哪片内存区域。</p>
-<h3 id="Driver-端的-OOM"><a href="#Driver-端的-OOM" class="headerlink" title="Driver 端的 OOM"></a>Driver 端的 OOM</h3><p>我们先来说说 Driver 端的 OOM。Driver 的主要职责是任务调度，同时参与非常少量的任务计算，因此 Driver 的内存配置一般都偏低，也没有更加细分的内存区域。</p>
-<p>因为 Driver 的内存就是囫囵的那么一块，所以 Driver 端的 OOM 问题自然不是调度系统的毛病，只可能来自它涉及的计算任务，主要有两类：</p>
-<ul>
-<li>创建小规模的分布式数据集：使用 parallelize、createDataFrame 等 API 创建数据集</li>
-<li>收集计算结果：通过 take、show、collect 等算子把结果收集到 Driver 端</li>
-</ul>
-<p>因此 Driver 端的 OOM 逃不出 2 类病灶：</p>
-<ul>
-<li><strong>创建的数据集超过内存上限</strong></li>
-<li><strong>收集的结果集超过内存上限</strong></li>
-</ul>
-<p>第一类病灶不言自明，咱们不细说了。看到第二类病灶，想必你第一时间想到的就是万恶的 collect。确实，说到 OOM 就不得不提 collect。collect 算子会从 Executors 把全量数据拉回到 Driver 端，因此，如果结果集尺寸超过 Driver 内存上限，它自然会报 OOM。</p>
-<p>由开发者直接调用 collect 算子而触发的 OOM 问题其实很好定位，比较难定位的是间接调用 collect 而导致的 OOM。那么，间接调用 collect 是指什么呢？还记得广播变量的工作原理吗？</p>
-<p><img src="https://static001.geekbang.org/resource/image/b3/2a/b3c5ab392c2303bf7923488623b4022a.jpg" alt="img"></p>
-<p>广播变量在创建的过程中，需要先把分布在所有 Executors 的数据分片拉取到 Driver 端，然后在 Driver 端构建广播变量，最后 Driver 端把封装好的广播变量再分发给各个 Executors。第一步的数据拉取其实就是用 collect 实现的。如果 Executors 中数据分片的总大小超过 Driver 端内存上限也会报 OOM。在日常的调优工作中，你看到的表象和症状可能是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError: Not enough memory to build and broadcast</span><br></pre></td></tr></table></figure>
-<p>但实际的病理却是 Driver 端内存受限，没有办法容纳拉取回的结果集。找到了病因，再去应对 Driver 端的 OOM 就很简单了。我们只要对结果集尺寸做适当的预估，然后再相应地增加 Driver 侧的内存配置就好了。调节 Driver 端侧内存大小我们要用到 spark.driver.memory 配置项，预估数据集尺寸可以用“先 Cache，再查看执行计划”的方式，示例代码如下。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">val</span> df: <span class="type">DataFrame</span> = _</span><br><span class="line">df.cache.count</span><br><span class="line"><span class="keyword">val</span> plan = df.queryExecution.logical</span><br><span class="line"><span class="keyword">val</span> estimated: <span class="type">BigInt</span> = spark</span><br><span class="line">.sessionState</span><br><span class="line">.executePlan(plan)</span><br><span class="line">.optimizedPlan</span><br><span class="line">.stats</span><br><span class="line">.sizeInBytes</span><br></pre></td></tr></table></figure>
-<h3 id="Executor-端的-OOM"><a href="#Executor-端的-OOM" class="headerlink" title="Executor 端的 OOM"></a>Executor 端的 OOM</h3><p>我们再来说说 Executor 端的 OOM。我们知道，执行内存分为 4 个区域：Reserved Memory、User Memory、Storage Memory 和 Execution Memory。这 4 个区域中都有哪些区域会报 OOM 异常呢？哪些区域压根就不存在 OOM 的可能呢？</p>
-<p><strong>在 Executors 中，与任务执行有关的内存区域才存在 OOM 的隐患。</strong>其中，Reserved Memory 大小固定为 300MB，因为它是硬编码到源码中的，所以不受用户控制。而对于 Storage Memory 来说，即便数据集不能完全缓存到 MemoryStore，Spark 也不会抛 OOM 异常，额外的数据要么落盘（MEMORY_AND_DISK）、要么直接放弃（MEMORY_ONLY）。</p>
-<p>因此，当 Executors 出现 OOM 的问题，我们可以先把 Reserved Memory 和 Storage Memory 排除，然后锁定 Execution Memory 和 User Memory 去找毛病。</p>
-<h4 id="User-Memory-的-OOM"><a href="#User-Memory-的-OOM" class="headerlink" title="User Memory 的 OOM"></a>User Memory 的 OOM</h4><p>​    在内存管理那一讲，我们说过 User Memory 用于存储用户自定义的数据结构，如数组、列表、字典等。因此，如果这些数据结构的总大小超出了 User Memory 内存区域的上限，你可能就会看到下表示例中的报错。</p>
-<pre><code>java.lang.OutOfMemoryError: Java heap space at java.util.Arrays.copyOf
-
-java.lang.OutOfMemoryError: Java heap space at java.lang.reflect.Array.newInstance
-</code></pre><p>如果你的数据结构是用于分布式数据转换，在计算 User Memory 内存消耗时，你就需要考虑 Executor 的线程池大小。还记得下面的这个例子吗？</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; dict.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
-<p>自定义的列表 dict 会随着 Task 分发到所有 Executors，因此多个 Task 中的 dict 会对 User Memory 产生重复消耗。如果把 dict 尺寸记为 #size，Executor 线程池大小记为 #threads，那么 dict 对 User Memory 的总消耗就是：#size * #threads。一旦总消耗超出 User Memory 内存上限，自然就会产生 OOM 问题。</p>
-<p><img src="https://static001.geekbang.org/resource/image/ba/39/ba45d47a910ccb92861b1fd153b36839.jpg" alt="img"></p>
-<p>那么，解决 User Memory 端 OOM 的思路和 Driver 端的并无二致，也是先对数据结构的消耗进行预估，然后相应地扩大 User Memory 的内存配置。不过，相比 Driver，User Memory 内存上限的影响因素更多，总大小由 spark.executor.memory * （ 1 - spark.memory.fraction）计算得到。</p>
-<h4 id="Execution-Memory-的-OOM"><a href="#Execution-Memory-的-OOM" class="headerlink" title="Execution Memory 的 OOM"></a>Execution Memory 的 OOM</h4><p>要说 OOM 的高发区，非 Execution Memory 莫属。久行夜路必撞鬼，在分布式任务执行的过程中，Execution Memory 首当其冲，因此出错的概率相比其他内存区域更高。关于 Execution Memory 的 OOM，我发现不少同学都存在这么一个误区：只要数据量比执行内存小就不会发生 OOM，相反就会有一定的几率触发 OOM 问题。</p>
-<p>实际上，<strong>数据量并不是决定 OOM 与否的关键因素，数据分布与 Execution Memory 的运行时规划是否匹配才是</strong>。这么说可能比较抽象，你还记得黄小乙的如意算盘吗？为了提高老乡们种地的热情和积极性，他制定了个转让协议，所有老乡申请的土地面积介于 1/N/2 和 1/N 之间。因此，如果有的老乡贪多求快，买的种子远远超过 1/N 上限能够容纳的数量，这位老乡多买的那部分种子都会被白白浪费掉。</p>
-<p>同样的，我们可以把 Execution Memory 看作是</p>
-<p>土地，把分布式数据集看作是种子，一旦分布式任务的内存请求超出 1/N 这个上限，Execution Memory 就会出现 OOM 问题。而且，相比其他场景下的 OOM 问题，Execution Memory 的 OOM 要复杂得多，它不仅仅与内存空间大小、数据分布有关，还与 Executor 线程池和运行时任务调度有关。</p>
-<p>抓住了引起 OOM 问题最核心的原因，对于 Execution Memory OOM 的诸多表象，我们就能从容应对了。下面，我们就来看两个平时开发中常见的实例：数据倾斜和数据膨胀。为了方便说明，在这两个实例中，计算节点的硬件配置是一样的，都是 2 个 CPU core，每个 core 有两个线程，内存大小为 1GB，并且 spark.executor.cores 设置为 3，spark.executor.memory 设置为 900MB。</p>
-<h5 id="实例-1：数据倾斜"><a href="#实例-1：数据倾斜" class="headerlink" title="实例 1：数据倾斜"></a>实例 1：数据倾斜</h5><p>我们先来看第一个数据倾斜的例子。节点在 Reduce 阶段拉取数据分片，3 个 Reduce Task 对应的数据分片大小分别是 100MB 和 300MB。显然，第三个数据分片存在轻微的数据倾斜。由于 Executor 线程池大小为 3，因此每个 Reduce Task 最多可获得 360MB * 1 / 3 = 120MB 的内存空间。Task1、Task2 获取到的内存空间足以容纳分片 1、分片 2，因此可以顺利完成任务。</p>
-<p><img src="https://static001.geekbang.org/resource/image/bb/e2/bbd4052de37200a7152646668f88a5e2.jpg" alt="img"></p>
-<p>Task3 的数据分片大小远超内存上限，即便 Spark 在 Reduce 阶段支持 Spill 和外排，120MB 的内存空间也无法满足 300MB 数据最基本的计算需要，如 PairBuffer 和 AppendOnlyMap 等数据结构的内存消耗，以及数据排序的临时内存消耗等等。</p>
-<p>这个例子的表象是数据倾斜导致 OOM，但实质上是 Task3 的内存请求超出 1/N 上限。因此，针对以这个案例为代表的数据倾斜问题，我们至少有 2 种调优思路：</p>
-<ul>
-<li><p><strong>消除数据倾斜，让所有的数据分片尺寸都不大于 100MB</strong></p>
-</li>
-<li><p><strong>调整 Executor 线程池、内存、并行度等相关配置，提高 1/N 上限到 300MB</strong></p>
-</li>
-</ul>
-<p>每一种思路都可以衍生出许多不同的方法，就拿第 2 种思路来说，要满足 1/N 的上限，最简单地，我们可以把 spark.executor.cores 设置成 1，也就是 Executor 线程池只有一个线程“并行”工作。这个时候，每个任务的内存上限都变成了 360MB，容纳 300MB 的数据分片绰绰有余。</p>
-<p>当然，线程池大小设置为 1 是不可取的，刚刚只是为了说明调优的灵活性。延续第二个思路，你需要去平衡多个方面的配置项，在充分利用 CPU 的前提下解决 OOM 的问题。比如：</p>
-<ul>
-<li><p>维持并发度、并行度不变，增大执行内存设置，提高 1/N 上限到 300MB</p>
-</li>
-<li><p>维持并发度、执行内存不变，使用相关配置项来提升并行度将数据打散，让所有的数据分片尺寸都缩小到 100MB 以内</p>
-</li>
-</ul>
-<h5 id="实例-2：数据膨胀"><a href="#实例-2：数据膨胀" class="headerlink" title="实例 2：数据膨胀"></a>实例 2：数据膨胀</h5><p>我们再来看第二个数据膨胀的例子。节点在 Map 阶段拉取 HDFS 数据分片，3 个 Map Task 对应的数据分片大小都是 100MB。按照之前的计算，每个 Map Task 最多可获得 120MB 的执行内存，不应该出现 OOM 问题才对。</p>
-<p><img src="https://static001.geekbang.org/resource/image/63/cb/639c65b2ce9213295feedd3634e261cb.jpg" alt="img"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/OOM内存溢出/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Pyspark/PySpark使用指定Python环境" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Pyspark/PySpark使用指定Python环境/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Pyspark/StruectedStreaming 消费Kafka数据" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="问题与解释"><a href="#问题与解释" class="headerlink" title="问题与解释"></a>问题与解释</h2><h3 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h3><ol>
-<li>kafka 主机，消费端无法连接</li>
-</ol>
-<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415113635770.png" alt="image-20210415113635770"></p>
-<ol start="2">
-<li><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415115032799.png" alt="image-20210415115032799"></li>
-</ol>
-<p>3.生产端 time_out </p>
-<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415123458138.png" alt="image-20210415123458138"></p>
-<p><img src="C:\Users\zhucaidong\AppData\Roaming\Typora\typora-user-images\image-20210415134146242.png" alt="image-20210415134146242"></p>
-<h2 id="StructedStreaming-数据字段"><a href="#StructedStreaming-数据字段" class="headerlink" title="StructedStreaming 数据字段"></a>StructedStreaming 数据字段</h2><p>root<br> |– key: binary (nullable = true)<br> |– value: binary (nullable = true)<br> |– topic: string (nullable = true)<br> |– partition: integer (nullable = true)<br> |– offset: long (nullable = true)<br> |– timestamp: timestamp (nullable = true)<br> |– timestampType: integer (nullable = true)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Pyspark/StruectedStreaming 消费Kafka数据/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Pyspark/官方文档/介绍" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>PySpark 是Apache Spark的Python接口。它不但允许你用Python API写Spark应用，而且也提供了Pyaprk Shell在分布式环境中交互式分析你的数据.PySpark支持大多数Spark功能如Spark SQL,DataFrame,Streaming,Mlib(机器学习)和Spark Core.</p>
-<p><img src="http://spark.apache.org/docs/latest/api/python/_images/pyspark-components.png" alt="PySpark Components" style="zoom: 50%;"></p>
-<h5 id="Spark-SQL-和-DataFrame"><a href="#Spark-SQL-和-DataFrame" class="headerlink" title="Spark SQL 和 DataFrame"></a>Spark SQL 和 DataFrame</h5><p>Spark SQL是Spark结构化数据处理模块.它提供了抽象编程的DataFrame和能充当分布式SQL查询引擎。</p>
-<h5 id="Spark-上的-pandas-API"><a href="#Spark-上的-pandas-API" class="headerlink" title="Spark 上的 pandas API"></a>Spark 上的 pandas API</h5><p>Spark上的pandas API允许你扩大pandas数据处理工作量。通过这个包，你能够：</p>
-<ul>
-<li>如果你已经熟悉pandas,使用Spark立即提升生产力，没有学习曲线。</li>
-<li>拥有一个既适用于 Pandas（测试，较小的数据集）又适用于 Spark（分布式数据集）的代码库。</li>
-<li>在pandas API和Pyspark API环境中，可以简单和没有任何负担的切换。</li>
-</ul>
-<h5 id="Streaming"><a href="#Streaming" class="headerlink" title="Streaming"></a>Streaming</h5><p>Apache Spark 中的流功能运行在 Spark 之上，支持跨流数据和历史数据的强大交互和分析应用程序，同时继承Spark易用和容错特性。</p>
-<h5 id="MLlib"><a href="#MLlib" class="headerlink" title="MLlib"></a>MLlib</h5><p>机器学习库运行在 Spark 之上，MLlib是可扩展的机器学习库，提供了一组统一的高级API,可帮助用户创建和调整实用机器学习管道。</p>
-<h5 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h5><p>Spark Core 是 Spark平台底层通用执行引擎，所有功能都建立在其之上，它提供了RDD（弹性分布式数据集）和内存计算能力。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Pyspark/官方文档/介绍/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/ClickHouse/分布式表" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/12/Blog/markdown/ClickHouse/分布式表/">ClickHouse 分布式表</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/11/12/Blog/markdown/ClickHouse/分布式表/" class="archive-article-date">
-  	<time datetime="2021-11-11T17:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="CK表分类"><a href="#CK表分类" class="headerlink" title="CK表分类"></a>CK表分类</h4><ol>
-<li><p>分布式表: 一个逻辑上的表, 可以理解为数据库中的视图, 一般查询都查询分布式表. 分布式表引擎会将我们的查询请求路由本地表进行查询, 然后进行汇总最终返回给用户.本身不存储数据，在其中一个节点执行即可。</p>
-</li>
-<li><p>本地表: 实际存储数据的表</p>
-<p>备注：一般分布式表名以 _all 结尾， 本地表一般以 _local 结尾。</p>
-</li>
-</ol>
-<h4 id="CK操作表语句"><a href="#CK操作表语句" class="headerlink" title="CK操作表语句"></a>CK操作表语句</h4><ol>
-<li><h5 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h5> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1. 先集群中机器新建本地表</span><br><span class="line">        <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">on</span> cluster 集群名 (</span><br><span class="line">          <span class="string">`字段名`</span> 字段类型</span><br><span class="line">        ) <span class="keyword">ENGINE</span> = 引擎(<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">PARTITION</span> <span class="keyword">BY</span> 分区字段</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> (排序字段)</span><br><span class="line">        <span class="comment">-- 实际例子：</span></span><br><span class="line">        <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> city_local <span class="keyword">on</span> cluster ck_cluster_name (</span><br><span class="line">          <span class="string">`fdate`</span> Int64,</span><br><span class="line">          <span class="string">`city_code`</span> Int32,</span><br><span class="line">          <span class="string">`city_name`</span> <span class="keyword">String</span>,</span><br><span class="line">          <span class="string">`total_cnt`</span> Int64</span><br><span class="line">        ) <span class="keyword">ENGINE</span> = ReplicatedMergeTree(<span class="string">'/clickhouse/tables/&#123;shard&#125;/city_local'</span>, <span class="string">'&#123;replica&#125;'</span>)</span><br><span class="line">        <span class="keyword">PARTITION</span> <span class="keyword">BY</span> fdate</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> (fdate, city_code, city_name)</span><br><span class="line"><span class="number">2.</span> 在集群中，本地表基础上建立分布式表	</span><br><span class="line">        <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">on</span> cluster 集群名</span><br><span class="line">        (<span class="string">`字段名`</span> 字段类型)</span><br><span class="line">        <span class="keyword">ENGINE</span> = <span class="keyword">Distributed</span>(<span class="string">'集群名'</span>, <span class="string">'本地数据库'</span>, <span class="string">'本地表名'</span>, <span class="string">'分布规则'</span>)</span><br><span class="line">        <span class="comment">-- 实际例子</span></span><br><span class="line">        <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> iteach_data_warehouse.iteach_school_level_all <span class="keyword">on</span> cluster iteach_cluster_two_shards_localhost</span><br><span class="line">            (</span><br><span class="line">                <span class="string">`school_id`</span> Int32,</span><br><span class="line">                <span class="string">`school_name`</span> <span class="keyword">String</span>,</span><br><span class="line">                <span class="string">`school_level`</span> <span class="keyword">String</span>,</span><br><span class="line">                <span class="string">`hot_value`</span> Int32</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">ENGINE</span> = <span class="keyword">Distributed</span>(<span class="string">'iteach_cluster_two_shards_localhost'</span>, <span class="string">'iteach_data_warehouse'</span>, <span class="string">'iteach_school_level'</span>, <span class="keyword">rand</span>())</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> 库名.表名 <span class="keyword">ON</span> CLUSTER 集群名;</span><br><span class="line"><span class="comment">-- 实际例子</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> test_db.city_all <span class="keyword">ON</span> CLUSTER ck_cluster_name;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="3">
-<li><p>数据增删改查分布式本地表（分布式表不可直接操作）</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">ON</span> CLUSTER 集群名  同本地表操作语句</span><br><span class="line"><span class="comment">-- 实际例子</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> city <span class="keyword">ON</span> CLUSTER ck_cluster_name <span class="keyword">add</span> <span class="keyword">column</span> history Int32;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/clickhouse//" class="article-tag-list-link color1">clickhouse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/12/Blog/markdown/ClickHouse/分布式表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1039,19 +1184,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1075,10 +1220,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SparkStreaming</a>
               </li>
              
@@ -1092,6 +1233,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">

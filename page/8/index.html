@@ -166,6 +166,937 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Blog/markdown/Python/Flask/Jinja2模板引擎" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/11/Blog/markdown/Python/Flask/Jinja2模板引擎/">Flask Jinjna2模板引擎</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/06/11/Blog/markdown/Python/Flask/Jinja2模板引擎/" class="archive-article-date">
+  	<time datetime="2017-06-11T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>Jinja2能识别所有类型的变量，甚至是一些复杂类型，例入 列表 字典 和对象</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from a dictionary: </span><span class="template-variable">&#123;&#123; mydict['key'] &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from a list: </span><span class="template-variable">&#123;&#123; mylist[3] &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from a list, with a variable index: </span><span class="template-variable">&#123;&#123; mylist[myintvar] &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A value from an object's method: </span><span class="template-variable">&#123;&#123; myobj.somemethod() &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Jinja2变量的过滤器</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>过滤器名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>safe</td>
+<td>渲染时不转义</td>
+</tr>
+<tr>
+<td>capitalize</td>
+<td>把值的首字母转换成大写，其他字母转换成小写</td>
+</tr>
+<tr>
+<td>lower</td>
+<td>把值转换成小写字母</td>
+</tr>
+<tr>
+<td>upper</td>
+<td>把值转换成大写形式</td>
+</tr>
+<tr>
+<td>title</td>
+<td>把值中每个单词的首写字母转换成大写</td>
+</tr>
+<tr>
+<td>trim</td>
+<td>把值的首尾空格去掉</td>
+</tr>
+<tr>
+<td>striptags</td>
+<td>渲染之前把值中所有的HTML标签都删掉</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li><p>控制结构</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--if else--&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> user %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    Hello, </span><span class="template-variable">&#123;&#123; user &#125;&#125;</span><span class="xml">!</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">else</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    Hello, Stranger!</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- for --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> comment <span class="keyword">in</span> comments %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123; comment &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--宏支持 类似于Python中函数 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">macro</span> render_comment(comment) %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123; comment &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">endmacro</span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> comment <span class="keyword">in</span> comments %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">        </span><span class="template-variable">&#123;&#123; render_comment(comment) &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--宏模板 保存在单独的文件中--&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">import</span> 'macros.html' <span class="keyword">as</span> macros %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> comment <span class="keyword">in</span> comments %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">        </span><span class="template-variable">&#123;&#123; macros.render_comment(comment) &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模板继承</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> head %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> title %&#125;</span><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"> - My Application<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> body %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">extends</span></span> "base.html" %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> title %&#125;</span><span class="xml">Index</span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> head %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; super() &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> body %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Flask//" class="article-tag-list-link color1">Flask</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/11/Blog/markdown/Python/Flask/Jinja2模板引擎/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/os 模块" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/10/Blog/markdown/Python/基础知识/os 模块/">python os 模块</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/06/10/Blog/markdown/Python/基础知识/os 模块/" class="archive-article-date">
+  	<time datetime="2017-06-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="os-模块"><a href="#os-模块" class="headerlink" title="os 模块"></a>os 模块</h4><p>os 模块 包含函数的信息 本地路径 文件进程 环境变量</p>
+<p>1.1 获取当前目录路径 </p>
+<ul>
+<li><p>os.getcwd() </p>
+<p>  current working directory</p>
+</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; import os</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.getcwdb() <span class="comment"># byte字符返回</span></span><br><span class="line">b<span class="string">'C:\\Users\\zhucaidong_vendor'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.getcwd()</span><br><span class="line"><span class="string">'C:\\Users\\zhucaidong_vendor'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>1.2 切换路径<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.chdir(<span class="string">'../'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.getcwd()</span><br><span class="line"><span class="string">'C:\\Users'</span></span><br></pre></td></tr></table></figure></p>
+<p>1.3 组合路径名文件名<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span>(os.path.<span class="keyword">join</span>(<span class="string">'c:/work'</span>,<span class="string">'/homework/'</span>))</span><br><span class="line">c:<span class="regexp">/homework/</span></span><br></pre></td></tr></table></figure></p>
+<p>1.4 获取当前用户home路径<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> os<span class="selector-class">.path</span><span class="selector-class">.expanduser</span>(<span class="string">'~'</span>)</span><br><span class="line"><span class="string">'C:\\Users\\zhucaidong_vendor'</span></span><br></pre></td></tr></table></figure></p>
+<p>1.5 分割路径名<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; pathname = <span class="string">"/Users/K/dir/subdir/k.py"</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.path.split(pathname)</span><br><span class="line">(<span class="string">'/Users/K/dir/subdir'</span>, <span class="string">'k.py'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; (dirname, filename) = os.path.split(pathname)  <span class="comment"># 返回元祖</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; dirname</span><br><span class="line"><span class="string">'/Users/K/dir/subdir'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; pathname</span><br><span class="line"><span class="string">'/Users/K/dir/subdir/k.py'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; filename</span><br><span class="line"><span class="string">'k.py'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; (shortname, extension) = os.path.splitext(filename)  <span class="comment"># 分割文件名和类型</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; shortname</span><br><span class="line"><span class="string">'k'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; extension</span><br><span class="line"><span class="string">'.py'</span></span><br></pre></td></tr></table></figure></p>
+<p>1.6列出指定文件路径</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.listdir()</span><br><span class="line">[<span class="string">'Administrator'</span>, <span class="string">'All Users'</span>, <span class="string">'Default'</span>, <span class="string">'Default User'</span>, <span class="string">'defaultuser0'</span>, <span class="string">'desktop.ini'</span>, <span class="string">'dushengguang'</span>, <span class="string">'Public'</span>, <span class="string">'sensetime'</span>, <span class="string">'zhucaidong_vendor'</span>]</span><br></pre></td></tr></table></figure>
+<p>1.7 遍历文件树</p>
+<p>os.walk(top, topdown=True, onerror=None, followlinks=False)</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">os</span></span><br><span class="line">from <span class="built_in">os</span>.<span class="built_in">path</span> import join, getsize</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> <span class="built_in">os</span>.walk(<span class="string">'python/Lib/email'</span>):</span><br><span class="line">    <span class="built_in">print</span>(root, <span class="string">"consumes"</span>, <span class="keyword">end</span>=<span class="string">" "</span>)</span><br><span class="line">    <span class="built_in">print</span>(sum(getsize(join(root, name)) <span class="keyword">for</span> name <span class="keyword">in</span> files), <span class="keyword">end</span>=<span class="string">" "</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"bytes in"</span>, <span class="built_in">len</span>(files), <span class="string">"non-directory files"</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'CVS'</span> <span class="keyword">in</span> dirs:</span><br><span class="line">        dirs.<span class="built_in">remove</span>(<span class="string">'CVS'</span>)  # don<span class="string">'t visit CVS directories</span></span><br></pre></td></tr></table></figure>
+<p>1.9 系统信息<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  CPU 个数</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; os.cpu_count()</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>1.10 检查文件是否存在<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os<span class="selector-class">.path</span><span class="selector-class">.exists</span>(<span class="string">'./pyt.py'</span>)</span><br><span class="line">False</span><br></pre></td></tr></table></figure></p>
+<p>1.11 返回绝对路径<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os<span class="selector-class">.path</span><span class="selector-class">.abspath</span>(<span class="string">'../'</span>)</span><br><span class="line"><span class="string">'C:\\'</span></span><br></pre></td></tr></table></figure></p>
+<p>1.12 返回路径的基础名<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os<span class="selector-class">.path</span><span class="selector-class">.basename</span>(<span class="string">'./pyt.py'</span>)</span><br><span class="line"><span class="string">'pyt.py'</span></span><br></pre></td></tr></table></figure></p>
+<p>1.13文件字节大小<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">os</span>.<span class="built_in">path</span>.getsize(<span class="built_in">path</span>)</span><br></pre></td></tr></table></figure></p>
+<p>1.14 判断文件类型<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">os<span class="selector-class">.path</span><span class="selector-class">.isdir</span>()</span><br><span class="line">os<span class="selector-class">.path</span><span class="selector-class">.isfile</span>()</span><br><span class="line">os<span class="selector-class">.path</span><span class="selector-class">.islink</span>()</span><br></pre></td></tr></table></figure></p>
+<p>1.15 相同文件判断<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os<span class="selector-class">.path</span><span class="selector-class">.samefile</span>(path1, path2)</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/10/Blog/markdown/Python/基础知识/os 模块/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/Flask/应用接口编程(Application Programming Interface)" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/13/Blog/markdown/Python/Flask/应用接口编程(Application Programming Interface)/">Flask API</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/05/13/Blog/markdown/Python/Flask/应用接口编程(Application Programming Interface)/" class="archive-article-date">
+  	<time datetime="2017-05-13T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>RIA采用多种协议与web服务通信，远程过程调用（Remote Procedure Call）协议，例如XML-RPC 及由其衍生的简单对象访问协议（Simplifed Object Access Protocol SOAP）及表现层状态转移（Representtaional State Transfer REST）架构</li>
+<li><p>REST 简介</p>
+<p>特征 | 描述<br>—|—<br>客户端-服务器 | 客户端和服务器之间必须有明确的界线<br>无状态 | 客户端发生的请求中必须包含所有必要的信息。服务器不能在两次请求之间保存客户端的任何状态<br>缓存|服务器发生的响应可以标记为可缓存或不可缓存，这样出于优化的目的，客户端（或客户端和服务器之间的中间服务）可以使用缓存<br>接口统一|客户点访问服务器资源时使用的协议必须一致，定义良好，且已经标准化。REST Web 服务器最常使用的统一接口是HTTP协议<br>系统分层|在客户端金额服务器之间可以按需要插入代理服务器，缓存或网关 以提高性能 稳定性和伸缩性<br>按需代码|客户端可以选择从服务器上下载代码，在客户端的环境中执行</p>
+</li>
+<li>资源就是一切<br> 资源是REST架构方式核心概念。在REST架构中，资源是程序中你要着重关注的事物</li>
+<li><p>REST架构API中使用请求方法</p>
+<p>请求方法 | 目标|说明|http状态码<br>—|—|—|—|<br>GET | 单个资源的URL | 获取目标资源|200<br>GET | 资源集合的URL|获取资源的集合（如果服务器实现分页，就是一页中的资源URL）|200<br>POST | 资源集合的URL|创建新资源，并将其加入目标集合，服务器为新资源指派url,并在响应的Location首部中返回|201|<br>PUT|单个资源的URL|修改一个现有资源，如果客户端能为资源指派URL，还可用来创建新资源|200<br>DELETE|单个资源的URL|删除一个资源|200|<br>DELETE|资源集合的URL|删除目标集合中的额所有资源|200</p>
+</li>
+<li><p>错误处理<br>API返回的常见的htt状态码</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>http状态码</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK(成功)</td>
+<td>请求成功完成</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created(已创建)</td>
+<td>请求成功完成并创建了一个新资源</td>
+<td></td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad request(坏请求）</td>
+<td>请求不一致或不可用</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Uauthorized(未授权)</td>
+<td>请求未包含认证信息</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden(禁止)</td>
+<td>请求中发送的认证密令无权访问目标</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Notfound(未找到)</td>
+<td>URL对应的资源不存在</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method not allowed(不允许使用的方法)</td>
+<td>指定资源不支持请求使用的方法</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error(内部服务器错误)</td>
+<td>处理请求的过程中发生意外错误</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Flask//" class="article-tag-list-link color1">Flask</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/13/Blog/markdown/Python/Flask/应用接口编程(Application Programming Interface)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/ElasticSearch/elasticSearch安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Blog/markdown/ElasticSearch/elasticSearch安装/">elasticSearch安装</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/05/12/Blog/markdown/ElasticSearch/elasticSearch安装/" class="archive-article-date">
+  	<time datetime="2017-05-12T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ES安装"><a href="#ES安装" class="headerlink" title="ES安装"></a>ES安装</h3><ol>
+<li>依赖</li>
+</ol>
+<pre><code>需保证已安装jdk环境
+</code></pre><ol start="2">
+<li>安装es</li>
+</ol>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf elasticsearch<span class="number">-2.4</span><span class="number">.5</span>.tar.gz #解压</span><br><span class="line">cd elasticsearch<span class="number">-2.4</span><span class="number">.5</span></span><br><span class="line">bin/elasticsearch</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>日志和乐驰系统es 分别开启实例</p>
+<pre><code>将文件下conf文件上传到主机
+</code></pre></li>
+</ol>
+<ol start="3">
+<li>添加自启<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动脚本复制到/etc/init.d/ 下 并添加可执行权限</span></span><br><span class="line"></span><br><span class="line"> chmod +x lechielasticsearch</span><br><span class="line"></span><br><span class="line"><span class="comment">#开启自启</span></span><br><span class="line"> sudo chkconfig lechielasticsearch <span class="keyword">on</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#查看添加是否成功</span></span><br><span class="line"> </span><br><span class="line"> chkconfig <span class="comment">--list</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="如果是用root启动，需要继续下面步骤"><a href="#如果是用root启动，需要继续下面步骤" class="headerlink" title="如果是用root启动，需要继续下面步骤"></a>如果是用root启动，需要继续下面步骤</h3><ol>
+<li>如果是用root账号启动，会报以下错误</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java.lang.RuntimeException: don't <span class="keyword">run</span> elasticsearch <span class="keyword">as</span> root.</span><br><span class="line">at org.elasticsearch.<span class="keyword">bootstrap</span>.<span class="keyword">Bootstrap</span>.initializeNatives(<span class="keyword">Bootstrap</span>.java:93)</span><br><span class="line">at org.elasticsearch.<span class="keyword">bootstrap</span>.<span class="keyword">Bootstrap</span>.setup(<span class="keyword">Bootstrap</span>.java:144) </span><br><span class="line">at org.elasticsearch.<span class="keyword">bootstrap</span>.<span class="keyword">Bootstrap</span>.init(<span class="keyword">Bootstrap</span>.java:285) </span><br><span class="line">at org.elasticsearch.<span class="keyword">bootstrap</span>.Elasticsearch.main(Elasticsearch.java:35) Refer to the <span class="keyword">log</span> <span class="keyword">for</span> complete <span class="keyword">error</span> details.</span><br></pre></td></tr></table></figure>
+<p>这是出于系统安全考虑设置的条件。由于ElasticSearch可以接收用户输入的脚本并且执行，为了系统安全考虑，<br>建议创建一个单独的用户用来运行ElasticSearch</p>
+<ol start="2">
+<li>创建elsearch用户组及elsearch用户</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd elsearch</span><br><span class="line"></span><br><span class="line">useradd elsearch -g elsearch -<span class="selector-tag">p</span> elasticsearch</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>更改elasticsearch文件夹及内部文件的所属用户及组为elsearch:elsearch</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/opt</span></span><br><span class="line">chown -R elsearch<span class="function">:elsearch</span>  elasticsearch</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>切换到elsearch用户再启动</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su elsearch <span class="keyword">cd</span> elasticsearch/bin</span><br><span class="line"><span class="string">./elasticsearch</span></span><br></pre></td></tr></table></figure>
+<p>启动后打印信息如下<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">2018-02-26 10:05:30,216</span>][<span class="symbol">INFO </span>][<span class="string">node                     </span>] [Moonhunter] version[2.4.5], pid[19957], build[c849dd1/2017-04-24T16:18:17Z]</span><br><span class="line">[<span class="string">2018-02-26 10:05:30,216</span>][<span class="symbol">INFO </span>][<span class="string">node                     </span>] [Moonhunter] initializing ...</span><br><span class="line">[<span class="string">2018-02-26 10:05:30,500</span>][<span class="symbol">INFO </span>][<span class="string">plugins                  </span>] [Moonhunter] modules [reindex, lang-expression, lang-groovy], plugins [], sites []</span><br><span class="line">[<span class="string">2018-02-26 10:05:30,546</span>][<span class="symbol">INFO </span>][<span class="string">env                      </span>] [Moonhunter] using [1] data paths, mounts [[/opt (/dev/sda5)]], net usable<span class="emphasis">_space [2.6tb], net total_</span>space [2.6tb], spins? [possibly], types [xfs]</span><br><span class="line">[<span class="string">2018-02-26 10:05:30,546</span>][<span class="symbol">INFO </span>][<span class="string">env                      </span>] [Moonhunter] heap size [989.8mb], compressed ordinary object pointers [true]</span><br></pre></td></tr></table></figure></p>
+<h3 id="文件在root目录下报错"><a href="#文件在root目录下报错" class="headerlink" title="文件在root目录下报错"></a>文件在root目录下报错</h3><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch: line 78: cd: bin/..: Not a directory</span><br><span class="line"><span class="keyword">Error: </span>Could not find or load main class org.elasticsearch.bootstrap.Elasticsearch</span><br></pre></td></tr></table></figure>
+<p>原因是该账号不是root权限，无法cd到指定目录，多半是你把程序解压在了/root/目录下，随便移动到其他位置即可，我移动到了/opt/下面一切正常。</p>
+<p>是生产环境别这么做，安全问题可想而知</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch -Des<span class="selector-class">.insecure</span><span class="selector-class">.allow</span><span class="selector-class">.root</span>=true  (强制运行root运行)</span><br></pre></td></tr></table></figure>
+<h3 id="安装插件kopf"><a href="#安装插件kopf" class="headerlink" title="安装插件kopf"></a>安装插件kopf</h3><p>es 目录下<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bin/plugin </span>install lmenezes/elasticsearch-kopf</span><br></pre></td></tr></table></figure></p>
+<p>防火墙开启必要的端口 <strong>9200</strong></p>
+<h3 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h3><pre><code># Use a descriptive name for your cluster:
+#
+cluster.name: lewell-elastic-log 集群名相同集群自动发现
+#
+#------------------------------------ Node ------------------------------------
+#
+#Use a descriptive name for the node:
+#
+node.name: elastic4 节点描述
+
+# Set the bind address to a specific IP (IPv4 or IPv6):
+#
+network.host: 0.0.0.0 内网其他主机访问
+#
+# Set a custom port for HTTP:
+#
+单机多实例，运行在不同端口
+http.port: 8200
+transport.tcp.port: 8300
+#
+# For more information, see the documentation at:
+# &lt;http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html&gt;
+#
+# --------------------------------- Discovery ----------------------------------
+#
+# Pass an initial list of hosts to perform discovery when new node is started:
+# The default list of hosts is [&quot;127.0.0.1&quot;, &quot;[::1]&quot;]
+#
+discovery.zen.ping.unicast.hosts: [&quot;elastic1:8300&quot;,&quot;elastic2:8300&quot;,&quot;elastic3:8300&quot;,&quot;elastic4:8300&quot;,&quot;elastic5:8300&quot;]
+#
+</code></pre><h3 id="安装插件-delete-by-query"><a href="#安装插件-delete-by-query" class="headerlink" title="安装插件 delete-by-query/"></a>安装插件 delete-by-query/</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/plugin <span class="keyword">install</span> lmenezes/elasticsearch-<span class="keyword">delete</span>-<span class="keyword">by</span>-<span class="keyword">query</span></span><br></pre></td></tr></table></figure>
+<h3 id="开启script-发布程序需要使用"><a href="#开启script-发布程序需要使用" class="headerlink" title="开启script 发布程序需要使用"></a>开启script 发布程序需要使用</h3><p>配置文件末尾添加<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">script</span>.inline: <span class="keyword">on</span></span><br><span class="line"><span class="keyword">script</span>.indexed: <span class="keyword">on</span></span><br></pre></td></tr></table></figure></p>
+<p>​    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ElasticSearch//" class="article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/12/Blog/markdown/ElasticSearch/elasticSearch安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/装饰器decorator" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/01/Blog/markdown/Python/基础知识/装饰器decorator/">python 装饰器decorator</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/05/01/Blog/markdown/Python/基础知识/装饰器decorator/" class="archive-article-date">
+  	<time datetime="2017-05-01T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>装饰器</strong>: 是一种软件的设计模式，可以在不使用子类或改变源代码的情况下，动态的改变函数，方法，类的的功能。</p>
+<ul>
+<li>装饰器demo<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeblod</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;b&gt;/ '</span> +func() +<span class="string">'&lt;/b&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> wrap</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeitalic</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;i&gt;'</span>+func()+<span class="string">'&lt;/i&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> wrap</span><br><span class="line"></span><br><span class="line"><span class="meta">@makeitalic</span></span><br><span class="line"><span class="meta">@makeblod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hello'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(say())</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="funtools-中wraps作用"><a href="#funtools-中wraps作用" class="headerlink" title="funtools 中wraps作用"></a>funtools 中wraps作用</h4><p>Python装饰器（decorator）在实现的时候，被装饰后的函数其实已经是另外一个函数了（函数名等函数属性会发生改变），为了不影响，Python的functools包中提供了一个叫wraps的decorator来消除这样的副作用。写一个decorator的时候，最好在实现之前加上functools的wrap，它能保留原有函数的名称和docstring。</p>
+<ul>
+<li><p>加wraps</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding: utf-8</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeblod</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        dec</span></span><br><span class="line"><span class="string">        装饰粗体</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;b&gt;/ '</span> +func() +<span class="string">'&lt;/b&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> wrap</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeitalic</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        装饰斜体</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;i&gt;'</span>+func()+<span class="string">'&lt;/i&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> wrap</span><br><span class="line"></span><br><span class="line"><span class="meta">@makeitalic</span></span><br><span class="line"><span class="meta">@makeblod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    实际</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hello'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(say.__doc__,say.__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(<span class="string">'\n    \xe5\xae\x9e\xe9\x99\x85\n    :return:\n    '</span>, <span class="string">'say'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不加wraps</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding: utf-8</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeblod</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        dec</span></span><br><span class="line"><span class="string">        装饰粗体</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;b&gt;/ '</span> +func() +<span class="string">'&lt;/b&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> wrap</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeitalic</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        装饰斜体</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;i&gt;'</span>+func()+<span class="string">'&lt;/i&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> wrap</span><br><span class="line"></span><br><span class="line"><span class="meta">@makeitalic</span></span><br><span class="line"><span class="meta">@makeblod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    实际</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hello'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(say.__doc__,say.__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(<span class="string">'\n        \xe8\xa3\x85\xe9\xa5\xb0\xe6\x96\x9c\xe4\xbd\x93\n        :return:\n        '</span>, <span class="string">'wrap'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a>带参数的装饰器</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator_param</span><span class="params">(name)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decorator</span><span class="params">(func)</span></span><span class="symbol">:</span></span><br><span class="line">            @functool.wraps(func)<span class="symbol">:</span></span><br><span class="line">            <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">(*args,**kwargs)</span></span><span class="symbol">:</span></span><br><span class="line">                <span class="comment">#添加操作</span></span><br><span class="line">                func(*args,**kwargs)<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">            <span class="keyword">return</span> wrap</span><br><span class="line">    <span class="keyword">return</span> decorator</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">@decorator_param(<span class="string">'name'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">usage_decorator</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<h4 id="解除一个装饰器"><a href="#解除一个装饰器" class="headerlink" title="解除一个装饰器"></a>解除一个装饰器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="comment">#装饰</span></span><br><span class="line">        print(<span class="string">'hello,'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrap</span><br><span class="line">    </span><br><span class="line"><span class="meta">@hello</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">world</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'world'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#带装饰器版本</span></span><br><span class="line"></span><br><span class="line">world()</span><br><span class="line"></span><br><span class="line"><span class="comment">#解除装饰器操作</span></span><br><span class="line"></span><br><span class="line">orignal = world.__wrapped__</span><br><span class="line">orignal()</span><br></pre></td></tr></table></figure>
+<h4 id="类实现装饰器形式"><a href="#类实现装饰器形式" class="headerlink" title="类实现装饰器形式"></a>类实现装饰器形式</h4><p>通过类的定义也可以实现装饰器形式<br>在类中通过使用<strong>init</strong> 和<strong>call</strong>方法来实现<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="comment"># 通过初始化方法，将要被装饰的函数传进来并记录下来</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, func)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.__func = func</span><br><span class="line">    <span class="comment"># 重写 __call__ 方法来实现装饰内容</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(<span class="keyword">self</span>, *args, **kwargs)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="string">'wrapper context'</span>)</span><br><span class="line">        <span class="keyword">self</span>.__func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实际通过类的魔法方法call来实现</span></span><br><span class="line">@Test  <span class="comment"># --&gt; show = Test(show) show由原来引用函数,装饰后变成引用Test装饰类的对象</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">show()  <span class="comment"># 对象调用方法,实际上是调用魔法方法call,实现了装饰器</span></span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/01/Blog/markdown/Python/基础知识/装饰器decorator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/RabbitMQ/RabbitMQ安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/24/Blog/markdown/RabbitMQ/RabbitMQ安装/">RabbitMQ安装</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/02/24/Blog/markdown/RabbitMQ/RabbitMQ安装/" class="archive-article-date">
+  	<time datetime="2017-02-24T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-安装Erlang"><a href="#1-安装Erlang" class="headerlink" title="1. 安装Erlang"></a>1. 安装Erlang</h2><table>
+<thead>
+<tr>
+<th>依赖组件</th>
+<th>没装无法使用的apps</th>
+<th>解决</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenSSL</td>
+<td>crypto、ssh、ssl</td>
+<td>yum install openssl-devel</td>
+</tr>
+<tr>
+<td>Java compiler</td>
+<td>jinterface</td>
+<td>yum install java-devel</td>
+</tr>
+<tr>
+<td>ODBC library</td>
+<td>odbc</td>
+<td>yum install unixODBC-devel</td>
+</tr>
+<tr>
+<td>C++ compiler</td>
+<td>orber</td>
+<td>yum install gcc-c++</td>
+</tr>
+</tbody>
+</table>
+<pre><code>1. 安装构建依赖：
+</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo yum install -y <span class="built_in">which</span> wget perl openssl-devel make automake autoconf ncurses-devel gcc</span></span><br></pre></td></tr></table></figure>
+<pre><code>2. 从 Erlang 官网下载源代码
+</code></pre><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -O http:<span class="regexp">//</span>erlang.org<span class="regexp">/download/</span>otp_src_20.<span class="number">2</span>.tar.gz</span><br></pre></td></tr></table></figure>
+<pre><code>3. 解压 tar.gz 包
+</code></pre><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf otp_src_20.<span class="number">2</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre></td></tr></table></figure>
+<pre><code>4. 安装
+</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> otp_src_20.2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./otp_build autoconf</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./configure &amp;&amp; make &amp;&amp; sudo make install</span></span><br></pre></td></tr></table></figure>
+<pre><code>5. 验证
+</code></pre><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>erl</span><br></pre></td></tr></table></figure>
+<h2 id="2-安装RabbitMQ"><a href="#2-安装RabbitMQ" class="headerlink" title="2. 安装RabbitMQ"></a>2. 安装RabbitMQ</h2><h1 id="2-1-安装依赖socat"><a href="#2-1-安装依赖socat" class="headerlink" title="2.1. 安装依赖socat"></a>2.1. 安装依赖socat</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum <span class="keyword">install</span> -y socat</span><br></pre></td></tr></table></figure>
+<p>elr 已验证可以进入.但是安装rabbitMQ时还是提示依赖Erlang ， 直接使用 –nodeps （不验证依赖）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">rpm</span> <span class="selector-tag">-Uvh</span> <span class="selector-tag">rabbitmq-server-3</span><span class="selector-class">.7</span><span class="selector-class">.3-1</span><span class="selector-class">.el7</span><span class="selector-class">.noarch</span><span class="selector-class">.rpm</span>  <span class="selector-tag">--nodeps</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> ： rabbitMQ 依赖 Erlang 大于 19.3</p>
+<p>2.2 启动服务</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动服务</span></span><br><span class="line">sudo systemctl <span class="keyword">start</span> rabbitmq-<span class="keyword">server</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看状态</span></span><br><span class="line">sudo systemctl <span class="keyword">status</span> rabbitmq-<span class="keyword">server</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置为开机启动</span></span><br><span class="line"></span><br><span class="line">systemctl <span class="keyword">enable</span> rabbitmq-server.service</span><br></pre></td></tr></table></figure>
+<p>2.3 开启Web管理界面</p>
+<ul>
+<li><p>启动管理服务</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmq-plugins <span class="builtin-name">enable</span> rabbitmq_management</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开放15672端口</p>
+</li>
+</ul>
+<p>#开放端口<br>sudo firewall-cmd –add-port=15672/tcp –permanent</p>
+<p>#重新加载防火墙配置<br>sudo firewall-cmd –reload</p>
+<ul>
+<li>配置远程访问</li>
+</ul>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#修改配置文件</span><br><span class="line">sudo vi /etc/rabbitmq/rabbitmq.config </span><br><span class="line"></span><br><span class="line">#保存以下内容</span><br><span class="line">[</span><br><span class="line">&#123;rabbit, [&#123;tcp_listeners, [<span class="number">5672</span>]&#125;, &#123;loopback_users, [<span class="string">"admin"</span>]&#125;]&#125;</span><br><span class="line">].</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加用户</li>
+</ul>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#添加用户</span></span><br><span class="line">sudo rabbitmqctl add_user admin pwd</span><br><span class="line"></span><br><span class="line"><span class="meta">#设置用户角色</span></span><br><span class="line">sudo rabbitmqctl set_user_tags admin administrator</span><br><span class="line"></span><br><span class="line"><span class="meta">#tag（administrator，monitoring，policymaker，management）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#设置用户权限(接受来自所有Host的所有操作)</span></span><br><span class="line">sudo rabbitmqctl  set_permissions -p <span class="string">"/"</span> admin <span class="string">'.*'</span> <span class="string">'.*'</span> <span class="string">'.*'</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta">#查看用户权限</span></span><br><span class="line">sudo rabbitmqctl list_user_permissions admin</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>RabbitMQ常用命令</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 添加用户</span></span><br><span class="line">sudo rabbitmqctl add_user <span class="params">&lt;username&gt;</span> <span class="params">&lt;password&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 删除用户</span></span><br><span class="line">sudo rabbitmqctl delete_user <span class="params">&lt;username&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 修改用户密码</span></span><br><span class="line">sudo rabbitmqctl change_password <span class="params">&lt;username&gt;</span> <span class="params">&lt;newpassword&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）</span></span><br><span class="line">sudo rabbitmqctl clear_password <span class="params">&lt;username&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="meta"># 设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）</span></span><br><span class="line">sudo rabbitmqctl set_user_tags <span class="params">&lt;username&gt;</span> <span class="params">&lt;tag&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 列出所有用户</span></span><br><span class="line">sudo rabbitmqctl list_users  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 创建一个vhosts</span></span><br><span class="line">sudo rabbitmqctl add_vhost <span class="params">&lt;vhostpath&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 删除一个vhosts</span></span><br><span class="line">sudo rabbitmqctl delete_vhost <span class="params">&lt;vhostpath&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 列出vhosts</span></span><br><span class="line">sudo rabbitmqctl list_vhosts [<span class="params">&lt;vhostinfoitem&gt;</span> ...]  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 针对一个vhosts给用户赋予相关权限；</span></span><br><span class="line">sudo rabbitmqctl set_permissions [-p <span class="params">&lt;vhostpath&gt;</span>] <span class="params">&lt;user&gt;</span> <span class="params">&lt;conf&gt;</span> <span class="params">&lt;write&gt;</span> <span class="params">&lt;read&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 清除一个用户对vhosts的权限；</span></span><br><span class="line">sudo rabbitmqctl clear_permissions [-p <span class="params">&lt;vhostpath&gt;</span>] <span class="params">&lt;username&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 列出哪些用户可以访问该vhosts；</span></span><br><span class="line">sudo rabbitmqctl list_permissions [-p <span class="params">&lt;vhostpath&gt;</span>]   </span><br><span class="line"></span><br><span class="line"><span class="meta"># 列出用户访问权限；</span></span><br><span class="line">sudo rabbitmqctl list_user_permissions <span class="params">&lt;username&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用管理</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl status <span class="comment">//显示RabbitMQ中间件的所有信息</span></span><br><span class="line">rabbitmqctl <span class="built_in">stop</span> <span class="comment">//停止RabbitMQ应用，关闭节点</span></span><br><span class="line">rabbitmqctl stop_app <span class="comment">//停止RabbitMQ应用</span></span><br><span class="line">rabbitmqctl start_app <span class="comment">//启动RabbitMQ应用</span></span><br><span class="line">rabbitmqctl restart <span class="comment">//重置RabbitMQ节点</span></span><br><span class="line">rabbitmqctl force_restart <span class="comment">//强制重置RabbitMQ节点</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用户管理</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl add_user username password <span class="comment">//添加用户</span></span><br><span class="line">rabbitmqctl delete_user username <span class="comment">//删除用户</span></span><br><span class="line">rabbitmqctl change_password username <span class="keyword">new</span><span class="type">password</span> <span class="comment">//修改密码</span></span><br><span class="line">rabbitmqctl list_users <span class="comment">//列出所有用户</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>权限控制管理</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl add_vhost vhostpath <span class="comment">//创建虚拟主机</span></span><br><span class="line">rabbitmqctl delete_vhost vhostpath <span class="comment">//删除虚拟主机</span></span><br><span class="line">rabbitmqctl list_vhosts <span class="comment">//列出所有虚拟主机</span></span><br><span class="line">rabbitmqctl set_permissions [-<span class="selector-tag">p</span> vhostpath] username &lt;conf&gt; &lt;write&gt; &lt;read&gt; <span class="comment">//设置用户权限</span></span><br><span class="line">rabbitmqctl clear_permissions [-<span class="selector-tag">p</span> vhostpath] username <span class="comment">//删除用户权限</span></span><br><span class="line">rabbitmqctl list_permissions [-<span class="selector-tag">p</span> vhostpath] <span class="comment">//列出虚拟机上的所有权限</span></span><br><span class="line">rabbitmqctl list_user_permissions username <span class="comment">//列出用户权限</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>集群管理</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl cluster_status <span class="string">//</span>获得集群配置信息</span><br><span class="line">rabbitmqctl join_cluster rabbit@localhost <span class="params">--ram</span> | <span class="params">--disc</span> <span class="string">//</span>加入到rabbit节点中，使用内存模式或者磁盘模式</span><br><span class="line">rabbitmqctl change_cluster_node_type disc | ram <span class="string">//</span>修改存储模式</span><br><span class="line">rabbitmqctl <span class="keyword">set</span>_cluster_name newname <span class="string">//</span>修改名字</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看管理</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl list_queues [-<span class="selector-tag">p</span> &lt;vhostpath&gt;]  <span class="comment">//查看所有队列</span></span><br><span class="line">rabbitmqctl list_exchanges [-<span class="selector-tag">p</span> &lt;vhostpath&gt;] <span class="comment">//查看所有交换机</span></span><br><span class="line">rabbitmqctl list_bindings [-<span class="selector-tag">p</span> &lt;vhostpath&gt;] <span class="comment">//查看所有绑定</span></span><br><span class="line">rabbitmqctl list_connections <span class="comment">//查看所有连接</span></span><br><span class="line">rabbitmqctl list_channels <span class="comment">//查看所有信道</span></span><br><span class="line">rabbitmqctl list_consumers <span class="comment">//查看所有消费者信息</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/RabbitMQ//" class="article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/24/Blog/markdown/RabbitMQ/RabbitMQ安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/异步编程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/20/Blog/markdown/Python/基础知识/异步编程/">异步编程</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/02/20/Blog/markdown/Python/基础知识/异步编程/" class="archive-article-date">
+  	<time datetime="2017-02-20T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">async def get_file_async(url, folder, file_name):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Python3.5+ </span><br><span class="line">    安装 aiohttp aiofile</span><br><span class="line">    异步下载文件</span><br><span class="line">    :param url:</span><br><span class="line">    :param folder:</span><br><span class="line">    :param file_name:</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    path = folder + file_name</span><br><span class="line">    headers = &#123;&apos;User-agent&apos;: &apos;Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 &apos;</span><br><span class="line">                          &apos;Firefox/3.5.5&apos;&#125;</span><br><span class="line">    async with aiohttp.ClientSession(headers=headers) as session:</span><br><span class="line">        async with session.get(url) as r:</span><br><span class="line">            async with AIOFile(path, &apos;wb&apos;) as afp:</span><br><span class="line">                writer = Writer(afp)</span><br><span class="line">                # reader = Reader(afp, chunk_size=8)</span><br><span class="line">                result = await r.read()</span><br><span class="line">                await writer(result)</span><br><span class="line">                await afp.fsync()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_file(url, file_name, folder):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    下载文件</span><br><span class="line">    :param url:</span><br><span class="line">    :param file_name:</span><br><span class="line">    :param folder:</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    path = folder+file_name</span><br><span class="line">    req = Request(</span><br><span class="line">        url=url, headers=&#123;</span><br><span class="line">            &apos;User-agent&apos;: &apos;Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 &apos;</span><br><span class="line">                          &apos;Firefox/3.5.5&apos;&#125;</span><br><span class="line">    )</span><br><span class="line">    u = urlopen(req)</span><br><span class="line">    if not os.path.exists(folder):</span><br><span class="line">        os.makedirs(folder)</span><br><span class="line">    if os.path.exists(path):</span><br><span class="line">        logging.info(&apos;file exist&apos;)</span><br><span class="line">        return</span><br><span class="line">    with open(path, &apos;wb&apos;) as f:</span><br><span class="line">        block_sz = 8192</span><br><span class="line">        while True:</span><br><span class="line">            buffer = u.read(block_sz)</span><br><span class="line">            if not buffer:</span><br><span class="line">                break</span><br><span class="line">            f.write(buffer)</span><br><span class="line">    logging.info(file_name+&apos; file download success&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="在不被封的情况下-异步下载文件10倍于同步下载"><a href="#在不被封的情况下-异步下载文件10倍于同步下载" class="headerlink" title="在不被封的情况下,异步下载文件10倍于同步下载."></a>在不被封的情况下,异步下载文件10倍于同步下载.</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">异步非阻塞</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/20/Blog/markdown/Python/基础知识/异步编程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Blog/markdown/Linux/ssh 学习" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -497,435 +1428,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Blog/markdown/Openwrt/openwrt编译安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/Blog/markdown/Openwrt/openwrt编译安装/">openwrt 编译安装</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/01/10/Blog/markdown/Openwrt/openwrt编译安装/" class="archive-article-date">
-  	<time datetime="2017-01-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="openwrt-编译安装"><a href="#openwrt-编译安装" class="headerlink" title="openwrt 编译安装"></a><center>openwrt 编译安装</center></h1><hr>
-<h3 id="编译硬件环境要求（官方推荐）"><a href="#编译硬件环境要求（官方推荐）" class="headerlink" title="编译硬件环境要求（官方推荐）"></a>编译硬件环境要求（官方推荐）</h3><p>编译一个可以安装的OpenWrt固件镜像文件（大约8MB大小的），你需要：</p>
-<ol>
-<li>一个纯净的OpenWrt编译系统大约需要200MB的空间。</li>
-<li>一个包含feeds的OpenWrt编译系统大约需要300MB的空间。</li>
-<li>编译feeds中的软件包大约需要2.1GB的空间用于存放下载来的源代码</li>
-<li>构建OpenWrt并生成固件文件需要大约3-4 GB的空间。</li>
-<li>编译OpenWrt需要大约1-4 GB的内存。</li>
-</ol>
-<h6 id="编译工具安装"><a href="#编译工具安装" class="headerlink" title="编译工具安装"></a>编译工具安装</h6><p>教程系统环境 ubuntu 16.04,其他系统需做相应调整。</p>
-<ol>
-<li>安装git下载源代码</li>
-</ol>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install git-core build-essential libssl-<span class="built_in">dev</span> libncurses5-<span class="built_in">dev</span> unzip</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>部分feeds包，仅发布在SVN 上，so也需安装SVN</li>
-</ol>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">sudo</span> apt-<span class="meta">get</span> install <span class="keyword">subversion </span>mercurial</span><br></pre></td></tr></table></figure>
-<h6 id="notice："><a href="#notice：" class="headerlink" title="notice："></a>notice：</h6><ol>
-<li>请使用一个非root用户来完成这些工作！</li>
-<li>这里的所有命令都在OpenWrt编译系统的根目录下运行（例如~/openwrt/trunk/）</li>
-<li>编译系统的绝对路径中不能含有空格！</li>
-<li>如果你使用root用户下载了源码，请把你下载来的源码的所有者更改为一个非root用户。(sudo chown -R user:user /openwrt/)</li>
-<li>关于编译环境的详细信息请参见：<a href="http://man.cx/make" target="_blank" rel="noopener">make</a>和build-essential</li>
-<li>关于git的详细信息请参见：git(7)<br>关于subversion tool的详细信息请参见：svn和subversion documentation (multiple languages)</li>
-</ol>
-<h6 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h6><ol>
-<li>通过git来下载OpenWrt bleeding edge(trunk版本)：(参见<a href="https://wiki.openwrt.org/zh-cn/doc/howto/buildroot.exigence#downloading_sources" target="_blank" rel="noopener">Downloading Sources</a> 以获得更多选择):</li>
-</ol>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">git</span>://git.openwrt.org/openwrt.git</span><br></pre></td></tr></table></figure>
-<p>这将会创建’openwrt’这个目录。这个目录将会是OpenWrt的编译主目录。<br>OpenWrt的交叉编译工具链也已经被包含在内。</p>
-<ol start="2">
-<li>(可选)下载并安装所有可用的”feeds”(参见OpenWrt Feeds以获取更多选择):</li>
-</ol>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> openwrt</span><br><span class="line"><span class="string">./scripts/feeds</span> update -a</span><br><span class="line"><span class="string">./scripts/feeds</span> install -a</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>运行下面的命令(<strong>3选1</strong>!)让OpenWrt编译系统检查你的编译环境中缺失的软件包:</li>
-</ol>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> menuconfig  (推荐使用此命令)</span><br><span class="line">或者</span><br><span class="line"><span class="built_in">make</span> defconfig</span><br><span class="line">或者</span><br><span class="line"><span class="built_in">make</span> prereq</span><br></pre></td></tr></table></figure>
-<p>//如果以上3个命令都运行了,编译会出错! </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j1 <span class="attribute">V</span>=s</span><br></pre></td></tr></table></figure>
-<p> -j 编译核心数 ，V=s 输出详细信息</p>
-<p>//编译这个过程需要较长时间，且需下载文件有可能中途报错 </p>
-<p>编译完成后</p>
-<p>openwrt/bin/cpu平台/<br>有相应的包和ipk 文件</p>
-<ul>
-<li><h2 id="编译安装nodejs"><a href="#编译安装nodejs" class="headerlink" title="编译安装nodejs"></a>编译安装nodejs</h2></li>
-</ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">make menuconfig</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>选择编程语言</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEB635da5c7b120f029b2426e896806d3db?method=getImage&amp;version=3141&amp;cstk=0PLGrt4w" alt="image"></p>
-<ul>
-<li><p>选择nodejs</p>
-</li>
-<li><p><img src="https://note.youdao.com/yws/api/personal/file/WEB5fb737063b388ebb012807c03f6b6f11?method=getImage&amp;version=3151&amp;cstk=0PLGrt4w" alt="image"></p>
-</li>
-<li><p>选择nodejs需要安装模块</p>
-<p>路径： &gt; Languages &gt; Node.js</p>
-</li>
-<li><h2 id="多核，大内存版本编译"><a href="#多核，大内存版本编译" class="headerlink" title="多核，大内存版本编译"></a>多核，大内存版本编译</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> kernel_menuconfig</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEB5b4db45502397d5d9e8d3b8b0b33f2dd?method=getImage&amp;version=3165&amp;cstk=0PLGrt4w" alt="image"></p>
-<p>参数说明<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Processor type and features  ---&gt;</span><br><span class="line">    [*] Symmetric multi-processing support</span><br><span class="line">    Processor family (Core 2/newer Xeon)  ---&gt;#自行选择处理器平台</span><br><span class="line">    [*] Supported processor vendors  ---&gt;#自行选择处理器平台</span><br><span class="line">    (2) Maximum number of CPUs #自行编辑</span><br><span class="line">    [*] SMT (Hyperthreading) scheduler support#超线程支持</span><br><span class="line">    [*] Multi-core scheduler support </span><br><span class="line">    High Memory Support (4GB)  ---&gt;</span><br><span class="line"></span><br><span class="line">#############################################</span><br><span class="line"></span><br><span class="line">           [*] Symmetric multi-processing support                                 </span><br><span class="line">          -*- Processor feature human-readable names                             </span><br><span class="line">          [ ] Support for big SMP systems with more than 8 CPUs                  </span><br><span class="line">          [ ] Support for extended (non-PC) x86 platforms                        </span><br><span class="line">          &lt; &gt; Intel SoC IOSF Sideband support for SoC platforms                  </span><br><span class="line">          &lt; &gt; Eurobraille/Iris poweroff module                                   </span><br><span class="line">          [*] Single-depth WCHAN output                                          </span><br><span class="line">          [ ] Linux guest support  ----                                          </span><br><span class="line">          [ ] Memtest                                                            </span><br><span class="line">              Processor family (Intel Atom)  ---&gt;     处理器平台                           </span><br><span class="line">          [*] Generic x86 support                                                </span><br><span class="line">          [*] Supported processor vendors  ---&gt;                                  </span><br><span class="line">          [*] HPET Timer Support                                                 </span><br><span class="line">          [ ] Enable DMI scanning                                                </span><br><span class="line">          (4) Maximum number of CPUs   ---&gt;最大cpu数                                          </span><br><span class="line">          [*] SMT (Hyperthreading) scheduler support                             </span><br><span class="line">          [*] Multi-core scheduler support                                       </span><br><span class="line">              Preemption Model (No Forced Preemption (Server))  ---&gt;             </span><br><span class="line">          [*] Reroute for broken boot IRQs                                       </span><br><span class="line">          [*] Machine Check / overheating reporting                              </span><br><span class="line">          [*]   Intel MCE features                                               </span><br><span class="line">          [*]   AMD MCE features                                                 </span><br><span class="line">          [ ]   Support for old Pentium 5 / WinChip machine checks               </span><br><span class="line">          &lt; &gt; Machine check injector support                                     </span><br><span class="line">          [*] Enable VM86 support                                                </span><br><span class="line">          [ ] Enable support for 16-bit segments                                 </span><br><span class="line">          &lt; &gt; Toshiba Laptop support                                             </span><br><span class="line">          &lt; &gt; Dell laptop support                                                </span><br><span class="line">          [ ] Enable X86 board specific fixups for reboot                        </span><br><span class="line">          &lt; &gt; CPU microcode loading support                                      </span><br><span class="line">          &lt;*&gt; /dev/cpu/*/msr - Model-specific register support                   </span><br><span class="line">          &lt;*&gt; /dev/cpu/*/cpuid - CPU information support                         </span><br><span class="line">              High Memory Support (4GB)  ---&gt;    配置最大内存（最大64G）                               </span><br><span class="line">              Memory split (3G/1G user/kernel split)  ---&gt;                       </span><br><span class="line">              Memory model (Flat Memory)  ---&gt;                                   </span><br><span class="line">          [ ] Allow for memory compaction                                        </span><br><span class="line">          [*] Enable bounce buffers                                              </span><br><span class="line">          [ ] Enable KSM for page merging                                        </span><br><span class="line">          (4096) Low address space to protect from user allocation               </span><br><span class="line">          [ ] Enable recovery from hardware memory errors                        </span><br><span class="line">          [ ] Transparent Hugepage Support                                       </span><br><span class="line">          [ ] Enable cleancache driver to cache clean pages if tmem is present   </span><br><span class="line">          [ ] Enable frontswap to cache swap pages if tmem is present            </span><br><span class="line">          [ ] Contiguous Memory Allocator                                        </span><br><span class="line">          &lt; &gt; Common API for compressed memory storage                           </span><br><span class="line">          &lt; &gt; Low density storage for compressed pages                           </span><br><span class="line">          &lt; &gt; Memory allocator for compressed pages                              </span><br><span class="line">          [ ] Allocate 3rd-level pagetables from highmem                         </span><br><span class="line">          [ ] Check for low memory corruption</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Openwrt</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/openwrt//" class="article-tag-list-link color3">openwrt</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/10/Blog/markdown/Openwrt/openwrt编译安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Git/GitHub/Github  提交pullRequest流程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/Blog/markdown/Git/GitHub/Github  提交pullRequest流程/">Pull Request流程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/01/10/Blog/markdown/Git/GitHub/Github  提交pullRequest流程/" class="archive-article-date">
-  	<time datetime="2017-01-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Pull-Request流程"><a href="#Pull-Request流程" class="headerlink" title="Pull Request流程"></a>Pull Request流程</h3><ol>
-<li>首先fork我的项目</li>
-<li>把fork过去的项目也就是你的项目clone到你的本地</li>
-<li>运行 git remote add looly <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:looly/elasticsearch-definitive-guide-cn.git 把我的库添加为远端库</li>
-<li>运行 git pull looly master 拉取并合并到本地</li>
-<li>编写代码</li>
-<li>commit后push到自己的库（git push origin master）</li>
-<li>登录Github在你首页可以看到一个 pull request 按钮，点击它，填写一些说明信息，然后提交即可。<br>1~3是初始化操作，执行一次即可。在翻译前必须执行第4步同步我的库（这样避免冲突），然后执行5~7既可。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Github//" class="article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/10/Blog/markdown/Git/GitHub/Github  提交pullRequest流程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/hello-world" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/29/Blog/markdown/hello-world/">Hello World hexo使用说明</a>
-    </h1>
-  
-
-        
-        
-<a href="/2016/05/29/Blog/markdown/hello-world/" class="archive-article-date">
-  	<time datetime="2016-05-28T17:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/教程//" class="article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/29/Blog/markdown/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Spark概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/29/Blog/markdown/Spark/Spark概念/">Spark概念</a>
-    </h1>
-  
-
-        
-        
-<a href="/2016/05/29/Blog/markdown/Spark/Spark概念/" class="archive-article-date">
-  	<time datetime="2016-05-28T17:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>Spark 是一个快速且通用的集群计算平台</li>
-</ol>
-<p>Spark 快速:</p>
-<ul>
-<li>Spark 扩充了流行的MapReduce计算模型</li>
-<li>Spark 是基于内存的计算</li>
-</ul>
-<p>Spark是通用的:</p>
-<ul>
-<li><p>Spark的设计容纳了其他分布式系统拥有的功能 批处理,迭代式运算 交互查询和流处理等</p>
-<p>降低了维护成本</p>
-</li>
-</ul>
-<p>Spark是高度开放的:</p>
-<p>Spark 提供了Pyhon Java Scala Sql的API和丰富的内置库<br>Spark和其他的大数据工具整合的很好,包括hadoop kafka等 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Spark//" class="article-tag-list-link color1">Spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/29/Blog/markdown/Spark/Spark概念/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
     </nav>
   
 
@@ -1039,19 +1544,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1075,10 +1580,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SparkStreaming</a>
               </li>
              
@@ -1092,6 +1593,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">

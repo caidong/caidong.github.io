@@ -166,6 +166,845 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Blog/markdown/Python/基础知识/数据结构/Collections容器" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/Collections容器/">Python 容器数据类型</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/Collections容器/" class="archive-article-date">
+  	<time datetime="2021-12-25T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="collections-容器数据类型"><a href="#collections-容器数据类型" class="headerlink" title="collections 容器数据类型"></a>collections 容器数据类型</h4><p>内建容器dict、list、set、tuple</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.namedtuple" target="_blank" rel="noopener"><code>namedtuple()</code></a></th>
+<th>创建命名元组子类的工厂函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.deque" target="_blank" rel="noopener"><code>deque</code></a></td>
+<td>类似列表(list)的容器，实现了在两端快速添加(append)和弹出(pop)</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.ChainMap" target="_blank" rel="noopener"><code>ChainMap</code></a></td>
+<td>类似字典(dict)的容器类，将多个映射集合到一个视图里面</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.Counter" target="_blank" rel="noopener"><code>Counter</code></a></td>
+<td>字典的子类，提供了可哈希对象的计数功能</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.OrderedDict" target="_blank" rel="noopener"><code>OrderedDict</code></a></td>
+<td>字典的子类，保存了他们被添加的顺序</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.defaultdict" target="_blank" rel="noopener"><code>defaultdict</code></a></td>
+<td>字典的子类，提供了一个工厂函数，为字典查询提供一个默认值</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.UserDict" target="_blank" rel="noopener"><code>UserDict</code></a></td>
+<td>封装了字典对象，简化了字典子类化</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.UserList" target="_blank" rel="noopener"><code>UserList</code></a></td>
+<td>封装了列表对象，简化了列表子类化</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.UserString" target="_blank" rel="noopener"><code>UserString</code></a></td>
+<td>封装了字符串对象，简化了字符串子类化</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>clooections.ChainMap(*maps) 将多个字典或者其他映射组合在一起，创建一个单独的可更性的视图。</p>
+</li>
+<li><p>Counter() 计数器工具提供快速和方便的计数</p>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1. elements() 返回一个迭代器，其总每个元素将重复出现的顺序返回</span></span><br><span class="line"><span class="string">2. most_common([n]) 返回出现次数，常见程度由高到低排序</span></span><br><span class="line"><span class="string">3. subtract([iterable-or-mapping]) 从迭代对象或映射减去元素</span></span><br><span class="line"><span class="string">4. fromkeys(iterable)</span></span><br><span class="line"><span class="string">5. update([iterable-or-mapping])记数值相加， 从迭代对象 计数元素或者 从另一个 映射对象(或计数器)添加, 与字典的update 不同，不是更新而是相加</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>collections.deque([<em>iterable</em>[, <em>maxlen</em>]]): 返回一个双端队列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    1. append() 添加到右端</span></span><br><span class="line"><span class="string">    2. appendleft() 添加到左端</span></span><br><span class="line"><span class="string">    3. clear() 清空队列</span></span><br><span class="line"><span class="string">    4. copy() 创建一份浅拷贝</span></span><br><span class="line"><span class="string">    5. count(x) 元素等于x的个数</span></span><br><span class="line"><span class="string">    6. extend(iterable) 扩展deque的右侧</span></span><br><span class="line"><span class="string">    7. extendleft() 扩展deque的左侧，iterable参数将被反向添加</span></span><br><span class="line"><span class="string">    8. index() 返回第一个匹配项</span></span><br><span class="line"><span class="string">    9. insert(i,x) 在位置i插入x</span></span><br><span class="line"><span class="string">    10.pop() 移除并返回一个元素</span></span><br><span class="line"><span class="string">    11. popleft() 最左侧的一个</span></span><br><span class="line"><span class="string">    12. remove(value) 移除第一个value</span></span><br><span class="line"><span class="string">    13. reverse() 将deque逆序排列，返回None</span></span><br><span class="line"><span class="string">    14. rotate(n=1) 向右循环移动n步，n是负数向左循环</span></span><br><span class="line"><span class="string">    15. maxlen() 最大尺寸</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>collections.defaultdict([<em>default_factory</em>[, <em>…</em>]]) 重载了一个方法并添加了一个可写的实例变量。其余的功能与 <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#dict" target="_blank" rel="noopener"><code>dict</code></a> 类相同</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1. __missing__(key)</span></span><br><span class="line"><span class="string">2. default_factory</span></span><br><span class="line"><span class="string">分组合并</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment">#（键-值对组成的）序列转换为（键-列表组成的）字典</span></span><br><span class="line">s = [(<span class="string">'yellow'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">2</span>), (<span class="string">'yellow'</span>, <span class="number">3</span>), (<span class="string">'blue'</span>, <span class="number">4</span>), (<span class="string">'red'</span>, <span class="number">1</span>)]</span><br><span class="line">d = defaultdict(list)</span><br><span class="line"><span class="comment"># d = defaultdict(set) 默认的value类型</span></span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line">sorted(d.items())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>collections.nametuple(<em>typename</em>, <em>field_names</em>, <em>, </em>rename=False<em>, </em>defaults=None*, module=None)命名元组的工厂函数</p>
+<ul>
+<li><p>返回一个新的元组子类</p>
+<p><strong>repr()</strong> 文档字符串</p>
+</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1. _make(iterable)类方法从存在的序列或迭代实例创建一个新实例。</span></span><br><span class="line"><span class="string">2. _asdict()返回一个新的 dict ，它将字段名称映射到它们对应的值</span></span><br><span class="line"><span class="string">3. _replace(**kwargs) 返回一个新的命名元组实例，并将指定域替换为新的值</span></span><br><span class="line"><span class="string">4._fields() 字符串元组列出了字段名。用于提醒和从现有元组创建一个新的命名元组类型。</span></span><br><span class="line"><span class="string">5._field_defaults 字典将字段名称映射到默认值。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>OrderedDict 对象</p>
+</li>
+<li><p>有序词典就像常规词典一样，但有一些与排序操作相关的额外功能。由于内置的 <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#dict" target="_blank" rel="noopener"><code>dict</code></a> 类获得了记住插入顺序的能力（在 Python 3.7 中保证了这种新行为），它们变得不那么重要了。</p>
+<p>一些与 <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#dict" target="_blank" rel="noopener"><code>dict</code></a> 的不同仍然存在：</p>
+<ul>
+<li>常规的 <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#dict" target="_blank" rel="noopener"><code>dict</code></a> 被设计为非常擅长映射操作。 跟踪插入顺序是次要的。</li>
+<li><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.OrderedDict" target="_blank" rel="noopener"><code>OrderedDict</code></a> 旨在擅长重新排序操作。 空间效率、迭代速度和更新操作的性能是次要的。</li>
+<li>算法上， <a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.OrderedDict" target="_blank" rel="noopener"><code>OrderedDict</code></a> 可以比 <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#dict" target="_blank" rel="noopener"><code>dict</code></a> 更好地处理频繁的重新排序操作。 这使其适用于跟踪最近的访问（例如在 <a href="https://medium.com/@krishankantsinghal/my-first-blog-on-medium-583159139237" target="_blank" rel="noopener">LRU cache</a> 中）。</li>
+<li>对于 <a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.OrderedDict" target="_blank" rel="noopener"><code>OrderedDict</code></a> ，相等操作检查匹配顺序。</li>
+<li><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.OrderedDict" target="_blank" rel="noopener"><code>OrderedDict</code></a> 类的 <code>popitem()</code> 方法有不同的签名。它接受一个可选参数来指定弹出哪个元素。</li>
+<li><a href="https://docs.python.org/zh-cn/3.8/library/collections.html#collections.OrderedDict" target="_blank" rel="noopener"><code>OrderedDict</code></a> 类有一个 <code>move_to_end()</code> 方法，可以有效地将元素移动到任一端。</li>
+<li>Python 3.8之前， <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#dict" target="_blank" rel="noopener"><code>dict</code></a> 缺少 <a href="https://docs.python.org/zh-cn/3.8/reference/datamodel.html#object.__reversed__" target="_blank" rel="noopener"><code>__reversed__()</code></a> 方法。</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/Collections容器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/数据结构/算法高级接口/itertools迭代器函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/算法高级接口/itertools迭代器函数/">python 内存核心工具集</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/算法高级接口/itertools迭代器函数/" class="archive-article-date">
+  	<time datetime="2021-12-25T12:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本模块标准化了一个快速、高效利用内存的核心工具集，这些工具本身或组合都很有用。它们一起形成了“迭代器代数”，这使得在纯Python中有可能创建简洁又高效的专用工具。</p>
+<p><strong>无穷迭代器：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">迭代器</th>
+<th style="text-align:left">实参</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.count" target="_blank" rel="noopener"><code>count()</code></a></td>
+<td style="text-align:left">start, [step]</td>
+<td style="text-align:left">start, start+step, start+2*step, …</td>
+<td style="text-align:left"><code>count(10) --&gt; 10 11 12 13 14 ...</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.cycle" target="_blank" rel="noopener"><code>cycle()</code></a></td>
+<td style="text-align:left">p</td>
+<td style="text-align:left">p0, p1, … plast, p0, p1, …</td>
+<td style="text-align:left"><code>cycle(&#39;ABCD&#39;) --&gt; A B C D A B C D ...</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.repeat" target="_blank" rel="noopener"><code>repeat()</code></a></td>
+<td style="text-align:left">elem [,n]</td>
+<td style="text-align:left">elem, elem, elem, … 重复无限次或n次</td>
+<td style="text-align:left"><code>repeat(10, 3) --&gt; 10 10 10</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>根据最短输入序列长度停止的迭代器：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">迭代器</th>
+<th style="text-align:left">实参</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.accumulate" target="_blank" rel="noopener"><code>accumulate()</code></a></td>
+<td style="text-align:left">p [,func]</td>
+<td style="text-align:left">p0, p0+p1, p0+p1+p2, …</td>
+<td style="text-align:left"><code>accumulate([1,2,3,4,5]) --&gt; 1 3 6 10 15</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.chain" target="_blank" rel="noopener"><code>chain()</code></a></td>
+<td style="text-align:left">p, q, …</td>
+<td style="text-align:left">p0, p1, … plast, q0, q1, …</td>
+<td style="text-align:left"><code>chain(&#39;ABC&#39;, &#39;DEF&#39;) --&gt; A B C D E F</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.chain.from_iterable" target="_blank" rel="noopener"><code>chain.from_iterable()</code></a></td>
+<td style="text-align:left">iterable – 可迭代对象</td>
+<td style="text-align:left">p0, p1, … plast, q0, q1, …</td>
+<td style="text-align:left"><code>chain.from_iterable([&#39;ABC&#39;, &#39;DEF&#39;]) --&gt; A B C D E F</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.compress" target="_blank" rel="noopener"><code>compress()</code></a></td>
+<td style="text-align:left">data, selectors</td>
+<td style="text-align:left">(d[0] if s[0]), (d[1] if s[1]), …</td>
+<td style="text-align:left"><code>compress(&#39;ABCDEF&#39;, [1,0,1,0,1,1]) --&gt; A C E F</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.dropwhile" target="_blank" rel="noopener"><code>dropwhile()</code></a></td>
+<td style="text-align:left">pred, seq</td>
+<td style="text-align:left">seq[n], seq[n+1], … 从pred首次真值测试失败开始</td>
+<td style="text-align:left"><code>dropwhile(lambda x: x&lt;5, [1,4,6,4,1]) --&gt; 6 4 1</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.filterfalse" target="_blank" rel="noopener"><code>filterfalse()</code></a></td>
+<td style="text-align:left">pred, seq</td>
+<td style="text-align:left">seq中pred(x)为假值的元素，x是seq中的元素。</td>
+<td style="text-align:left"><code>filterfalse(lambda x: x%2, range(10)) --&gt; 0 2 4 6 8</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.groupby" target="_blank" rel="noopener"><code>groupby()</code></a></td>
+<td style="text-align:left">iterable[, key]</td>
+<td style="text-align:left">根据key(v)值分组的迭代器</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.islice" target="_blank" rel="noopener"><code>islice()</code></a></td>
+<td style="text-align:left">seq, [start,] stop [, step]</td>
+<td style="text-align:left">seq[start:stop:step]中的元素</td>
+<td style="text-align:left"><code>islice(&#39;ABCDEFG&#39;, 2, None) --&gt; C D E F G</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.starmap" target="_blank" rel="noopener"><code>starmap()</code></a></td>
+<td style="text-align:left">func, seq</td>
+<td style="text-align:left">func(<em>seq[0]), func(</em>seq[1]), …</td>
+<td style="text-align:left"><code>starmap(pow, [(2,5), (3,2), (10,3)]) --&gt; 32 9 1000</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.takewhile" target="_blank" rel="noopener"><code>takewhile()</code></a></td>
+<td style="text-align:left">pred, seq</td>
+<td style="text-align:left">seq[0], seq[1], …, 直到pred真值测试失败</td>
+<td style="text-align:left"><code>takewhile(lambda x: x&lt;5, [1,4,6,4,1]) --&gt; 1 4</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.tee" target="_blank" rel="noopener"><code>tee()</code></a></td>
+<td style="text-align:left">it, n</td>
+<td style="text-align:left">it1, it2, … itn 将一个迭代器拆分为n个迭代器</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.zip_longest" target="_blank" rel="noopener"><code>zip_longest()</code></a></td>
+<td style="text-align:left">p, q, …</td>
+<td style="text-align:left">(p[0], q[0]), (p[1], q[1]), …</td>
+<td style="text-align:left"><code>zip_longest(&#39;ABCD&#39;, &#39;xy&#39;, fillvalue=&#39;-&#39;) --&gt; Ax By C- D-</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>排列组合迭代器：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">迭代器</th>
+<th style="text-align:left">实参</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.product" target="_blank" rel="noopener"><code>product()</code></a></td>
+<td style="text-align:left">p, q, … [repeat=1]</td>
+<td style="text-align:left">笛卡尔积，相当于嵌套的for循环</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.permutations" target="_blank" rel="noopener"><code>permutations()</code></a></td>
+<td style="text-align:left">p[, r]</td>
+<td style="text-align:left">长度r元组，所有可能的排列，无重复元素</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.combinations" target="_blank" rel="noopener"><code>combinations()</code></a></td>
+<td style="text-align:left">p, r</td>
+<td style="text-align:left">长度r元组，有序，无重复元素</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3.8/library/itertools.html#itertools.combinations_with_replacement" target="_blank" rel="noopener"><code>combinations_with_replacement()</code></a></td>
+<td style="text-align:left">p, r</td>
+<td style="text-align:left">长度r元组，有序，元素可重复</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">例子</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>product(&#39;ABCD&#39;, repeat=2)</code></td>
+<td style="text-align:left"><code>AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>permutations(&#39;ABCD&#39;, 2)</code></td>
+<td style="text-align:left"><code>AB AC AD BA BC BD CA CB CD DA DB DC</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>combinations(&#39;ABCD&#39;, 2)</code></td>
+<td style="text-align:left"><code>AB AC AD BC BD CD</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>combinations_with_replacement(&#39;ABCD&#39;, 2)</code></td>
+<td style="text-align:left"><code>AA AB AC AD BB BC BD CC CD DD</code></td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/算法高级接口/itertools迭代器函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/计算机基础/协议/TCP" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>TCP 提供一种<strong>面向连接的、可靠的</strong>字节流服务</li>
+<li>在一个 TCP 连接中，仅有两方进行彼此通信。广播和多播不能用于 TCP</li>
+<li>TCP 使用校验和，确认和重传机制来保证可靠传输</li>
+<li>TCP 给数据分节进行排序，并使用累积确认保证数据的顺序不变和非重复</li>
+<li>TCP 使用滑动窗口机制来实现流量控制，通过动态改变窗口的大小进行拥塞控制</li>
+</ul>
+<p><strong>注意</strong>：TCP 并不能保证数据一定会被对方接收到，因为这是不可能的。TCP 能够做到的是，如果有可能，就把数据递送到接收方，否则就（通过放弃重传并且中断连接这一手段）通知用户。因此准确说 TCP 也不是 100% 可靠的协议，它所能提供的是数据的可靠递送或故障的可靠通知。</p>
+<h2 id="三次握手与四次挥手"><a href="#三次握手与四次挥手" class="headerlink" title="三次握手与四次挥手"></a>三次握手与四次挥手</h2><p>所谓三次握手(Three-way Handshake)，是指建立一个 TCP 连接时，需要客户端和服务器总共发送3个包。</p>
+<p>三次握手的目的是连接服务器指定端口，建立 TCP 连接，并同步连接双方的序列号和确认号，交换 TCP 窗口大小信息。在 socket 编程中，客户端执行 <code>connect()</code> 时。将触发三次握手。</p>
+<ul>
+<li><p>第一次握手(SYN=1, seq=x):</p>
+<p>客户端发送一个 TCP 的 SYN 标志位置1的包，指明客户端打算连接的服务器的端口，以及初始序号 X,保存在包头的序列号(Sequence Number)字段里。</p>
+<p>发送完毕后，客户端进入 <code>SYN_SEND</code> 状态。</p>
+</li>
+<li><p>第二次握手(SYN=1, ACK=1, seq=y, ACKnum=x+1):</p>
+<p>服务器发回确认包(ACK)应答。即 SYN 标志位和 ACK 标志位均为1。服务器端选择自己 ISN 序列号，放到 Seq 域里，同时将确认序号(Acknowledgement Number)设置为客户的 ISN 加1，即X+1。 发送完毕后，服务器端进入 <code>SYN_RCVD</code> 状态。</p>
+</li>
+<li><p>第三次握手(ACK=1，ACKnum=y+1)</p>
+<p>客户端再次发送确认包(ACK)，SYN 标志位为0，ACK 标志位为1，并且把服务器发来 ACK 的序号字段+1，放在确定字段中发送给对方，并且在数据段放写ISN的+1</p>
+<p>发送完毕后，客户端进入 <code>ESTABLISHED</code> 状态，当服务器端接收到这个包时，也进入 <code>ESTABLISHED</code> 状态，TCP 握手结束。</p>
+</li>
+</ul>
+<p>三次握手的过程的示意图如下：</p>
+<p><img src="https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/tcp-connection-made-three-way-handshake.png" alt="three-way-handshake"></p>
+<p>TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way handshake)，也叫做改进的三次握手。客户端或服务器均可主动发起挥手动作，在 socket 编程中，任何一方执行 <code>close()</code> 操作即可产生挥手操作。</p>
+<ul>
+<li><p>第一次挥手(FIN=1，seq=x)</p>
+<p>假设客户端想要关闭连接，客户端发送一个 FIN 标志位置为1的包，表示自己已经没有数据可以发送了，但是仍然可以接受数据。</p>
+<p>发送完毕后，客户端进入 <code>FIN_WAIT_1</code> 状态。</p>
+</li>
+<li><p>第二次挥手(ACK=1，ACKnum=x+1)</p>
+<p>服务器端确认客户端的 FIN 包，发送一个确认包，表明自己接受到了客户端关闭连接的请求，但还没有准备好关闭连接。</p>
+<p>发送完毕后，服务器端进入 <code>CLOSE_WAIT</code> 状态，客户端接收到这个确认包之后，进入 <code>FIN_WAIT_2</code> 状态，等待服务器端关闭连接。</p>
+</li>
+<li><p>第三次挥手(FIN=1，seq=y)</p>
+<p>服务器端准备好关闭连接时，向客户端发送结束连接请求，FIN 置为1。</p>
+<p>发送完毕后，服务器端进入 <code>LAST_ACK</code> 状态，等待来自客户端的最后一个ACK。</p>
+</li>
+<li><p>第四次挥手(ACK=1，ACKnum=y+1)</p>
+<p>客户端接收到来自服务器端的关闭请求，发送一个确认包，并进入 <code>TIME_WAIT</code>状态，等待可能出现的要求重传的 ACK 包。</p>
+<p>服务器端接收到这个确认包之后，关闭连接，进入 <code>CLOSED</code> 状态。</p>
+<p>客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 <code>CLOSED</code> 状态。</p>
+</li>
+</ul>
+<p>四次挥手的示意图如下：</p>
+<p><img src="https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/tcp-connection-closed-four-way-handshake.png" alt="four-way-handshake"></p>
+<h2 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h2><ul>
+<li><p>什么是 SYN 攻击（SYN Flood）？</p>
+<p>在三次握手过程中，服务器发送 SYN-ACK 之后，收到客户端的 ACK 之前的 TCP 连接称为半连接(half-open connect)。此时服务器处于 SYN_RCVD 状态。当收到 ACK 后，服务器才能转入 ESTABLISHED 状态.</p>
+<p>SYN 攻击指的是，攻击客户端在短时间内伪造大量不存在的IP地址，向服务器不断地发送SYN包，服务器回复确认包，并等待客户的确认。由于源地址是不存在的，服务器需要不断的重发直至超时，这些伪造的SYN包将长时间占用未连接队列，正常的SYN请求被丢弃，导致目标系统运行缓慢，严重者会引起网络堵塞甚至系统瘫痪。</p>
+<p>SYN 攻击是一种典型的 DoS/DDoS 攻击。</p>
+</li>
+<li><p>如何检测 SYN 攻击？</p>
+<p>检测 SYN 攻击非常的方便，当你在服务器上看到大量的半连接状态时，特别是源IP地址是随机的，基本上可以断定这是一次SYN攻击。在 Linux/Unix 上可以使用系统自带的 netstats 命令来检测 SYN 攻击。</p>
+</li>
+<li><p>如何防御 SYN 攻击？</p>
+<p>SYN攻击不能完全被阻止，除非将TCP协议重新设计。我们所做的是尽可能的减轻SYN攻击的危害，常见的防御 SYN 攻击的方法有如下几种：</p>
+<ul>
+<li>缩短超时（SYN Timeout）时间</li>
+<li>增加最大半连接数</li>
+<li>过滤网关防护</li>
+<li>SYN cookies技术</li>
+</ul>
+</li>
+</ul>
+<h2 id="TCP-KeepAlive"><a href="#TCP-KeepAlive" class="headerlink" title="TCP KeepAlive"></a>TCP KeepAlive</h2><p>TCP 的连接，实际上是一种纯软件层面的概念，在物理层面并没有“连接”这种概念。TCP 通信双方建立交互的连接，但是并不是一直存在数据交互，有些连接会在数据交互完毕后，主动释放连接，而有些不会。在长时间无数据交互的时间段内，交互双方都有可能出现掉电、死机、异常重启等各种意外，当这些意外发生之后，这些 TCP 连接并未来得及正常释放，在软件层面上，连接的另一方并不知道对端的情况，它会一直维护这个连接，长时间的积累会导致非常多的半打开连接，造成端系统资源的消耗和浪费，为了解决这个问题，在传输层可以利用 TCP 的 KeepAlive 机制实现来实现。主流的操作系统基本都在内核里支持了这个特性。</p>
+<p>TCP KeepAlive 的基本原理是，隔一段时间给连接对端发送一个探测包，如果收到对方回应的 ACK，则认为连接还是存活的，在超过一定重试次数之后还是没有收到对方的回应，则丢弃该 TCP 连接。</p>
+<p><a href="http://www.tldp.org/HOWTO/html_single/TCP-Keepalive-HOWTO/" target="_blank" rel="noopener">TCP-Keepalive-HOWTO</a> 有对 TCP KeepAlive 特性的详细介绍，有兴趣的同学可以参考。这里主要说一下，TCP KeepAlive 的局限。首先 TCP KeepAlive 监测的方式是发送一个 probe 包，会给网络带来额外的流量，另外 TCP KeepAlive 只能在内核层级监测连接的存活与否，而连接的存活不一定代表服务的可用。例如当一个服务器 CPU 进程服务器占用达到 100%，已经卡死不能响应请求了，此时 TCP KeepAlive 依然会认为连接是存活的。因此 TCP KeepAlive 对于应用层程序的价值是相对较小的。需要做连接保活的应用层程序，例如 QQ，往往会在应用层实现自己的心跳功能。</p>
+<p>原文链接：</p>
+<p><a href="https://hit-alibaba.github.io/interview/basic/network/TCP.html" target="_blank" rel="noopener">https://hit-alibaba.github.io/interview/basic/network/TCP.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/25/Blog/markdown/计算机基础/协议/TCP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/数据结构/Seque序列" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/Seque序列/">Python序列</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/Seque序列/" class="archive-article-date">
+  	<time datetime="2021-12-25T01:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="序列类型-list-tuple-range"><a href="#序列类型-list-tuple-range" class="headerlink" title="序列类型 list tuple range"></a>序列类型 list tuple range</h3><ul>
+<li>常用的操作方法</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">运算</td>
+<td style="text-align:left">结果：</td>
+<td style="text-align:left">注释</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>x in s</code></td>
+<td style="text-align:left">如果 <em>s</em> 中的某项等于 <em>x</em> 则结果为 <code>True</code>，否则为 <code>False</code></td>
+<td style="text-align:left">(1)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>x not in s</code></td>
+<td style="text-align:left">如果 <em>s</em> 中的某项等于 <em>x</em> 则结果为 <code>False</code>，否则为 <code>True</code></td>
+<td style="text-align:left">(1)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s + t</code></td>
+<td style="text-align:left"><em>s</em> 与 <em>t</em> 相拼接</td>
+<td style="text-align:left">(6)(7)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s * n</code> 或 <code>n * s</code></td>
+<td style="text-align:left">相当于 <em>s</em> 与自身进行 <em>n</em> 次拼接</td>
+<td style="text-align:left">(2)(7)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s[i]</code></td>
+<td style="text-align:left"><em>s</em> 的第 <em>i</em> 项，起始为 0</td>
+<td style="text-align:left">(3)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s[i:j]</code></td>
+<td style="text-align:left"><em>s</em> 从 <em>i</em> 到 <em>j</em> 的切片</td>
+<td style="text-align:left">(3)(4)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s[i:j:k]</code></td>
+<td style="text-align:left"><em>s</em> 从 <em>i</em> 到 <em>j</em> 步长为 <em>k</em> 的切片</td>
+<td style="text-align:left">(3)(5)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>len(s)</code></td>
+<td style="text-align:left"><em>s</em> 的长度</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>min(s)</code></td>
+<td style="text-align:left"><em>s</em> 的最小项</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>max(s)</code></td>
+<td style="text-align:left"><em>s</em> 的最大项</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s.index(x[, i[, j]])</code></td>
+<td style="text-align:left"><em>x</em> 在 <em>s</em> 中首次出现项的索引号（索引号在 <em>i</em> 或其后且在 <em>j</em> 之前）</td>
+<td style="text-align:left">(8)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s.count(x)</code></td>
+<td style="text-align:left"><em>x</em> 在 <em>s</em> 中出现的总次数</td>
+</tr>
+</tbody>
+</table>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><h3 id="可变-list"><a href="#可变-list" class="headerlink" title="可变 list"></a>可变 list</h3><ul>
+<li><p>操作</p>
+<p>| 运算                      | 结果：                                                       | 注释 |<br>| :———————— | :———————————————————– | :— |<br>| <code>s[i] = x</code>                | 将 <em>s</em> 的第 <em>i</em> 项替换为 <em>x</em>                                 |      |<br>| <code>s[i:j] = t</code>              | 将 <em>s</em> 从 <em>i</em> 到 <em>j</em> 的切片替换为可迭代对象 <em>t</em> 的内容       |      |<br>| <code>del s[i:j]</code>              | 等同于 <code>s[i:j] = []</code>                                         |      |<br>| <code>s[i:j:k] = t</code>            | 将 <code>s[i:j:k]</code> 的元素替换为 <em>t</em> 的元素                        | (1)  |<br>| <code>del s[i:j:k]</code>            | 从列表中移除 <code>s[i:j:k]</code> 的元素                               |      |<br>| <code>s.append(x)</code>             | 将 <em>x</em> 添加到序列的末尾 (等同于 <code>s[len(s):len(s)] = [x]</code>)    |      |<br>| <code>s.clear()</code>               | 从 <em>s</em> 中移除所有项 (等同于 <code>del s[:]</code>)                      | (5)  |<br>| <code>s.copy()</code>                | 创建 <em>s</em> 的浅拷贝 (等同于 <code>s[:]</code>)                            | (5)  |<br>| <code>s.extend(t)</code> 或 <code>s += t</code> | 用 <em>t</em> 的内容扩展 <em>s</em> (基本上等同于 <code>s[len(s):len(s)] = t</code>)  |      |<br>| <code>s *= n</code>                  | 使用 <em>s</em> 的内容重复 <em>n</em> 次来对其进行更新                     | (6)  |<br>| <code>s.insert(i, x)</code>          | 在由 <em>i</em> 给出的索引位置将 <em>x</em> 插入 <em>s</em> (等同于 <code>s[i:i] = [x]</code>) |      |<br>| <code>s.pop()</code> or <code>s.pop(i)</code>   | 提取在 <em>i</em> 位置上的项，并将其从 <em>s</em> 中移除                   | (2)  |<br>| <code>s.remove(x)</code>             | 删除 <em>s</em> 中第一个 <code>s[i]</code> 等于 <em>x</em> 的项目。                   | (3)  |<br>| <code>s.reverse()</code>             | 就地将列表中的元素逆序。                                     | (4)  |</p>
+</li>
+</ul>
+<h3 id="不可变-tuple、set、range"><a href="#不可变-tuple、set、range" class="headerlink" title="不可变  tuple、set、range"></a>不可变  tuple、set、range</h3><p>​    对 <a href="https://docs.python.org/zh-cn/3.8/library/functions.html#hash" target="_blank" rel="noopener"><code>hash()</code></a> 内置函数的支持。    </p>
+<ul>
+<li>文本序列类型：字符串是由Unicode码位沟通的不可变序列。</li>
+</ul>
+<ul>
+<li>二进制序列 <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#bytes" target="_blank" rel="noopener"><code>bytes</code></a>, <a href="https://docs.python.org/zh-cn/3.8/library/stdtypes.html#bytearray" target="_blank" rel="noopener"><code>bytearray</code></a>, memoryview</li>
+</ul>
+<h4 id="字典类型"><a href="#字典类型" class="headerlink" title="字典类型"></a>字典类型</h4><p>list(dict): 返回所有键的列表</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/Seque序列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/数据结构/heapq堆队列算法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/heapq堆队列算法/">Python堆队列</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/heapq堆队列算法/" class="archive-article-date">
+  	<time datetime="2021-12-25T00:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>提供堆队列算法的实现，也称为优先级队列算法</p>
+<p>堆是一个二叉树，它的每个父节点的值都只会小于或等于所有孩子节点（的值）。 它使用了数组来实现：从零开始计数，对于所有的 <em>k</em> ，都有 <code>heap[k] &lt;= heap[2*k+1]</code> 和 <code>heap[k] &lt;= heap[2*k+2]</code>。 为了便于比较，不存在的元素被认为是无限大。 堆最有趣的特性在于最小的元素总是在根结点：<code>heap[0]</code>。</p>
+<ul>
+<li>headpq.heappush(heap,item)将 <em>item</em> 的值加入 <em>heap</em> 中，保持堆的不变性</li>
+</ul>
+<ul>
+<li><code>heapq.`</code>heappop<code>(*heap*) 弹出并返回 *heap* 的最小的元素，保持堆的不变性。如果堆为空，抛出 [</code>IndexError<code>](https://docs.python.org/zh-cn/3.8/library/exceptions.html#IndexError) 。使用</code>heap[0]` ，可以只访问最小的元素而不弹出它。</li>
+</ul>
+<ul>
+<li><code>heapq.`</code>heappushpop<code>(*heap*, *item*)将 *item* 放入堆中，然后弹出并返回 *heap* 的最小元素。该组合操作比先调用 [</code>heappush()<code>](https://docs.python.org/zh-cn/3.8/library/heapq.html#heapq.heappush) 再调用 [</code>heappop()`](<a href="https://docs.python.org/zh-cn/3.8/library/heapq.html#heapq.heappop" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3.8/library/heapq.html#heapq.heappop</a>) 运行起来更有效率。</li>
+</ul>
+<ul>
+<li><code>heapq.`</code>heapify`(<em>x</em>)  将list <em>x</em> 转换成堆，原地，线性时间内。</li>
+</ul>
+<ul>
+<li><p><code>heapq.`</code>heapreplace`(<em>heap</em>, <em>item</em>)<a href="https://docs.python.org/zh-cn/3.8/library/heapq.html#heapq.heapreplace" target="_blank" rel="noopener">¶</a></p>
+<p>弹出并返回 <em>heap</em> 中最小的一项，同时推入新的 <em>item</em>。 堆的大小不变。 如果堆为空则引发 <a href="https://docs.python.org/zh-cn/3.8/library/exceptions.html#IndexError" target="_blank" rel="noopener"><code>IndexError</code></a>。</p>
+<p>这个单步骤操作比 <a href="https://docs.python.org/zh-cn/3.8/library/heapq.html#heapq.heappop" target="_blank" rel="noopener"><code>heappop()</code></a> 加 <a href="https://docs.python.org/zh-cn/3.8/library/heapq.html#heapq.heappush" target="_blank" rel="noopener"><code>heappush()</code></a> 更高效，并且在使用固定大小的堆时更为适宜。 pop/push 组合总是会从堆中返回一个元素并将其替换为 <em>item</em>。</p>
+<p>返回的值可能会比添加的 <em>item</em> 更大。 如果不希望如此，可考虑改用 <a href="https://docs.python.org/zh-cn/3.8/library/heapq.html#heapq.heappushpop" target="_blank" rel="noopener"><code>heappushpop()</code></a>。 它的 push/pop 组合会返回两个值中较小的一个，将较大的值留在堆中。</p>
+</li>
+<li><p><code>heapq.`</code>merge`(*<em>iterables</em>, <em>key=None</em>, <em>reverse=False</em>)</p>
+<p>将多个已排序的输入合并为一个已排序的输出（例如，合并来自多个日志文件的带时间戳的条目）。 返回已排序值的 <a href="https://docs.python.org/zh-cn/3.8/glossary.html#term-iterator" target="_blank" rel="noopener">iterator</a>。类似于 <code>sorted(itertools.chain(*iterables))</code> 但返回一个可迭代对象，不会一次性地将数据全部放入内存，并假定每个输入流都是已排序的（从小到大）。具有两个可选参数，它们都必须指定为关键字参数。<em>key</em> 指定带有单个参数的 <a href="https://docs.python.org/zh-cn/3.8/glossary.html#term-key-function" target="_blank" rel="noopener">key function</a>，用于从每个输入元素中提取比较键。 默认值为 <code>None</code> (直接比较元素)。<em>reverse</em> 为一个布尔值。 如果设为 <code>True</code>，则输入元素将按比较结果逆序进行合并。 要达成与 <code>sorted(itertools.chain(*iterables), reverse=True)</code> 类似的行为，所有可迭代对象必须是已从大到小排序的。<em>在 3.5 版更改:</em> 添加了可选的 <em>key</em> 和 <em>reverse</em> 形参。</p>
+</li>
+<li><p><code>heapq.`</code>nlargest`(<em>n</em>, <em>iterable</em>, <em>key=None</em>)</p>
+<p>从 <em>iterable</em> 所定义的数据集中返回前 <em>n</em> 个最大元素组成的列表。 如果提供了 <em>key</em> 则其应指定一个单参数的函数，用于从 <em>iterable</em> 的每个元素中提取比较键 (例如 <code>key=str.lower</code>)。 等价于: <code>sorted(iterable, key=key, reverse=True)[:n]</code>。</p>
+</li>
+<li><p>heapq.nsmallest`(<em>n</em>, <em>iterable</em>, <em>key=None</em>)</p>
+<p>从 <em>iterable</em> 所定义的数据集中返回前 <em>n</em> 个最小元素组成的列表。 如果提供了 <em>key</em> 则其应指定一个单参数的函数，用于从 <em>iterable</em> 的每个元素中提取比较键 (例如 <code>key=str.lower</code>)。 等价于: <code>sorted(iterable, key=key)[:n]</code>。</p>
+</li>
+</ul>
+<h3 id="优先队列实现说明"><a href="#优先队列实现说明" class="headerlink" title="优先队列实现说明"></a>优先队列实现说明</h3><p><a href="https://en.wikipedia.org/wiki/Priority_queue" target="_blank" rel="noopener">优先队列</a> 是堆的常用场合，并且它的实现包含了多个挑战：</p>
+<ul>
+<li>排序稳定性：你该如何令相同优先级的两个任务按它们最初被加入时的顺序返回？</li>
+<li>如果优先级相同且任务没有默认比较顺序，则 (priority, task) 对的元组比较将会中断。</li>
+<li>如果任务优先级发生改变，你该如何将其移至堆中的新位置？</li>
+<li>或者如果一个挂起的任务需要被删除，你该如何找到它并将其移出队列</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/25/Blog/markdown/Python/基础知识/数据结构/heapq堆队列算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Blog/markdown/go语言常见问题" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -473,454 +1312,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Blog/markdown/个人网站/VueSingal" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
-    <!-- import CSS --> 
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <!-- import Vue before Element -->
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <!-- import JavaScript -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-</head>
-
-<body>
-    <div id="app">
-        <div class="content">
-            <!-- <el-button @click="visible = true">Button</el-button>
-                <h5 v-show="false">v-show="true"</h5>
-                <el-dialog :visible.sync="visible" title="Hello world">
-                    <p>Try Element</p>
-                </el-dialog> -->
-            <div class="server_tab">
-                <el-card class="box-card" v-for="server in serverList">
-                    <div slot="header" class="clearfix">
-                        <span><img :src="server.flag" width="20" alt="South Africa"></span>
-                        <span></span>
-                        <span style="float: right;">
-
-                        </span>
-                        <el-popover style="float:right" placement="top-start" title="详情数据" width="500" trigger="hover" content="">
-                            <div class="popover-content" v-html="serverDetailInfo"></div>
-                            <i class="el-icon-s-promotion" slot="reference" style="float: right; color: #243f59; vertical-align: center"></i>
-                        </el-popover>
-                        <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
-                    </div>
-                    <div v-for="o in 4" :key="o" class="text item">
-                        列表内容 undefined
-                    </div>
-                </el-card>
-            </div>
-        </div>
-    </div>
-</body>
-
-<script>
-    new Vue({
-        el: '#app',
-        data: function () {
-            return {
-                visible: false,
-                serverList: [{ CName: "Korea (Republic of)", flag: "https://flagcdn.com/cn.svg","isp":"Oracle Public Cloud" }, { CName: "China", flag: "https://flagcdn.com/cn.svg" }],
-                serverDetailInfo: "111ss试试"
-            }
-        }
-    })
-</script>
-<style>
-    body {
-        content: " " !important;
-        background: fixed !important;
-        z-index: -1 !important;
-        top: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        background-position: top !important;
-        background-repeat: no-repeat !important;
-        background-size: cover !important;
-        background-image: url(./bg2.jpg) !important;
-        /* background-image:url("https://gitee.com/darki/img/raw/master/1631081013043.webp");; */
-    }
-
-    .content {
-        width: 90vw;
-        margin: 0 auto;
-        background-color: #fbfbfb26 !important;
-        border-radius: 1rem !important;
-        padding: 1vw;
-        border: 10px;
-    }
-
-    .server_tab {
-        display: inline-block;
-    }
-
-    .text {
-        font-size: 14px;
-    }
-
-    .item {
-        margin-bottom: 18px;
-    }
-
-    .clearfix:before,
-    .clearfix:after {
-        display: table;
-        content: "";
-    }
-
-    .clearfix:after {
-        clear: both
-    }
-
-    .box-card {
-        color:#FFFFFF;
-        display: inline-block;
-        width: 22vw;
-        min-width: 400px;
-        border-radius: 0.5rem;
-        margin: 3px;
-        background-color:transparent;
-    }
-</style>
-
-</html>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/Blog/markdown/个人网站/VueSingal/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/算法/排序算法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.冒泡排序 </p>
-<table>
-<thead>
-<tr>
-<th>算法</th>
-<th>时间复杂度</th>
-<th>空间复杂度</th>
-<th>稳定性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>冒泡</td>
-<td>O(N^2)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>插入</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>选择</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>快速</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>归并</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>堆排序</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sort</span><span class="params">(unsort)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(unsort)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(unsort)):</span><br><span class="line">            <span class="keyword">if</span> unsort[i]&gt; unsort[j]:</span><br><span class="line">                unsort[i],unsort[j]=unsort[j],unsort[i]</span><br><span class="line">    <span class="keyword">return</span> unsort</span><br></pre></td></tr></table></figure>
-<p>​    </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/Blog/markdown/算法/排序算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/pyspark使用上传本地的Python" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="无法使用虚拟环境，虚拟环境会缺系统包-报错ImportError-No-module-named-‘encodings’"><a href="#无法使用虚拟环境，虚拟环境会缺系统包-报错ImportError-No-module-named-‘encodings’" class="headerlink" title="无法使用虚拟环境，虚拟环境会缺系统包 报错ImportError: No module named ‘encodings’"></a>无法使用虚拟环境，虚拟环境会缺系统包 报错ImportError: No module named ‘encodings’</h5><ol>
-<li><p>打包整个原始安装包</p>
-</li>
-<li><p>打包环境<br>zip -r py_env.zip pyspark_env/</p>
-</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 压缩文件名 py_env.zip</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 环境文件夹 python3</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cluster提交</span></span><br><span class="line">spark-submit --master yarn --deploy-mode cluster    --archives hdfs://iteach-cdh-01/user/py_env.zip#PY2  --queue root.spark     --name beike_used      --jars /xdfdata/LogSpark/thridLib/mysql-connector-java-8.0.19.jar     --files /xdfdata/PySpark/hive-site.xml   --conf spark.yarn.appMasterEnv.PYSPARK_PYTHON=./PY2/python3/bin/python3 --conf spark.yarn.appMasterEnv.PYSPARK_DRIVER_PYTHON=./PY2/python3/bin/python3  --conf "spark.executor.extraClassPath=/opt/cloudera/parcels/CDH-6.0.1-1.cdh6.0.1.p0.590678/lib/hive/lib/*"     --num-executors 10     --driver-memory 4G     --executor-cores 8     --executor-memory 6G     --py-files /xdfdata/iteach-bigdata-prism/dblib.zip /xdfdata/iteach-bigdata-prism/beike_used.py</span><br></pre></td></tr></table></figure>
-<h3 id="主要指定-driver和executor-Python版本"><a href="#主要指定-driver和executor-Python版本" class="headerlink" title="主要指定 driver和executor Python版本"></a>主要指定 driver和executor Python版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--archives hdfs:///user/root/py_env.zip#PY2 </span><br><span class="line">--conf spark.yarn.appMasterEnv.PYSPARK_PYTHON=./PY2/py_env/bin/python</span><br><span class="line">--conf spark.yarn.appMasterEnv.PYSPARK_DRIVER_PYTHON=./PY2/py_env/bin/python</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/pyspark使用上传本地的Python/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/名词概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><h3 id="RDD-弹性分布式数据集"><a href="#RDD-弹性分布式数据集" class="headerlink" title="RDD 弹性分布式数据集"></a>RDD 弹性分布式数据集</h3></li>
-<li><h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3></li>
-<li><h3 id="广播变量"><a href="#广播变量" class="headerlink" title="广播变量"></a>广播变量</h3></li>
-</ol>
-<ol start="4">
-<li></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/名词概念/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Spark调优/使用广播变量" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<p><strong>Spark SQL中使用广播变量</strong></p>
-<h3 id="强制广播项配置"><a href="#强制广播项配置" class="headerlink" title="强制广播项配置"></a>强制广播项配置</h3><p>spark.sql.autoBroadcastJoinThreshold 这个配置项。它的设置值是存储大小，默认是 10MB。它的含义是，对于参与 Join 的两张表来说，任意一张表的尺寸小于 10MB，Spark 就在运行时采用 Broadcast Joins 的实现方式去做数据关联。</p>
-<p><img src="https://static001.geekbang.org/resource/image/69/89/697cccb272fc8863f40bb7c465f53c89.jpeg" alt="img" style="zoom: 33%;"></p>
-<p>使用广播阈值配置项让 Spark 优先选择 Broadcast Joins 的关键，就是要确保至少有一张表的存储尺寸小于广播阈值。</p>
-<p>其实指的是数据表在磁盘上的存储大小，比如用ls或是du -sh等系统命令查看文件得到的结果。要知道，同一份数据在内存中的存储大小往往会比磁盘中的存储大小膨胀数倍，甚至十数倍。这主要有两方面原因。</p>
-<p>一方面，为了提升存储和访问效率，开发者一般采用 Parquet 或是 ORC 等压缩格式把数据落盘。这些高压缩比的磁盘数据展开到内存之后，数据量往往会翻上数倍。</p>
-<p>另一方面，受限于对象管理机制，在堆内内存中，JVM 往往需要比数据原始尺寸更大的内存空间来存储对象。</p>
-<p><strong>有什么办法能准确地预估一张表在内存中的存储大小呢？</strong></p>
-<p>首先，我们要避开一个坑。我发现，有很多资料推荐用 Spark 内置的 SizeEstimator 去预估分布式数据集的存储大小。结合多次实战和踩坑经验，咱们必须要指出，SizeEstimator 的估算结果不准确。因此，你可以直接跳过这种方法，这也能节省你调优的时间和精力。我认为比较靠谱的办法是：第一步，把要预估大小的数据表缓存到内存，比如直接在 DataFrame 或是 Dataset 上调用 cache 方法；</p>
-<p>第二步，读取 Spark SQL 执行计划的统计数据。这是因为，Spark SQL 在运行时，就是靠这些统计数据来制定和调整执行策略的。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> df: <span class="type">DataFrame</span> = _</span><br><span class="line">df.cache.count</span><br><span class="line"><span class="keyword">val</span> plan = df.queryExecution.logical</span><br><span class="line"><span class="keyword">val</span> estimated: <span class="type">BigInt</span> = spark</span><br><span class="line">.sessionState</span><br><span class="line">.executePlan(plan)</span><br><span class="line">.optimizedPlan</span><br><span class="line">.stats</span><br><span class="line">.sizeInBytes</span><br></pre></td></tr></table></figure>
-<h3 id="利用-API-强制广播"><a href="#利用-API-强制广播" class="headerlink" title="利用 API 强制广播"></a>利用 API 强制广播</h3><p>开发者可以通过 Join Hints 或是 SQL functions 中的 broadcast 函数，来强制 Spark SQL 在运行时采用 Broadcast Joins 的方式做数据关联。下面我就来分别讲一讲它们的含义和作用，以及该如何使用。必须要说明的是，这两种方式是等价的，并无优劣之分，只不过有了多样化的选择之后，你就可以根据自己的偏好和习惯来灵活地进行开发。</p>
-<h4 id="用-Join-Hints-强制广播"><a href="#用-Join-Hints-强制广播" class="headerlink" title="用 Join Hints 强制广播"></a>用 Join Hints 强制广播</h4><p>Join Hints 中的 Hints 表示“提示”，它指的是在开发过程中使用特殊的语法，明确告知 Spark SQL 在运行时采用哪种 Join 策略。一旦你启用了 Join Hints，不管你的数据表是不是满足广播阈值，Spark SQL 都会尽可能地尊重你的意愿和选择，使用 Broadcast Joins 去完成数据关联。我们来举个例子，假设有两张表，一张表的内存大小在 100GB 量级，另一张小一些，2GB 左右。在广播阈值被设置为 2GB 的情况下，并没有触发 Broadcast Joins，但我们又不想花费时间和精力去精确计算小表的内存占用到底是多大。在这种情况下，我们就可以用 Join Hints 来帮我们做优化，仅仅几句提示就可以帮我们达到目的。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> table1: <span class="type">DataFrame</span> = spark.read.parquet(path1)</span><br><span class="line"><span class="keyword">val</span> table2: <span class="type">DataFrame</span> = spark.read.parquet(path2)</span><br><span class="line">table1.createOrReplaceTempView(<span class="string">"t1"</span>)</span><br><span class="line">table2.createOrReplaceTempView(<span class="string">"t2"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> query: <span class="type">String</span> = “select <span class="comment">/*+ broadcast(t2) */</span> * from t1 inner join t2 on t1.key = t2.key”</span><br><span class="line"><span class="keyword">val</span> queryResutls: <span class="type">DataFrame</span> = spark.sql(query)</span><br></pre></td></tr></table></figure>
-<p>你看，在上面的代码示例中，只要在 SQL 结构化查询语句里面加上一句/<em>+ broadcast(t2) </em>/提示，我们就可以强制 Spark SQL 对小表 t2 进行广播，在运行时选择 Broadcast Joins 的实现方式。提示语句中的关键字，除了使用 broadcast 外，我们还可以用 broadcastjoin 或者 mapjoin，它们实现的效果都一样。</p>
-<p>如果你不喜欢用 SQL 结构化查询语句，尤其不想频繁地在 Spark SQL 上下文中注册数据表，你也可以在 DataFrame 的 DSL 语法中使用 Join Hints。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">table1.join(table2.hint(“broadcast”), <span class="type">Seq</span>(“key”), “inner”)</span><br></pre></td></tr></table></figure>
-<p>在上面的 DSL 语句中，我们只要在 table2 上调用 hint 方法，然后指定 broadcast 关键字，就可以同样达到强制广播表 2 的效果。总之，Join Hints 让开发者可以灵活地选择运行时的 Join 策略，对于熟悉业务、了解数据的同学来说，Join Hints 允许开发者把专家经验凌驾于 Spark SQL 的优化引擎之上，更好地服务业务。不过，Join Hints 也有个小缺陷。如果关键字拼写错误，Spark SQL 在运行时并不会显示地抛出异常，而是默默地忽略掉拼写错误的 hints，假装它压根不存在。因此，在使用 Join Hints 的时候，需要我们在编译时自行确认 Debug 和纠错。</p>
-<h4 id="用-broadcast-函数强制广播"><a href="#用-broadcast-函数强制广播" class="headerlink" title="用 broadcast 函数强制广播"></a>用 broadcast 函数强制广播</h4><p>如果你不想等到运行时才发现问题，想让编译器帮你检查类似的拼写错误，那么你可以使用强制广播的第二种方式：broadcast 函数。这个函数是类库 org.apache.spark.sql.functions 中的 broadcast 函数。调用方式非常简单，比 Join Hints 还要方便，只需要用 broadcast 函数封装需要广播的数据表即可，如下所示。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line">table1.join(broadcast(table2), <span class="type">Seq</span>(“key”), “inner”)</span><br></pre></td></tr></table></figure>
-<p>以广播阈值配置为主，以强制广播为辅，</p>
-<p>广播阈值的设置，更多的是把选择权交给 Spark SQL，尤其是在 AQE 的机制下，动态 Join 策略调整需要这样的设置在运行时做出选择。强制广播更多的是开发者以专家经验去指导 Spark SQL 该如何选择运行时策略。二者相辅相成，并不冲突，开发者灵活地运用就能平衡 Spark SQL 优化策略与专家经验在应用中的比例。</p>
-<h4 id="广播变量不是万能"><a href="#广播变量不是万能" class="headerlink" title="广播变量不是万能"></a>广播变量不是万能</h4><p>首先，从性能上来讲，Driver 在创建广播变量的过程中，需要拉取分布式数据集所有的数据分片。在这个过程中，网络开销和 Driver 内存会成为性能隐患。广播变量尺寸越大，额外引入的性能开销就会越多。更何况，如果广播变量大小超过 8GB，Spark 会直接抛异常中断任务执行。</p>
-<p>其次，从功能上来讲，并不是所有的 Joins 类型都可以转换为 Broadcast Joins。一来，Broadcast Joins 不支持全连接（Full Outer Joins）；二来，在所有的数据关联中，我们不能广播基表。或者说，即便开发者强制广播基表，也无济于事。比如说，在左连接（Left Outer Join）中，我们只能广播右表；在右连接（Right Outer Join）中，我们只能广播左表。在下面的代码中，即便我们强制用 broadcast 函数进行广播，Spark SQL 在运行时还是会选择 Shuffle Joins。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line">broadcast (table1).join(table2, <span class="type">Seq</span>(“key”), “left”)</span><br><span class="line">table1.join(broadcast(table2), <span class="type">Seq</span>(“key”), “right”)</span><br></pre></td></tr></table></figure>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这一讲，我们总结了 2 种方法，让 Spark SQL 在运行时能够选择 Broadcast Joins 策略，分别是设置配置项和用 API 强制广播。</p>
-<p>首先，设置配置项主要是设置 autoBroadcastJoinThreshold 配置项。开发者通过这个配置项指示 Spark SQL 优化器。只要参与 Join 的两张表中，有一张表的尺寸小于这个参数值，就在运行时采用 Broadcast Joins 的实现方式。为了让 Spark SQL 采用 Broadcast Joins，开发者要做的，就是让数据表在内存中的尺寸小于 autoBroadcastJoinThreshold 参数的设定值。除此之外，在设置广播阈值的时候，因为磁盘数据展开到内存的时候，存储大小会成倍增加，往往导致 Spark SQL 无法采用 Broadcast Joins 的策略。因此，我们在做数据关联的时候，还要先预估一张表在内存中的存储大小。一种精确的预估方法是先把 DataFrame 缓存，然后读取执行计划的统计数据。其次，用 API 强制广播有两种方法，分别是设置 Join Hints 和用 broadcast 函数。设置 Join Hints 的方法就是在 SQL 结构化查询语句里面加上一句“/<em>+ broadcast(某表) </em>/”的提示就可以了，这里的 broadcast 关键字也可以换成 broadcastjoin 或者 mapjoin。另外，你也可以在 DataFrame 的 DSL 语法中使用调用 hint 方法，指定 broadcast 关键字，来达到同样的效果。设置 broadcast 函数的方法非常简单，只要用 broadcast 函数封装需要广播的数据表就可以了。总的来说，不管是设置配置项还是用 API 强制广播都有各自的优缺点，所以，以广播阈值配置为主、强制广播为辅，往往是一个不错的选择。最后，不过，我们也要注意，广播变量不是银弹，它并不能解决所有的数据关联问题，所以在日常的开发工作中，你要注意避免滥用广播。</p>
-<h3 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h3><p>DataFrame 可以用 sparkContext.broadcast 函数来广播吗？它和 org.apache.spark.sql.functions.broadcast 函数之间的区别是什么？</p>
-<p>sql 的broadcast返回值是一个Dataset[T]，而sparkContext.broadcast的返回值是一个Broadcast[T] 类型值，需要调用value方法，才能返回被广播出去的变量,所以二者在使用的使用的体现形式上，sparkContext.broadcast 需要你调用一次value 方法才能和其他DF 进行join,下面提供一个demo 进行说明</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = sparksession.range(<span class="number">100</span>).toDF(<span class="string">"userID"</span>)</span><br><span class="line">  <span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = sparksession.range(<span class="number">10</span>, <span class="number">20</span>).toDF(<span class="string">"userID"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> bcUserDF = broadcast(userDF)</span><br><span class="line">  <span class="keyword">val</span> bcUserDF2 = sparkContext.broadcast(userDF)</span><br><span class="line">  <span class="keyword">val</span> dataFrame = transactionsDF.join(bcUserDF, <span class="type">Seq</span>(<span class="string">"userID"</span>), <span class="string">"inner"</span>)</span><br><span class="line">  dataFrame.show()</span><br><span class="line">  <span class="keyword">val</span> dataFrame2 = transactionsDF.join(bcUserDF2.value, <span class="type">Seq</span>(<span class="string">"userID"</span>), <span class="string">"inner"</span>)</span><br><span class="line">  dataFrame2.show()</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/使用广播变量/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1034,19 +1428,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1070,10 +1464,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SparkStreaming</a>
               </li>
              
@@ -1087,6 +1477,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
