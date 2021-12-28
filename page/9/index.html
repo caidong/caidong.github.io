@@ -166,6 +166,207 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Blog/markdown/Openwrt/多宽带拨号指定出口负载均衡" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/10/Blog/markdown/Openwrt/多宽带拨号指定出口负载均衡/">openwrt 多宽带拨号指定出口负载均衡</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/02/10/Blog/markdown/Openwrt/多宽带拨号指定出口负载均衡/" class="archive-article-date">
+  	<time datetime="2017-02-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>策略路由</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iptables -t<span class="built_in"> nat </span>-A POSTROUTING -s 192.168.3.13/255.255.255.0 -o wan_13 -j MASQUE</span><br><span class="line">ip rule <span class="builtin-name">add</span> <span class="keyword">from</span> 192.168.3.13 lookup 103</span><br><span class="line">ip<span class="built_in"> route </span><span class="builtin-name">add</span><span class="built_in"> default </span>dev pppoe-wan_13 table 103</span><br></pre></td></tr></table></figure>
+<p>2.mwan3虚拟网卡</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ip link <span class="builtin-name">add</span> link eth0 vth16<span class="built_in"> type </span>macvlan</span><br><span class="line">ifconfig vth16 hw ether 38-5B-F9-21-46-53</span><br><span class="line">ifconfig vth16 up</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>squid多进程负载均衡</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>sbin<span class="regexp">/squid -f /</span>etc<span class="regexp">/squid/</span>squid-<span class="number">2</span>.conf <span class="variable">$@</span>;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>配置squid.conf 指定用户到本地ip</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">acl</span> <span class="selector-tag">user13</span> <span class="selector-tag">proxy_auth</span> <span class="selector-tag">user13</span>                                 </span><br><span class="line"><span class="selector-tag">tcp_outgoing_address</span> 192<span class="selector-class">.168</span><span class="selector-class">.3</span><span class="selector-class">.13</span> <span class="selector-tag">user13</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Openwrt</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/openwrt//" class="article-tag-list-link color3">openwrt</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/10/Blog/markdown/Openwrt/多宽带拨号指定出口负载均衡/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/读写JSON数据" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/11/Blog/markdown/Python/基础知识/读写JSON数据/">读写JSON编码格式的数据</a>
+    </h1>
+  
+
+        
+        
+<a href="/2017/01/11/Blog/markdown/Python/基础知识/读写JSON数据/" class="archive-article-date">
+  	<time datetime="2017-01-11T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>读写JSON编码格式的数据</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>json 模块提供了一种很简单的方式来编码和解码Json数据，其中两个主要的函数json.dumps()和json.loads(),要比其他序列化函数库如pickle的接口少得多。示例：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Dict =&gt; JSON_Str</span></span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="class"><span class="keyword">data</span> = &#123;</span></span><br><span class="line"><span class="class">    '<span class="title">name'</span>:'<span class="type">ACME</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">shares'</span>:100,</span></span><br><span class="line"><span class="class">    '<span class="title">price'</span>:542.23</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="title">json_str</span> = json.dumps(<span class="class"><span class="keyword">data</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>json编码字符串转换回一个Python数据结构：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> = json.loads(<span class="title">json_str</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你要处理的是问价而不是字符串，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Writing JSON data</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'data.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(<span class="keyword">data</span>, f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reading data back</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'data.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">data</span> = json.load(f)</span><br></pre></td></tr></table></figure></p>
+<p>JSON 编码支持的基本数据结构类型为None bool int float 和 str 以及包含这些类型数据结构的lists tuples 和dictionaries. 对于dictionaries,keys 需要是字符串类型（字典中任何非字符串类型的key 在编码时会先转换成为字符串），为了遵循JSON规范 你应该只编码Python的list和dictionaries 而且，在web应用程序中，顶层对象被编码成一个字典是一个标准做法。</p>
+<ul>
+<li>JSON编码的格式对于Python的语法而已几乎是完全一样的，除了一些小的差异之外。比如。True会被映射为true， False被映射成false。而None 会被映射为null, 下面是一个例子，演示编码后的字符串效果; <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; json.dumps(False)</span><br><span class="line"><span class="string">'false'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; d = &#123;<span class="string">'a'</span>: True,</span><br><span class="line">...     <span class="string">'b'</span>: <span class="string">'Hello'</span>,</span><br><span class="line">...     <span class="string">'c'</span>: None&#125;</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; json.dumps(d)</span><br><span class="line"><span class="string">'&#123;"b": "Hello", "c": null, "a": true&#125;'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/11/Blog/markdown/Python/基础知识/读写JSON数据/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Blog/markdown/Openwrt/openwrt编译安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -708,15 +909,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,15 +921,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -760,11 +953,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,18 +994,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
@@ -845,6 +1046,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="http://xj.top1.pub/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>小鸡监控</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cncoder.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>栈溢出程序员&amp;云服务商</a>
             </li>
           
         </ul>

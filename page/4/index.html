@@ -166,6 +166,100 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Blog/markdown/Spark/SparkStreaming开启Supervisor守护" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/11/07/Blog/markdown/Spark/SparkStreaming开启Supervisor守护/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/spark-submit参数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/11/07/Blog/markdown/Spark/spark-submit参数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Blog/markdown/Spark/Spark函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -637,227 +731,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Blog/markdown/Spark/SparkCore" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/30/Blog/markdown/Spark/SparkCore/">SparkCore 核心概念</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/10/30/Blog/markdown/Spark/SparkCore/" class="archive-article-date">
-  	<time datetime="2021-10-30T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <strong>说明：本文大多数定义来自尚硅谷大数据文档，自己摘抄的读书笔记。</strong></p>
-<h3 id="RDD-Resilient-Distributed-DataSet-弹性分布式数据集"><a href="#RDD-Resilient-Distributed-DataSet-弹性分布式数据集" class="headerlink" title="RDD(Resilient Distributed DataSet) 弹性分布式数据集"></a>RDD(Resilient Distributed DataSet) 弹性分布式数据集</h3><pre><code>1. RDD（Resilient Distributed Dataset）叫做弹性分布式数据集，是Spark中最基本的数据抽象。代码中是一个抽象类，它代表一个弹性的、不可变、可分区、里面的元素可并行计算的集合。
-2. 特点：只读 、不可变、可分区、可并行计算
-3. 弹性
-- 存储弹性：内存与磁盘的自动切换
-- 容错弹性：数据丢失可以自动恢复
-- 计算弹性：计算出错重试机制
-- 分片弹性：根据需要重新分片
-</code></pre><h3 id="算子"><a href="#算子" class="headerlink" title="算子"></a>算子</h3><ol>
-<li><h4 id="转换-Transformation"><a href="#转换-Transformation" class="headerlink" title="转换 Transformation"></a>转换 Transformation</h4><ol>
-<li>map(func) 返回由每个输入元素经过func函数处理后的RDD</li>
-<li>mapPartitions(func) 一个函数一次处理所有分区</li>
-<li>mapPartition是WithIndex(func) 带索引值, func参数（Int,Iterator[T]）</li>
-<li>flatMap(func) 每一个输入元素可以被映射为0个或多个输出元素</li>
-<li>groupBy(func) 分组，按照传入函数的返回值进行分组。将相同的key对应的值放入一个迭代器。</li>
-<li>filter(func) 过滤结果为False的值</li>
-<li>sample(withReplacement,fraction,seed) 随机抽样，withReplacement 是否有放回，fraction 抽样比例，seed随机数生成器种子</li>
-<li>distinct([numTasks]),对源去重，返回新的RDD</li>
-<li>coalesce(numPartitions) 合并分区，用于大数据集过滤后，提高小数据集执行效率</li>
-<li>repartition(numPartitions) 重新混洗所有数据</li>
-<li></li>
-</ol>
-</li>
-<li><h4 id="行动-Action"><a href="#行动-Action" class="headerlink" title="行动 Action"></a>行动 Action</h4></li>
-</ol>
-<h5 id="map-与mapPartitions-区别"><a href="#map-与mapPartitions-区别" class="headerlink" title="map()与mapPartitions()区别"></a>map()与mapPartitions()区别</h5><pre><code>1. map 每次处理一条
- 2. mapPartitions 每次处理一个分区
- 3. 使用场景：当内存空间较大时候建议使用mapPartitions(),以提高处理效率
-</code></pre><h5 id="coalesce与repartition-区别"><a href="#coalesce与repartition-区别" class="headerlink" title="coalesce与repartition()区别"></a>coalesce与repartition()区别</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sparkCore</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/spark//" class="article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/30/Blog/markdown/Spark/SparkCore/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Spark内存存储调研" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/">SparkStreaming 数据存储</a>
-    </h1>
-  
-
-        
-        
-<a href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/" class="archive-article-date">
-  	<time datetime="2021-08-30T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Spark-streaming-数据存储"><a href="#Spark-streaming-数据存储" class="headerlink" title="Spark streaming 数据存储"></a>Spark streaming 数据存储</h1><h3 id="1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问"><a href="#1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问" class="headerlink" title="1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问"></a>1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问</h3><p>   ​    <strong>优点</strong>：低延迟、近实时</p>
-<p>   ​    <strong>缺点</strong>：非持久化、易失</p>
-<p>   ​    <strong>限制</strong>：Spark Driver‘s内存最大200G,这200G内存中，能用来缓存表格数据，默认参数</p>
-<p>   ​    spark.memory.fraction 和 spark.memory.storageFraction,最大的内存使用量 200GB <em> 0.6 </em> 0.5= 60GB,</p>
-<p>   ​    <strong>突破限制</strong>，可以使用低延迟、大数据集、高性能(Druid、Apache Kudu、Apache Ignite)的分布式内存数据存储，代替单个JVM 内存，单个内存是不够存储的</p>
-<ul>
-<li><h4 id="开启步骤"><a href="#开启步骤" class="headerlink" title="开启步骤"></a>开启步骤</h4><h5 id="1-运行前，开启Spark-Thrift-Server"><a href="#1-运行前，开启Spark-Thrift-Server" class="headerlink" title="1.运行前，开启Spark Thrift Server"></a>1.运行前，开启Spark Thrift Server</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from py4j.java_gateway <span class="keyword">import</span> java_import</span><br><span class="line">java_import(spark.sparkContext._gateway.jvm, <span class="string">""</span>)</span><br><span class="line">spark.sparkContext._gateway.jvm.org.apache.spark.sql.hive.thriftserver \</span><br><span class="line">  .HiveThriftServer2.startWithContext(spark._jwrapped)</span><br></pre></td></tr></table></figure>
-<h5 id="2-结果写入内存中供后续查询使用"><a href="#2-结果写入内存中供后续查询使用" class="headerlink" title="2. 结果写入内存中供后续查询使用"></a>2. 结果写入内存中供后续查询使用</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tips.writeStream \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"memory"</span>) \</span><br><span class="line">  .queryName(<span class="string">"tips"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="type">False</span>) \</span><br><span class="line">  .start() \</span><br><span class="line">  .awaitTermination()</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="3-使用JDBC客户端查询"><a href="#3-使用JDBC客户端查询" class="headerlink" title="3. 使用JDBC客户端查询"></a>3. 使用JDBC客户端查询</h5>   <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>spark2-thriftserver<span class="regexp">/bin/</span>beeline \</span><br><span class="line">  -u <span class="string">jdbc:</span><span class="string">hive2:</span><span class="comment">//master02.cluster:10016</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-持久化存储到HDFS文件系统"><a href="#2-持久化存储到HDFS文件系统" class="headerlink" title="2. 持久化存储到HDFS文件系统"></a>2. 持久化存储到HDFS文件系统</h3><p> 一旦数据被处理和Spark停止，内存存储是易失和不可靠的。原始数据必须被存储在存储区，一旦数据丢失我们可以从原始数据重建它，我们可以使用多种持久化存储方式，如：关系型数据库、NOSQL存储、对象云存储（S3、Google Cloud）、分布式文件系统（Ceph、GlsterFs、HDFS）</p>
-<h5 id="1-数据持久化HDFS"><a href="#1-数据持久化HDFS" class="headerlink" title="1.数据持久化HDFS"></a>1.数据持久化HDFS</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> year, month, dayofmonth</span><br><span class="line"></span><br><span class="line">sdfRides.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Rides"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/RidesRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/RidesRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br><span class="line"></span><br><span class="line">sdfFares.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Fares"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/FaresRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/FaresRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br></pre></td></tr></table></figure>
-<h5 id="2-查询使用结果数据"><a href="#2-查询使用结果数据" class="headerlink" title="2.查询使用结果数据"></a>2.查询使用结果数据</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tips = sdf \</span><br><span class="line">  .groupBy(</span><br><span class="line">    window(<span class="string">"endTime"</span>, <span class="string">"30 minutes"</span>, <span class="string">"10 minutes"</span>),</span><br><span class="line">    <span class="string">"stopNbhd"</span>) \</span><br><span class="line">  .agg(avg(<span class="string">"tip"</span>))</span><br></pre></td></tr></table></figure>
-<h5 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h5><p><a href="https://www.adaltas.com/en/2019/05/28/spark-structured-streaming-in-hadoop/" target="_blank" rel="noopener">spark-structured-streaming-in-hadoop</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SparkStreaming</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -974,15 +847,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -990,15 +859,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1026,11 +891,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1047,18 +932,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1111,6 +984,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="http://xj.top1.pub/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>小鸡监控</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cncoder.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>栈溢出程序员&amp;云服务商</a>
             </li>
           
         </ul>

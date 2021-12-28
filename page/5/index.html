@@ -166,6 +166,227 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Blog/markdown/Spark/SparkCore" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/30/Blog/markdown/Spark/SparkCore/">SparkCore 核心概念</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/10/30/Blog/markdown/Spark/SparkCore/" class="archive-article-date">
+  	<time datetime="2021-10-30T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <strong>说明：本文大多数定义来自尚硅谷大数据文档，自己摘抄的读书笔记。</strong></p>
+<h3 id="RDD-Resilient-Distributed-DataSet-弹性分布式数据集"><a href="#RDD-Resilient-Distributed-DataSet-弹性分布式数据集" class="headerlink" title="RDD(Resilient Distributed DataSet) 弹性分布式数据集"></a>RDD(Resilient Distributed DataSet) 弹性分布式数据集</h3><pre><code>1. RDD（Resilient Distributed Dataset）叫做弹性分布式数据集，是Spark中最基本的数据抽象。代码中是一个抽象类，它代表一个弹性的、不可变、可分区、里面的元素可并行计算的集合。
+2. 特点：只读 、不可变、可分区、可并行计算
+3. 弹性
+- 存储弹性：内存与磁盘的自动切换
+- 容错弹性：数据丢失可以自动恢复
+- 计算弹性：计算出错重试机制
+- 分片弹性：根据需要重新分片
+</code></pre><h3 id="算子"><a href="#算子" class="headerlink" title="算子"></a>算子</h3><ol>
+<li><h4 id="转换-Transformation"><a href="#转换-Transformation" class="headerlink" title="转换 Transformation"></a>转换 Transformation</h4><ol>
+<li>map(func) 返回由每个输入元素经过func函数处理后的RDD</li>
+<li>mapPartitions(func) 一个函数一次处理所有分区</li>
+<li>mapPartition是WithIndex(func) 带索引值, func参数（Int,Iterator[T]）</li>
+<li>flatMap(func) 每一个输入元素可以被映射为0个或多个输出元素</li>
+<li>groupBy(func) 分组，按照传入函数的返回值进行分组。将相同的key对应的值放入一个迭代器。</li>
+<li>filter(func) 过滤结果为False的值</li>
+<li>sample(withReplacement,fraction,seed) 随机抽样，withReplacement 是否有放回，fraction 抽样比例，seed随机数生成器种子</li>
+<li>distinct([numTasks]),对源去重，返回新的RDD</li>
+<li>coalesce(numPartitions) 合并分区，用于大数据集过滤后，提高小数据集执行效率</li>
+<li>repartition(numPartitions) 重新混洗所有数据</li>
+<li></li>
+</ol>
+</li>
+<li><h4 id="行动-Action"><a href="#行动-Action" class="headerlink" title="行动 Action"></a>行动 Action</h4></li>
+</ol>
+<h5 id="map-与mapPartitions-区别"><a href="#map-与mapPartitions-区别" class="headerlink" title="map()与mapPartitions()区别"></a>map()与mapPartitions()区别</h5><pre><code>1. map 每次处理一条
+ 2. mapPartitions 每次处理一个分区
+ 3. 使用场景：当内存空间较大时候建议使用mapPartitions(),以提高处理效率
+</code></pre><h5 id="coalesce与repartition-区别"><a href="#coalesce与repartition-区别" class="headerlink" title="coalesce与repartition()区别"></a>coalesce与repartition()区别</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sparkCore</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spark//" class="article-tag-list-link color1">spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/30/Blog/markdown/Spark/SparkCore/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/Spark内存存储调研" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/">SparkStreaming 数据存储</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/" class="archive-article-date">
+  	<time datetime="2021-08-30T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spark-streaming-数据存储"><a href="#Spark-streaming-数据存储" class="headerlink" title="Spark streaming 数据存储"></a>Spark streaming 数据存储</h1><h3 id="1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问"><a href="#1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问" class="headerlink" title="1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问"></a>1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问</h3><p>   ​    <strong>优点</strong>：低延迟、近实时</p>
+<p>   ​    <strong>缺点</strong>：非持久化、易失</p>
+<p>   ​    <strong>限制</strong>：Spark Driver‘s内存最大200G,这200G内存中，能用来缓存表格数据，默认参数</p>
+<p>   ​    spark.memory.fraction 和 spark.memory.storageFraction,最大的内存使用量 200GB <em> 0.6 </em> 0.5= 60GB,</p>
+<p>   ​    <strong>突破限制</strong>，可以使用低延迟、大数据集、高性能(Druid、Apache Kudu、Apache Ignite)的分布式内存数据存储，代替单个JVM 内存，单个内存是不够存储的</p>
+<ul>
+<li><h4 id="开启步骤"><a href="#开启步骤" class="headerlink" title="开启步骤"></a>开启步骤</h4><h5 id="1-运行前，开启Spark-Thrift-Server"><a href="#1-运行前，开启Spark-Thrift-Server" class="headerlink" title="1.运行前，开启Spark Thrift Server"></a>1.运行前，开启Spark Thrift Server</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from py4j.java_gateway <span class="keyword">import</span> java_import</span><br><span class="line">java_import(spark.sparkContext._gateway.jvm, <span class="string">""</span>)</span><br><span class="line">spark.sparkContext._gateway.jvm.org.apache.spark.sql.hive.thriftserver \</span><br><span class="line">  .HiveThriftServer2.startWithContext(spark._jwrapped)</span><br></pre></td></tr></table></figure>
+<h5 id="2-结果写入内存中供后续查询使用"><a href="#2-结果写入内存中供后续查询使用" class="headerlink" title="2. 结果写入内存中供后续查询使用"></a>2. 结果写入内存中供后续查询使用</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tips.writeStream \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"memory"</span>) \</span><br><span class="line">  .queryName(<span class="string">"tips"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="type">False</span>) \</span><br><span class="line">  .start() \</span><br><span class="line">  .awaitTermination()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="3-使用JDBC客户端查询"><a href="#3-使用JDBC客户端查询" class="headerlink" title="3. 使用JDBC客户端查询"></a>3. 使用JDBC客户端查询</h5>   <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>spark2-thriftserver<span class="regexp">/bin/</span>beeline \</span><br><span class="line">  -u <span class="string">jdbc:</span><span class="string">hive2:</span><span class="comment">//master02.cluster:10016</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-持久化存储到HDFS文件系统"><a href="#2-持久化存储到HDFS文件系统" class="headerlink" title="2. 持久化存储到HDFS文件系统"></a>2. 持久化存储到HDFS文件系统</h3><p> 一旦数据被处理和Spark停止，内存存储是易失和不可靠的。原始数据必须被存储在存储区，一旦数据丢失我们可以从原始数据重建它，我们可以使用多种持久化存储方式，如：关系型数据库、NOSQL存储、对象云存储（S3、Google Cloud）、分布式文件系统（Ceph、GlsterFs、HDFS）</p>
+<h5 id="1-数据持久化HDFS"><a href="#1-数据持久化HDFS" class="headerlink" title="1.数据持久化HDFS"></a>1.数据持久化HDFS</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> year, month, dayofmonth</span><br><span class="line"></span><br><span class="line">sdfRides.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Rides"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/RidesRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/RidesRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br><span class="line"></span><br><span class="line">sdfFares.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Fares"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/FaresRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/FaresRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br></pre></td></tr></table></figure>
+<h5 id="2-查询使用结果数据"><a href="#2-查询使用结果数据" class="headerlink" title="2.查询使用结果数据"></a>2.查询使用结果数据</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tips = sdf \</span><br><span class="line">  .groupBy(</span><br><span class="line">    window(<span class="string">"endTime"</span>, <span class="string">"30 minutes"</span>, <span class="string">"10 minutes"</span>),</span><br><span class="line">    <span class="string">"stopNbhd"</span>) \</span><br><span class="line">  .agg(avg(<span class="string">"tip"</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h5><p><a href="https://www.adaltas.com/en/2019/05/28/spark-structured-streaming-in-hadoop/" target="_blank" rel="noopener">spark-structured-streaming-in-hadoop</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SparkStreaming</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Blog/markdown/Python/基础知识/Cpython虚拟机如何工作" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -1333,229 +1554,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Blog/markdown/TensorFlow/常用api" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/Blog/markdown/TensorFlow/常用api/">tensorFlow 常用api</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/08/29/Blog/markdown/TensorFlow/常用api/" class="archive-article-date">
-  	<time datetime="2018-08-29T12:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>tf.one_hot() 返回n维的独热张量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.one_hot(indices, depth, on_value, off_value, axis)</span><br><span class="line">输入值：</span><br><span class="line">    indices:  独热向量的位置索引</span><br><span class="line">    depth:  每个独热向量的维度</span><br><span class="line">    on_value: 独热的值</span><br><span class="line">    off_value: 非独热值</span><br><span class="line">    axis: axis指定第几阶为depth维独热向量，默认为<span class="number">-1</span>,即,指定张量的最后一维为独热向量</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    独热张量</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>tf.argmax() 返回某个 tensor 对象在某一维上的其数据最大值所在的索引值，相应的有tf.argmin()</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.argmax(input,axis=<span class="type">None</span>,name=<span class="type">None</span>,dimension=<span class="type">None</span>,output_type=tf.<span class="built_in">int64</span>)</span><br><span class="line">    </span><br><span class="line">输入值：</span><br><span class="line">    input: 以下数据类型的张量: <span class="built_in">float32</span>, <span class="built_in">float64</span>, <span class="built_in">int32</span>, <span class="built_in">uint8</span>, <span class="built_in">int16</span>, <span class="built_in">int8</span>, complex64, <span class="built_in">int64</span>, qint8, quint8, qint32, bfloat16, <span class="built_in">uint16</span>, complex128, half, <span class="built_in">uint32</span>, <span class="built_in">uint64</span>.</span><br><span class="line">    axis: A <span class="type">Tensor</span>. <span class="type">Must</span> be one <span class="keyword">of</span> the following types: <span class="built_in">int32</span>, <span class="built_in">int64</span>. <span class="built_in">int32</span> <span class="keyword">or</span> <span class="built_in">int64</span>, must be <span class="keyword">in</span> the <span class="built_in">range</span> [-rank(input), rank(input)). <span class="type">Describes</span> which axis <span class="keyword">of</span> the input <span class="type">Tensor</span> to reduce across. <span class="type">For</span> vectors, use axis = <span class="number">0</span>.</span><br><span class="line">    output_type: <span class="type">An</span> optional tf.<span class="type">DType</span> <span class="keyword">from</span>: tf.<span class="built_in">int32</span>, tf.<span class="built_in">int64</span>. <span class="type">Defaults</span> to tf.<span class="built_in">int64</span>.</span><br><span class="line">    name: 操作名 (optional).</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    类型为output_type的张量</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/Blog/markdown/TensorFlow/常用api/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/TensorFlow/特征工程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/Blog/markdown/TensorFlow/特征工程/">特征工程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/08/29/Blog/markdown/TensorFlow/特征工程/" class="archive-article-date">
-  	<time datetime="2018-08-29T12:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h3><p>1.原因: 多个特征之间的差异较大，收敛速度会很慢。</p>
-<p>2.方法:</p>
-<ul>
-<li>连续数据归一化</li>
-</ul>
-<ol>
-<li>Max-Min</li>
-</ol>
-<p>公式<br><img src="https://img-blog.csdn.net/20150306200758594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemJjMTA5MDU0OTgzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
-<p>Xmin/Xmax分别对应数据集中最小、最大的数据，X是待归一化数据</p>
-<ol start="2">
-<li>0均值标准化(Z-Score) </li>
-</ol>
-<p><img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D=%5Cfrac%7Bx-%5Cmu%20%7D%7B%5Csigma%20%7D%20%20" alt="image"></p>
-<p>其中x为某一具体分数，μ为平均数，σ为标准差。<br>    Z值的量代表着原始分数和母体平均值之间的距离，是以标准差为单位计算。在原始分数低于平均值时Z则为负数，反之则为正数。</p>
-<ol start="3">
-<li>对数函数法</li>
-</ol>
-<p><img src="http://images2015.cnblogs.com/blog/323808/201603/323808-20160307152838663-1519807797.png" alt="image"></p>
-<p>主要用于数量级很大的场合</p>
-<ul>
-<li><p>离散数据归一化</p>
-<p>  one-hot 编码<br>  独热编码即 One-Hot 编码，又称一位有效编码，其方法是使用N位状态寄存器来对N个状态进行编码，每个状态都由他独立的寄存器位，并且在任意时候，其中只有一位有效。</p>
-</li>
-</ul>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">例如： </span><br><span class="line"><span class="number">1.</span> 自然状态码为：<span class="number">000</span>,<span class="number">001</span>,<span class="number">010</span>,<span class="number">011</span>,<span class="number">100</span>,<span class="number">101</span> </span><br><span class="line">独热编码为：<span class="number">000001</span>,<span class="number">000010</span>,<span class="number">000100</span>,<span class="number">001000</span>,<span class="number">010000</span>,<span class="number">100000</span> </span><br><span class="line"><span class="number">2.</span> 性别特征有三种特征值：男、女、其他 </span><br><span class="line">独热编码为：<span class="number">001</span>，<span class="number">010</span>，<span class="number">100</span></span><br></pre></td></tr></table></figure>
-<h3 id="连续数据离散化"><a href="#连续数据离散化" class="headerlink" title="连续数据离散化"></a>连续数据离散化</h3><ol>
-<li>等距离散<br> 取值范围内划分出n份，每份间距相等</li>
-<li>等频离散<br> 均匀分为n等份，每份包含观察点的数目相同</li>
-<li><p>优化离散</p>
-<p> 大致有两类方法： </p>
-<ol>
-<li>卡方检验方法：（统计样本的实际观测值与理论推断值之间的偏离程度，卡方值越大，越不符合；卡方值越小，偏差越小，越趋于符合） </li>
-</ol>
-</li>
-</ol>
-<ul>
-<li>分裂方法：找到一个分裂点看，左右2个区间，在目标值上分布是否有- 显著差异，有显著差异就分裂，否则就忽略。这个点可以每次找差异最大的点 </li>
-<li>合并方法：先划分如果很小单元区间，按顺序合并在目标值上分布不显著的相邻区间，直到收敛 <ol start="2">
-<li>信息增益方法： </li>
-</ol>
-</li>
-<li>分裂方法：找到一个分裂点看，左右2个区间，看分裂前后信息增益变化阈值，如果差值超过阈值（正值，分列前-分裂后信息熵），则分裂。每次找差值最大的点做分裂点，直到收敛 </li>
-<li>合并方法：先划分 如果很小单元区间，按顺序合并信息增益小于阈值的相邻区间，直到收敛</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/Blog/markdown/TensorFlow/特征工程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1672,15 +1670,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1688,15 +1682,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1724,11 +1714,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1745,18 +1755,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1809,6 +1807,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="http://xj.top1.pub/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>小鸡监控</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cncoder.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>栈溢出程序员&amp;云服务商</a>
             </li>
           
         </ul>

@@ -166,6 +166,201 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Blog/markdown/TensorFlow/基础概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/">基础概念</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/" class="archive-article-date">
+  	<time datetime="2018-07-26T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>特征：某个样本的特点。</li>
+<li>标签：尝试预测的内容。</li>
+<li>样本：特征和标签组成</li>
+<li>模型：特征与标签之间的关系</li>
+<li>训练： 机器学习阶段，模型逐渐得到优化。</li>
+<li>训练集：用于训练模型的样本集合</li>
+<li>测试集：用于评估训练后模型效果的集合</li>
+<li>特征工程: 利用数据领域相关知识来创建能够使机器算法达到最佳性能的过程</li>
+<li>特征构建: 是原始数据中人工的构建新的特征</li>
+<li>特征提取: 自动构建新的特征，将原始特征转化为一组具有明显物理意义或统计意义或核的特征</li>
+<li>特征选择: 从特征集合中挑选一组最具统计意义的特征子集，从而达到降维的效果  </li>
+</ul>
+<p>如果特征构建做的不好，那么它会直接影响特征提取，进而影响了特征选择，最终影响模型的性能</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/Scrapy/User-Agent中间件编写" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/">User-Agent中间件</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/" class="archive-article-date">
+  	<time datetime="2018-06-25T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>代码</li>
+</ol>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> my_useragent(<span class="title">object</span>):</span></span><br><span class="line"><span class="class">    def process_request(<span class="title">self</span>, <span class="title">request</span>, <span class="title">spider</span>):</span></span><br><span class="line"><span class="class">        <span class="type">USER_AGENT_LIST</span> = [</span></span><br><span class="line"><span class="class">        <span class="type">Mozilla</span>/5.0(<span class="type">Macintosh</span>;<span class="type">U</span>;<span class="type">IntelMacOSX10_6_8</span>;<span class="title">en</span>-<span class="title">us</span>)<span class="type">AppleWebKit</span>/534.50(<span class="type">KHTML</span>,<span class="title">likeGecko</span>)<span class="type">Version</span>/5.1Safari/534.50,</span></span><br><span class="line"><span class="class">        <span class="type">Mozilla</span>/5.0(<span class="type">Windows</span>;<span class="type">U</span>;<span class="type">WindowsNT6</span>.1;<span class="title">en</span>-<span class="title">us</span>)<span class="type">AppleWebKit</span>/534.50(<span class="type">KHTML</span>,<span class="title">likeGecko</span>)<span class="type">Version</span>/5.1Safari/534.50</span></span><br><span class="line"><span class="class">        ]</span></span><br><span class="line"><span class="class">        agent = random.choice(<span class="type">USER_AGENT_LIST</span>)</span></span><br><span class="line"><span class="class">        request.headers['user-agent'] = agent</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>在settings.py 启用</p>
+<p> DOWLOAD_MIDDLER = {</p>
+<pre><code>module_name:priority_level
+</code></pre><p>} </p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Scrapy//" class="article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Blog/markdown/Python/Scrapy/代理ip中间件" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -1025,238 +1220,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Blog/markdown/Python/基础知识/library , module , package" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/16/Blog/markdown/Python/基础知识/library , module , package/">python的组织形式 library、module、 package</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/07/16/Blog/markdown/Python/基础知识/library , module , package/" class="archive-article-date">
-  	<time datetime="2017-07-16T15:12:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>背景<br>Python中有一些基本的名词，很多人，尤其是一些初学者，可能听着就很晕。</p>
-<p>此处，简单总结一下，module，library，package之间的大概区别。</p>
-<p>Python中的module的简介<br>module，中文翻译为：模块</p>
-<p>Python中的module，说白了，就是Python文件，而python文件一般后缀为py，所以就是你的xxx.py而已。</p>
-<p>library简介<br>library，中文翻译为：库，也常称为：库文件</p>
-<p>之所以此处不说是Python中的library，那是因为，本身library这个词，一般都是针对其他的编译型语言，比如C，C#等语言来说的。</p>
-<p>常见的C/C#等语言中的library，一般指的就是：</p>
-<p>静态的库文件：xxx.a</p>
-<p>动态的库文件：xxx.dll</p>
-<p>Python中的Package的简介<br>package，中文翻译为：包</p>
-<p>Python中的package，可以简单的理解为，一组的module，一堆（相关的）module组合而成的；</p>
-<p>Python中module和library之间的区别<br>对于library和module，说白了，都是提供了一定的功能供别人调用。</p>
-<p>从这方面来说，也可以理解为：</p>
-<p>Python中library等价于module；</p>
-<p>只不过，Python中，很少说library，正常的话，都是说module；</p>
-<p>所以，简而言之：</p>
-<p>library多数都是指的是C，C#等语言中的库，库文件；<br>Python中，很少用library这个词；<br>Python中的“库”，“库文件”的叫法，叫做module，模块；<br>不论你是Python的初学者还是高手，个人建议，都还是继续沿用，官方的，通用的叫法，使用 module这个词，而不要使用用library这个词；</p>
-<p>Python中的module和package之间的区别<br>导入单个的module，一般是这样的：</p>
-<p>?<br>1<br>import my_module<br>导入package一般是这样的：</p>
-<p>?<br>1<br>from my_package.timing.danger.internets import function_of_love</p>
-<p>可以简单理解为：</p>
-<p>module：单个的模块，一般是单个（偶尔为多个）python文件；<br>package：多个相关的module的组合。肯定是多个，相关的，Python文件的组合；package是用来把相关的模块组织在一起，成为一个整体的；</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/16/Blog/markdown/Python/基础知识/library , module , package/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Redis/Redis安装" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/16/Blog/markdown/Redis/Redis安装/">Redis安装</a>
-    </h1>
-  
-
-        
-        
-<a href="/2017/06/16/Blog/markdown/Redis/Redis安装/" class="archive-article-date">
-  	<time datetime="2017-06-16T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Redis-部署安装"><a href="#Redis-部署安装" class="headerlink" title="Redis 部署安装"></a>Redis 部署安装</h2><p>Redis是基于REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。</p>
-<ol>
-<li>下载安装服务</li>
-</ol>
-<p>下载地址：<a href="http://redis.io/download，下载最新文档版本。" target="_blank" rel="noopener">http://redis.io/download，下载最新文档版本。</a></p>
-<p>本教程使用的最新文档版本为 2.8.17，下载并安装：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#下载地址 wget http:<span class="comment">//download.redis.io/releases/redis-2.8.17.tar.gz </span></span><br><span class="line">文件已下好位于 /Package/Redis/redis-<span class="number">2.8</span>.<span class="number">24</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line"></span><br><span class="line">$ tar xzf redis-<span class="number">2.8</span>.<span class="number">17</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span> </span><br><span class="line">$ cd redis-<span class="number">2.8</span>.<span class="number">17</span></span><br><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
-<p>make完后 redis-2.8.17目录下会出现编译后的redis服务程序redis-server,还有用 于测试的客户端程序redis-cli,两个程序位于安装目录 src 目录下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> src </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./redis-server</span></span><br></pre></td></tr></table></figure></p>
-<ol start="2">
-<li>启动服务</li>
-</ol>
-<p>注意这种方式启动redis 使用的是默认配置。也可以通过启动参数告诉redis使用指定配置</p>
-<p>文件使用下面命令启动。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> src </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./redis-server redis.conf</span></span><br></pre></td></tr></table></figure></p>
-<p>redis.conf是一个默认的配置文件。我们可以根据需要使用自己的配置文件。</p>
-<ol start="3">
-<li>测试服务</li>
-</ol>
-<p>启动redis服务进程后，就可以使用测试客户端程序redis-cli和redis服务交互了。 比如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> src </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./redis-cli </span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> <span class="built_in">set</span> foo bar OK </span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> get foo <span class="string">"bar"</span></span></span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>开机自启</li>
-</ol>
-<ul>
-<li><p>修改redis.conf，打开后台运行选项：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">By</span> default Redis does not <span class="keyword">run</span> <span class="keyword">as</span> a daemon. <span class="keyword">Use</span> 'yes' <span class="keyword">if</span> you need it.</span><br><span class="line"># <span class="keyword">Note</span> that Redis will write a pid <span class="keyword">file</span> <span class="keyword">in</span> /<span class="keyword">var</span>/<span class="keyword">run</span>/redis.pid when daemonized.</span><br><span class="line">daemonize yes</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写脚本，vim /etc/init.d/redis:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chkconfig: 2345 10 90</span></span><br><span class="line"><span class="comment"># description: Start and Stop redis</span></span><br><span class="line"></span><br><span class="line">PATH=/usr/<span class="built_in">local</span>/bin:/sbin:/usr/bin:/bin</span><br><span class="line"></span><br><span class="line">REDISPORT=6379 <span class="comment">#实际环境而定</span></span><br><span class="line">EXEC=/usr/<span class="built_in">local</span>/redis/src/redis-server <span class="comment">#实际环境而定</span></span><br><span class="line">REDIS_CLI=/usr/<span class="built_in">local</span>/redis/src/redis-cli <span class="comment">#实际环境而定</span></span><br><span class="line"></span><br><span class="line">PIDFILE=/var/run/redis.pid</span><br><span class="line">CONF=<span class="string">"/usr/local/redis/redis.conf"</span> <span class="comment">#实际环境而定</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">        start)</span><br><span class="line">                <span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> exists, process is already running or crashed."</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Starting Redis server..."</span></span><br><span class="line">                        <span class="variable">$EXEC</span> <span class="variable">$CONF</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">"$?"</span>=<span class="string">"0"</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Redis is running..."</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                ;;</span><br><span class="line">        stop)</span><br><span class="line">                <span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> exists, process is not running."</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        PID=$(cat <span class="variable">$PIDFILE</span>)</span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Stopping..."</span></span><br><span class="line">                        <span class="variable">$REDIS_CLI</span> -p <span class="variable">$REDISPORT</span> SHUTDOWN</span><br><span class="line">                        <span class="keyword">while</span> [ -x <span class="variable">$PIDFILE</span> ]</span><br><span class="line">                        <span class="keyword">do</span></span><br><span class="line">                                <span class="built_in">echo</span> <span class="string">"Waiting for Redis to shutdown..."</span></span><br><span class="line">                                sleep 1</span><br><span class="line">                        <span class="keyword">done</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"Redis stopped"</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                ;;</span><br><span class="line">        restart|force-reload)</span><br><span class="line">                <span class="variable">$&#123;0&#125;</span> stop</span><br><span class="line">                <span class="variable">$&#123;0&#125;</span> start</span><br><span class="line">                ;;</span><br><span class="line">        *)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">"Usage: /etc/init.d/redis &#123;start|stop|restart|force-reload&#125;"</span> &gt;&amp;2</span><br><span class="line">                <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行权限：</p>
-</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x <span class="regexp">/etc/i</span>nit.d<span class="regexp">/redis</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>开机自启动：</li>
-</ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 尝试启动或停止redis</span></span><br><span class="line">service redis start</span><br><span class="line">service redis stop</span><br><span class="line"><span class="comment"># 开启服务自启动</span></span><br><span class="line">chkconfig redis on</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Redis//" class="article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/16/Blog/markdown/Redis/Redis安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -1373,15 +1336,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1389,15 +1348,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1425,11 +1380,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1446,18 +1421,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1510,6 +1473,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="http://xj.top1.pub/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>小鸡监控</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cncoder.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>栈溢出程序员&amp;云服务商</a>
             </li>
           
         </ul>
