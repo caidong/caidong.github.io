@@ -57,7 +57,7 @@ var _hmt = _hmt || [];
 		  <h1 class="header-author"><a href="https://b.top1.pub">coderDong</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">i&#39;ll try anything once</p>
+		<p class="header-subtitle">i&#39;ll try anything at best</p>
 		
 
 		<nav class="header-menu">
@@ -119,7 +119,7 @@ var _hmt = _hmt || [];
 			  <h1 class="header-author js-header-author">coderDong</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>i&#39;ll try anything once<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>i&#39;ll try anything at best<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -165,6 +165,81 @@ var _hmt = _hmt || [];
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Blog/markdown/Spark/Spark调优/广播变量" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目录</p>
+<p>[TOC]</p>
+<h3 id="大表join小表的情景"><a href="#大表join小表的情景" class="headerlink" title="大表join小表的情景"></a>大表join小表的情景</h3><p>join操作需要Shuffle，属于宽依赖。面对shuffle操作要尽量避免和延后操作。<br>在数据关联场景中，可以使用广播变量代替shuffle操作。<br>使用scala、python变量进行数据结构的分发和存储受制于并行度，以Task为粒度分发，因此频率过高，消耗大量网络和内存资源。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; dict.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
+<p><img src="https://static001.geekbang.org/resource/image/ba/39/ba45d47a910ccb92861b1fd153b36839.jpg" alt="img" style="zoom: 25%;"></p>
+<p><strong>广播变量:</strong>是一种分发机制，它一次性封装目标数据结构，以Executors为粒度去做数据分发。集群中Executors数量远小于Task数</p>
+<p>在广播变量的运行机制下，封装成广播变量的数据，由Driver端以Executors为粒度分发，每一个Executors接收到广播变量后，将其交给BlockManager管理。</p>
+<p><img src="https://static001.geekbang.org/resource/image/2c/f7/2cfe084a106a01bf14a63466fa2146f7.jpg" alt="img" style="zoom:25%;"></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 广播变量封装的是Driver端创建的普通变量,由于数据源就在 Driver 端，因此，只需要 Driver 把数据分发到各个 Executors，再让 Executors 把数据缓存到 BlockManager 就好了。</span></span><br><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> bc = spark.sparkContext.broadcast(dict)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; bc.value.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
+<p><strong>广播分布式数据集</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分布式数据集的数据源不在 Driver 端，而是来自所有的 Executors。Executors 中的每个分布式任务负责生产全量数据集的一部分，也就是图中不同的数据分区。因此，步骤 1 就是 Driver 从所有的 Executors 拉取这些数据分区，然后在本地构建全量数据。步骤 2 与从普通变量创建广播变量的过程类似。 Driver 把汇总好的全量数据分发给各个 Executors，Executors 将接收到的全量数据缓存到存储系统的 BlockManager 中。</span></span><br><span class="line"><span class="keyword">val</span> userFile: <span class="type">String</span> = “hdfs:<span class="comment">//ip:port/rootDir/userData”</span></span><br><span class="line"><span class="keyword">val</span> df: <span class="type">DataFrame</span> = spark.read.parquet(userFile)</span><br><span class="line"><span class="keyword">val</span> bc_df: <span class="type">Broadcast</span>[<span class="type">DataFrame</span>] = spark.sparkContext.broadcast(df)</span><br></pre></td></tr></table></figure>
+<p><img src="https://static001.geekbang.org/resource/image/8a/6c/8ac91a174803b97966289ff51938106c.jpg" alt="img" style="zoom:25%;"></p>
+<h4 id="Shuffle-Join"><a href="#Shuffle-Join" class="headerlink" title="Shuffle Join"></a>Shuffle Join</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = _</span><br><span class="line">transactionsDF.join(userDF, <span class="type">Seq</span>(“userID”), “inner”)</span><br></pre></td></tr></table></figure>
+<p>第一步就是对参与关联的左右表分别进行 Shuffle，Shuffle 的分区规则是先对 Join keys 计算哈希值，再把哈希值对分区数取模。由于左右表的分区数是一致的，因此 Shuffle 过后，一定能够保证 userID 相同的交易记录和用户数据坐落在同一个 Executors 内。Shuffle Join中左右表的数据分发</p>
+<p><img src="https://static001.geekbang.org/resource/image/b1/28/b1b2a574eb7ef33e2315f547ecdc0328.jpg" alt="img"></p>
+<p>Shuffle 完成之后，第二步就是在同一个 Executors 内，Reduce task 就可以对 userID 一致的记录进行关联操作。但是，由于交易表是事实表，数据体量异常庞大，对 TB 级别的数据进行 Shuffle，想想都觉得可怕！因此，上面对两个 DataFrame 直接关联的代码，还有很大的调优空间。我们该怎么做呢？话句话说，对于分布式环境中的数据关联来说，要想确保交易记录和与之对应的用户信息在同一个 Executors 中，我们有没有其他办法呢？</p>
+<h4 id="克制-Shuffle-的方式"><a href="#克制-Shuffle-的方式" class="headerlink" title="克制 Shuffle 的方式"></a>克制 Shuffle 的方式</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.broadcast</span><br><span class="line"><span class="keyword">val</span> transactionsDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> userDF: <span class="type">DataFrame</span> = _</span><br><span class="line"><span class="keyword">val</span> bcUserDF = broadcast(userDF)</span><br><span class="line">transactionsDF.join(bcUserDF, <span class="type">Seq</span>(“userID”), “inner”)</span><br></pre></td></tr></table></figure>
+<p>Driver 从所有 Executors 收集 userDF 所属的所有数据分片，在本地汇总用户数据，然后给每一个 Executors 都发送一份全量数据的拷贝。既然每个 Executors 都有 userDF 的全量数据，这个时候，交易表的数据分区待在原地、保持不动，就可以轻松地关联到一致的用户数据。如此一来，我们不需要对数据体量巨大的交易表进行 Shuffle，同样可以在分布式环境中，完成两张表的数据关联。</p>
+<p><img src="https://static001.geekbang.org/resource/image/b3/2a/b3c5ab392c2303bf7923488623b4022a.jpg" alt="img"></p>
+<p>利用广播变量，我们成功地避免了海量数据在集群内的存储、分发，节省了原本由 Shuffle 引入的磁盘和网络开销，大幅提升运行时执行性能。当然，采用广播变量优化也是有成本的，毕竟广播变量的创建和分发，也是会带来网络开销的。但是，相比大表的全网分发，小表的网络开销几乎可以忽略不计。这种小投入、大产出，用极小的成本去博取高额的性能收益，真可以说是“四两拨千斤”！</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>在数据关联场景中，广播变量是克制 Shuffle 的杀手锏。掌握了它，我们就能以极小的成本，获得高额的性能收益。关键是我们要掌握两种创建广播变量的方式。</p>
+<p>第一种，从普通变量创建广播变量。在广播变量的运行机制下，普通变量存储的数据封装成广播变量，由 Driver 端以 Executors 为粒度进行分发，每一个 Executors 接收到广播变量之后，将其交由 BlockManager 管理。</p>
+<p>第二种，从分布式数据集创建广播变量，这就要比第一种方式复杂一些了。第一步，Driver 需要从所有的 Executors 拉取数据分片，然后在本地构建全量数据；第二步，Driver 把汇总好的全量数据分发给各个 Executors，Executors 再将接收到的全量数据缓存到存储系统的 BlockManager 中。</p>
+<p>结合这两种方式，我们在做数据关联的时候，把 Shuffle Joins 转换为 Broadcast Joins，就可以用小表广播来代替大表的全网分发，真正做到克制 Shuffle。</p>
+<h3 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h3><p>Spark 广播机制现有的实现方式是存在隐患的，在数据量较大的情况下，Driver 可能会成为瓶颈，你能想到更好的方式来重新实现 Spark 的广播机制吗？</p>
+<ol>
+<li>改成由driver获取到数据分布，然后通知各个executor之间进行拉取，这样可以利用多个executor网络，避免只有driver组装以后再一个一个发送效率过低</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/广播变量/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Blog/markdown/Spark/Spark调优/高效使用CPU" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
@@ -290,116 +365,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Pyspark/官方文档/入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Spark调优/OOM内存溢出" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<p>当我们拿到 OOM 这个“烫手的山芋”的时候该怎么办呢？我们最先应该弄清楚的是“到底哪里出现了 OOM”。只有准确定位出现问题的具体区域，我们的调优才能有的放矢。具体来说，这个“哪里”，我们至少要分 3 个方面去看。</p>
-<ul>
-<li>发生 OOM 的 LOC（Line Of Code），也就是代码位置在哪？</li>
-<li>OOM 发生在 Driver 端，还是在 Executor 端？</li>
-<li>如果是发生在 Executor 端，OOM 到底发生在哪一片内存区域？</li>
-</ul>
-<p>定位出错代码的位置非常重要但也非常简单，我们只要利用 Stack Trace 就能很快找到抛出问题的 LOC。因此，更关键的是，我们要明确出问题的到底是 Driver 端还是 Executor 端，以及是哪片内存区域。</p>
-<h3 id="Driver-端的-OOM"><a href="#Driver-端的-OOM" class="headerlink" title="Driver 端的 OOM"></a>Driver 端的 OOM</h3><p>我们先来说说 Driver 端的 OOM。Driver 的主要职责是任务调度，同时参与非常少量的任务计算，因此 Driver 的内存配置一般都偏低，也没有更加细分的内存区域。</p>
-<p>因为 Driver 的内存就是囫囵的那么一块，所以 Driver 端的 OOM 问题自然不是调度系统的毛病，只可能来自它涉及的计算任务，主要有两类：</p>
-<ul>
-<li>创建小规模的分布式数据集：使用 parallelize、createDataFrame 等 API 创建数据集</li>
-<li>收集计算结果：通过 take、show、collect 等算子把结果收集到 Driver 端</li>
-</ul>
-<p>因此 Driver 端的 OOM 逃不出 2 类病灶：</p>
-<ul>
-<li><strong>创建的数据集超过内存上限</strong></li>
-<li><strong>收集的结果集超过内存上限</strong></li>
-</ul>
-<p>第一类病灶不言自明，咱们不细说了。看到第二类病灶，想必你第一时间想到的就是万恶的 collect。确实，说到 OOM 就不得不提 collect。collect 算子会从 Executors 把全量数据拉回到 Driver 端，因此，如果结果集尺寸超过 Driver 内存上限，它自然会报 OOM。</p>
-<p>由开发者直接调用 collect 算子而触发的 OOM 问题其实很好定位，比较难定位的是间接调用 collect 而导致的 OOM。那么，间接调用 collect 是指什么呢？还记得广播变量的工作原理吗？</p>
-<p><img src="https://static001.geekbang.org/resource/image/b3/2a/b3c5ab392c2303bf7923488623b4022a.jpg" alt="img"></p>
-<p>广播变量在创建的过程中，需要先把分布在所有 Executors 的数据分片拉取到 Driver 端，然后在 Driver 端构建广播变量，最后 Driver 端把封装好的广播变量再分发给各个 Executors。第一步的数据拉取其实就是用 collect 实现的。如果 Executors 中数据分片的总大小超过 Driver 端内存上限也会报 OOM。在日常的调优工作中，你看到的表象和症状可能是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError: Not enough memory to build and broadcast</span><br></pre></td></tr></table></figure>
-<p>但实际的病理却是 Driver 端内存受限，没有办法容纳拉取回的结果集。找到了病因，再去应对 Driver 端的 OOM 就很简单了。我们只要对结果集尺寸做适当的预估，然后再相应地增加 Driver 侧的内存配置就好了。调节 Driver 端侧内存大小我们要用到 spark.driver.memory 配置项，预估数据集尺寸可以用“先 Cache，再查看执行计划”的方式，示例代码如下。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">val</span> df: <span class="type">DataFrame</span> = _</span><br><span class="line">df.cache.count</span><br><span class="line"><span class="keyword">val</span> plan = df.queryExecution.logical</span><br><span class="line"><span class="keyword">val</span> estimated: <span class="type">BigInt</span> = spark</span><br><span class="line">.sessionState</span><br><span class="line">.executePlan(plan)</span><br><span class="line">.optimizedPlan</span><br><span class="line">.stats</span><br><span class="line">.sizeInBytes</span><br></pre></td></tr></table></figure>
-<h3 id="Executor-端的-OOM"><a href="#Executor-端的-OOM" class="headerlink" title="Executor 端的 OOM"></a>Executor 端的 OOM</h3><p>我们再来说说 Executor 端的 OOM。我们知道，执行内存分为 4 个区域：Reserved Memory、User Memory、Storage Memory 和 Execution Memory。这 4 个区域中都有哪些区域会报 OOM 异常呢？哪些区域压根就不存在 OOM 的可能呢？</p>
-<p><strong>在 Executors 中，与任务执行有关的内存区域才存在 OOM 的隐患。</strong>其中，Reserved Memory 大小固定为 300MB，因为它是硬编码到源码中的，所以不受用户控制。而对于 Storage Memory 来说，即便数据集不能完全缓存到 MemoryStore，Spark 也不会抛 OOM 异常，额外的数据要么落盘（MEMORY_AND_DISK）、要么直接放弃（MEMORY_ONLY）。</p>
-<p>因此，当 Executors 出现 OOM 的问题，我们可以先把 Reserved Memory 和 Storage Memory 排除，然后锁定 Execution Memory 和 User Memory 去找毛病。</p>
-<h4 id="User-Memory-的-OOM"><a href="#User-Memory-的-OOM" class="headerlink" title="User Memory 的 OOM"></a>User Memory 的 OOM</h4><p>​    在内存管理那一讲，我们说过 User Memory 用于存储用户自定义的数据结构，如数组、列表、字典等。因此，如果这些数据结构的总大小超出了 User Memory 内存区域的上限，你可能就会看到下表示例中的报错。</p>
-<pre><code>java.lang.OutOfMemoryError: Java heap space at java.util.Arrays.copyOf
-
-java.lang.OutOfMemoryError: Java heap space at java.lang.reflect.Array.newInstance
-</code></pre><p>如果你的数据结构是用于分布式数据转换，在计算 User Memory 内存消耗时，你就需要考虑 Executor 的线程池大小。还记得下面的这个例子吗？</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> dict = <span class="type">List</span>(“spark”, “tune”)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.textFile(“~/words.csv”)</span><br><span class="line"><span class="keyword">val</span> keywords = words.filter(word =&gt; dict.contains(word))</span><br><span class="line">keywords.map((_, <span class="number">1</span>)).reduceByKey(_ + _).collect</span><br></pre></td></tr></table></figure>
-<p>自定义的列表 dict 会随着 Task 分发到所有 Executors，因此多个 Task 中的 dict 会对 User Memory 产生重复消耗。如果把 dict 尺寸记为 #size，Executor 线程池大小记为 #threads，那么 dict 对 User Memory 的总消耗就是：#size * #threads。一旦总消耗超出 User Memory 内存上限，自然就会产生 OOM 问题。</p>
-<p><img src="https://static001.geekbang.org/resource/image/ba/39/ba45d47a910ccb92861b1fd153b36839.jpg" alt="img"></p>
-<p>那么，解决 User Memory 端 OOM 的思路和 Driver 端的并无二致，也是先对数据结构的消耗进行预估，然后相应地扩大 User Memory 的内存配置。不过，相比 Driver，User Memory 内存上限的影响因素更多，总大小由 spark.executor.memory * （ 1 - spark.memory.fraction）计算得到。</p>
-<h4 id="Execution-Memory-的-OOM"><a href="#Execution-Memory-的-OOM" class="headerlink" title="Execution Memory 的 OOM"></a>Execution Memory 的 OOM</h4><p>要说 OOM 的高发区，非 Execution Memory 莫属。久行夜路必撞鬼，在分布式任务执行的过程中，Execution Memory 首当其冲，因此出错的概率相比其他内存区域更高。关于 Execution Memory 的 OOM，我发现不少同学都存在这么一个误区：只要数据量比执行内存小就不会发生 OOM，相反就会有一定的几率触发 OOM 问题。</p>
-<p>实际上，<strong>数据量并不是决定 OOM 与否的关键因素，数据分布与 Execution Memory 的运行时规划是否匹配才是</strong>。这么说可能比较抽象，你还记得黄小乙的如意算盘吗？为了提高老乡们种地的热情和积极性，他制定了个转让协议，所有老乡申请的土地面积介于 1/N/2 和 1/N 之间。因此，如果有的老乡贪多求快，买的种子远远超过 1/N 上限能够容纳的数量，这位老乡多买的那部分种子都会被白白浪费掉。</p>
-<p>同样的，我们可以把 Execution Memory 看作是</p>
-<p>土地，把分布式数据集看作是种子，一旦分布式任务的内存请求超出 1/N 这个上限，Execution Memory 就会出现 OOM 问题。而且，相比其他场景下的 OOM 问题，Execution Memory 的 OOM 要复杂得多，它不仅仅与内存空间大小、数据分布有关，还与 Executor 线程池和运行时任务调度有关。</p>
-<p>抓住了引起 OOM 问题最核心的原因，对于 Execution Memory OOM 的诸多表象，我们就能从容应对了。下面，我们就来看两个平时开发中常见的实例：数据倾斜和数据膨胀。为了方便说明，在这两个实例中，计算节点的硬件配置是一样的，都是 2 个 CPU core，每个 core 有两个线程，内存大小为 1GB，并且 spark.executor.cores 设置为 3，spark.executor.memory 设置为 900MB。</p>
-<h5 id="实例-1：数据倾斜"><a href="#实例-1：数据倾斜" class="headerlink" title="实例 1：数据倾斜"></a>实例 1：数据倾斜</h5><p>我们先来看第一个数据倾斜的例子。节点在 Reduce 阶段拉取数据分片，3 个 Reduce Task 对应的数据分片大小分别是 100MB 和 300MB。显然，第三个数据分片存在轻微的数据倾斜。由于 Executor 线程池大小为 3，因此每个 Reduce Task 最多可获得 360MB * 1 / 3 = 120MB 的内存空间。Task1、Task2 获取到的内存空间足以容纳分片 1、分片 2，因此可以顺利完成任务。</p>
-<p><img src="https://static001.geekbang.org/resource/image/bb/e2/bbd4052de37200a7152646668f88a5e2.jpg" alt="img"></p>
-<p>Task3 的数据分片大小远超内存上限，即便 Spark 在 Reduce 阶段支持 Spill 和外排，120MB 的内存空间也无法满足 300MB 数据最基本的计算需要，如 PairBuffer 和 AppendOnlyMap 等数据结构的内存消耗，以及数据排序的临时内存消耗等等。</p>
-<p>这个例子的表象是数据倾斜导致 OOM，但实质上是 Task3 的内存请求超出 1/N 上限。因此，针对以这个案例为代表的数据倾斜问题，我们至少有 2 种调优思路：</p>
-<ul>
-<li><p><strong>消除数据倾斜，让所有的数据分片尺寸都不大于 100MB</strong></p>
-</li>
-<li><p><strong>调整 Executor 线程池、内存、并行度等相关配置，提高 1/N 上限到 300MB</strong></p>
-</li>
-</ul>
-<p>每一种思路都可以衍生出许多不同的方法，就拿第 2 种思路来说，要满足 1/N 的上限，最简单地，我们可以把 spark.executor.cores 设置成 1，也就是 Executor 线程池只有一个线程“并行”工作。这个时候，每个任务的内存上限都变成了 360MB，容纳 300MB 的数据分片绰绰有余。</p>
-<p>当然，线程池大小设置为 1 是不可取的，刚刚只是为了说明调优的灵活性。延续第二个思路，你需要去平衡多个方面的配置项，在充分利用 CPU 的前提下解决 OOM 的问题。比如：</p>
-<ul>
-<li><p>维持并发度、并行度不变，增大执行内存设置，提高 1/N 上限到 300MB</p>
-</li>
-<li><p>维持并发度、执行内存不变，使用相关配置项来提升并行度将数据打散，让所有的数据分片尺寸都缩小到 100MB 以内</p>
-</li>
-</ul>
-<h5 id="实例-2：数据膨胀"><a href="#实例-2：数据膨胀" class="headerlink" title="实例 2：数据膨胀"></a>实例 2：数据膨胀</h5><p>我们再来看第二个数据膨胀的例子。节点在 Map 阶段拉取 HDFS 数据分片，3 个 Map Task 对应的数据分片大小都是 100MB。按照之前的计算，每个 Map Task 最多可获得 120MB 的执行内存，不应该出现 OOM 问题才对。</p>
-<p><img src="https://static001.geekbang.org/resource/image/63/cb/639c65b2ce9213295feedd3634e261cb.jpg" alt="img"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/13/Blog/markdown/Spark/Spark调优/OOM内存溢出/">展开全文 >></a>
         </p>
       
 
@@ -1051,15 +1016,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1068,6 +1029,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1095,31 +1068,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1136,6 +1089,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
