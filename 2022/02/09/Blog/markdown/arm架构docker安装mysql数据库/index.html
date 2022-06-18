@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://b.top1.pub">
   <title>coderDong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下载源码文件 上 https://go.dev/dl/ 找到合适的安装版本， wget https://go.dev/dl/go1.17.5.linux-arm64.tar.gz  安装包解压 tar -zxvf   *.tar.gz  配置环境变量 在 /etc/profile 文件末尾追加 export GOROOT=/goexport GOPATH=/goProjectexport GOB">
+  <meta name="description" content="拉取镜像 1sudo docker pull mysql/mysql-server:latest  启动容器 1docker run --name=mysql -d mysql/mysql-server:latest  查看密码 1docker logs mysql 2&amp;gt;&amp;amp;1 | grep GENERATED  连接mysql  1docker exec -it mysql mys">
 <meta property="og:type" content="article">
 <meta property="og:title" content="coderDong">
-<meta property="og:url" content="https://b.top1.pub/2021/12/22/Blog/markdown/服务器上golang环境搭建/index.html">
+<meta property="og:url" content="https://b.top1.pub/2022/02/09/Blog/markdown/arm架构docker安装mysql数据库/index.html">
 <meta property="og:site_name" content="coderDong">
-<meta property="og:description" content="下载源码文件 上 https://go.dev/dl/ 找到合适的安装版本， wget https://go.dev/dl/go1.17.5.linux-arm64.tar.gz  安装包解压 tar -zxvf   *.tar.gz  配置环境变量 在 /etc/profile 文件末尾追加 export GOROOT=/goexport GOPATH=/goProjectexport GOB">
+<meta property="og:description" content="拉取镜像 1sudo docker pull mysql/mysql-server:latest  启动容器 1docker run --name=mysql -d mysql/mysql-server:latest  查看密码 1docker logs mysql 2&amp;gt;&amp;amp;1 | grep GENERATED  连接mysql  1docker exec -it mysql mys">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-12-22T12:26:18.983Z">
+<meta property="og:updated_time" content="2022-02-09T13:58:56.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="coderDong">
-<meta name="twitter:description" content="下载源码文件 上 https://go.dev/dl/ 找到合适的安装版本， wget https://go.dev/dl/go1.17.5.linux-arm64.tar.gz  安装包解压 tar -zxvf   *.tar.gz  配置环境变量 在 /etc/profile 文件末尾追加 export GOROOT=/goexport GOPATH=/goProjectexport GOB">
+<meta name="twitter:description" content="拉取镜像 1sudo docker pull mysql/mysql-server:latest  启动容器 1docker run --name=mysql -d mysql/mysql-server:latest  查看密码 1docker logs mysql 2&amp;gt;&amp;amp;1 | grep GENERATED  连接mysql  1docker exec -it mysql mys">
   
   
     <link rel="icon" href="/favicon.png">
@@ -55,13 +55,13 @@ var _hmt = _hmt || [];
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="https://b.top1.pub" class="profilepic">
-			<img src="https://github.com/caidong/caidong.github.io/blob/master/img/heiguo.jpg?raw=true" class="js-avatar">
+			<img src="/img/heiguo.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="https://b.top1.pub">coderDong</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">i&#39;ll try anything once</p>
+		<p class="header-subtitle">i&#39;ll try anything at best</p>
 		
 
 		<nav class="header-menu">
@@ -117,13 +117,13 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://github.com/caidong/caidong.github.io/blob/master/img/heiguo.jpg?raw=true" class="js-avatar">
+				<img src="/img/heiguo.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">coderDong</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>i&#39;ll try anything once<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>i&#39;ll try anything at best<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -168,23 +168,54 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Blog/markdown/服务器上golang环境搭建" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Blog/markdown/arm架构docker安装mysql数据库" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
-<li><p>下载源码文件</p>
-<p>上 <a href="https://go.dev/dl/" target="_blank" rel="noopener">https://go.dev/dl/</a> 找到合适的安装版本，</p>
-<p>wget <a href="https://go.dev/dl/go1.17.5.linux-arm64.tar.gz" target="_blank" rel="noopener">https://go.dev/dl/go1.17.5.linux-arm64.tar.gz</a></p>
+<li><p>拉取镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mysql/mysql-server:latest</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>安装包解压</p>
-<p>tar -zxvf   *.tar.gz</p>
+<li><p>启动容器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=mysql -d mysql/mysql-server:latest</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>配置环境变量</p>
-<p>在 /etc/profile 文件末尾追加</p>
-<p>export GOROOT=/go<br>export GOPATH=/goProject<br>export GOBIN=$GOPATH/bin<br>export PATH=$PATH:$GOROOT/bin<br>export PATH=$PATH:$GOPATH/bin</p>
+<li><p>查看密码</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs mysql <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep GENERATED</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>连接mysql</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mysql mysql -uroot -p</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="5">
+<li>修改root密码 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">'root'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="6">
+<li><h2 id="已启动的容器增加端口暴露"><a href="#已启动的容器增加端口暴露" class="headerlink" title="已启动的容器增加端口暴露"></a>已启动的容器增加端口暴露</h2></li>
+<li><p>查询运行的容器</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker ps</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>停止容器</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">stop</span> 容器<span class="keyword">id</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>停止docker服务 </p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">stop</span> docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置文件</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/<span class="class"><span class="keyword">lib</span>/<span class="title">docker</span>/<span class="title">containers</span>/<span class="title">bf96392335e8</span>*</span></span><br><span class="line">vi hostconfig.json</span><br><span class="line">其中：<span class="string">"PortBindings"</span>:&#123;<span class="string">"8080/tcp"</span>:[&#123;<span class="string">"HostIp"</span>:<span class="string">""</span>,<span class="string">"HostPort"</span>:<span class="string">"3306"</span>&#125;]&#125;代表端口映射配置，修改HostPort项的值后保存退出。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"Binds"</span>:<span class="literal">null</span>,<span class="attr">"ContainerIDFile"</span>:<span class="string">""</span>,<span class="attr">"LogConfig"</span>:&#123;<span class="attr">"Type"</span>:<span class="string">"journald"</span>,<span class="attr">"Config"</span>:&#123;&#125;&#125;,<span class="attr">"NetworkMode"</span>:<span class="string">"default"</span>,<span class="attr">"PortBindings"</span>:&#123;<span class="attr">"8080/tcp"</span>:[&#123;<span class="attr">"HostIp"</span>:<span class="string">""</span>,<span class="attr">"HostPort"</span>:<span class="string">"8888"</span>&#125;]&#125;,<span class="attr">"RestartPolicy"</span>:&#123;<span class="attr">"Name"</span>:<span class="string">"no"</span>,<span class="attr">"Ma</span></span><br><span class="line"><span class="attr">ximumRetryCount"</span>:<span class="number">0</span>&#125;,<span class="attr">"AutoRemove"</span>:<span class="literal">false</span>,<span class="attr">"VolumeDriver"</span>:<span class="string">""</span>,<span class="attr">"VolumesFrom"</span>:<span class="literal">null</span>,<span class="attr">"CapAdd"</span>:<span class="literal">null</span>,<span class="attr">"CapDrop"</span>:<span class="literal">null</span>,<span class="attr">"Dns"</span>:[],<span class="attr">"DnsOptions"</span>:[],<span class="attr">"DnsSearch"</span>:[],<span class="attr">"ExtraHosts"</span>:<span class="literal">null</span>,<span class="attr">"GroupAdd"</span>:<span class="literal">null</span>,<span class="attr">"IpcMode"</span>:<span class="string">""</span>,<span class="attr">"Cgro</span></span><br><span class="line"><span class="attr">up"</span>:<span class="string">""</span>,<span class="attr">"Links"</span>:[],<span class="attr">"OomScoreAdj"</span>:<span class="number">0</span>,<span class="attr">"PidMode"</span>:<span class="string">""</span>,<span class="attr">"Privileged"</span>:<span class="literal">false</span>,<span class="attr">"PublishAllPorts"</span>:<span class="literal">false</span>,<span class="attr">"ReadonlyRootfs"</span>:<span class="literal">false</span>,<span class="attr">"SecurityOpt"</span>:<span class="literal">null</span>,<span class="attr">"UTSMode"</span>:<span class="string">""</span>,<span class="attr">"UsernsMode"</span>:<span class="string">""</span>,<span class="attr">"ShmSize"</span>:<span class="number">67108864</span>,<span class="attr">"Runtime"</span>:<span class="string">"docker</span></span><br><span class="line"><span class="string">-runc"</span>,<span class="attr">"ConsoleSize"</span>:[<span class="number">0</span>,<span class="number">0</span>],<span class="attr">"Isolation"</span>:<span class="string">""</span>,<span class="attr">"CpuShares"</span>:<span class="number">0</span>,<span class="attr">"Memory"</span>:<span class="number">0</span>,<span class="attr">"NanoCpus"</span>:<span class="number">0</span>,<span class="attr">"CgroupParent"</span>:<span class="string">""</span>,<span class="attr">"BlkioWeight"</span>:<span class="number">0</span>,<span class="attr">"BlkioWeightDevice"</span>:<span class="literal">null</span>,<span class="attr">"BlkioDeviceReadBps"</span>:<span class="literal">null</span>,<span class="attr">"BlkioDeviceWriteBps"</span>:<span class="literal">null</span>,<span class="attr">"Blki</span></span><br><span class="line"><span class="attr">oDeviceReadIOps"</span>:<span class="literal">null</span>,<span class="attr">"BlkioDeviceWriteIOps"</span>:<span class="literal">null</span>,<span class="attr">"CpuPeriod"</span>:<span class="number">0</span>,<span class="attr">"CpuQuota"</span>:<span class="number">0</span>,<span class="attr">"CpuRealtimePeriod"</span>:<span class="number">0</span>,<span class="attr">"CpuRealtimeRuntime"</span>:<span class="number">0</span>,<span class="attr">"CpusetCpus"</span>:<span class="string">""</span>,<span class="attr">"CpusetMems"</span>:<span class="string">""</span>,<span class="attr">"Devices"</span>:[],<span class="attr">"DiskQuota"</span>:<span class="number">0</span>,<span class="attr">"KernelMemory"</span>:<span class="number">0</span></span><br><span class="line">,<span class="attr">"MemoryReservation"</span>:<span class="number">0</span>,<span class="attr">"MemorySwap"</span>:<span class="number">0</span>,<span class="attr">"MemorySwappiness"</span>:<span class="number">-1</span>,<span class="attr">"OomKillDisable"</span>:<span class="literal">false</span>,<span class="attr">"PidsLimit"</span>:<span class="number">0</span>,<span class="attr">"Ulimits"</span>:<span class="literal">null</span>,<span class="attr">"CpuCount"</span>:<span class="number">0</span>,<span class="attr">"CpuPercent"</span>:<span class="number">0</span>,<span class="attr">"IOMaximumIOps"</span>:<span class="number">0</span>,<span class="attr">"IOMaximumBandwidth"</span>:<span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>启动docker(systemctl start docker)</p>
+</li>
+<li><p>启动镜像(docker start 镜像ID)</p>
+</li>
+<li></li>
+<li></li>
 </ol>
 
       
@@ -203,13 +234,13 @@ var _hmt = _hmt || [];
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="http://p.top1.pub/d/share/Private/AliPayCollect.jpg">
+                      <img class="reward-img" src="/img/alipay.jpg">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="http://p.top1.pub/d/share/Private/WechatCollect.png">
+                      <img class="reward-img" src="/img/WechatCollect.png">
                       <span class="reward-type">微信</span>
                     </div>
                     
@@ -275,7 +306,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://b.top1.pub/2021/12/22/Blog/markdown/服务器上golang环境搭建/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://b.top1.pub/2022/02/09/Blog/markdown/arm架构docker安装mysql数据库/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -289,17 +320,8 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2021/12/22/Blog/markdown/go语言常见问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/12/22/Blog/markdown/ClickHouse/数据库操作/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/12/26/Blog/markdown/LeetCode/解题方法/回溯算法/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
@@ -359,7 +381,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 coderDong
+    		&copy; 2022 coderDong
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -461,10 +483,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -477,6 +495,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
               </li>
              
@@ -486,6 +508,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,10 +532,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +559,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,6 +620,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="http://xj.top1.pub/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>小鸡监控</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cncoder.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>栈溢出程序员&amp;云服务商</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://app.top1.pub/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>电子计分牌</a>
             </li>
           
         </ul>
