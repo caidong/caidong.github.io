@@ -166,216 +166,6 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Blog/markdown/Spark/SparkStreaming开启Supervisor守护" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/07/Blog/markdown/Spark/SparkStreaming开启Supervisor守护/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/spark-submit参数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/07/Blog/markdown/Spark/spark-submit参数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Spark/Spark函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>when() 等于SQL case  when then </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CASE</span><br><span class="line">    WHEN condition1 THEN result_value1</span><br><span class="line">    WHEN condition2 THEN result_value2</span><br><span class="line">    <span class="comment">-----</span></span><br><span class="line">    <span class="comment">-----</span></span><br><span class="line">    ELSE result</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> when</span><br><span class="line">df2 = df.withColumn(<span class="string">"new_gender"</span>, when(df.gender == <span class="string">"M"</span>,<span class="string">"Male"</span>)</span><br><span class="line">                                 .when(df.gender == <span class="string">"F"</span>,<span class="string">"Female"</span>)</span><br><span class="line">                                 .when(df.gender.isNull() ,<span class="string">""</span>)</span><br><span class="line">                                 .otherwise(df.gender))</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li><p>expr() 执行sql</p>
-</li>
-<li><p>Pivot 和 Unpivot</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/07/Blog/markdown/Spark/Spark函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/Hadoop/HDFS" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="官方介绍"><a href="#官方介绍" class="headerlink" title="官方介绍"></a>官方介绍</h4><p>HDFS( Hadoop Distributed File System) 是Hadoop下的 分布式文件系统个，具有<em>分布式、高吞吐</em>等特性，并可以利用低成本的硬件。</p>
-<h3 id="HDFS-组件"><a href="#HDFS-组件" class="headerlink" title="HDFS 组件"></a>HDFS 组件</h3><p><img src="https://camo.githubusercontent.com/087df9047d11025b32d665904354f17867d6fe7681c505ac8694387448d69926/68747470733a2f2f67697465652e636f6d2f68656962616979696e672f426967446174612d4e6f7465732f7261772f6d61737465722f70696374757265732f686466736172636869746563747572652e706e67" alt="img"></p>
-<p>HDFS遵从主/从架构，由单个主NN(NameNode)和多个DN(DataNode)组成：</p>
-<ul>
-<li><p>DataNode :负责提供来自文件系统客户端的读写请求，执行块的创建、删除等操作。</p>
-</li>
-<li><p>NameNode :负责执行有关 <em>文件系统命名空间</em>的操作，例如打开、关闭、重命名文件和目录等。它同时还负责集群元数据的存储，记录着文件中各个数据块的位置信息。</p>
-</li>
-</ul>
-<h4 id="文件命名空间"><a href="#文件命名空间" class="headerlink" title="文件命名空间"></a>文件命名空间</h4><p>HDFS的 文件系统命名空间 的层次结构与大多数文件系统类似（Linux）</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/07/Blog/markdown/Hadoop/HDFS/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Blog/markdown/LeetCode/解题方法/动态规划" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -731,6 +521,509 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-Blog/markdown/Spark/SparkCore" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/30/Blog/markdown/Spark/SparkCore/">SparkCore 核心概念</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/10/30/Blog/markdown/Spark/SparkCore/" class="archive-article-date">
+  	<time datetime="2021-10-30T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <strong>说明：本文大多数定义来自尚硅谷大数据文档，自己摘抄的读书笔记。</strong></p>
+<h3 id="RDD-Resilient-Distributed-DataSet-弹性分布式数据集"><a href="#RDD-Resilient-Distributed-DataSet-弹性分布式数据集" class="headerlink" title="RDD(Resilient Distributed DataSet) 弹性分布式数据集"></a>RDD(Resilient Distributed DataSet) 弹性分布式数据集</h3><pre><code>1. RDD（Resilient Distributed Dataset）叫做弹性分布式数据集，是Spark中最基本的数据抽象。代码中是一个抽象类，它代表一个弹性的、不可变、可分区、里面的元素可并行计算的集合。
+2. 特点：只读 、不可变、可分区、可并行计算
+3. 弹性
+- 存储弹性：内存与磁盘的自动切换
+- 容错弹性：数据丢失可以自动恢复
+- 计算弹性：计算出错重试机制
+- 分片弹性：根据需要重新分片
+</code></pre><h3 id="算子"><a href="#算子" class="headerlink" title="算子"></a>算子</h3><ol>
+<li><h4 id="转换-Transformation"><a href="#转换-Transformation" class="headerlink" title="转换 Transformation"></a>转换 Transformation</h4><ol>
+<li>map(func) 返回由每个输入元素经过func函数处理后的RDD</li>
+<li>mapPartitions(func) 一个函数一次处理所有分区</li>
+<li>mapPartition是WithIndex(func) 带索引值, func参数（Int,Iterator[T]）</li>
+<li>flatMap(func) 每一个输入元素可以被映射为0个或多个输出元素</li>
+<li>groupBy(func) 分组，按照传入函数的返回值进行分组。将相同的key对应的值放入一个迭代器。</li>
+<li>filter(func) 过滤结果为False的值</li>
+<li>sample(withReplacement,fraction,seed) 随机抽样，withReplacement 是否有放回，fraction 抽样比例，seed随机数生成器种子</li>
+<li>distinct([numTasks]),对源去重，返回新的RDD</li>
+<li>coalesce(numPartitions) 合并分区，用于大数据集过滤后，提高小数据集执行效率</li>
+<li>repartition(numPartitions) 重新混洗所有数据</li>
+<li></li>
+</ol>
+</li>
+<li><h4 id="行动-Action"><a href="#行动-Action" class="headerlink" title="行动 Action"></a>行动 Action</h4></li>
+</ol>
+<h5 id="map-与mapPartitions-区别"><a href="#map-与mapPartitions-区别" class="headerlink" title="map()与mapPartitions()区别"></a>map()与mapPartitions()区别</h5><pre><code>1. map 每次处理一条
+ 2. mapPartitions 每次处理一个分区
+ 3. 使用场景：当内存空间较大时候建议使用mapPartitions(),以提高处理效率
+</code></pre><h5 id="coalesce与repartition-区别"><a href="#coalesce与repartition-区别" class="headerlink" title="coalesce与repartition()区别"></a>coalesce与repartition()区别</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sparkCore</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spark//" class="article-tag-list-link color1">spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/30/Blog/markdown/Spark/SparkCore/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Spark/Spark内存存储调研" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/">SparkStreaming 数据存储</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/" class="archive-article-date">
+  	<time datetime="2021-08-30T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spark-streaming-数据存储"><a href="#Spark-streaming-数据存储" class="headerlink" title="Spark streaming 数据存储"></a>Spark streaming 数据存储</h1><h3 id="1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问"><a href="#1-Streaming-结果存储在Spark-Driver’s-内存中，通过JDBC-ODBC客户端访问" class="headerlink" title="1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问"></a>1. Streaming 结果存储在Spark Driver’s 内存中，通过JDBC/ODBC客户端访问</h3><p>   ​    <strong>优点</strong>：低延迟、近实时</p>
+<p>   ​    <strong>缺点</strong>：非持久化、易失</p>
+<p>   ​    <strong>限制</strong>：Spark Driver‘s内存最大200G,这200G内存中，能用来缓存表格数据，默认参数</p>
+<p>   ​    spark.memory.fraction 和 spark.memory.storageFraction,最大的内存使用量 200GB <em> 0.6 </em> 0.5= 60GB,</p>
+<p>   ​    <strong>突破限制</strong>，可以使用低延迟、大数据集、高性能(Druid、Apache Kudu、Apache Ignite)的分布式内存数据存储，代替单个JVM 内存，单个内存是不够存储的</p>
+<ul>
+<li><h4 id="开启步骤"><a href="#开启步骤" class="headerlink" title="开启步骤"></a>开启步骤</h4><h5 id="1-运行前，开启Spark-Thrift-Server"><a href="#1-运行前，开启Spark-Thrift-Server" class="headerlink" title="1.运行前，开启Spark Thrift Server"></a>1.运行前，开启Spark Thrift Server</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from py4j.java_gateway <span class="keyword">import</span> java_import</span><br><span class="line">java_import(spark.sparkContext._gateway.jvm, <span class="string">""</span>)</span><br><span class="line">spark.sparkContext._gateway.jvm.org.apache.spark.sql.hive.thriftserver \</span><br><span class="line">  .HiveThriftServer2.startWithContext(spark._jwrapped)</span><br></pre></td></tr></table></figure>
+<h5 id="2-结果写入内存中供后续查询使用"><a href="#2-结果写入内存中供后续查询使用" class="headerlink" title="2. 结果写入内存中供后续查询使用"></a>2. 结果写入内存中供后续查询使用</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tips.writeStream \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"memory"</span>) \</span><br><span class="line">  .queryName(<span class="string">"tips"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="type">False</span>) \</span><br><span class="line">  .start() \</span><br><span class="line">  .awaitTermination()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="3-使用JDBC客户端查询"><a href="#3-使用JDBC客户端查询" class="headerlink" title="3. 使用JDBC客户端查询"></a>3. 使用JDBC客户端查询</h5>   <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>spark2-thriftserver<span class="regexp">/bin/</span>beeline \</span><br><span class="line">  -u <span class="string">jdbc:</span><span class="string">hive2:</span><span class="comment">//master02.cluster:10016</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-持久化存储到HDFS文件系统"><a href="#2-持久化存储到HDFS文件系统" class="headerlink" title="2. 持久化存储到HDFS文件系统"></a>2. 持久化存储到HDFS文件系统</h3><p> 一旦数据被处理和Spark停止，内存存储是易失和不可靠的。原始数据必须被存储在存储区，一旦数据丢失我们可以从原始数据重建它，我们可以使用多种持久化存储方式，如：关系型数据库、NOSQL存储、对象云存储（S3、Google Cloud）、分布式文件系统（Ceph、GlsterFs、HDFS）</p>
+<h5 id="1-数据持久化HDFS"><a href="#1-数据持久化HDFS" class="headerlink" title="1.数据持久化HDFS"></a>1.数据持久化HDFS</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> year, month, dayofmonth</span><br><span class="line"></span><br><span class="line">sdfRides.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Rides"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/RidesRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/RidesRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br><span class="line"></span><br><span class="line">sdfFares.withColumn(<span class="string">"year"</span>, year(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"month"</span>, month(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .withColumn(<span class="string">"day"</span>, dayofmonth(<span class="string">"startTime"</span>)) \</span><br><span class="line">  .writeStream \</span><br><span class="line">  .queryName(<span class="string">"Persist the raw data of Taxi Fares"</span>) \</span><br><span class="line">  .outputMode(<span class="string">"append"</span>) \</span><br><span class="line">  .format(<span class="string">"parquet"</span>) \</span><br><span class="line">  .option(<span class="string">"path"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/datalake/FaresRaw"</span>) \</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"hdfs//namenode:namenode-port/tmp/checkpoints/FaresRaw"</span>) \</span><br><span class="line">  .partitionBy(<span class="string">"year"</span>, <span class="string">"month"</span>, <span class="string">"day"</span>) \</span><br><span class="line">  .option(<span class="string">"truncate"</span>, <span class="keyword">False</span>) \</span><br><span class="line">  .start()</span><br></pre></td></tr></table></figure>
+<h5 id="2-查询使用结果数据"><a href="#2-查询使用结果数据" class="headerlink" title="2.查询使用结果数据"></a>2.查询使用结果数据</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tips = sdf \</span><br><span class="line">  .groupBy(</span><br><span class="line">    window(<span class="string">"endTime"</span>, <span class="string">"30 minutes"</span>, <span class="string">"10 minutes"</span>),</span><br><span class="line">    <span class="string">"stopNbhd"</span>) \</span><br><span class="line">  .agg(avg(<span class="string">"tip"</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h5><p><a href="https://www.adaltas.com/en/2019/05/28/spark-structured-streaming-in-hadoop/" target="_blank" rel="noopener">spark-structured-streaming-in-hadoop</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SparkStreaming</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pyspark//" class="article-tag-list-link color3">Pyspark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/30/Blog/markdown/Spark/Spark内存存储调研/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/Cpython虚拟机如何工作" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/15/Blog/markdown/Python/基础知识/Cpython虚拟机如何工作/">Cpython 工作机制</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/08/15/Blog/markdown/Python/基础知识/Cpython虚拟机如何工作/" class="archive-article-date">
+  	<time datetime="2021-08-15T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <a href="https://b.top1.pub/">博客地址</a></p>
+<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>你有没有想过当你运行你的一个程序时，Python做了什么？</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> script.<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
+<p>这篇文章开启一个寻找这个问题答案的系列文章。我们将深入了解CPython的内部结构，这是最受欢迎的Python实现。通过这样做，我们将在更深层次上理解语言本身。这是这个系列的主要目标。如果你熟悉Python 和 无障碍的阅读C，但没有太多CPython源码的经验，这那么你很有可能会发现这篇文章很有趣。</p>
+<h5 id="什么是CPython以及为什么每个人都想要学习它"><a href="#什么是CPython以及为什么每个人都想要学习它" class="headerlink" title="什么是CPython以及为什么每个人都想要学习它"></a>什么是CPython以及为什么每个人都想要学习它</h5><p>让我们先陈述下大家都知道的事实。CPython是一个用C写的Python解析器。它是Python中的一个实现，还有着PyPy、Jython、IronPython和一些其他的实现。Cpython 最突出的是一个原创的、最多维护和最受欢迎的一个。</p>
+<p>CPython实现了Python,但什么是Python?最简单的回答-Python是一个编程语言。当同样的问题被正确提出时，答案就会变得更加微妙：Python定义是什么？Python不像C语言，没有正式的规范，最接近的 是 Python 语言参考<a href="https://docs.python.org/3.9/reference/index.html，下面是它的开头语：" target="_blank" rel="noopener">https://docs.python.org/3.9/reference/index.html，下面是它的开头语：</a></p>
+<pre><code>*当我尽量精确的可能，除了语法和词法之外，我选择使用英语而不是正式的规范。这使得文档更容易被一般人理解，但是会留下歧义的空间。因此如果你来自火星并试图仅从这个文档中重新实现python,你可能不得不猜测，事实上你最终可能会实现完全不同的语言。如果你正在使用Python并想知道关于该语言特定领域的确切规则是什么，那么你绝对可以在这找到他们*。
+</code></pre><p>所以Python不仅仅由它的语言参考定义。说Python是由其参考实现CPython定义的也是错误的，因为有些实现细节不属于该语言的一部分。依赖于引用计数的垃圾收集器就是一个例子。由于没有单一的真实来源，我们可以说Python部分由语言参考定义，部分由其主要实现CPython定义。</p>
+<p>这样的推理可能看起来很迂腐，但我认为澄清我们将要研究的主题的关键作用至关重要。不过，你可能仍想知道，为什么我们应该研究它。除了单纯的好奇之外，我想还有下面一些原因：</p>
+<pre><code>- 对语言更加全面和深入的理解。如果了解Python的实现细节，则更容易掌握它的某些特性。
+- 实践中的实现细节。对象是如何存储的，垃圾回收器是如何工作的，当你想要理解语言的适用性和限制性，预估性能和检测效率低下时，如何协调多线程是关键重要的主题。
+- CPython 提供了允许扩展Python和C语言中嵌入Python的Python/C接口。为了搞笑的使用这个API程序猿需要很好地理解Cpython 是如何工作的。
+</code></pre><h5 id="理解CPython工作原理需要什么"><a href="#理解CPython工作原理需要什么" class="headerlink" title="理解CPython工作原理需要什么"></a>理解CPython工作原理需要什么</h5><pre><code>CPython被设计成易维护。新手能当然可以期望能够阅读源码和理解它在做什么。然而，它可能需要一些时间。写这个系列文章就是希望你能缩短它。
+</code></pre><h6 id="如何推出这个系列"><a href="#如何推出这个系列" class="headerlink" title="如何推出这个系列"></a>如何推出这个系列</h6><pre><code>我选择从顶到下的方式。这个部分我们将探索CPython的核心概念虚拟机。接下来，我们将看到CPython编译一个程序到VM中执行。然后，我们将熟悉源码和进一步通过执行程序，是学习主要部分解释器的方法。最终地，我们将选出语言的部分，一步一步的看他们是如何实现的。这是我的一个初略想法，不仅不是一个严格计划。
+
+提示： 这篇文章我参考的是CPython3.9。一些实现细节将在CPython的升级中改变。我将尝试保持追踪重要的改变并更新笔记。
+</code></pre><h6 id="大方向"><a href="#大方向" class="headerlink" title="大方向"></a>大方向</h6><pre><code>一个可执行的Python程序大致包含三阶段：
+1.初始化
+2. 编译
+</code></pre><ol start="3">
+<li><p>解释</p>
+<p>在初始化阶段，CPython初始化Python运行必要的数据结构。它也准备了如内置数据类型，配置和加载内置模块，设置导入系统以及一些其他事情。这是一个非常重要的阶段，由于服务性质，经常被CPython探索者所忽略。</p>
+<p>接下来是编译阶段，CPython是一个解释器，不是一个感觉上的编译器，他不产生机器码。解释器，然而，经常在执行之前将源码翻译成一些中间表示。CPython也是如此。这个翻译阶段和典型的编译阶段做的一样：转换源码和构建AST(抽象语法树)，从AST生成字节码，甚至执行一些字节码优化。</p>
+<p>在看下一阶段之前，我们需要理解什么是字节码，字节码是一些列指令。每个指令包含连个字节：一个操作码和一个参数。像下面这个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span><span class="params">(x)</span></span></span><br><span class="line"><span class="function">	<span class="title">return</span> <span class="title">x</span>+3</span></span><br></pre></td></tr></table></figure>
+<p>CPython翻译函数体g(x)成下面序列字节码：[124, 0, 100, 1, 23, 0, 83, 0],如果我们运行标准模块dis,去拆解它，我们将得到下面：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ python -m dis example1.py</span><br><span class="line">...</span><br><span class="line"><span class="number">2</span>           <span class="number">0</span> LOAD_FAST            <span class="number">0</span> (x)</span><br><span class="line">            <span class="number">2</span> LOAD_CONST           <span class="number">1</span> (<span class="number">3</span>)</span><br><span class="line">            <span class="number">4</span> BINARY_ADD</span><br><span class="line">            <span class="number">6</span> RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>这个LOAD_FAST操作码对应字节码124和参数0。LOAD_CONST操作码对应字节100和参数1.BINARY_ADD 和RETURN_VALUE 指令总是分别编码成（23,0）和（83,0）它们都不需要参数。</p>
+<p>CPython 的核心是一个可执行字节码的虚拟机。从前面的例子，你可能猜测到他们是如何运行的。CPython 虚拟机是基于栈的。这意味着它执行指令使用栈存储和取回数据。LOAD_FAST指令推入一个本地变量到栈中。LOAD_CONST 推入一个常量。BINART_ADD 从栈中弹出两个对象，使他们相加并返回结果，最后，RETURN_VALUE 弹出在栈任何值，并返回结果给调用者。</p>
+<p>字节码执行发生巨大的评估循环，该循环在指令执行时运行。它将停止产生值或发生错误。</p>
+<p>如此简短的概述引发了许多问题：</p>
+<ul>
+<li><p>操作码LOAD_FAST 和 LOAD_CONST 操作码是很忙意思？他们是索引？他们索引什么？</p>
+</li>
+<li><p>VM是否在堆栈上放置值或对对象的引用？</p>
+</li>
+<li><p>CPython如何知道x是局部变量？</p>
+</li>
+<li><p>如果参数太大而无法放入单个字节怎么办？</p>
+</li>
+<li><p>两个数字相加和连接两个字符串一样吗？如果是，那么VM如何区分两种操作？</p>
+</li>
+</ul>
+<p>为了回答这些和其他有趣的问题，我们需要理解CPython VM的核心概念</p>
+</li>
+</ol>
+<h5 id="代码对象，函数对象，片段"><a href="#代码对象，函数对象，片段" class="headerlink" title="代码对象，函数对象，片段"></a>代码对象，函数对象，片段</h5><h5 id="代码对象"><a href="#代码对象" class="headerlink" title="代码对象"></a>代码对象</h5><p>我们看简单的函数字节码像什么。但是典型的Python程序是更复杂的、VM如何执行包含函数定义的模块，并进行函数的调用？</p>
+<p>思考下面的程序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(f(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>它的字节码是什么样的？要回答这个问题我们先要分析下程序做了什么。它定义了一个函数f(),调用f()并传递参数1和打印返回结果，不管函数f()做了什么，它都不是字节码模块的一部分。我们能够通过运行反编译程序来验证自己。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ python -m dis example2.py</span><br><span class="line"></span><br><span class="line">1           0 LOAD_CONST               0 (&lt;code object f at 0x10bffd1e0, file <span class="string">"example.py"</span>, line 1&gt;)</span><br><span class="line">            2 LOAD_CONST               1 (<span class="string">'f'</span>)</span><br><span class="line">            4 MAKE_FUNCTION            0</span><br><span class="line">            6 STORE_NAME               0 (f)</span><br><span class="line"></span><br><span class="line">4           8 LOAD_NAME                1 (<span class="built_in">print</span>)</span><br><span class="line">           10 LOAD_NAME                0 (f)</span><br><span class="line">           12 LOAD_CONST               2 (1)</span><br><span class="line">           14 CALL_FUNCTION            1</span><br><span class="line">           16 CALL_FUNCTION            1</span><br><span class="line">           18 POP_TOP</span><br><span class="line">           20 LOAD_CONST               3 (None)</span><br><span class="line">           22 RETURN_VALUE</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>在第一行我们通过从称代码对象的东西创建函数来定义函数f()并绑定名称f。我们没有看到返回递增参数的函数f()的字节码。</p>
+<p>作为单个单元（如模块活函数体）执行的代码段成为代码块。CPtyhon在称为代码对象的结构中存储有关代码块功能的信息。它包含字节码和像在块中的变量名称列表之类的东西。运行模块或调用函数意味着开始评估相应的代码对象。</p>
+<h6 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h6><p>然而，函数不仅仅是代码对象。它必须包含等额外的信息，例如函数名、文档字符串、默认参数在封闭作用域中定义的变量值 。这些信息和代码对象一起存储在函数对象中。MAKE_FUNCTION 指令被常常用来创建它。在CPython源码中函数对象结构的定义前面有如下注释：</p>
+<p><em>函数对象和代码对象不应相互混淆：</em></p>
+<p><em>函数对象通过执行 def 语句创建的，他们的<strong>code</strong>属性中引用了一个代码对象，这是一个纯粹的语法对象</em>即只不过是一些源代码行的编译版本。每个源代码“片段”有一个代码对象，但每个代码对象可以被零个或多个函数对象引用，这仅取决于到目前为止源代码中的“def”语句执行了多少次。</p>
+<p>几个函数对象怎么会引用一个代码对象呢？下面是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">make_add_x</span> <span class="params">( x )</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">add_x</span> <span class="params">( y )</span>:</span> </span><br><span class="line">        <span class="keyword">return</span>  x  +  y </span><br><span class="line">    <span class="keyword">return</span>  add_x</span><br><span class="line"></span><br><span class="line">add_4  =  make_add_x ( <span class="number">4</span> ) </span><br><span class="line">add_5  =  make_add_x ( <span class="number">5</span> )</span><br></pre></td></tr></table></figure>
+<p><code>make_add_x()</code>函数的字节码包含<code>MAKE_FUNCTION</code>指令。函数<code>add_4()</code>和<code>add_5()</code>是使用相同的代码对象作为参数调用此指令的结果。但是有一个不同的论点—— 的值<code>x</code>。每个函数都通过<a href="https://tenthousandmeters.com/blog/python-behind-the-scenes-5-how-variables-are-implemented-in-cpython/" target="_blank" rel="noopener">单元变量</a>机制获得自己的功能，该机制允许我们创建像<code>add_4()</code>和这样的闭包<code>add_5()</code>。</p>
+<p>在我们进入下一个概念之前，先看一下代码和函数对象的定义，以更好地了解它们是什么。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">PyCodeObject</span>  &#123;</span> </span><br><span class="line">    PyObject_HEAD </span><br><span class="line">    <span class="keyword">int</span>  co_argcount ;             <span class="comment">/* #arguments, 除了 *args */</span> </span><br><span class="line">    <span class="keyword">int</span>  co_posonlyargcount ;      <span class="comment">/* #positional only arguments */</span> </span><br><span class="line">    <span class="keyword">int</span>  co_kwonlyargcount ;       <span class="comment">/* #keyword 只有参数 */</span> </span><br><span class="line">    <span class="keyword">int</span>  co_nlocals ;              <span class="comment">/* #局部变量*/</span> </span><br><span class="line">    <span class="keyword">int</span>  co_stacksize ;            <span class="comment">/* #entries 需要评估堆栈 */</span> </span><br><span class="line">    <span class="keyword">int</span>  co_flags ;                <span class="comment">/* CO_...，见下文 */</span> </span><br><span class="line">    <span class="keyword">int</span>  co_firstlineno ;          <span class="comment">/* 第一个源代码行号 */</span> </span><br><span class="line">    PyObject  * co_code ;          <span class="comment">/* 指令操作码 */</span> </span><br><span class="line">    PyObject  * co_consts ;         <span class="comment">/* 列表（使用的常量）*/</span> </span><br><span class="line">    PyObject  * co_names ;          <span class="comment">/* 字符串列表（使用的名称）*/</span> </span><br><span class="line">    PyObject  * co_varnames ;       <span class="comment">/* 字符串元组（局部变量名）*/</span> </span><br><span class="line">    PyObject  * co_freevars ;       <span class="comment">/* 字符串元组（自由变量名）*/</span> </span><br><span class="line">    PyObject  * co_cellvars ;       <span class="comment">/* 字符串元组（单元变量名）*/</span></span><br><span class="line"></span><br><span class="line">    Py_ssize_t  * co_cell2arg ;     <span class="comment">/* 映射作为参数的单元格变量。*/</span> </span><br><span class="line">    PyObject  * co_filename ;       <span class="comment">/* unicode（从哪里加载它）*/</span> </span><br><span class="line">    PyObject  * co_name ;           <span class="comment">/* unicode (name, for reference) */</span> </span><br><span class="line">        <span class="comment">/* ... 更多成员 ... */</span> </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span>  <span class="class"><span class="keyword">struct</span>  &#123;</span> </span><br><span class="line">    PyObject_HEAD </span><br><span class="line">    PyObject  * func_code ;         <span class="comment">/* 一个代码对象，__code__ 属性 */</span> </span><br><span class="line">    PyObject  * func_globals ;      <span class="comment">/* 字典（其他映射不会做）*/</span> </span><br><span class="line">    PyObject  * func_defaults ;     <span class="comment">/* NULL 或元组 */</span> </span><br><span class="line">    PyObject  * func_kwdefaults ;   <span class="comment">/* NULL 或 dict */</span> </span><br><span class="line">    PyObject  * func_closure ;      <span class="comment">/* NULL 或单元格对象的元组 */</span> </span><br><span class="line">    PyObject  * func_doc ;          <span class="comment">/* __doc__ 属性，可以是任何东西 */</span> </span><br><span class="line">    PyObject  *功能名称；        <span class="comment">/* __name__ 属性，一个字符串对象 */</span> </span><br><span class="line">    PyObject  * func_dict ;         <span class="comment">/* __dict__ 属性，一个 dict 或 NULL */</span> </span><br><span class="line">    PyObject  * func_weakreflist ;  <span class="comment">/* 弱引用列表 */</span> </span><br><span class="line">    PyObject  * func_module ;       <span class="comment">/* __module__ 属性，可以是任何东西 */</span> </span><br><span class="line">    PyObject  * func_annotations ;  <span class="comment">/* 注释、字典或 NULL */</span> </span><br><span class="line">    PyObject  * func_qualname ;     <span class="comment">/* 限定名 */</span> </span><br><span class="line">    vectorcallfunc  vectorcall ; </span><br><span class="line">&#125;  PyFunctionObject ;</span><br></pre></td></tr></table></figure>
+<h5 id="帧对象"><a href="#帧对象" class="headerlink" title="帧对象"></a>帧对象</h5><p>当 VM 执行一个代码对象时，它必须跟踪变量的值和不断变化的值堆栈。它还需要记住它在哪里停止执行当前代码对象以执行另一个以及返回的位置。CPython 将此信息存储在框架对象中，或者简单地存储在框架中。框架提供了可以执行代码对象的状态。由于我们越来越习惯使用源代码，因此我也将框架对象的定义留在这里：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">frame</span> &#123;</span></span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">frame</span> *<span class="title">f_back</span>;</span>      <span class="comment">/* previous frame, or NULL */</span></span><br><span class="line">    PyCodeObject *f_code;       <span class="comment">/* code segment */</span></span><br><span class="line">    PyObject *f_builtins;       <span class="comment">/* builtin symbol table (PyDictObject) */</span></span><br><span class="line">    PyObject *f_globals;        <span class="comment">/* global symbol table (PyDictObject) */</span></span><br><span class="line">    PyObject *f_locals;         <span class="comment">/* local symbol table (any mapping) */</span></span><br><span class="line">    PyObject **f_valuestack;    <span class="comment">/* points after the last local */</span></span><br><span class="line"></span><br><span class="line">    PyObject **f_stacktop;          <span class="comment">/* Next free slot in f_valuestack.  ... */</span></span><br><span class="line">    PyObject *f_trace;          <span class="comment">/* Trace function */</span></span><br><span class="line">    <span class="keyword">char</span> f_trace_lines;         <span class="comment">/* Emit per-line trace events? */</span></span><br><span class="line">    <span class="keyword">char</span> f_trace_opcodes;       <span class="comment">/* Emit per-opcode trace events? */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Borrowed reference to a generator, or NULL */</span></span><br><span class="line">    PyObject *f_gen;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> f_lasti;                <span class="comment">/* Last instruction if called */</span></span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">    <span class="keyword">int</span> f_lineno;               <span class="comment">/* Current line number */</span></span><br><span class="line">    <span class="keyword">int</span> f_iblock;               <span class="comment">/* index in f_blockstack */</span></span><br><span class="line">    <span class="keyword">char</span> f_executing;           <span class="comment">/* whether the frame is still executing */</span></span><br><span class="line">    PyTryBlock f_blockstack[CO_MAXBLOCKS]; <span class="comment">/* for try and loop blocks */</span></span><br><span class="line">    PyObject *f_localsplus[<span class="number">1</span>];  <span class="comment">/* locals+stack, dynamically sized */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>创建第一帧以执行模块的代码对象。每当需要执行另一个代码对象时，CPython 都会创建一个新框架。每帧都有对前一帧的引用。因此，帧形成帧堆栈，也称为调用堆栈，当前帧位于顶部。当一个函数被调用时，一个新的帧被压入堆栈。从当前执行的帧返回时，CPython 通过记住其最后处理的指令来继续执行前一帧。从某种意义上说，CPython VM 除了构造和执行帧之外什么都不做。然而，正如我们很快就会看到的，这个总结，委婉地说，隐藏了一些细节。</p>
+<h6 id="线程、解释器、运行时"><a href="#线程、解释器、运行时" class="headerlink" title="线程、解释器、运行时"></a>线程、解释器、运行时</h6><p>我们已经看过三个重要的概念：</p>
+<ul>
+<li>代码对象</li>
+<li>一个函数对象；和</li>
+<li>一个框架对象。</li>
+</ul>
+<p>CPython 还有三个：</p>
+<ul>
+<li>线程状态</li>
+<li>翻译状态；和</li>
+<li>运行时状态。</li>
+</ul>
+<h4 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h4><p>线程状态是一种数据结构，包含线程特定的数据，包括调用堆栈、异常状态和调试设置。它不应与操作系统线程混淆。不过，它们之间的联系很紧密。考虑使用标准<a href="https://docs.python.org/3/library/threading.html" target="_blank" rel="noopener"><code>threading</code></a>模块在单独的线程中运行函数时会发生什么：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""Perform an I/O-bound task"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">t = Thread(target=f)</span><br><span class="line">t.start()</span><br><span class="line">t.join()</span><br></pre></td></tr></table></figure>
+<p><code>t.start()</code>实际上通过调用 OS 函数（<code>pthread_create()</code>在类 UNIX 系统和<code>_beginthreadex()</code>Windows 上）创建一个新的 OS 线程。新创建的线程从<code>_thread</code>负责调用目标的模块调用函数。该函数不仅接收目标和目标的参数，还接收要在新 OS 线程中使用的新线程状态。一个操作系统线程以其自己的线程状态进入求值循环，因此它总是在手边。</p>
+<p>我们可能还记得著名的 GIL（全局解释器锁），它可以防止多个线程同时处于评估循环中。这样做的主要原因是在不引入更细粒度的锁的情况下保护 CPython 的状态免受损坏。<a href="https://docs.python.org/3.9/c-api/index.html" target="_blank" rel="noopener">Python/C API 参考</a>清楚地解释了 GIL：</p>
+<blockquote>
+<p>Python 解释器不是完全线程安全的。为了支持多线程 Python 程序，有一个全局锁，称为全局解释器锁或 GIL，必须由当前线程持有才能安全地访问 Python 对象。如果没有锁，即使是最简单的操作也可能导致多线程程序出现问题：例如，当两个线程同时增加同一个对象的引用计数时，引用计数可能最终只会增加一次而不是两次。</p>
+</blockquote>
+<p>要管理多个线程，需要有比线程状态更高级的数据结构。</p>
+<h4 id="解释器和运行时状态"><a href="#解释器和运行时状态" class="headerlink" title="解释器和运行时状态"></a>解释器和运行时状态</h4><p>事实上，有两种状态：解释器状态和运行时状态。对两者的需求似乎并不明显。然而，任何程序的执行都至少有一个实例，这是有充分理由的。</p>
+<p>解释器状态是一组线程以及特定于该组的数据。线程共享诸如加载模块 ( <code>sys.modules</code>)、内置函数 ( <code>builtins.__dict__</code>) 和导入系统 ( <code>importlib</code>) 之类的东西。</p>
+<p>运行时状态是一个全局变量。它存储特定于进程的数据。这包括 CPython 的状态（例如它是否已初始化？）和 GIL 机制。</p>
+<p>通常，一个进程的所有线程都属于同一个解释器。然而，在极少数情况下，人们可能想要创建一个子解释器来隔离一组线程。<a href="https://modwsgi.readthedocs.io/en/develop/user-guides/processes-and-threading.html#python-sub-interpreters" target="_blank" rel="noopener">mod_wsgi</a>，它使用不同的解释器来运行 WSGI 应用程序，就是一个例子。隔离最明显的效果是每组线程都获得了包括 在内的所有模块的自己版本<code>__main__</code>，这是一个全局命名空间。</p>
+<p>CPython 没有提供一种简单的方法来创建类似于<code>threading</code>模块的新解释器。此功能仅通过 Python/C API 支持，但这<a href="https://www.python.org/dev/peps/pep-0554/" target="_blank" rel="noopener">可能</a>有一天<a href="https://www.python.org/dev/peps/pep-0554/" target="_blank" rel="noopener">会改变</a>。</p>
+<h3 id="架构总结"><a href="#架构总结" class="headerlink" title="架构总结"></a>架构总结</h3><p>让我们快速总结一下 CPython 的架构，看看一切是如何组合在一起的。解释器可以看作是一个分层结构。下面总结了层是什么：</p>
+<ol>
+<li>运行时：进程的全局状态；这包括 GIL 和内存分配机制。</li>
+<li>解释器：一组线程和它们共享的一些数据，例如导入的模块。</li>
+<li>线程：特定于单个操作系统线程的数据；这包括调用堆栈。</li>
+<li>Frame：调用栈的一个元素；一个框架包含一个代码对象并提供一个状态来执行它。</li>
+<li>评估循环：执行框架对象的地方。</li>
+</ol>
+<p>这些层由我们已经看到的相应数据结构表示。但在某些情况下，它们并不等效。比如内存分配的机制就是使用全局变量来实现的。它不是运行时状态的一部分，但肯定是运行时层的一部分。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>在这一部分中，我们概述了<code>python</code>执行 Python 程序的作用。我们已经看到它分三个阶段工作：</p>
+<ol>
+<li>初始化 CPython</li>
+<li>将源代码编译为模块的代码对象</li>
+<li>执行代码对象的字节码。</li>
+</ol>
+<p>负责字节码执行的解释器部分称为虚拟机。CPython VM 有几个特别重要的概念：代码对象、框架对象、线程状态、解释器状态和运行时。这些数据结构构成了 CPython 架构的核心。</p>
+<p>我们还有很多东西没涵盖。我们避免深入研究源代码。初始化和编译阶段完全超出了我们的范围。相反，我们从虚拟机的广泛概述开始。这样，我想，我们可以更好地看到每个阶段的责任。现在我们知道 CPython 将源代码编译成什么——代码对象。<a href="https://tenthousandmeters.com/blog/python-behind-the-scenes-2-how-the-cpython-compiler-works/" target="_blank" rel="noopener">下次</a>我们将看到它是如何做到的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/15/Blog/markdown/Python/基础知识/Cpython虚拟机如何工作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Git/Git错误及解决办法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/Blog/markdown/Git/Git错误及解决办法/">Git常见错误</a>
+    </h1>
+  
+
+        
+        
+<a href="/2021/08/10/Blog/markdown/Git/Git错误及解决办法/" class="archive-article-date">
+  	<time datetime="2021-08-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-git-clone-报证书错误"><a href="#1-git-clone-报证书错误" class="headerlink" title="1. git clone 报证书错误"></a>1. git clone 报证书错误</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cloning <span class="keyword">into</span> <span class="string">'ChickenFarm'</span><span class="params">...</span></span><br><span class="line">fatal: unable <span class="keyword">to</span> access <span class="string">'https://github.com/caidongHui/ChickenFarm.git/'</span>: server certificate verification failed. CAfile: <span class="literal">none</span> CRLfile: <span class="literal">none</span></span><br></pre></td></tr></table></figure>
+<p>解决办法：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global http.sslVerify <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Git//" class="article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/10/Blog/markdown/Git/Git错误及解决办法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -847,6 +1140,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -859,15 +1156,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -875,7 +1164,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -896,6 +1185,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -923,11 +1216,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">

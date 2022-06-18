@@ -166,441 +166,6 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Blog/markdown/TensorFlow/常用api" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/Blog/markdown/TensorFlow/常用api/">tensorFlow 常用api</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/08/29/Blog/markdown/TensorFlow/常用api/" class="archive-article-date">
-  	<time datetime="2018-08-29T12:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>tf.one_hot() 返回n维的独热张量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.one_hot(indices, depth, on_value, off_value, axis)</span><br><span class="line">输入值：</span><br><span class="line">    indices:  独热向量的位置索引</span><br><span class="line">    depth:  每个独热向量的维度</span><br><span class="line">    on_value: 独热的值</span><br><span class="line">    off_value: 非独热值</span><br><span class="line">    axis: axis指定第几阶为depth维独热向量，默认为<span class="number">-1</span>,即,指定张量的最后一维为独热向量</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    独热张量</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>tf.argmax() 返回某个 tensor 对象在某一维上的其数据最大值所在的索引值，相应的有tf.argmin()</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.argmax(input,axis=<span class="type">None</span>,name=<span class="type">None</span>,dimension=<span class="type">None</span>,output_type=tf.<span class="built_in">int64</span>)</span><br><span class="line">    </span><br><span class="line">输入值：</span><br><span class="line">    input: 以下数据类型的张量: <span class="built_in">float32</span>, <span class="built_in">float64</span>, <span class="built_in">int32</span>, <span class="built_in">uint8</span>, <span class="built_in">int16</span>, <span class="built_in">int8</span>, complex64, <span class="built_in">int64</span>, qint8, quint8, qint32, bfloat16, <span class="built_in">uint16</span>, complex128, half, <span class="built_in">uint32</span>, <span class="built_in">uint64</span>.</span><br><span class="line">    axis: A <span class="type">Tensor</span>. <span class="type">Must</span> be one <span class="keyword">of</span> the following types: <span class="built_in">int32</span>, <span class="built_in">int64</span>. <span class="built_in">int32</span> <span class="keyword">or</span> <span class="built_in">int64</span>, must be <span class="keyword">in</span> the <span class="built_in">range</span> [-rank(input), rank(input)). <span class="type">Describes</span> which axis <span class="keyword">of</span> the input <span class="type">Tensor</span> to reduce across. <span class="type">For</span> vectors, use axis = <span class="number">0</span>.</span><br><span class="line">    output_type: <span class="type">An</span> optional tf.<span class="type">DType</span> <span class="keyword">from</span>: tf.<span class="built_in">int32</span>, tf.<span class="built_in">int64</span>. <span class="type">Defaults</span> to tf.<span class="built_in">int64</span>.</span><br><span class="line">    name: 操作名 (optional).</span><br><span class="line"></span><br><span class="line">返回值:</span><br><span class="line">    类型为output_type的张量</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/Blog/markdown/TensorFlow/常用api/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/TensorFlow/特征工程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/Blog/markdown/TensorFlow/特征工程/">特征工程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/08/29/Blog/markdown/TensorFlow/特征工程/" class="archive-article-date">
-  	<time datetime="2018-08-29T12:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h3><p>1.原因: 多个特征之间的差异较大，收敛速度会很慢。</p>
-<p>2.方法:</p>
-<ul>
-<li>连续数据归一化</li>
-</ul>
-<ol>
-<li>Max-Min</li>
-</ol>
-<p>公式<br><img src="https://img-blog.csdn.net/20150306200758594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemJjMTA5MDU0OTgzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
-<p>Xmin/Xmax分别对应数据集中最小、最大的数据，X是待归一化数据</p>
-<ol start="2">
-<li>0均值标准化(Z-Score) </li>
-</ol>
-<p><img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D=%5Cfrac%7Bx-%5Cmu%20%7D%7B%5Csigma%20%7D%20%20" alt="image"></p>
-<p>其中x为某一具体分数，μ为平均数，σ为标准差。<br>    Z值的量代表着原始分数和母体平均值之间的距离，是以标准差为单位计算。在原始分数低于平均值时Z则为负数，反之则为正数。</p>
-<ol start="3">
-<li>对数函数法</li>
-</ol>
-<p><img src="http://images2015.cnblogs.com/blog/323808/201603/323808-20160307152838663-1519807797.png" alt="image"></p>
-<p>主要用于数量级很大的场合</p>
-<ul>
-<li><p>离散数据归一化</p>
-<p>  one-hot 编码<br>  独热编码即 One-Hot 编码，又称一位有效编码，其方法是使用N位状态寄存器来对N个状态进行编码，每个状态都由他独立的寄存器位，并且在任意时候，其中只有一位有效。</p>
-</li>
-</ul>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">例如： </span><br><span class="line"><span class="number">1.</span> 自然状态码为：<span class="number">000</span>,<span class="number">001</span>,<span class="number">010</span>,<span class="number">011</span>,<span class="number">100</span>,<span class="number">101</span> </span><br><span class="line">独热编码为：<span class="number">000001</span>,<span class="number">000010</span>,<span class="number">000100</span>,<span class="number">001000</span>,<span class="number">010000</span>,<span class="number">100000</span> </span><br><span class="line"><span class="number">2.</span> 性别特征有三种特征值：男、女、其他 </span><br><span class="line">独热编码为：<span class="number">001</span>，<span class="number">010</span>，<span class="number">100</span></span><br></pre></td></tr></table></figure>
-<h3 id="连续数据离散化"><a href="#连续数据离散化" class="headerlink" title="连续数据离散化"></a>连续数据离散化</h3><ol>
-<li>等距离散<br> 取值范围内划分出n份，每份间距相等</li>
-<li>等频离散<br> 均匀分为n等份，每份包含观察点的数目相同</li>
-<li><p>优化离散</p>
-<p> 大致有两类方法： </p>
-<ol>
-<li>卡方检验方法：（统计样本的实际观测值与理论推断值之间的偏离程度，卡方值越大，越不符合；卡方值越小，偏差越小，越趋于符合） </li>
-</ol>
-</li>
-</ol>
-<ul>
-<li>分裂方法：找到一个分裂点看，左右2个区间，在目标值上分布是否有- 显著差异，有显著差异就分裂，否则就忽略。这个点可以每次找差异最大的点 </li>
-<li>合并方法：先划分如果很小单元区间，按顺序合并在目标值上分布不显著的相邻区间，直到收敛 <ol start="2">
-<li>信息增益方法： </li>
-</ol>
-</li>
-<li>分裂方法：找到一个分裂点看，左右2个区间，看分裂前后信息增益变化阈值，如果差值超过阈值（正值，分列前-分裂后信息熵），则分裂。每次找差值最大的点做分裂点，直到收敛 </li>
-<li>合并方法：先划分 如果很小单元区间，按顺序合并信息增益小于阈值的相邻区间，直到收敛</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/Blog/markdown/TensorFlow/特征工程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/TensorFlow/特征分类" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/Blog/markdown/TensorFlow/特征分类/">特征分类</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/08/29/Blog/markdown/TensorFlow/特征分类/" class="archive-article-date">
-  	<time datetime="2018-08-29T12:31:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.低级特征 和 高级特征</p>
-<ul>
-<li>低级特征： 较低级别的特征，不需要或者需要非常少的人工干预和处理<br>  low_level: 特征维度较高，不能用过于复杂的模型</li>
-<li>高级特征：经过较复杂的处理，结合部分业务逻辑或规则模型得到的特征<br>  high_level: Low level 比较针对性，覆盖面小。长尾样本的预测值主要受high level特征影响。 高频样本的预测值主要受low level特征影响。</li>
-</ul>
-<ol start="2">
-<li>稳定特征与动态特征</li>
-</ol>
-<ul>
-<li><p>稳定特征:变化（更新）频率较小的特征</p>
-</li>
-<li><p>动态特征：变化更新频繁的特征，有时是实时计算的特征。</p>
-</li>
-</ul>
-<ol start="3">
-<li>二值特征，连续特征，枚举特征</li>
-</ol>
-<ul>
-<li>二值特征：主要是（0/1特征）</li>
-<li>连续特征：取值为有理数的特征</li>
-<li>枚举特征：主要几个固定的可能值</li>
-</ul>
-<p>4.稀疏 与 稠密 特征</p>
-<ol>
-<li>枚举特征转二值特征：<br>将枚举特征映射为多个特征，每个特征对应一个特定枚举值，例如今天周几，可以把它转换成7个二元特征：今天是否是周一，今天是否是周二，…，今天是否是周日</li>
-<li>连续值处理为二值特征方法：<br>先将连续值离散化（后面会介绍如何离散化)，再将离散化后的特征切分为N个二元特征，每个特征代表是否在这个区间内。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/Blog/markdown/TensorFlow/特征分类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Blog/markdown/TensorFlow/gRPC服务使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/Blog/markdown/TensorFlow/gRPC服务使用/">tensorFlow grpc服务使用</a>
-    </h1>
-  
-
-        
-        
-<a href="/2018/08/29/Blog/markdown/TensorFlow/gRPC服务使用/" class="archive-article-date">
-  	<time datetime="2018-08-29T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-使用-TensorFlow-Serving-提供服务"><a href="#1-使用-TensorFlow-Serving-提供服务" class="headerlink" title="1.  使用 TensorFlow Serving 提供服务"></a>1.  使用 TensorFlow Serving 提供服务</h5><ol>
-<li>安装 tensorflow-model-server<br><a href="https://www.tensorflow.org/serving/setup#installing_using_apt_get" target="_blank" rel="noopener">官方地址</a></li>
-</ol>
-<ol start="2">
-<li>安装  tensorflow-serving-api-python3 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-serving-api-python3 -<span class="selector-tag">i</span> https:<span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>使用 TensorFlow Serving 提供服务<br>最后，我们来演示一下如何使用 TensorFlow 的姊妹项目 TensorFlow Serving 来基于 SavedModel 对外提供服务。</p>
-<p>安装并启动 TensorFlow ModelServer<br>TensorFlow 服务端代码是使用 C++ 开发的，因此最便捷的安装方式是通过软件源来获取编译好的二进制包。读者可以根据 官方文档 在 Ubuntu 中配置软件源和安装服务端：</p>
-<p>1<br>$ apt-get install tensorflow-model-server<br>然后就可以使用以下命令启动服务端了，该命令会加载导出目录中最新的一份模型来提供服务：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tensorflow_model_server <span class="attribute">--port</span>=9000 <span class="attribute">--model_base_path</span>=/root/export</span><br><span class="line">2018-05-14 01:05:12.561 Loading SavedModel with tags: &#123; serve &#125;; <span class="keyword">from</span>: /root/export/1524907728</span><br><span class="line">2018-05-14 01:05:12.639 Successfully loaded servable version &#123;name:<span class="built_in"> default </span>version: 1524907728&#125;</span><br><span class="line">2018-05-14 01:05:12.641 Running ModelServer at 0.0.0.0:9000 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
-<p>使用 SDK 访问远程模型<br>TensorFlow Serving 是基于 gRPC 和 Protocol Buffers 开发的，因此我们需要安装相应的 SDK 包来发起调用。需要注意的是，官方的 TensorFlow Serving API 目前只提供了 Python 2.7 版本的 SDK，不过社区有人贡献了支持 Python 3.x 的软件包，我们可以用以下命令安装：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install tensorflow-seving-api-python3==<span class="number">1.7</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<p>调用过程很容易理解：我们首先创建远程连接，向服务端发送 Example 实例列表，并获取预测结果。完整代码可以在 iris_remote.py 中找到。</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 创建 gRPC 连接</span></span><br><span class="line">channel = implementations.insecure_channel(<span class="string">'127.0.0.1'</span>, <span class="number">9000</span>)</span><br><span class="line">stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取测试数据集，并转换成 Example 实例。</span></span><br><span class="line">inputs = pd.DateFrame()</span><br><span class="line">examples = [tf.tain.Example() <span class="keyword">for</span> index, row in inputs.iterrows()]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 准备 RPC 请求，指定模型名称。</span></span><br><span class="line">request = classification_pb2.ClassificationRequest()</span><br><span class="line">request.model_spec.name = <span class="string">'default'</span></span><br><span class="line">request.input.example_list.examples.extend(examples)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 获取结果</span></span><br><span class="line">response = stub.Classify(request, <span class="number">10.0</span>)</span><br><span class="line"><span class="meta"># result &#123;</span></span><br><span class="line"><span class="meta">#   classifications &#123;</span></span><br><span class="line"><span class="meta">#     classes &#123;</span></span><br><span class="line"><span class="meta">#       label: "0"</span></span><br><span class="line"><span class="meta">#       score: 0.998267650604248</span></span><br><span class="line"><span class="meta">#     &#125;</span></span><br><span class="line"><span class="meta">#     ...</span></span><br><span class="line"><span class="meta">#   &#125;</span></span><br><span class="line"><span class="meta">#   ...</span></span><br><span class="line"><span class="meta"># &#125;</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/29/Blog/markdown/TensorFlow/gRPC服务使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Blog/markdown/TensorFlow/tensorflow特征工程函数" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -1433,6 +998,395 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-Blog/markdown/TensorFlow/基础概念" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/">基础概念</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/" class="archive-article-date">
+  	<time datetime="2018-07-26T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>特征：某个样本的特点。</li>
+<li>标签：尝试预测的内容。</li>
+<li>样本：特征和标签组成</li>
+<li>模型：特征与标签之间的关系</li>
+<li>训练： 机器学习阶段，模型逐渐得到优化。</li>
+<li>训练集：用于训练模型的样本集合</li>
+<li>测试集：用于评估训练后模型效果的集合</li>
+<li>特征工程: 利用数据领域相关知识来创建能够使机器算法达到最佳性能的过程</li>
+<li>特征构建: 是原始数据中人工的构建新的特征</li>
+<li>特征提取: 自动构建新的特征，将原始特征转化为一组具有明显物理意义或统计意义或核的特征</li>
+<li>特征选择: 从特征集合中挑选一组最具统计意义的特征子集，从而达到降维的效果  </li>
+</ul>
+<p>如果特征构建做的不好，那么它会直接影响特征提取，进而影响了特征选择，最终影响模型的性能</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/26/Blog/markdown/TensorFlow/基础概念/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/Scrapy/User-Agent中间件编写" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/">User-Agent中间件</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/" class="archive-article-date">
+  	<time datetime="2018-06-25T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>代码</li>
+</ol>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> my_useragent(<span class="title">object</span>):</span></span><br><span class="line"><span class="class">    def process_request(<span class="title">self</span>, <span class="title">request</span>, <span class="title">spider</span>):</span></span><br><span class="line"><span class="class">        <span class="type">USER_AGENT_LIST</span> = [</span></span><br><span class="line"><span class="class">        <span class="type">Mozilla</span>/5.0(<span class="type">Macintosh</span>;<span class="type">U</span>;<span class="type">IntelMacOSX10_6_8</span>;<span class="title">en</span>-<span class="title">us</span>)<span class="type">AppleWebKit</span>/534.50(<span class="type">KHTML</span>,<span class="title">likeGecko</span>)<span class="type">Version</span>/5.1Safari/534.50,</span></span><br><span class="line"><span class="class">        <span class="type">Mozilla</span>/5.0(<span class="type">Windows</span>;<span class="type">U</span>;<span class="type">WindowsNT6</span>.1;<span class="title">en</span>-<span class="title">us</span>)<span class="type">AppleWebKit</span>/534.50(<span class="type">KHTML</span>,<span class="title">likeGecko</span>)<span class="type">Version</span>/5.1Safari/534.50</span></span><br><span class="line"><span class="class">        ]</span></span><br><span class="line"><span class="class">        agent = random.choice(<span class="type">USER_AGENT_LIST</span>)</span></span><br><span class="line"><span class="class">        request.headers['user-agent'] = agent</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>在settings.py 启用</p>
+<p> DOWLOAD_MIDDLER = {</p>
+<pre><code>module_name:priority_level
+</code></pre><p>} </p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Scrapy//" class="article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/25/Blog/markdown/Python/Scrapy/User-Agent中间件编写/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/Scrapy/代理ip中间件" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/Blog/markdown/Python/Scrapy/代理ip中间件/">代理IP中间件</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/06/22/Blog/markdown/Python/Scrapy/代理ip中间件/" class="archive-article-date">
+  	<time datetime="2018-06-22T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>代码</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">my_proxy</span>(<span class="title">object</span>):</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(<span class="keyword">self</span>,request,spider)</span></span><span class="symbol">:</span></span><br><span class="line">       request.meta[<span class="string">'proxy'</span>] = <span class="string">'ip:port'</span></span><br><span class="line">       proxy_name_pass = [<span class="symbol">name:</span>pwd]</span><br><span class="line">       encode_pass_name = base64.b64encode(proxy_name_pass)</span><br><span class="line">       request.heades[<span class="string">'proxy-Authorization'</span>] = <span class="string">'Basic'</span> + encode_pass_name.decode()</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>settings.py 文件中开启</p>
+<p>DOWLOAD_MIDDLER = {</p>
+<pre><code>module_name:priority_level
+</code></pre><p>  }</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">代理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Scrapy//" class="article-tag-list-link color2">Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/Blog/markdown/Python/Scrapy/代理ip中间件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Blog/markdown/Python/基础知识/多线程编程" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/20/Blog/markdown/Python/基础知识/多线程编程/">多线程编程</a>
+    </h1>
+  
+
+        
+        
+<a href="/2018/06/20/Blog/markdown/Python/基础知识/多线程编程/" class="archive-article-date">
+  	<time datetime="2018-06-20T02:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>限制最大线程数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"> </span><br><span class="line">sem=threading.Semaphore(<span class="number">4</span>)  <span class="comment">#限制线程的最大数量为4个</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gothread</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span>  sem:  <span class="comment">#锁定线程的最大数量</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>):</span><br><span class="line">            print(threading.current_thread().name,i)</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    threading.Thread(target=gothread).start()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>线程池</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from concurrent.futures import ThreadPoolExecutor</span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">def fetch_url(url):</span><br><span class="line">    u = urllib.request.urlopen(url)</span><br><span class="line">    data = u.read()</span><br><span class="line">    return data</span><br><span class="line"></span><br><span class="line">pool = ThreadPoolExecutor(10)</span><br><span class="line"><span class="comment"># Submit work to the pool</span></span><br><span class="line">a = pool.submit(fetch_url, 'http://www.python.org')</span><br><span class="line">b = pool.submit(fetch_url, 'http://www.pypy.org')</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the results back</span></span><br><span class="line">x = a.result()</span><br><span class="line">y = b.result()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/20/Blog/markdown/Python/基础知识/多线程编程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -1549,6 +1503,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -1561,15 +1519,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Openwrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1577,7 +1527,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1598,6 +1548,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1625,11 +1579,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">异步非阻塞</a>
               </li>
              
               <li class="article-tag-list-item">
